@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selector Playground</title>
+
+  <style>
+    /* Element selector */
+    h2 {
+      color: darkblue;
+    }
+
+    /* ID selector */
+    #page-title {
+      color: #008000;
+      text-decoration: underline;
+      text-align: center;
+    }
+
+    /* Class selector */
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+      padding: 2px 5px;
+    }
+
+    /* Descendant selector */
+    div p {
+      color: darkred;
+    }
+
+    /* Child selector */
+    ul > li {
+      color: purple;
+    }
+
+    /* Attribute selector */
+    input[type="text"] {
+      border: 2px solid orange;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    /* Pseudo-class selector */
+    a:hover {
+      color: red;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="page-title">CSS Selector Playground</h1>
+
+  <h2>Element Selector Example</h2>
+  <p>This paragraph is styled because of the <span class="highlight">element selector</span>.</p>
+
+  <p class="highlight">This text uses a <strong>class selector</strong> to get highlighted.</p>
+
+  <div>
+    <p>This is inside a div, so the <em>Adjacent selector</em> affects it.</p>
+  </div>
+
+  <ul>
+    <li>Child selector example 1</li>
+    <li>Child selector example 2</li>
+  </ul>
+
+  <form>
+    <label>Attribute Selector Example:</label><br>
+    <input type="text" placeholder="Type your name here">
+  </form>
+
+  <p>Hover over this <a href="#">link</a> to see the pseudo-class selector in action.</p>
+</body>
+</html>

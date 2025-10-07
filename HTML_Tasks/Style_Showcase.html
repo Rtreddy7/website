@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Showcase</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="external-style.css">
+
+  <!-- Internal CSS -->
+  <style>
+    /* Internal CSS: Styles used only in this HTML file */
+    h1 {
+      color: #fffacd; /* Light yellow to match the green background */
+      text-align: center;
+    }
+
+    .internal-box {
+      background-color: rgba(255, 255, 255, 0.2); /* Slight transparent white */
+      border: 2px solid #ffffff;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Inline CSS -->
+  <h1 style="font-size: 28px; text-decoration: underline;">Style Showcase Page</h1>
+
+  <h2>This heading uses External CSS</h2>
+  <p>This paragraph is styled using external CSS from a separate file.</p>
+
+  <div class="internal-box">
+    <p>This box and its text are styled using Internal CSS.</p>
+  </div>
+
+  <p style="color: #fff; font-weight: bold;">This line uses Inline CSS directly on the tag.</p>
+</body>
+</html>
