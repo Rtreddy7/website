@@ -1,0 +1,102 @@
+/* Page Styling */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #3cb371;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #222;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+nav li {
+    display: inline-block;
+    margin: 0 15px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+nav a:hover {
+    color: #3cb371;
+}
+
+/* Section styling */
+section {
+    background-color: white;
+    width: 80%;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Skills Section */
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+}
+.skills-list li {
+    background-color: #e6ffe6;
+    margin: 8px 0;
+    padding: 10px;
+    border-left: 5px solid #3cb371;
+    font-weight: 500;
+}
+
+/* Experience Cards */
+.experience-card {
+    background-color: #f4fdf4;
+    padding: 20px;
+    margin: 15px 0;
+    border-left: 5px solid #3cb371;
+    border-radius: 5px;
+}
+.experience-card h3 {
+    color: #3cb371;
+}
+
+/* Goals Section */
+#goals {
+    text-align: justify;
+}
+
+/* Contact Section */
+.contact-info {
+    list-style-type: none;
+    padding: 0;
+}
+.contact-info li {
+    margin: 8px 0;
+}
+.contact-info a {
+    color: #3cb371;
+    text-decoration: none;
+}
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #222;
+    color: white;
+    padding: 15px 0;
+}

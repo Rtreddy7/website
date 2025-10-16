@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: beige;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222;
+    color: white;
+    padding: 15px 50px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo img{
+    display: flex;
+    align-items: center;
+    width: 50px
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #00bcd4;
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+}
+
+.about-text {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.about-text h2 {
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.about-img img {
+    width: 300px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.skills-container {
+    padding: 60px 80px;
+    background-color: #f0f0f0;
+}
+
+.skills-container h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 10px;
+}
+
+th {
+    background-color: #222;
+    color: white;
+}
+
+.projects-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 60px 80px;
+    gap: 30px;
+}
+
+.task {
+    flex: 1 1 calc(45% - 20px);
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    min-width: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.box1 { background-color: #0078d7; }
+.box2 { background-color: #00bfa5; }
+.box3 { background-color: #ff7043; }
+.box4 { background-color: #9c27b0; }
+
+.contact-section {
+    padding: 60px 80px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+input, textarea, button {
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #0078d7;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
+
+.faq-section {
+    padding: 60px 80px;
+    background-color: #f0f0f0;
+}
+
+.faq {
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    background-color: #222;
+    color: white;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.fixed{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 90%;
+    cursor: pointer;
+    color: white;
+    background-color: crimson;
+}
+
+.fixed:hover{
+    color: red;
+    background-color: burlywood;
+}
