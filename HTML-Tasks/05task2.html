@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Job Application</title>
+    <style>
+        body{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="font-size: 50px; font-weight: 600;">Online Job Application</h2>
+
+    <form>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label>Name:</label><br>
+            <input type="text" name="name" required><br><br>
+
+            <label>Email:</label><br>
+            <input type="email" name="email" required><br><br>
+
+            <label>Phone:</label><br>
+            <input type="tel" name="phone" required><br><br>
+
+            <label>Date of Birth:</label><br>
+            <input type="date" name="dob" required><br><br>
+        </fieldset><br>
+
+        <fieldset>
+            <legend>Education</legend>
+            <label>Degree:</label><br>
+            <input type="text" name="degree"><br><br>
+
+            <label>Year:</label><br>
+            <input type="number" name="year" min="2000" max="2025"><br><br>
+
+            <label>Percentage:</label><br>
+            <input type="number" name="percentage" min="0" max="100"><br><br>
+        </fieldset><br>
+
+        <fieldset>
+            <legend>Skills</legend>
+            <label><input type="checkbox" name="skills" value="HTML"> HTML</label><br>
+            <label><input type="checkbox" name="skills" value="CSS"> CSS</label><br>
+            <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label><br><br>
+
+            <label>Skill Level:</label><br>
+            <input type="range" min="0" max="100"><br><br>
+        </fieldset><br>
+
+        <label>Upload Resume:</label><br>
+        <input type="file" name="resume"><br><br>
+
+        <label>Declaration:</label><br>
+        <input type="checkbox" required> I agree<br><br>
+
+        <input type="submit" value="Submit Application">
+    </form>
+
+</body>
+</html>

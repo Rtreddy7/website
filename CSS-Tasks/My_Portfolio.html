@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raviteja Portfolio</title>
+  <style>
+    header{
+      color: red;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Ravi Teja</h1>
+    <p>Web Developer</p>
+    <nav>
+      <a href="#about">About</a> |
+      <a href="#projects">Projects</a> |
+      <a href="#skills">Skills</a> |
+      <a href="#gallery">Gallery</a> |
+      <a href="#contact">Contact</a> |
+      <a href="#blog">Blog</a> |
+      <a href="#faq">FAQ</a> |
+      <a href="#media">Media</a>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <img src="profile.jpg" alt="Raviteja Photo" width="150">
+    <p>Hello! I'm Raviteja, a passionate web developer and DevOps enthusiast.</p>
+
+    <dl>
+      <dt>Education</dt>
+      <dd>B.Tech in Computer Science</dd>
+      <dt>Experience</dt>
+      <dd>Having keen knowledge in Azure DevOps and Web Development</dd>
+    </dl>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <table border="1" cellpadding="6">
+      <tr>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Tech Used</th>
+      </tr>
+      <tr>
+        <td>Portfolio Website</td>
+        <td>Personal portfolio to showcase work</td>
+        <td>HTML, CSS</td>
+      </tr>
+      <tr>
+        <td>CI/CD Pipeline</td>
+        <td>Automated build and deployment setup</td>
+        <td>Azure DevOps, YAML</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <label>HTML:</label>
+    <progress value="90" max="100"></progress><br>
+    <label>CSS:</label>
+    <progress value="50" max="100"></progress><br>
+    <label>Azure DevOps:</label>
+    <meter value="0.85" min="0" max="1"></meter>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <figure>
+      <picture>
+        <source srcset="project-small.jpg" media="(max-width:600px)">
+        <img src="project.jpg" alt="Project Screenshot" width="300">
+      </picture>
+      <figcaption>My Latest Project Screenshot</figcaption>
+    </figure>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <label>Name:</label>
+      <input type="text" name="name" required><br><br>
+      <label>Email:</label>
+      <input type="email" name="email" required><br><br>
+      <label>Phone:</label>
+      <input type="tel" name="phone"><br><br>
+      <label>Message:</label><br>
+      <textarea name="message" rows="4" cols="30"></textarea><br><br>
+      <input type="submit" value="Send">
+    </form>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog">
+    <h2>My Blog</h2>
+    <article>
+      <h3>How I started Web Development</h3>
+      <p>I began by learning HTML and CSS, then moved to real projects to practice every concept.</p>
+    </article>
+
+    <aside>
+      <p><strong>Tip:</strong> Build small projects often to improve your skills.</p>
+    </aside>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <details>
+      <summary>What technologies do you work with?</summary>
+      <p>I mainly work with HTML, CSS, Azure, and DevOps tools.</p>
+    </details>
+    <details>
+      <summary>Are you open for freelance work?</summary>
+      <p>Yes, I’m open to short-term freelance projects.</p>
+    </details>
+  </section>
+
+  <!-- Media Section -->
+  <section id="media">
+    <h2>Media</h2>
+    <p>Here’s my intro video:</p>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Intro Video"></iframe>
+    <p>Audio intro:</p>
+    <audio controls>
+      <source src="intro.mp3" type="audio/mpeg">
+      Your browser doesn’t support audio playback.
+    </audio>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Raviteja Portfolio</p>
+    <p>Address: Bengaluru, India</p>
+    <p>Last Updated: <time datetime="2025-10-04">October 4, 2025</time></p>
+  </footer>
+
+</body>
+</html>
