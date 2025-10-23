@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition & Transforms</title>
+
+    <style>
+        .box{
+            border: 1px solid black;
+            width: 150px;
+            height: 100px;
+            text-align: center;
+            background-color: #555;
+            font-size: 60px;
+            transition: all 1s linear 0.3s;
+            
+        }
+
+        .box:hover{
+            background-color: black;
+            color: white;
+            transform: translateX(60px);
+        }
+
+        .box2{
+            border: 1px solid black;
+            width: 150px;
+            height: 100px;
+            text-align: center;
+            background-color: #555;
+            font-size: 60px;
+            margin-top: 40px;
+            transition: all 3s linear 0s;
+
+        }
+
+        .box2:hover{
+            background-color: black;
+            color: white;
+            transform: rotate(125deg);
+        }
+
+        .btn{
+            margin-top: 40px;
+            width: 70px;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 25px;
+            height: 50px;
+            border: #555;
+            border-radius: 6px;
+            background-color: blueviolet;
+            color: white;
+            transition: all 5s ease 0s;
+        }
+
+        .btn:hover{
+            background-color: #222;
+            color: #fff;
+            transform: scale(1.2);
+        }
+
+        .circle{
+            margin: 40px;
+            border: 1px solid #555;
+            border-radius: 50%;
+            width: 70px;
+            font-size: 20px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: hotpink;
+            color: white;
+            transition: all 5s linear 0.3s;
+
+        }
+
+        .circle:hover{
+            transform: rotate(360deg) scale(.8);
+        }
+
+        .shape{
+            width: 100px;
+            height: 100px;
+            margin-top: 40px;
+            margin-left: 20px;
+            border-radius: 50%;
+            border: none;
+            background-color: red;
+            animation: float 3s linear infinite;
+
+
+        }
+
+        @keyframes float{
+            0%{
+                transform: translateY(0);
+            }
+            50%{
+                transform: translateY(-20px);
+            }
+            100%{
+                transform: translateY(0);
+            }
+        }
+
+        .image{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .image img{
+            width: 200px;
+            height: 200px;
+            margin-top: 40px;
+            transition: transform 1s ease;
+            
+        }
+
+        .image img:hover{
+            transform: scale(1.1) rotate(10deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">&#9813;</div>
+
+    <div class="box2">&#9812;</div>
+
+    <div class="btn">Hover Me</div>
+
+    <div class="circle">Spin</div>
+
+    <div class="shape"></div>
+
+    <div class="image">
+        <img src="./01img.png">
+    </div>
+</body>
+</html>
