@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons with Full Page Keyframe Background Change</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      gap: 20px;
+      font-family: Arial, sans-serif;
+      animation: bgDefault 0.6s forwards;
+    }
+
+    button {
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .black {
+      background-color: #000;
+    }
+
+    .red {
+      background-color: #e74c3c;
+    }
+
+    .blue {
+      background-color: #3498db;
+    }
+
+    @keyframes bgToBlack {
+      from { background-color: #f4f4f4; }
+      to { background-color: #000; }
+    }
+
+    @keyframes bgToRed {
+      from { background-color: #f4f4f4; }
+      to { background-color: #e74c3c; }
+    }
+
+    @keyframes bgToBlue {
+      from { background-color: #f4f4f4; }
+      to { background-color: #3498db; }
+    }
+
+    @keyframes bgDefault {
+      from { background-color: #f4f4f4; }
+      to { background-color: #f4f4f4; }
+    }
+
+    body:has(.black:hover) {
+      animation: bgToBlack 0.6s forwards;
+    }
+
+    body:has(.red:hover) {
+      animation: bgToRed 0.6s forwards;
+    }
+
+    body:has(.blue:hover) {
+      animation: bgToBlue 0.6s forwards;
+    }
+
+    body:not(:has(button:hover)) {
+      animation: bgDefault 0.6s forwards;
+    }
+  </style>
+</head>
+<body>
+  <button class="black">Black</button>
+  <button class="red">Red</button>
+  <button class="blue">Blue</button>
+</body>
+</html>

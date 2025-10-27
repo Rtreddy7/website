@@ -124,6 +124,26 @@
         .image img:hover{
             transform: scale(1.1) rotate(10deg);
         }
+
+        .blackhole img{
+
+            width: 100px;
+            height: 100px;
+            margin-top: 40px;
+            animation: rotate 5s linear infinite alternate ;
+
+        }
+
+        @keyframes rotate{
+            0%{
+                transform: rotate(0);
+                transform: translateX(0);
+            }
+            100%{
+                transform: rotate(360deg);
+                transform: translateX(200px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -140,5 +160,8 @@
     <div class="image">
         <img src="./01img.png">
     </div>
+
+    <div class="blackhole"><img src="./photorealistic-galaxy-background.jpg"></div>
+
 </body>
 </html>
