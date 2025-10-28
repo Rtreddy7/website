@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background-color: lightblue;
+            border-radius: 8px;
+            /* overflow: hidden; */
+            
+        }
+
+
+        .image img{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .badge{
+            font-size: 12px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: white;
+            background-color: #ff4757;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 2px 4px;
+            z-index: 2;
+        }
+
+        /* By changing the z-index values above we can observe overlapping */
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="image"><img src="./01img.png"></div>
+        <div class="badge">New</div>
+    </div>
+</body>
+</html>

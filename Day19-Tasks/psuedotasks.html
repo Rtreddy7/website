@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            width: 70px;
+            height: 30px;
+            font-size: 15px;
+            background-color: #6262f3;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            
+        }
+
+        button:hover{
+            background-color: blueviolet;
+
+        }
+
+        button:active{
+            background-color: darkblue;
+            transform: scale(1.1);
+
+        }
+
+        .paras p::first-letter{
+            font-size: 150%;
+            color: gold;
+            font-weight: bold;
+
+        }
+
+        .lists li:first-child{
+            font-weight: bold;
+            color: orange;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .lists li:nth-child(2){
+            font-weight: 500;
+            font-family: cursive;
+            color: blue;
+        }
+
+        .lists li:nth-child(3){
+            font-weight: 800;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(0, 255, 115);
+        }
+        .lists li:last-child{
+            font-weight: 300;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: rgb(191, 19, 108);
+        }
+        
+        .list2 li::before{
+            content: "👉";
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <button>Submit</button>
+
+    <div class="paras">
+        <p>Virat Kohli</p>
+        <p>MS Dhoni</p>
+        <p>Shreyas Iyer</p>
+        <p>KL Rahul</p>
+        <p>Rohit</p>
+        <p>Hardik</p>
+    </div>
+
+       <ul class="lists">
+            <li>Python Basics</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JS</li>
+        </ul>
+
+        <ul class="list2">
+            <li>Python Basics</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JS</li>
+        </ul>
+
+
+</body>
+</html>
