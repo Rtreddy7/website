@@ -21,6 +21,7 @@ body{
     z-index: 99;
 }
 
+
 .navbar .navbar-brand{
     color: black;
     font-weight: 700;
@@ -28,13 +29,6 @@ body{
     line-height: 2.5rem;
     font-family: 'Montserrat', sans-serif;
 }
-
-/* .navbar .brand-txt{
-    font-weight: 700;
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
-} */
 
 .navbar .brand-txt span{
     font-size: 1.2rem;
