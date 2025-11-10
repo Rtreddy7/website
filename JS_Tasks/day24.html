@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //checking even or odd: 
+        let num = 81;
+
+        let result = ((num%2)===0)? "even":"odd";
+        console.log(result);
+
+        //age validator:
+
+        let age = 27;
+
+        if(age < 13){
+            console.log("Child");
+        }else if(age >= 13 && age <= 19){
+            console.log("Teenager");
+        }else if(age >= 20 && age <= 59){
+            console.log("Adult");
+        }else{
+            console.log("Senior");
+        }
+
+        //Grade calculator:
+
+        let marks = 101;
+
+        if(marks >=90 && marks <=100){
+            console.log("Grade: A+");
+        }else if(marks >=75 && marks <=89){
+            console.log("Grade: A");
+        }else if(marks >=60 && marks <=74){
+            console.log("Grade: B");
+        }else if(marks >=45 && marks <=59){
+            console.log("Grade: C");
+        }else if(marks <45){
+            console.log("Grade: Fail");
+        }else{
+            console.log("Invalid Marks");
+        }
+
+        //finding the largest number among three numbers:
+
+        let x = 12/0.8;
+        let y = 32/4;
+        let z = 25/2;
+
+        if(x > y && x > z){
+            console.log("Largest number is: x");
+        }else if(y > z && y > x){
+            console.log("Largest number is: y");
+        }else{
+            console.log("Largest number is: z");
+        }
+
+        // checking leap year:
+
+        let yearGiven = 2028;
+
+        if ((yearGiven % 4 === 0 && yearGiven % 100 !== 0) || (yearGiven % 400 === 0)) {
+            console.log(yearGiven + ' is a leap year');
+            } else {
+            console.log(yearGiven + ' is not a leap year');
+            }
+
+    </script>
+</body>
+</html>
