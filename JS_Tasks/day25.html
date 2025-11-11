@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day25_task</title>
+</head>
+<body>
+    <script>
+
+        //checking stock availabilty until quantity run out:
+
+        let shirts = s =  5;
+        let trousers = t = 7;
+
+        while(s > 0 || t >0){
+            if(s > 0){
+                console.log("Shirts-sold = " + s);
+                s--;
+                console.log("Shirts-left = " + s);
+            }
+            if(t > 0){
+                console.log("Trousers-sold = " + t);
+                t--;
+                console.log("Trousers-left = " + t);
+            }
+        }
+        console.log("we were Out of Stock!");
+
+
+
+        //sum of number from 1-20:
+
+        console.log("Task-2:");
+
+        let i;
+        let sum = 0;
+
+        for(i = 0; i<=20; i++){
+            sum = sum + i;
+        }
+        console.log("Sum of 1-20 is:" + sum);
+
+        //reverse countdown
+        console.log("Task-3: reverse countdown");
+
+        let n = 10;
+
+        while(n>0){
+            console.log(n);
+            n--;
+        }
+
+        //sum of even numbers from 1-50:
+
+        console.log("Task-4:");
+
+        let a;
+
+        let sumE = 0;
+
+        for(a = 0; a<=50; a++){
+            if(a % 2 === 0){
+                sumE += a; 
+            }
+        }
+
+        console.log("Sum of even numbers from 1-50 is: " + sumE);
+
+
+    </script>
+</body>
+</html>

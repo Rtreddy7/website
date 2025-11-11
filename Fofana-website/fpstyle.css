@@ -7,6 +7,12 @@ body{
     color: #676576;
 }
 
+@media (max-width: 480px) {
+    .container {
+        padding: 0 25px;
+    }
+}
+
 .nav-link{
     font-weight: 500;
     color: #444 !important;
@@ -30,6 +36,24 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
+.nav .navbar-toggler{
+    padding: 0;
+}
+
+.navbar .navbar-toggler i {
+    font-size: 32px;
+}
+
+.navbar .navbar-collapse {
+    position: relative;
+    left: -8px;
+}
+
+.navbar-collapse ul{
+    padding: 0;
+    margin: 0;
+}
+
 .navbar .brand-txt span{
     font-size: 1.2rem;
     font-weight: bold;
@@ -37,9 +61,11 @@ body{
     border-radius: 50%;
 }
 
-.navbar .navbar-nav li{
+.navbar-nav li{
     color: #333333;
     font-size: 20px;
+    padding: 0 10px;
+    list-style: none;
 }
 .nav-link:hover{
     color: #dc3545 !important;
