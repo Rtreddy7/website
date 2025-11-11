@@ -10,7 +10,7 @@
         //checking even or odd: 
         let num = 81;
 
-        let result = ((num%2)==0)? "even":"odd";
+        let result = ((num%2)===0)? "even":"odd";
         console.log(result);
 
         //age validator:
@@ -64,9 +64,9 @@
 
         let yearGiven = 2024;
 
-        //logic for leap year: (year % 4 == 0 && year % 100 !== 0) || (year % 400 == 0)
+        //logic for leap year: (year % 4 === 0 && year % 100 !=== 0) || (year % 400 === 0)
 
-        if ((yearGiven % 4 == 0 && yearGiven % 100 !== 0) || (yearGiven % 400 == 0)) {
+        if ((yearGiven % 4 === 0 && yearGiven % 100 !=== 0) || (yearGiven % 400 === 0)) {
             console.log(yearGiven + ' is a leap year');
             } else {
             console.log(yearGiven + ' is not a leap year');
