@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day26_task</title>
+</head>
+<body>
+    <script>
+
+        //reversing the right angle traingle:
+
+        console.log("Reversed right angle traingle:");
+
+         for(let i = 1; i <= 5; i++){
+            pattern = "";
+            for(let j = i; j <= 5; j++){
+                pattern += "  ";
+            }
+            for(let k = 1; k <= i; k++){
+                pattern += "* ";
+            }
+            console.log(pattern);
+        }
+
+        //pyramids using loop:
+
+        console.log("Pyramid:");
+
+        for(let a = 1; a <= 5; a++){
+            pattern = "";
+            for(let b = a; b <= 5; b++){
+                pattern += " ";
+            }
+            for(let c = 1; c <= a; c++){
+                pattern += "* ";
+            }
+            console.log(pattern);
+        }
+
+        // display producst of the following arrays: 
+
+        console.log("Display the array items:");
+
+        console.log("Method-1:");
+
+        let colors = ["red", "green", "blue"];
+        let sizes = ["S", "M", "L"];
+
+        for (let color of colors){
+            for(let size of sizes){
+                console.log(`${colors[0]} = ${sizes[0]}, ${colors[1]} = ${sizes[1]}, ${colors[2]} = ${sizes[2]}`);
+            }
+        }
+
+
+        console.log("Method-2:");
+
+        for(let x = 0; x < sizes.length; x++){
+            line = "";
+            for(let y = 0; y < colors.length ; y++){
+                line += `${colors[y]} = ${sizes[x]}     `;
+            }
+            console.log(line);
+        }
+    </script>
+</body>
+</html>
