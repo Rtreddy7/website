@@ -50,7 +50,17 @@
             return total;
         }
 
-        console.log("Total cart value = " + totalCartValue(cart));
+        function discountedValue(total, d){
+            return total * (1 - d/100);
+            
+        }
+
+        let d = 15;
+
+        let total = totalCartValue(cart);
+
+        console.log("Total cart value = " + total);
+        console.log("Total price after discount = " + discountedValue(total, d));
 
         // C ---> F conversion
 
