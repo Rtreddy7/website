@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day-27</title>
+</head>
+<body>
+    <script>
+        //Arthimetic calculations using fucntions:
+
+        function addNum(x, y){
+            return (x+y);
+        }
+
+         function subNum(x, y){
+            return (x-y);
+        }
+
+        function mulNum(x, y){
+            return (x*y);
+        }
+
+        function divNum(x, y){
+            return (x/y);
+        }
+
+        function modNum(x, y){
+            return (x%y);
+        }
+
+        let x = 720;
+        let y = 660;
+
+        console.log("Addition of x, y is: " + addNum(x, y));
+        console.log("Substraction of x, y is: " + subNum(x, y));
+        console.log("Multiplication of x, y is: " + mulNum(x, y));
+        console.log("Division of x, y is " + divNum(x, y));
+        console.log("Modulus of x, y is: " + modNum(x, y));
+
+        //cart value using funcitons:
+
+        let cart = [50, 60, 70, 80];
+
+        function totalCartValue(a){
+            let total = 0;
+            for(let i = 0; i < cart.length; i++){
+                total += a[i];
+            }
+            return total;
+        }
+
+        console.log("Total cart value = " + totalCartValue(cart));
+
+        // C ---> F conversion
+
+        function cToF(c){
+            return (c * 9/5) + 32;
+        }
+
+        let c = 97;
+        let f = cToF(c);
+
+        console.log(c + " degree Celsius = " + f + " degree Fahrenheit");
+
+
+
+
+
+
+        
+
+
+    </script>
+</body>
+</html>
