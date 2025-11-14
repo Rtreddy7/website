@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day28</title>
+</head>
+<body>
+    <script>
+
+        //grouping students based on marks:
+
+        let marks =  [40, 85, 90, 33, 72];
+
+        let pass = marks.filter(m => m >= 40);
+        let fail = marks.filter(m => m < 40);
+
+        console.log("Pass marks: " + pass);
+        console.log("Fail marks: " + fail);
+
+        //count how many numbers are > 50 in an arry of elements.
+
+        let arr = [48/0.8, 87, 147/50, 23, 727/9];
+
+        let greaterThan50 = arr.filter(g => g > 50);
+
+        console.log("Number of elements > 50 are: " + greaterThan50.length);
+
+        //listing out prime numbers in an array:
+
+        function checkPrime(num){
+            if(num < 2) return false;
+
+            for(let i = 2; i < num; i++){ 
+                if(num % i === 0){   
+                    return false; 
+                }
+            }
+            return true; 
+        }
+
+        let numList = [7, 10, 11, 15, 29,];
+
+        let primeNum = numList.filter(checkPrime);
+
+        console.log(primeNum);
+
+
+
+        //swapping first and last element of an array:
+
+        let num = [10,20,30,40,50];
+
+        num.pop();
+        num.shift();    
+        num.push(10);
+        num.unshift(50);
+
+        console.log(num);
+
+        //finding the second highest number in an array of elements:
+        
+        let nums = [40, 85, 90, 33, 72];
+
+        nums.sort((a,b) => a-b);
+
+        nums.pop();
+
+        let secondHighestValue = nums.pop();
+
+        console.log(secondHighestValue);
+
+
+
+        // pushing zeroes to the end of the array 
+
+        let givenArray = [1, 0, 5, 0, 9];
+
+        let nonZeroElements = givenArray.filter(n => n !== 0);
+        let zeroElements = givenArray.filter(n => n === 0);
+
+        let requiredArray = nonZeroElements.concat(zeroElements);
+
+        console.log(requiredArray);
+
+
+
+
+    </script>
+</body>
+</html>
