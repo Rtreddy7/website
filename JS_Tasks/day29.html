@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day29_task</title>
+</head>
+<body>
+    <script>
+
+        // method-1 using index value:
+        console.log("Removing duplicates based on index values:");
+        let num = [1,2,3,2,4,3,5];
+        let nums = num.filter((a, index) => { // filtering values based on index
+            return num.indexOf(a) === index; // returning elements based on index
+        });
+        console.log(nums);
+
+        // method -2 using set:
+         console.log("Removing duplicates using Set:")
+        new Set(num);   // set {} basically eliminates duplicate values
+
+        console.log(new Set(num));
+
+        console.log([...new Set(num)]);  //[...] it is a spread operator which divides the elements individully and converting set into array.
+
+        //  Find the longest word. Ex: [“apple”, “banana”, “grapes”, “Watermelon”]:
+
+        let fruits = ["apple", "banana", "grapes", "Watermelon"];
+
+        let longestWord = fruits.sort((a,b) => b.length - a.length);
+
+        console.log(longestWord[0]);
+
+        //  Convert string to array. Ex: “JavaScript is fun”:
+
+        let list = "JavaScript is a fun";
+
+        let arrList = list.split(" ");
+        console.log(arrList);
+
+        
+           </script>
+</body>
+</html>
