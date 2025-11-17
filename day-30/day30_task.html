@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/Fofana-website/bootstrap.min.css"> -->
+    <title>Document</title>
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .btn-1{
+            padding: 8px 12px;
+            margin: 10px auto;
+            font-size: 16px;
+            border-radius: 6px;
+            background-color: #ea6332;
+        }
+
+        .task4{
+
+        }
+
+        .btn-2{
+            padding: 8px 12px;
+            margin: 10px auto;
+            font-size: 16px;
+            border-radius: 6px;
+            background-color: #ea6332;
+        }
+        /* #para{
+            margin-top: 20px;
+            width: 300px;
+            line-height: 1.6;
+            padding: 12px 22px;
+            font-size: 1.2rem;
+        } */
+
+        .container{
+            width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #555;
+            color: #fff;
+        }
+
+        .container input{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 25px;
+        }
+
+        .calc-btn{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .container button{
+            margin-right: 5px;
+            font-size: 35px;
+            width: 50px;
+            height: 40px;
+            cursor: pointer;
+            flex: 1;
+            background-color: #ea6332;
+            color: #fff;
+            border-radius: 6px;
+        }
+
+        #result{
+            font-size: 28px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- button to change dark/light mode -->
+    <button class="btn-1" onclick="pageMode()">Page Mode</button>
+
+    <!-- button to hide/show the para content -->
+    <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 10px;">
+        <!-- <input type="checkbox" onchange="paraHideShow()"> -->
+         <button onclick="paraHideShow()" style="font-size: 16px; border-radius: 6px;">Hide/Show</button>
+        <p id="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi beatae eveniet pariatur nobis tempore suscipit? Quasi natus nostrum sint incidunt nobis quo libero architecto eius eos nisi ab, doloribus dolore.</p>
+    </div>
+
+    <!-- button to display character count from text-box  -->
+    <div style="margin-bottom: 10px; gap: 5px;">
+        <textarea id="textbox" rows="4" cols="30"></textarea>
+        <button class="btn-2" onclick="charCount()">Show Character Count</button>
+        <p id="count" style="font-size: 18px;">Count =</p>
+    </div>    
+
+    <!-- calculator task -->
+    <div class="container">
+            <input type="number" id="num1" placeholder="Enter the number">
+            <input type="number" id="num2" placeholder="Enter the number">
+        <div>
+            <button onclick="add()">+</button>
+            <button onclick="sub()">-</button>
+            <button onclick="mul()">*</button>
+            <button onclick="div()">/</button>
+            <button onclick="mod()">%</button>
+        </div>
+        <p id="result">Result =</p>
+    </div>
+
+    <script>
+
+    // JS for light/dark mode button 
+        function pageMode(){
+        let body = document.querySelector("body");
+        if(body.style.backgroundColor === "white"){
+            body.style.backgroundColor = "black";
+            body.style.color = "white";
+        }else{
+            body.style.backgroundColor = "white";
+            body.style.color = "black";
+        }
+    }
+
+    // JS for hiding/showing the para
+
+    function paraHideShow(){
+        const para = document.getElementById("para");
+        if(para.style.display === "none"){
+            para.style.display = "block";
+        }else{
+            para.style.display = "none";
+        }
+    }
+
+    // JS for showing charatcer count
+    function charCount() {
+        let word = document.getElementById("textbox").value;
+        let textLength = word.length;
+
+        document.getElementById("count").textContent = "Character count = " + textLength;
+    }
+
+    // JS for functioning of calculator
+    function add(){
+        let x = Number(document.getElementById("num1").value);
+        let y = Number(document.getElementById("num2").value);
+
+        document.getElementById("result").textContent = "Result = " + (x+y);
+    }
+    function sub(){
+        let x = Number(document.getElementById("num1").value);
+        let y = Number(document.getElementById("num2").value);
+
+        document.getElementById("result").textContent = "Result = " + (x-y);
+    }
+    function mul(){
+        let x = Number(document.getElementById("num1").value);
+        let y = Number(document.getElementById("num2").value);
+
+        document.getElementById("result").textContent = "Result = " + (x*y);
+    }
+    function div(){
+        let x = Number(document.getElementById("num1").value);
+        let y = Number(document.getElementById("num2").value);
+
+        document.getElementById("result").textContent = "Result = " + (x/y);
+    }
+    function mod(){
+        let x = Number(document.getElementById("num1").value);
+        let y = Number(document.getElementById("num2").value);
+
+        document.getElementById("result").textContent = "Result = " + (x%y);
+    }
+    </script>
+    
+</body>
+</html>

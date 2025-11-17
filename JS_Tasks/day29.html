@@ -8,14 +8,14 @@
 <body>
     <script>
 
-        // method-1 using index value:
+        // removing duplicate elements using index value:
         console.log("Removing duplicates based on index values:");
         let num = [1,2,3,2,4,3,5];
         let nums = num.filter((a, index) => { // filtering values based on index
             return num.indexOf(a) === index; // returning elements based on index
         });
-        console.log(nums);
-        
+        console.log("Nums", nums);
+
         //  Find the longest word. Ex: [“apple”, “banana”, “grapes”, “Watermelon”]:
 
         let fruits = ["apple", "banana", "grapes", "Watermelon"];
