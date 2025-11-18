@@ -47,7 +47,7 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #555;
+            background: linear-gradient(175deg, #7944eb, #2D3030);
             color: #fff;
         }
 
@@ -123,12 +123,12 @@
     // JS for light/dark mode button 
         function pageMode(){
         let body = document.querySelector("body");
-        if(body.style.backgroundColor === "white"){
-            body.style.backgroundColor = "black";
-            body.style.color = "white";
-        }else{
+        if(body.style.backgroundColor === "black"){
             body.style.backgroundColor = "white";
             body.style.color = "black";
+        }else{
+            body.style.backgroundColor = "black";
+            body.style.color = "white";
         }
     }
 
