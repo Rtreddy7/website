@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Day31 Tasks</title>
 
-<style>
-    body {
+    <style>
+      body {
         font-family: Arial, sans-serif;
         padding: 40px;
-        background: #f7f7f7; /* NO GRADIENT HERE */
-    }
+        background: #f7f7f7;
+      }
 
-    .box {
-        background: linear-gradient(135deg, #ffe0b3, #ffb366); /* GRADIENT FOR EACH BOX */
+      .box {
+        background: linear-gradient(
+          135deg,
+          #ffe0b3,
+          #ffb366
+        );
         border-radius: 12px;
         padding: 20px;
         width: 300px;
         margin-bottom: 25px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
 
-    .box h3 {
+      .box h3 {
         margin-top: 0;
-    }
+      }
 
-    input {
+      input {
         padding: 8px;
         width: 160px;
         border: 1px solid #999;
         border-radius: 6px;
-    }
+      }
 
-    button {
+      button {
         padding: 8px 14px;
         border: none;
         border-radius: 6px;
@@ -41,98 +45,100 @@
         font-weight: bold;
         cursor: pointer;
         transition: 0.2s;
-    }
+      }
 
-    button:hover {
+      button:hover {
         background: #e68a00;
-    }
+      }
 
-    #todoList li {
+      #todoList li {
         display: flex;
         justify-content: space-between;
         background: white;
         margin: 6px 0;
         padding: 6px;
         border-radius: 5px;
-    }
+      }
 
-    #todoList button {
+      #todoList button {
         background: #ff4d4d;
-    }
+      }
 
-    #todoList button:hover {
+      #todoList button:hover {
         background: #cc0000;
-    }
+      }
 
-    #mainImg {
+      #mainImg {
         width: 200px;
         height: 130px;
         object-fit: cover;
         border-radius: 8px;
         cursor: pointer;
         border: 2px solid white;
-    }
+      }
 
-    #items li {
+      #items li {
         background: white;
         margin: 5px 0;
         padding: 5px;
         border-radius: 5px;
-    }
-</style>
-</head>
+      }
+    </style>
+  </head>
 
-<body>
-
+  <body>
     <!-- To-Do -->
     <div class="box">
-        <h3>To-Do</h3>
-        <input id="todoText" type="text" placeholder="Add here">
-        <button id="todoBtn">Add</button>
-        <ul id="todoList"></ul>
+      <h3>To-Do</h3>
+      <input id="todoText" type="text" placeholder="Add here" />
+      <button id="todoBtn">Add</button>
+      <ul id="todoList"></ul>
     </div>
 
     <!-- Image Toggle -->
     <div class="box">
-        <h3>Change Image</h3>
-        <img id="mainImg" src="https://th.bing.com/th/id/OIP.uEmted3yi3LdtAOfqLGTHAHaEo?w=249&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3">
+      <h3>Change Image</h3>
+      <img
+        id="mainImg"
+        src="https://th.bing.com/th/id/OIP.uEmted3yi3LdtAOfqLGTHAHaEo?w=249&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3"
+      />
     </div>
 
     <!-- Counter -->
     <div class="box">
-        <h3>Counter</h3>
-        <div id="countVal" style="font-size:24px;">0</div>
-        <button id="plusBtn">+</button>
-        <button id="minusBtn">-</button>
+      <h3>Counter</h3>
+      <div id="countVal" style="font-size: 24px">0</div>
+      <button id="plusBtn">+</button>
+      <button id="minusBtn">-</button>
     </div>
 
     <!-- Password -->
     <div class="box">
-        <h3>Password</h3>
-        <input id="pwd" type="password" placeholder="Password">
-        <button id="sh">Show</button>
+      <h3>Password</h3>
+      <input id="pwd" type="password" placeholder="Password" />
+      <button id="sh">Show</button>
     </div>
 
     <!-- Filter -->
     <div class="box">
-        <h3>Filter</h3>
-        <input id="finder" type="text" placeholder="Search item">
-        <ul id="items">
-            <li>Tea</li>
-            <li>Milk</li>
-            <li>Bread</li>
-            <li>Butter</li>
-            <li>Honey</li>
-        </ul>
+      <h3>Filter</h3>
+      <input id="finder" type="text" placeholder="Search item" />
+      <ul id="items">
+        <li>Tea</li>
+        <li>Milk</li>
+        <li>Bread</li>
+        <li>Butter</li>
+        <li>Honey</li>
+      </ul>
     </div>
 
-<script>
-    // ----------- To-Do -----------
-    const todoText = document.getElementById("todoText");
-    const todoBtn = document.getElementById("todoBtn");
-    const todoList = document.getElementById("todoList");
+    <script>
+      // ----------- To-Do -----------
+      const todoText = document.getElementById("todoText");
+      const todoBtn = document.getElementById("todoBtn");
+      const todoList = document.getElementById("todoList");
 
-    todoBtn.onclick = function () {
+      todoBtn.onclick = function () {
         const t = todoText.value.trim();
         if (t === "") return;
 
@@ -149,64 +155,67 @@
         li.appendChild(deleteText);
         todoList.appendChild(li);
         todoText.value = "";
-    };
+      };
 
-    // ----------- Image Toggle -----------
-    const img = document.getElementById("mainImg");
+      // ----------- Image Toggle -----------
+      const img = document.getElementById("mainImg");
 
-        let current = 1;
+      let current = 1;
 
-        img.onclick = function () {
-            if (current === 1) {
-                img.src = "https://th.bing.com/th/id/OIP.uEmted3yi3LdtAOfqLGTHAHaEo?w=249&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3";
-                current = 2;
-            } else {
-                img.src = "https://tse1.mm.bing.net/th/id/OIP.Ag_It2vnUtAZlLcIQ9emlAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3";
-                current = 1;
-            }
-        };
+      img.onclick = function () {
+        if (current === 1) {
+          img.src =
+            "https://tse1.mm.bing.net/th/id/OIP.Ag_It2vnUtAZlLcIQ9emlAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3";
+          current = 2;
+        } else {
+          img.src =
+            "https://th.bing.com/th/id/OIP.uEmted3yi3LdtAOfqLGTHAHaEo?w=249&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3";
+          current = 1;
+        }
+      };
+      
+      // ----------- Counter -----------
+      const countVal = document.getElementById("countVal");
+      const plusBtn = document.getElementById("plusBtn");
+      const minusBtn = document.getElementById("minusBtn");
+      let num = 0;
 
-    // ----------- Counter -----------
-    const countVal = document.getElementById("countVal");
-    const plusBtn = document.getElementById("plusBtn");
-    const minusBtn = document.getElementById("minusBtn");
-    let num = 0;
-
-    plusBtn.onclick = () => {
+      plusBtn.onclick = () => {
         num++;
         countVal.textContent = num;
-    };
+      };
 
-    minusBtn.onclick = () => {
+      minusBtn.onclick = () => {
         num--;
         countVal.textContent = num;
-    };
+      };
 
-    // ----------- Password Show/Hide -----------
-    const pwd = document.getElementById("pwd");
-    const sh = document.getElementById("sh");
+      // ----------- Password Show/Hide -----------
+      const pwd = document.getElementById("pwd");
+      const sh = document.getElementById("sh");
 
-    sh.onclick = function () {
+      sh.onclick = function () {
         if (pwd.type === "password") {
-            pwd.type = "text";
-            sh.textContent = "Hide";
+          pwd.type = "text";
+          sh.textContent = "Hide";
         } else {
-            pwd.type = "password";
-            sh.textContent = "Show";
+          pwd.type = "password";
+          sh.textContent = "Show";
         }
-    };
+      };
 
-    // ----------- Filter -----------
-    const finder = document.getElementById("finder");
-    const allItems = document.querySelectorAll("#items li");
+      // ----------- Filter -----------
+      const finder = document.getElementById("finder");
+      const allItems = document.querySelectorAll("#items li");
 
-    finder.oninput = function () {
+      finder.oninput = function () {
         const val = finder.value.toLowerCase();
-        allItems.forEach(li => {
-            li.style.display = li.textContent.toLowerCase().includes(val) ? "" : "none";
+        allItems.forEach((li) => {
+          li.style.display = li.textContent.toLowerCase().includes(val)
+            ? ""
+            : "none";
         });
-    };
-</script>
-
-</body>
+      };
+    </script>
+  </body>
 </html>
