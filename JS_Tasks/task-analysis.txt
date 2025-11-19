@@ -1,0 +1,33 @@
+Analysing the requirements of the Task
+1) To-Do List(Add/Delete):
+    Create and remove elements:
+        a)First write the basic HTML for elements like input box, add button.
+        b)Then assign these element values to a variable inside JS.
+        c)Declare a function for event lisner when ever text input is given and button is clicked.
+        d)For this append the list elements by creating them inside JS and also append the delete button.
+
+2) Image Change on click:
+    By click operation:
+        a)Lets give a input image through HTML img element tag.
+        b)Then assign that element to a variable inside JS.
+        c)After that lets write a logic for the event/action inside a function.
+        d)Condition is such that when the display image is what we given in HTML then go through that logic and when ever click action is performed on the image then the image is changed and viceversa.
+
+3) Counter(+ / -):
+    Using a number variable:
+        a)Lets give some basic HTML tags like initial number as 0, buttons --> +, -.
+        b)In JS assign these elements to variables and declare a num variable with initial value to 0.
+        c)Declare 2 functions for the two buttons in html with logic for incrementing and decrementing the number num when click action is performed on those buttons.
+
+4) Password Show/Hide:
+    Altering the input type:
+        a)Give required HTML elements like input box which is type password and a button with text Show.
+        b)Then declare a fucntion with a conditional statement inside it for event listener.
+        c)Logic for this one is to check the condition for initial txt is password. If it is true it goes into the logic and performs the required action when ever the click event is occured on button.
+        d)For the false condition it jumps out of the statement and goes to the else logic.
+
+5) Search Filter:
+    Filtering using a list:
+        a)Initially give a list of items in HTML and assign them to a variale in JS.
+        b)Declare a function ad compare typed text with each item and show items that match.
+        c)Others should be hidden.
