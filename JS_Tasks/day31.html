@@ -95,7 +95,7 @@
     <!-- Image Toggle -->
     <div class="box">
         <h3>Change Image</h3>
-        <img id="mainImg" src="./01img.png">
+        <img id="mainImg" src="https://th.bing.com/th/id/OIP.uEmted3yi3LdtAOfqLGTHAHaEo?w=249&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3">
     </div>
 
     <!-- Counter -->
@@ -138,29 +138,33 @@
 
         const li = document.createElement("li");
         const name = document.createElement("span");
-        const cut = document.createElement("button");
+        const deleteText = document.createElement("button");
 
         name.textContent = t;
-        cut.textContent = "Delete";
+        deleteText.textContent = "Delete";
 
-        cut.onclick = () => li.remove();
+        deleteText.onclick = () => li.remove();
 
         li.appendChild(name);
-        li.appendChild(cut);
+        li.appendChild(deleteText);
         todoList.appendChild(li);
         todoText.value = "";
     };
 
     // ----------- Image Toggle -----------
-    const mainImg = document.getElementById("mainImg");
-    let flip = false;
+    const img = document.getElementById("mainImg");
 
-    mainImg.onclick = function () {
-        flip = !flip;
-        mainImg.src = flip
-            ? "https://picsum.photos/seed/b/200/130"
-            : "https://picsum.photos/seed/a/200/130";
-    };
+        let current = 1;
+
+        img.onclick = function () {
+            if (current === 1) {
+                img.src = "https://th.bing.com/th/id/OIP.uEmted3yi3LdtAOfqLGTHAHaEo?w=249&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3";
+                current = 2;
+            } else {
+                img.src = "https://tse1.mm.bing.net/th/id/OIP.Ag_It2vnUtAZlLcIQ9emlAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3";
+                current = 1;
+            }
+        };
 
     // ----------- Counter -----------
     const countVal = document.getElementById("countVal");
