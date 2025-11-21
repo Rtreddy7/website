@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test01</title> 
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(rgba(101, 97, 97, 0.69), rgba(95, 92, 92, 0.74)), url(./89781.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        ul{
+            display: flex;
+            padding: 0;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+
+        li a{
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 6px;
+            transition: 0.5s;
+        }
+
+        li a::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background: #ff7b00;
+            transition: transform 1s;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        li a:hover{
+            color: #9be7ff;
+        }
+
+        li a:hover::after{
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+       
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="#">HOME</a></li>
+        
+        <li><a href="about.html">ABOUT</a></li>
+        
+        <li><a href="#">CONTACT</a></li>
+    </ul>
+</body>
+</html>
