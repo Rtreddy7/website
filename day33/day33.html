@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day-33 Task</title>
+    <link rel="stylesheet" href="day33.css">
+
+    
+</head>
+
+<body>
+
+    <div class="box">
+        <p id="text"> This is to increase/decrease font-size.</p>
+        <button id="plus">+</button>
+        <button id="minus">-</button>
+    </div>
+
+    <div class="box">
+        <input type="text" id="search" placeholder="Search Items">
+
+        <ul id="items">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Java Script</li>
+            <li>Australia</li>
+            <li>Ireland</li>
+            <li>Defender</li>
+            <li>German Sheperd</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <div class="acc-list">
+            <button class="accbtn"> What is HTML?</button>
+            <div class="acc-content">
+                <p>HTML - Hyper Text Markup Language</p>
+            </div>
+        </div>
+
+        <div class="acc-list">
+            <button class="accbtn"> What is CSS?</button>
+            <div class="acc-content">
+                <p>CSS - Cascading Style Sheet</p>
+            </div>
+        </div>
+
+        <div class="acc-list">
+            <button class="accbtn"> What is JS?</button>
+            <div class="acc-content">
+                <p>JS - Java Script</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        let fontSize = 14;
+
+        document.getElementById("plus").addEventListener('click', function () {
+            fontSize++;
+            fontSizeAlter();
+        })
+
+        document.getElementById("minus").addEventListener('click', function () {
+            fontSize--;
+            fontSizeAlter();
+        })
+
+        function fontSizeAlter() {
+            document.getElementById("text").style.fontSize = fontSize + "px";
+        }
+
+        list = document.getElementById("items");
+        items = document.querySelectorAll("#items li");
+
+        document.getElementById("search").addEventListener("keyup", function () {
+            const input = search.value.toLowerCase();
+
+            list.style.display = input !== "" ? "block" : "none";
+
+            for (let i = 0; i < items.length; i++) {
+                const itemText = items[i].textContent.toLowerCase();
+
+                if (itemText.includes(input)) {
+                    items[i].style.display = "list-item";
+                } else {
+                    items[i].style.display = "none";
+                }
+
+            }
+        });
+
+        const buttons = document.querySelectorAll(".accbtn");
+        for (let x = 0; x < buttons.length; x++) {
+            buttons[x].addEventListener("click", function () {
+                const content = this.nextElementSibling;
+
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>
