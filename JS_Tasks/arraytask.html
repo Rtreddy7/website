@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            height: 100vh;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #numbers {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            font-size: 17px;
+            padding: 10px 18px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--body background color change task-->
+
+    <div>
+        <input type="number" id="numbers" placeholder="Enter the number..">
+        <button onclick="bgchange()">Enter</button>
+    </div>
+    <script>
+
+        // logic for body background change:
+
+        function bgchange() {
+            let x = document.getElementById("numbers").value;
+            let body = document.querySelector("body");
+
+            if (x === "") {
+                alert("Please enter a number!");
+                return;
+            }
+
+            x = Number(x);
+
+            if (x % 2 === 0) {
+                body.style.background = "orange";
+            } else {
+                body.style.background = "blue";
+            }
+        }
+
+        // Array task JS for displaying in console:
+
+        const prices = [15.99, 125.50, 8.75, 200.00];
+        let expPrices = [];
+
+        for (let i = 0; i < prices.length; i++) {
+            let price = prices[i];
+            if (price > 100) {
+                expPrices.push(price);
+            }
+        }
+        console.log("Expencive items: ", expPrices)
+    </script>
+</body>
+
+</html>
