@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Task</title>
+
+    <style>
+        body{
+            text-align: center;
+            padding: 50px;
+            transition: background 1s;
+        }
+
+        button{
+            padding: 10px 28px;
+            margin: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        #text{
+            font-size: 2rem;
+            margin-top: 20px;
+            font-weight: 900;
+            transition: opcaity .8s;
+        }
+
+
+    </style>
+</head>
+<body>
+    <button onclick="presentMood('happy')">Happy</button>
+    <button onclick="presentMood('sad')">Sad</button>
+    <button onclick="presentMood('angry')">Angry</button>
+    <button onclick="presentMood('sleepy')">Sleepy</button>
+
+    <div id="text">Click on the button</div>
+
+
+    <script>
+        function presentMood(mood){
+        let body = document.querySelector("body");
+        if(mood === "happy"){
+            body.style.backgroundColor = "yellow";
+            text.textContent = "I am feeling Great! 😊"
+        }else if(mood === "sad"){
+            body.style.backgroundColor = "blue";
+            text.textContent = "I am feeling Sad! 😢"
+        }else if(mood === "angry"){
+            body.style.backgroundColor = "red";
+            text.textContent = "I am feeling Angry! 😡"
+        }else if(mood === "sleepy"){
+            body.style.backgroundColor = "#4b0082";
+            text.textContent = "I am feeling Sleepy! 😴"
+        }
+    }
+    </script>
+</body>
+</html>
