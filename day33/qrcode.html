@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #262a2f;
+        }
+
+        .container{
+            width: 400px;
+            padding: 25px 35px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .container p{
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .container input{
+            width: 100%;
+            height: 50px;
+            border: 1px solid #d1d1d1;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border-radius: 5px;
+            outline: 0;
+        }
+
+        .container button{
+            width: 100%;
+            height: 50px;
+            background: #494eea;
+            color: #fff;
+            border: none;
+            outline: 0;
+            border-radius: 5px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        #imgBox{
+            width: 200px;
+            border-radius: 5px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 1s;
+        }
+
+        #imgBox img{
+            width: 180px;
+            height: 180px;
+            display: block;
+            margin: auto;
+            padding: 10px 0;
+        }
+
+        #imgBox.show-code{
+                max-height: 250px;
+                margin: 10px auto;
+                border: 1px solid #d1d1d1;
+        }
+
+        .shake{
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake{
+            0%{transform: translateX(0); border: 1px solid rgb(245, 16, 16);}
+            25%{transform: translateX(-5px); border: 1px solid rgb(245, 16, 16);}
+            50%{transform: translateX(5px); border: 1px solid rgb(245, 16, 16);}
+            75%{transform: translateX(-5px); border: 1px solid rgb(245, 16, 16);}
+            100%{transform: translateX(0); border: 1px solid rgb(245, 16, 16);}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Enter your text</p>
+        <input type="text" placeholder="text or url" id="qrText" autocomplete="off">
+
+        <div id="imgBox">
+            <img src="" id="qrCode">
+        </div>
+        <button onclick="generateQR()">Generate QR Code</button>
+    </div>
+
+    <script>
+
+        let imgBox = document.getElementById("imgBox");
+        let qrCode = document.getElementById("qrCode");
+        let qrText = document.getElementById("qrText");
+
+
+        function generateQR(){
+            if(qrText.value.trim() === ""){
+                qrText.classList.add("shake");
+
+                setTimeout(() =>{
+                    qrText.classList.remove("shake");
+                }, 300);
+                imgBox.classList.remove("show-code");
+                qrCode.src = "";
+                return;
+            }
+            qrCode.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
+            imgBox.classList.add("show-code");
+
+        }
+    </script>
+</body>
+</html>
