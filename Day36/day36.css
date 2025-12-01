@@ -1,0 +1,165 @@
+#billboard {
+    padding: 80px 0;
+}
+
+.billboard-img{
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+}
+
+.zoom-effect img{
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#billboard h1 {
+    font-size: 3.6rem;
+    margin-bottom: 25px;
+    font-family: "Marcellus", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#billboard p {
+    font-family: "Jost", sans-serif;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+#billboard h5 {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+#billboard a {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.features-icon{
+    font-size: 2.5rem;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.categories{
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.category-card img{
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease-in-out;
+}
+
+.category-card: img{
+    transform: scale(1.05);
+}
+
+.category-card h4{
+    font-family: "Marcellus", serif;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: #111;
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+
+#new-arrival{
+    padding: 80px 0;
+}
+
+#new-arrival h4{
+    font-family: "Marcellus", serif;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: #111;
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+
+.na-view-all{
+    font-family: "Jost", sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+    text-decoration: none;
+}
+
+.na-view-all:hover{
+    text-decoration: underline;
+}
+
+.na-product{
+    position: relative;
+    overflow: hidden;
+}
+
+.na-image-wrap img{
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.na-product:hover .na-image-wrap img{
+    transform: scale(1.05);
+}
+
+.na-wishlist{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: #fff;
+    padding: 6px 8px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.na-product:hover .na-wishlist{
+    opacity: 1;
+}
+
+.na-product h5{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-family: "Marcellus", serif;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: #111;
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+
+.na-add {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #8c907e;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.na-add span{
+    border-bottom: 1px solid #8c907e;
+    padding-bottom: 2px;
+}
+
+.na-add:hover span{
+    opacity: 0.7;
+}

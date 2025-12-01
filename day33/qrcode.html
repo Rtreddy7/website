@@ -93,6 +93,8 @@
         <p>Enter your text</p>
         <input type="text" placeholder="text or url" id="qrText" autocomplete="off">
 
+        <input type="file" id="fileInput">
+
         <div id="imgBox">
             <img src="" id="qrCode">
         </div>
@@ -104,18 +106,31 @@
         let imgBox = document.getElementById("imgBox");
         let qrCode = document.getElementById("qrCode");
         let qrText = document.getElementById("qrText");
+        let fileInput = document.getElementById("fileInput");
 
 
         function generateQR(){
-            if(qrText.value.trim() === ""){
-                qrText.classList.add("shake");
+            let text = qrText.value.trim();
+            let file = fileInput.files[0];
 
-                setTimeout(() =>{
+            if(qrText.value.trim() === "" && !file){ // checking the condition for empty input and spaces input
+                qrText.classList.add("shake"); // if it is empty then it gives the animation effect
+                fileInput.classList.add("shake");
+
+                setTimeout(() =>{ //for stopping the shake effect so that when we press again it will gives the effect with empty i/p
                     qrText.classList.remove("shake");
+                    fileInput.classList.add("shake");
                 }, 300);
                 imgBox.classList.remove("show-code");
                 qrCode.src = "";
                 return;
+            }
+
+            if(file){
+                let fileURL = URL.createObjectURL(file);
+                qrCode.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(fileURL);
+            imgBox.classList.add("show-code");
+            return;
             }
             qrCode.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
             imgBox.classList.add("show-code");
