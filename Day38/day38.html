@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-38-Tasks</title>
+
+    <style>
+        body{
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .box{
+            background: #fff;
+            padding: 20px;
+            border-radius: 7px;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .box h2{
+            color: #111;
+            letter-spacing: 1px;
+        }
+
+        .box p{
+            font-size: 20px;
+        }
+
+        .shake{
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake{
+            0%{transform: translateX(0);}
+            25%{transform: translateX(-5px);}
+            50%{transform: translateX(5px);}
+            75%{transform: translateX(-5px);}
+            100%{transform: translateX(0);}
+        }
+
+        .signal{
+            width: 150px;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+
+        #red, #yellow, #green{
+            width: 80px;
+            height: 80px;
+            background: #555;
+            border-radius: 50%;
+            margin: 15px auto;
+        }
+
+        .on{
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow{
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        #red.on{
+            background-color: red;
+        }
+        #yellow.on{
+            background-color: yellow;
+        }
+        #green.on{
+            background-color: green;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Auto Logout after 30 seconds</h2>
+        <p id="loginMsg">You are logged in</p>
+        <p id="warningMsg" style="font-weight: bold;"></p>
+    </div>
+
+    <div class="signal">
+        <div id="red"></div>
+        <div id="yellow"></div>
+        <div id="green"></div>
+    </div>
+
+    <script>
+        let i = 0; //counter/timer
+
+        let logoutInterval = setInterval(() => {
+            i++;
+
+            if(i === 25){
+                document.getElementById("warningMsg").innerHTML = "⚠️ You will be logged out! ";
+                document.getElementById("loginMsg").style.display = "none";
+                document.getElementById("warningMsg").style.display = "block";
+
+                document.getElementById("warningMsg").classList.add("shake");
+
+                setTimeout(() => {
+                    document.getElementById("warningMsg").classList.remove("shake");
+                }, 400);
+            }
+            if(i === 30){
+                clearInterval(logoutInterval);
+                document.getElementById("loginMsg").innerHTML = "⛔️ You are logged out!"
+                document.getElementById("warningMsg").style.display = "none";
+                document.getElementById("loginMsg").style.display = "block";
+
+                document.getElementById("loginMsg").classList.add("shake");
+
+                setTimeout(() => {
+                    document.getElementById("loginMsg").classList.remove("shake");
+                }, 400);
+
+            }
+        }, 1000);
+
+        //signal lights
+
+        let lights = ["red", "yellow", "green"];
+        let x = 0;
+
+        function changeLights(){
+            lights.forEach(light => {
+                document.getElementById(light).classList.remove("on");
+            });
+            document.getElementById(lights[x]).classList.add("on");
+
+            x++;
+            if(x === lights.length){
+                x = 0;
+            }
+        }
+
+        changeLights();
+
+        setInterval(changeLights, 4000);
+    </script>
+</body>
+</html>

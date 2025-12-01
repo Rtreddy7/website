@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- BG color change -->
+     <div class="box">
+        <h2>Random Color Generator</h2>
+
+        <div id="colorDisplay">#ffffff</div>
+        <button id="genBtn">Generate BG Color</button>
+        <button id="autoBtn">Start Auto</button>
+        <button id="stopBtn">Stop Auto</button>
+
+     </div>
+
+     <script>
+        let genBtn = document.getElementById("genBtn");
+        let autoBtn = document.getElementById("autoBtn");
+        let stopBtn = document.getElementById("stopBtn");
+        let colorDisplay = document.getElementById("colorDisplay");
+
+        let autoInterval = null;
+
+        function colorGenerator(){
+            let hex = "#";
+            let chars = "0123456789ABCDEF";
+
+            for(let i = 0; i < 6; i++){
+                hex += chars[Math.floor(Math.random() * 16)];
+            }
+            return hex;
+
+        }
+
+        function applyColor(){
+            let color = colorGenerator();
+
+            document.body.style.background = color;
+            colorDisplay.textContent = color;
+
+        }
+
+        genBtn.addEventListener("click", applyColor);
+
+        autoBtn.addEventListener("click", () =>{
+            if(autoInterval) return;
+
+            autoInterval = setInterval(applyColor, 2000);
+        });
+
+        stopBtn.addEventListener("click", () => {
+            clearInterval(autoInterval);
+            autoInterval = null;
+        });
+     </script>
+</body>
+</html>

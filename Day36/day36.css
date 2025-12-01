@@ -163,3 +163,128 @@
 .na-add:hover span{
     opacity: 0.7;
 }
+
+#collection{
+    background-color: #f8f8f8;
+    padding: 60px 0;
+}
+
+.collection-img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-right: none;
+    margin: 20px 0 10px 20px;
+}
+
+.collection-title{
+    font-family: "Marcellus", serif;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    color: #111;
+    text-transform: uppercase;
+}
+
+.coll-desc{
+    font-family: "Jost", sans-serif;
+    font-size: 1rem;
+    color: #8f8f8f;
+    margin: 20px;
+    max-width: 80%;
+}
+
+.coll-btn{
+    border-radius: 2px;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #111;
+    border: none;
+}
+
+.desc-card{
+    background: #fff;
+    padding: 50px;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-left: none;
+    height: 750px;
+    margin: 20px 20px 5px -3px;
+}
+
+#full-img{
+    padding: 10px 20px;
+}
+
+.center-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rotate-circle {
+    width: 180px;
+    height: 180px;
+    animation: rotate 10s linear infinite;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.play-icon i {
+    font-size: 40px;
+    color: #fff;
+}
+
+/* Rotation animation */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+.testimonials {
+    background-color: #f8f8f8;
+}
+
+.testimonials .section-title {
+    font-family: "Marcellus", serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #111;
+    text-transform: uppercase;
+}
+
+.testimonial-item blockquote {
+    font-family: "Marcellus", serif;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    color: #111;
+}
+
+.testimonial-item blockquote p {
+    margin: 0;
+}
+
+.review-title {
+    font-family: "Jost", sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #8f8f8f;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
