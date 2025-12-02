@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment Layout</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fafafa;
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            background-color: #1FE084;
+            padding: 40px 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 650px;
+            margin: 30px auto;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin: 0 0 10px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            margin-bottom: 25px;
+        }
+
+        .hero button {
+            padding: 12px 24px;
+            background: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 650px;
+            margin: 20px auto;
+            border: 1px solid #e5e5e5;
+        }
+
+        .profile-card h3 {
+            font-size: 24px;
+            margin: 0 0 5px;
+        }
+
+        .profile-card p {
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .profile-images {
+            display: flex;
+            align-items: center;
+            gap: 45px;
+            padding-bottom: 20px;
+        }
+
+        .profile-images img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .profile-link {
+            margin-top: 60px;
+            color: #1a73e8;
+            font-size: 15px;
+            font-weight: 500;
+            border-top: 1px solid #f1e9e9;
+        }
+
+        .feature-card {
+            background: white;
+            width: 90%;
+            max-width: 650px;
+            margin: 20px auto;
+            border-radius: 16px;
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+        }
+
+        .feature-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .feature-content {
+            padding: 20px;
+        }
+
+        .tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #6b6b6b;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .feature-content p {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feature-content button {
+            padding: 10px 22px;
+            border-radius: 30px;
+            border: 1px solid #1a73e8;
+            color: #1a73e8;
+            background: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .flodesk {
+            text-align: center;
+            margin: 40px auto;
+            padding-bottom: 60px;
+        }
+
+        .flodesk img {
+            width: 150px;
+            margin-bottom: 20px;
+            background: transparent;
+            border: none;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 350px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .login-box label {
+            font-size: 14px;
+        }
+
+        .login-box input {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .links a {
+            color: #111;
+           
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1>Business<br>Development</h1>
+        <p>Have an idea or inquiry for Waze business development?</p>
+        <button>Share your ideas</button>
+    </div>
+
+    <div class="profile-card">
+        <h3>Your profiles</h3>
+        <p>See how your different profiles appear in Google services</p>
+
+        <div class="profile-images">
+            <img src="01img.png">
+            <img src="https://th.bing.com/th/id/OIP.JmMkZ_mIPAUTCCvuPfshBQHaHa?w=171&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3">
+        </div>
+
+        <div class="profile-link">See profiles</div>
+    </div>
+
+    <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+        <div class="feature-content">
+            <div class="tag">🔒 Subscribe to any plan</div>
+            <h3>Get more features in Google Photos</h3>
+            <p>Bring your favorite moments to life with more Google Photos editing tools for Android and iOS, including
+                Magic Eraser. Subject to eligibility.</p>
+            <button>View details</button>
+        </div>
+    </div>
+
+    <div class="flodesk">
+        <img src="data:image/webp;base64,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">
+
+        <div class="login-box">
+            <label>Enter your email</label>
+            <input type="email" placeholder="Email">
+
+            <label>Enter your password</label>
+            <input type="password" placeholder="Password">
+
+            <button class="login-btn">Log in to Flodesk</button>
+        </div>
+
+        <div class="links">
+            Not a member? <a href="#">Sign up</a><br>
+            <a href="#">Forgot your password?</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
