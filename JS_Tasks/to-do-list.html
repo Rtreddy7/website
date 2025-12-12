@@ -101,7 +101,7 @@
     <div class="box">
         <h3>To-Do</h3>
         <div class="input-area">
-            <input id="todoText" type="text" placeholder="Add here" />
+            <input id="todoText" type="text" placeholder="Add here"/>
             <button id="todoBtn">+</button>
         </div>
         <ul id="todoList"></ul>
@@ -135,18 +135,15 @@
             deleteBtn.innerHTML = "🗑";
             deleteBtn.className = "btn";
 
-            // COMPLETE
             completeBtn.onclick = function () {
                 name.classList.toggle("completed");
             };
 
-            // EDIT
             editBtn.onclick = function () {
                 const newText = prompt("Edit task", name.textContent);
                 if (newText && newText.trim()) name.textContent = newText.trim();
             };
 
-            // DELETE
             deleteBtn.onclick = function () {
                 li.remove();
             };

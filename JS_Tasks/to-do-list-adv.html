@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple CRUD (No Storage)</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 29px;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-box label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-box input {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            width: 100%;
+        }
+
+        #addBtn {
+            grid-column: span 2;
+            padding: 10px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #addBtn:hover {
+            background: #16a34a;
+        }
+
+        .details-table {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #334155;
+        }
+
+        th {
+            background: #334155;
+        }
+
+        .edit-btn {
+            background: #eab308;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Simple CRUD (No Storage)</h1>
+
+        <div class="form-box">
+
+            <div>
+                <label>Name</label>
+                <input id="name" type="text">
+            </div>
+
+            <div>
+                <label>Age</label>
+                <input id="age" type="number">
+            </div>
+
+            <div>
+                <label>Address</label>
+                <input id="address" type="text">
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input id="email" type="email">
+            </div>
+
+            <button id="addBtn">Add Data</button>
+
+        </div>
+
+        <div class="details-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        let tableData = [];
+
+        let detailsIndex = null;
+
+        document.getElementById("addBtn").addEventListener("click", function(){
+            let name = document.getElementById("name").value.trim;
+            let age = document.getElementById("age").value.trim;
+            let address = document.getElementById("address").value.trim;
+            let email = document.getElementById("address").value.trim;
+
+            if(!name || !age || !address || !email){
+                alert("All fields are required!");
+                return;
+            }
+
+            let entry = {name, age, address, email};
+
+            if(detailsIndex === null){
+                tableData.push(entry);
+            }else{
+                tableData[detailsIndex] = entry;
+                detailsIndex = null;
+            }
+            
+            clearForm();
+            dataTable();
+
+        });
+
+        function dataTable(){
+            let tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            tableData.forEach(function(item, index){
+                tableBody.innerHTML += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.name}</td>
+                    <td>${item.name}</td>
+                    <td>${item.name}</td>
+                    <td>
+                        <button class = "editBtn" onclick = "editData(${index})">✏️</button>`
+            })
+        }
+    </script>
+
+</body>
+
+</html>
