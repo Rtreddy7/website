@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Typing Test</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 520px;
+            background: orange;
+            padding: 25px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        #timer {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-weight: bold;
+            color: green;
+            font-size: 25px;
+        }
+
+        #timer.red {
+            color: red;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-evenly;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <div id="timer">Time: 60</div>
+
+        <h2 style="font-size: 30px; font-weight: bold;">Typing Test</h2>
+
+        <div class="stats">
+            WPM:<span id="wpm">0</span>
+            Accuracy:<span id="accuracy">100%</span>
+            Errors:<span id="errors">0</span>
+        </div>
+
+        <p id="text">
+            Australia lead the five-match series 2-0 and will retain the urn if they win or draw after back-to-back
+            eight-wicket thumpings in Perth and Brisbane.
+        </p>
+
+        <textarea id="input" placeholder="Start typing here..."></textarea>
+
+        <button id="submit">Submit</button>
+    </div>
+
+    <script>
+
+        const timer = document.getElementById("timer");
+        const input = document.getElementById("input");
+        const submit = document.getElementById("submit");
+        const text = document.getElementById("text");
+
+        const wpm = document.getElementById("wpm");
+        const accuracy = document.getElementById("accuracy");
+        const errors = document.getElementById("errors");
+
+        //preventing copy paste 
+        text.addEventListener("copy", function (e) {
+            e.preventDefault();
+        });
+        text.addEventListener("paste", function (e) {
+            e.preventDefault();
+        });
+
+        let time = 60;
+        let started = false;
+        let interval;
+
+        input.addEventListener("input", function () {
+            if (!started) {
+                started = true;
+
+                interval = setInterval(function () {
+                    time--;
+                    timer.textContent = time;
+
+                    if (time <= 10) {
+                        timer.classList.add("red");
+                    }
+
+                    if (time <= 0) {
+                        clearInterval(interval);
+                        input.disabled = true;
+                        calculateResult();
+                    }
+                }, 1000);
+            }
+        });
+
+        //result calculation after submit button clicked or timer stops:
+        function calculateResult() {
+            let typedText = input.value;
+            let typedChars = typedText.length
+            let original = text.textContent;
+
+            let correctChars = 0;
+
+            for (let i = 0; i < typedChars; i++) {
+                if (typedText[i] === original[i]) {
+                    correctChars++;
+                } 
+            }
+
+            let errorsCount = typedChars - correctChars;
+            if (errorsCount < 0){
+                errorsCount = 0;
+            }
+
+            errors.textContent = errorsCount;
+
+            if (typedChars === 0) {
+                accuracy.textContent = "100";
+            } else {
+                accuracy.textContent = Math.round((correctChars / typedChars) * 100);
+            }
+
+            var timeCompltd = 60 - time;
+            var minutes = timeCompltd / 60;
+
+            if (minutes > 0) {
+                wpm.textContent = Math.round((typedChars / 5) / minutes);
+            } else {
+                wpm.textContent = 0;
+            }
+        }
+
+        //sub,it button click event:
+        submit.addEventListener("click", function () {
+            clearInterval(interval);
+            input.disabled = true;
+            calculateResult();
+        });
+    </script>
+
+</body>
+
+</html>
