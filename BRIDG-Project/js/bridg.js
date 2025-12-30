@@ -76,25 +76,22 @@ topBtn.addEventListener("click", (e) =>{
         behavior: "smooth"
     });
 });
-// const hero = document.querySelector(".hero");
-// const stopSection = document.getElementById("chapter-section");
 
-// if(topBtn && hero && stopSection){
-// window.addEventListener("scroll", () => {
-//     const scrollY = window.scrollY;
-//     const heroBottom = hero.offsetHeight;
-//     const sectionTop = stopSection.offsetTop;
+const orderForm = document.querySelector(".order-form");
+const popup = document.getElementById("order-popup");
+const closePopup = document.getElementById("closePopup");
 
-//     if(scrollY > 300 && sectionTop > 300){
-//         topBtn.classList.add("show");
-//     }else{
-//         topBtn.classList.remove("show");
-//     }
-// });
-// top.addEventListener("click", () => {
-//     window.scrollTo({
-//         top: 0,
-//         behavior: "smooth"
-//     });
-// });}
+if(orderForm && popup){
+    orderForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        popup.classList.add("active");
+        orderForm.reset();
+    });
+}
+
+if(closePopup){
+    closePopup.addEventListener("click", () =>{
+        popup.classList.remove("active");
+    });
+}
 
