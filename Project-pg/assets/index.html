@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridg Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+    <header class="bridg-header">
+        <div class="container1">
+            <div class="sm-left">
+                <span>FOLLOW US:</span>
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="sm-right">
+                <a href="#">About</a>
+                <a href="#">FAQ</a>
+                <span>Call us: <a href="">099 4444 33</a></span>
+            </div>
+        </div>
+        <div class="big-header">
+            <div class="container2">
+                <button id="hamburger" aria-label="Toggle Menu">☰</button>
+                <div class="logo">
+                    <img src="./images/logo.png" alt="logo">
+                </div>
+                <nav id="navbar">
+                    <ul>
+                        <li><a class="active" href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section class="hero-section">
+        <div class="hero-cont">
+            <div class="hero-left">
+                <h1>Spring Cleaning ? <br>We are ready!</h1>
+                <p>We understand your home is important to you.That's
+                    why we focus on the quality of the clean.
+                </p>
+                <a href="#">See Our Best Offer</a>
+            </div>
+            <div class="hero-right">
+                <img src="./images/hero-image.png" alt="hero-img">
+            </div>
+        </div>
+    </section>
+    <section class="services-section">
+        <div class="services-cont">
+            <div class="services-grid">
+                <div class="services-card">
+                    <img src="./images/home-icon-1.png" alt="home-icon-1">
+                    <h2>Floor and Carpet</h2>
+                    <p>Amcorper uisque ac dolor nec nisl ptesque mi morbi.</p>
+                </div>
+                <div class="services-card">
+                    <img src="./images/home-icon-2-1.png" alt="home-icon-2">
+                    <h2>Window Washing</h2>
+                    <p>Amcorper uisque ac dolor nec nisl ptesque mi morbi.</p>
+                </div>
+                <div class="services-card">
+                    <img src="./images/home-icon-3.png" alt="home-icon-3">
+                    <h2>Janitorial Services</h2>
+                    <p>Amcorper uisque ac dolor nec nisl ptesque mi morbi.</p>
+                </div>
+                <div class="services-card">
+                    <img src="./images/home-icon-4.png" alt="home-icon-4">
+                    <h2>Power Washing</h2>
+                    <p>Amcorper uisque ac dolor nec nisl ptesque mi morbi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="features">
+        <div class="features-cont">
+            <div class="features-img">
+                <img src="./images/home-image-1.png" alt="features-img">
+            </div>
+            <div class="features-right">
+                <h2>Reasons Why People Choose Us Always</h2>
+                <div class="features-content">
+                    <div class="features-card">
+                        <h3>Save your valuable time</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis</p>
+                    </div>
+                    <div class="features-card">
+                        <h3>Save your valuable time</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis</p>
+                    </div>
+                    <div class="features-card">
+                        <h3>Save your valuable time</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.getElementById("hamburger").addEventListener("click", () => {
+            document.querySelector(".big-header").classList.toggle("nav-open");
+        });
+    </script>
+</body>
+
+</html>

@@ -40,14 +40,14 @@
 
         .stats {
             display: flex;
-            justify-content: space-evenly;
+            gap: 20px;
             font-weight: bold;
             margin-bottom: 15px;
         }
 
         textarea {
             width: 100%;
-            height: 120px;
+            height: 100px;
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -73,7 +73,7 @@
 
         <div class="stats">
             WPM:<span id="wpm">0</span>
-            Accuracy:<span id="accuracy">100%</span>
+            Accuracy:<span id="accuracy">0%</span>
             Errors:<span id="errors">0</span>
         </div>
 
@@ -102,7 +102,7 @@
         text.addEventListener("copy", function (e) {
             e.preventDefault();
         });
-        text.addEventListener("paste", function (e) {
+        input.addEventListener("paste", function (e) {
             e.preventDefault();
         });
 
@@ -133,20 +133,22 @@
 
         //result calculation after submit button clicked or timer stops:
         function calculateResult() {
-            let typedText = input.value;
+            let typedText = input.value.split("");
             let typedChars = typedText.length
             let original = text.textContent;
+
+            //.trim().split(/\s, g)
 
             let correctChars = 0;
 
             for (let i = 0; i < typedChars; i++) {
                 if (typedText[i] === original[i]) {
                     correctChars++;
-                } 
+                }
             }
 
             let errorsCount = typedChars - correctChars;
-            if (errorsCount < 0){
+            if (errorsCount < 0) {
                 errorsCount = 0;
             }
 
