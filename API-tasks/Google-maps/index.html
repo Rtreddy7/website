@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppty TechHub Pvt Ltd</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+           background-color: #fff;
+        }
+
+        #oppty{
+            padding: 10px 80px 10px 20px;
+        }
+
+        .header-cont{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-cont img{
+            width: 150px;
+        }
+
+        .header-cont nav ul{
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .oppty-loc{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #555;
+            height: 90vh;
+        }
+        .hero h2{
+            font-size: 52px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: float 8s infinite ease alternate;
+        }
+
+        @keyframes float{
+            /* 0%{transform: translateX(-50%);}
+            25%{transform: translateX(0);}
+            50%{transform: translateX(49%);}
+            100%{transform: translateX(0);} */
+            from{transform: translateX(-50%);}
+            to{transform: translateX(49%);}
+        }
+
+        .hero button{
+            font-size: 20px;
+            padding: 10px 30px;
+            background: orange;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: 0.35s;
+        }
+        .hero button:hover{
+            background: rgb(207, 137, 7);
+            transform: scaleX(1.15);
+        }
+    </style>
+</head>
+<body>
+    <header id="oppty">
+        <div class="header-cont">
+            <img src="./oppty.png" alt="logo">
+
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li style="background: orange; border-radius: 9999px; cursor: pointer; padding: 10px 30px;">Contact Us</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="oppty-loc">
+        <div class="hero">
+            <h2><img src="./placeholder.png" width="50px" alt="">Click below to find our office</h2>
+            <button onclick="goToMap()">Open Location</button>
+        </div>      
+    </section>
+
+    <script>
+        function goToMap(){
+            var address = "108/43 Vijaya Lakshmi Enclave 1st Floor H No 2 PJR Enclave Rd Gangaram ICRISAT Colony Hyderabad Telangana 500050";
+            var mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
+            window.open(mapUrl, "_blank");    
+        }
+    </script>
+</body>
+</html>
