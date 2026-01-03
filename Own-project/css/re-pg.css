@@ -12,8 +12,10 @@ body {
 }
 
 #re-header {
-  height: 70px;
-  background: #000;
+  background: rgb(5, 5, 129);
+  padding-top: 10px;
+  padding-bottom: 20px;
+  height: 90px;
   position: relative;
   overflow: hidden;
 }
@@ -50,9 +52,10 @@ body {
 #re-bike {
   position: absolute;
   left: -140px;
-  bottom: 5px;
-  width: 40px;
-  animation: reRide 2.8s ease forwards;
+  top: 2px;
+  bottom: 2px;
+  width: 70px;
+  animation: reRide 5.8s ease-in-out forwards;
 }
 
 /* #re-smoke {
@@ -189,14 +192,16 @@ h2 {
 }
 
 #re-showrooms {
-    padding: 30px 40px;
-  background: transparent;
+  padding: 30px 40px;
+  background: #fff;
+  color: #000;
   overflow: hidden;
 }
 
 #re-city-slider {
   display: flex;
-  gap: 40px;
+  align-items: center;
+  gap: 50px;
   animation: reScroll 20s linear infinite;
 }
 
@@ -226,26 +231,26 @@ h2 {
   text-align: center;
 }
 
-#re-footer p{
-    font-size: 15px;
-    letter-spacing: 1.2px;
-    margin-bottom: 20px;
+#re-footer p {
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  margin-bottom: 20px;
 }
 
-#re-socials{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+#re-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 #re-socials a {
-    text-decoration: none;
-    color: #fff;
-    border-radius: 50%;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 50%;
 }
 
-#re-socials a:hover{
-    color: goldenrod;
+#re-socials a:hover {
+  color: goldenrod;
 }
 
 .top {

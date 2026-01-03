@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INteractive webpage</title>
+    <link rel="stylesheet" href="iwp.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Interactive Web Project</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Dynamic</a>
+            <a href="#">Timer</a>
+            <a href="#">Contact Form</a>
+        </nav>
+        <hr>
+    </header>
+
+    <section style="padding-left: 20px;">
+        <h2>About This Project</h2>
+        <hr>
+    </section>
+
+    <section id="layout">
+        <section id="left">
+            <section>
+                <p>
+                    This is a sample interactive web page built using HTML and JavaScript.
+                    It features dynamic content manipulation, form validation, and local storage.
+                </p>
+                <h3>Features Demonstrated:</h3>
+                <ul>
+                    <li>DOM manipulation</li>
+                    <li>Form validation</li>
+                    <li>Event-handling</li>
+                    <li>Dynamic content-updates</li>
+                    <li>Local storage</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Interactive To-Do List</h2>
+                <hr>
+                <input type="text" id="taskInput" placeholder="New Task...">
+                <button id="addTask">Add</button>
+                <ul id="taskList"></ul>
+                <div id="taskNote">
+                    Tasks are saved in your browser's local storage.
+                </div>
+                <button id="clearTasks">Clear All Tasks</button>
+            </section>
+            <section>
+                <h2>Auto-Updating Timer</h2>
+                <hr>
+                <p>This counter auto-updates every second:</p>
+                <div id="timer1">00:00:00</div>
+                <button id="pauseTimer">Pause Timer</button>
+                <button id="resetTimer">Reset Timer</button>
+            </section>
+            <section>
+                <h2>Feat Hessions & Videos</h2>
+                <hr>
+                <iframe id="map" src="https://www.google.com/maps?q=Kansas,+USA&output=6&output=embed" width="100%"
+                    height="260" style="border:0;" loading="lazy">
+                </iframe>
+                <button id="toggleMap2">Toggle Map</button>
+            </section>
+        </section>
+
+        <section id="right">
+            <section>
+                <iframe id="map" src="https://www.google.com/maps?q=Kansas,+USA&output=6&output=embed" width="100%"
+                    height="260" style="border:0;" loading="lazy">
+                </iframe>
+                <button id="toggleMap1">Toggle Map</button>
+            </section>
+            <section>
+                <h2>Auto-Updating Timer</h2>
+                <hr>
+                <p>This counter auto-updates every second:</p>
+                <div id="timer2">00:00:00</div>
+                <button id="pauseTimer2">Pause Timer</button>
+                <button id="resetTimer2">Reset Timer</button>
+            </section>
+            <section class="form">
+                <h2>Contact Form</h2>
+                <hr>
+                <p>Send me a message:</p>
+                <label>Name:</label><br>
+                <input id="name" type="text" style="width: 90%;"><br>
+                <span id="nameError"></span><br>
+                <label>Email:</label><br>
+                <input id="email" type="email" style="width: 90%;"><br>
+                <span id="emailError"></span><br>
+                <label>Password:</label><br>
+                <input id="password" type="password" style="width: 90%;"><br>
+                <span id="passwordError"></span><br>
+                <label>Message:</label><br>
+                <textarea id="message" style="width: 90%;" rows="4"></textarea><br><br>
+                <div class="row">
+                    <span>Subscribe to newsletter?</span>
+                    <label><input type="checkbox"> Yes</label>
+                    <label><input type="checkbox"> No</label>
+                </div>
+                <div class="row">
+                    <span>Preferred Contact:</span>
+                    <label><input type="checkbox"> Email</label>
+                    <label><input type="checkbox"> Phone</label>
+                </div>
+                <button id="clearForm">Clear Data</button>
+                <hr>
+                <p id="formSuccess">Your information is saved in this browser!</p>
+            </section>
+        </section>
+    </section>
+    <hr>
+    <footer>
+        <p>
+            © 2026 Interactive Web Project |
+            Your email: <a href="mailto:user@example.com">tejar3144@gmail.com</a>
+        </p>
+        <nav>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </nav>
+    </footer>
+
+    <script src="iwp.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap" async defer>
+    </script> -->
+
+</body>
+
+</html>
