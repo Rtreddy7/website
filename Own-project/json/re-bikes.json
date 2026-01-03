@@ -1,0 +1,45 @@
+{
+  "650cc": [
+    {
+      "name": "Interceptor 650",
+      "image": "images/interceptor-650.webp",
+      "desc": "Pure motorcycling DNA with a retro roadster appeal."
+    },
+    {
+      "name": "Continental GT 650",
+      "image": "images/continental-650.avif",
+      "desc": "Cafe racer inspired by British motorcycling culture."
+    }
+  ],
+
+  "adventure": [
+    {
+      "name": "Himalayan 450",
+      "image": "images/him-450.webp",
+      "desc": "Built for adventure and all terrains."
+    },
+    {
+      "name": "Guerrilla 450",
+      "image": "images/guerrilla-450.jpg",
+      "desc": "Modern roadster with aggressive performance."
+    }
+  ],
+
+  "350cc": [
+    {
+      "name": "Classic 350",
+      "image": "images/classix-350.avif",
+      "desc": "Timeless design with modern engineering."
+    },
+    {
+      "name": "Hunter 350",
+      "image": "images/hunter-350.jpg",
+      "desc": "Street roadster built for urban riders."
+    },
+    {
+      "name": "Bullet 350",
+      "image": "images/bullet-350.jpg",
+      "desc": "The legendary Bullet, reborn for today."
+    }
+  ]
+}

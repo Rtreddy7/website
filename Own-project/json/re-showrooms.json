@@ -1,0 +1,9 @@
+[
+  { "city": "Delhi", "image": "images/delhi.png" },
+  { "city": "Mumbai", "image": "images/mumbai.png" },
+  { "city": "Chennai", "image": "images/chennai.jpg" },
+  { "city": "Bangalore", "image": "images/bangalore.png" },
+  { "city": "Kolkata", "image": "images/kolkata.jpg" },
+  { "city": "Hyderabad", "image": "images/hyderabad.jpg" },
+  { "city": "Jaipur", "image": "images/jaipur.jpg" }
+]

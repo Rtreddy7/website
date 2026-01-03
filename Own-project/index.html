@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BykC Magazine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/re-pg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+
+    <header id="re-header">
+        <div id="re-intro-animation">
+            <img src="./images/animated-motorbike-vector-cartoon-style_840347-1388.avif" id="re-bike">
+            <!-- <img src="images/smoke.png" id="re-smoke"> -->
+        </div>
+
+        <div id="re-navbar">
+            <img src="./images/header-bike-animation.png" id="re-logo">
+            <nav id="re-nav">
+                <a href="#re-overview">Overview</a>
+                <a href="#re-650cc">650cc</a>
+                <a href="#re-adventure">Adventure</a>
+                <a href="#re-350cc">350cc</a>
+                <a href="#re-showrooms">Showrooms</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="re-overview">
+            <div id="re-slider">
+                <div id="re-overview-slides"></div>
+            </div>
+        </section>
+
+        <section id="re-650cc">
+            <h2>650cc Twins</h2>
+            <div id="re-650cc-bikes"></div>
+        </section>
+
+        <section id="re-adventure">
+            <h2>Himalayan & Scrambler</h2>
+            <div id="re-adventure-bikes"></div>
+        </section>
+
+        <section id="re-350cc">
+            <h2>350cc Legends</h2>
+            <div id="re-350cc-bikes"></div>
+        </section>
+
+        <section id="re-showrooms">
+            <h2>Showrooms Across India</h2>
+            <div id="re-city-slider"></div>
+        </section>
+
+    </main>
+
+    <footer id="re-footer">
+        <p>Find us on</p>
+        <div id="re-socials">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.pinterest.com/" target="_blank"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+    </footer>
+    <div class="top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
+
+    <script>
+        const bike = document.getElementById("re-bike");
+        const intro = document.getElementById("re-intro-animation");
+        const navbar = document.getElementById("re-navbar");
+
+        bike.addEventListener("animationend", () => {
+            intro.style.display = "none";
+            navbar.style.display = "flex";
+        });
+
+        fetch("json/re-overview.json")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("re-overview-slides");
+                data.forEach(item => {
+                    const slide = document.createElement("div");
+                    slide.className = "re-slide";
+                    slide.style.backgroundImage = `url(${item.image})`;
+
+                    const content = document.createElement("div");
+                    content.className = "re-slide-content";
+
+                    const h2 = document.createElement("h2");
+                    h2.textContent = item.title;
+
+                    const p = document.createElement("p");
+                    p.textContent = item.text;
+
+                    content.append(h2, p);
+                    slide.appendChild(content);
+                    container.appendChild(slide);
+                });
+            });
+
+        let slideIndex = 0;
+        setInterval(() => {
+            const slides = document.getElementById("re-overview-slides");
+            slideIndex = (slideIndex + 1) % slides.children.length;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }, 4500);
+
+        fetch("json/re-bikes.json")
+            .then(res => res.json())
+            .then(data => {
+                renderBikes(data["650cc"], "re-650cc-bikes");
+                renderBikes(data["adventure"], "re-adventure-bikes");
+                renderBikes(data["350cc"], "re-350cc-bikes");
+            });
+
+        function renderBikes(bikes, containerId) {
+            const container = document.getElementById(containerId);
+
+            bikes.forEach(bike => {
+                const card = document.createElement("div");
+                card.className = "re-bike-card";
+
+                const img = document.createElement("img");
+                img.src = bike.image;
+                img.alt = bike.name;
+
+                const title = document.createElement("h3");
+                title.textContent = bike.name;
+
+                const desc = document.createElement("p");
+                desc.textContent = bike.desc;
+
+                const link = document.createElement("a");
+                link.href = "#";
+                link.textContent = "View More";
+
+                card.append(img, title, desc, link);
+                container.appendChild(card);
+            });
+        }
+
+        fetch("json/re-showrooms.json")
+            .then(res => res.json())
+            .then(data => {
+                const slider = document.getElementById("re-city-slider");
+                data.concat(data).forEach(city => {
+                    const div = document.createElement("div");
+                    div.className = "re-city";
+
+                    const img = document.createElement("img");
+                    img.src = city.image;
+
+                    const p = document.createElement("p");
+                    p.textContent = city.city;
+
+                    div.append(img, p);
+                    slider.appendChild(div);
+                });
+            });
+
+        const topBtn = document.querySelector(".top");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                topBtn.classList.add("active");
+            } else {
+                topBtn.classList.remove("active");
+            }
+        })
+
+        topBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+    </script>
+</body>
+
+</html>
