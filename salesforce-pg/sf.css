@@ -2,8 +2,9 @@
   background: #ffffff;
   border-bottom: 1px solid #e5e5e5;
   position: fixed;
+  top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .sf-header-inner {
@@ -11,7 +12,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 20px;
-  height: 100px;
+  height: 80px;
 }
 
 .sf-header-left {
@@ -107,14 +108,11 @@
   background-color: #b9373a;
   font-size: 18px;
   width: 100%;
+  height: 200px;
+  padding-top: 110px;
+  position: relative;
+  z-index: 50;
 }
-
-.sf-offer-row {
-  min-height: 56px;
-  display: flex;
-  align-items: center;
-}
-
 .sf-offer-icons {
   display: flex;
   align-items: center;
@@ -148,7 +146,6 @@
   justify-content: center;
   text-decoration: none;
   font-weight: 700;
-  flex-shrink: 0;
 }
 
 .sf-hero {
