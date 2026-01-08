@@ -20,18 +20,24 @@
             <div class="oppty-nav-container">
 
                 <div class="oppty-logo">
-                    <img src="../images/oppty.png" alt="Logo">
+                   <a href="../index.html"><img src="../images/oppty.png" alt="Logo"></a>
                 </div>
 
                 <ul class="oppty-menu">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="./aboutus.html">About Us</a></li>
-                    <li><a href="services.html">Our Services</a></li>
-                    <li><a>Contact Us</a></li>
-                    <li><a>Careers</a></li>
+                    <li class="nav-item"><a href="./services.html">Our Services</a>
+                        <ul class="dropdown">
+                            <li><a href="./solutions.html">Solutions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="./contactus.html">Contact Us</a></li>
+                    <li><a href="./careers.html">Careers</a></li>
 
-                    <li><a class="oppty-academy-btn n-btn" style="color: #fff;">Academy</a></li>
-                    <li><a class="oppty-training-btn n-btn" style="color: #fff;">Training Partner</a></li>
+                    <li><a href="./academy.html" class="oppty-academy-btn n-btn" style="color: #fff;">Academy</a></li>
+                    <li><a href="../index.html" class="oppty-training-btn n-btn" style="color: #fff;">Training
+                            Partner</a></li>
 
                     <li class="oppty-phone">
                         <a>📞 +91 9491209900</a>
@@ -51,7 +57,8 @@
     <section class="about-hero">
         <div class="about-hero-inner">
             <h1>Services</h1>
-            <p>HOME <span style="color: yellow;">/</span> ABOUT US</p>
+            <p><a href="../index.html" style="text-decoration: none; color: #fff;">HOME</a> <span
+                    style="color: yellow;">/</span>Services</p>
         </div>
     </section>
 
@@ -66,10 +73,10 @@
 
             <a class="osl-view-btn">View All Services →</a>
 
-            <div class="osl-inner-content">
+            <div class="osl-inner-content services-list-items">
 
-                <div class="osl-item">
-                    <div class="osl-title">IT SERVICES</div>
+                <div class="osl-item" style="gap: 60px;">
+                    <div class="osl-title services-osl-title">IT SERVICES</div>
                     <p>Boost your business with a robust IT infrastructure tailored for scalability and performance. Our
                         advanced cybersecurity solutions safeguard your data against threats, ensuring compliance and
                         security. Experience seamless operations with our 24/7 technical support, always ready to
@@ -86,7 +93,7 @@
 
                 <hr>
 
-                <div class="osl-item">
+                <div class="osl-item" style="gap: 60px;">
                     <div class="osl-title">BPO</div>
                     <p>Optimize your business with expert outsourcing services designed to streamline processes and
                         enhance efficiency. From top-tier customer support to seamless back-office task management, our
@@ -106,7 +113,7 @@
 
                 <hr>
 
-                <div class="osl-item">
+                <div class="osl-item" style="gap: 60px;">
                     <div class="osl-title">E-COMMERCE</div>
                     <p>Launch your online store with custom-built eCommerce platforms tailored to your brand’s unique
                         needs. Seamlessly integrate secure payment gateways to provide a smooth and trustworthy shopping
@@ -125,7 +132,7 @@
 
                 <hr>
 
-                <div class="osl-item">
+                <div class="osl-item" style="gap: 60px;">
                     <div class="osl-title">WEB DEVELOPMENT</div>
                     <p>Transform your online presence with responsive websites designed to captivate and engage users
                         across all devices. Our custom-built websites combine stunning visuals with seamless
@@ -145,7 +152,7 @@
 
                 <hr>
 
-                <div class="osl-item">
+                <div class="osl-item" style="gap: 60px;">
                     <div class="osl-title">AI SOLUTIONS</div>
                     <p>Revolutionize your business with AI-powered automation to streamline operations and boost
                         efficiency in a competitive market. Leverage predictive analytics to anticipate trends, optimize
@@ -209,77 +216,98 @@
         </div>
 
         <div class="service-pg-img-cont">
-            <img src="../images/Hai-insta-img-01.jpg" alt="">
-            <img src="../images/Hai-insta-img-02.jpg" alt="">
-            <img src="../images/Hai-insta-img-03.jpg" alt="">
-            <img src="../images/Hai-insta-img-04.jpg" alt="">
-            <!-- <img src="../images/instagram-image-additional.jpg" alt="">
-            <img src="../images/Hai-insta-img-06.jpg" alt=""> -->
-        </div>
-    </section>
-
-
-
-    <footer class="oppty-footer">
-        <div class="oppty-footer-top">
-            <div class="oppty-footer-col footer-about">
-                <img src="../images/oppty.png">
-                <p>
-                    Power up your success with innovative IT, BPO, E-commerce,
-                    Web Development, and AI solutions tailored to your vision.
-                </p>
+            <div class="insta-img">
+                <img src="../images/Hai-insta-img-01.jpg" alt="">
+                <div class="insta-overlay">
+                    <span class="insta-icon"></span>
+                </div>
             </div>
 
-            <div class="oppty-footer-col">
-                <h4>HYDERABAD LOCATIONS</h4>
-                <p>
-                    108/43, Vijaya Lakshmi Enclave,<br>
-                    1st Floor, H.No 2, PJR Enclave Rd,<br>
-                    Gangaram, ICRISAT Colony,<br>
-                    Hyderabad, Telangana 500050
-                </p>
+            <div class="insta-img">
+                <img src="../images/Hai-insta-img-02.jpg" alt="">
+                <div class="insta-overlay">
+                    <span class="insta-icon"></span>
+                </div>
             </div>
 
-            <div class="oppty-footer-col">
-                <h4>UDAIPUR LOCATIONS</h4>
-                <p>
-                    Udaipur - Plot No: 26, 100 Feet Rd,<br>
-                    Shobhagpura, Udaipur,<br>
-                    Rajasthan 313011
-                </p>
+            <div class="insta-img">
+                <img src="../images/Hai-insta-img-03.jpg" alt="">
+                <div class="insta-overlay">
+                    <span class="insta-icon"></span>
+                </div>
             </div>
 
-            <div class="oppty-footer-col ofc-en">
-                <h4>CONTACT US</h4>
-                <a class="footer-email">info@oppty.in</a>
-                <a class="footer-no">+91-9491209900</a>
-            </div>
-
-            <div class="oppty-footer-col">
-                <h4>QUICK LINKS</h4>
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Services</li>
-                    <li>Careers</li>
-                </ul>
+            <div class="insta-img">
+                <img src="../images/Hai-insta-img-04.jpg" alt="">
+                <div class="insta-overlay">
+                    <span class="insta-icon"></span>
+                </div>
             </div>
         </div>
 
-        <hr class="footer-hr">
 
-        <div class="oppty-footer-certifications">
-            <img src="../images/msme.png">
-            <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png">
-            <img src="../images/startup-india.jpg">
-        </div>
 
-        <div class="oppty-footer-bottom">
-            ©2025 Oppty. All Rights Reserved.
-        </div>
-    </footer>
 
-    <script src="../js/services.js"></script>
+        <footer class="oppty-footer">
+            <div class="oppty-footer-top">
+                <div class="oppty-footer-col footer-about">
+                    <img src="../images/oppty.png">
+                    <p>
+                        Power up your success with innovative IT, BPO, E-commerce,
+                        Web Development, and AI solutions tailored to your vision.
+                    </p>
+                </div>
+
+                <div class="oppty-footer-col">
+                    <h4>HYDERABAD LOCATIONS</h4>
+                    <p>
+                        108/43, Vijaya Lakshmi Enclave,<br>
+                        1st Floor, H.No 2, PJR Enclave Rd,<br>
+                        Gangaram, ICRISAT Colony,<br>
+                        Hyderabad, Telangana 500050
+                    </p>
+                </div>
+
+                <div class="oppty-footer-col">
+                    <h4>UDAIPUR LOCATIONS</h4>
+                    <p>
+                        Udaipur - Plot No: 26, 100 Feet Rd,<br>
+                        Shobhagpura, Udaipur,<br>
+                        Rajasthan 313011
+                    </p>
+                </div>
+
+                <div class="oppty-footer-col ofc-en">
+                    <h4>CONTACT US</h4>
+                    <a class="footer-email">info@oppty.in</a>
+                    <a class="footer-no">+91-9491209900</a>
+                </div>
+
+                <div class="oppty-footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li>Home</li>
+                        <li>About Us</li>
+                        <li>Services</li>
+                        <li>Careers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-hr">
+
+            <div class="oppty-footer-certifications">
+                <img src="../images/msme.png">
+                <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png">
+                <img src="../images/startup-india.jpg">
+            </div>
+
+            <div class="oppty-footer-bottom">
+                ©2025 Oppty. All Rights Reserved.
+            </div>
+        </footer>
+
+        <script src="../js/services.js"></script>
 </body>
 
 </html>
