@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <header class="pg-header">
+        <div class="header-left">
+            <img src="../images/oppty (1).png" width="100px">
+            <span class="pg-title">Admin Dashboard</span>
+        </div>
+        <div class="header-right">
+            <span id="loggedInAdmin">admin@oppty.in</span>
+            <button id="logoutBtn">Logout</button>            
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <main class="admin-dashboard">
+            <section class="admin-overview">
+                <div class="overview-stuff">
+                    <h4>Total Users</h4>
+                    <p id="totalUsers">-</p>
+                </div>
+                <div class="overview-stuff">
+                    <h4>Active Breaks</h4>
+                    <p id="activerBreaks">-</p>
+                </div>
+                <div class="overview-stuff">
+                    <h4>Online Users</h4>
+                    <p id="onlineUsers">-</p>
+                </div>
+            </section>
+            <section class="add-user-section">
+                <h3>Add New User</h3>
+                <div class="add-user-form">
+                    <input type="email" id="newUserEmail" placeholder="Email">
+                    <input type="password" id="newUserPassword" placeholder="Password">
+                    <button id="addUserBtn">Add User</button>
+                </div>
+            </section>
+            <section class="user-management-block">
+                <h3>User Management</h3>
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                            <th>Availability</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <tr>
+                            <td>admin@oppty.in</td>
+                            <td>Admin</td>
+                            <td>Active</td>
+                            <td>Online</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>user@oppty.in</td>
+                            <td>User</td>
+                            <td>Active</td>
+                            <td>Online</td>
+                            <td>
+                                <select id="userActionSelect">
+                                    <option value="">Select</option>
+                                    <option value="deactivate">Deactivate</option>
+                                     <option value="delete">Delete</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="brak-management-section">
+                <h3>Break Manaagement</h3>
+                <button id="donwloadCsvBtn">Download Break Report</button>
+                <table class="break-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Break Type</th>
+                            <th>Start Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="breakTableBody">
+                        <tr>
+                            <td>user@oppty.in</td>
+                            <td>Regular</td>
+                            <td>Time</td>
+                            <td>Active</td>
+                            <td>
+                                <button id="forceEndBreakBtn">End</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>

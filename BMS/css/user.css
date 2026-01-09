@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #f6f8fc;
+}
+
+.pg-header {
+    height: 70px;
+    background: #f7f8fc;
+    border-bottom: 1px solid #e3e6ef;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pg-title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#logoutBtn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 30px;
+    padding: 30px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.status-pill {
+    background: #eaf8ef;
+    color: #27ae60;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.team-user {
+    background: #f2f4f8;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.team-user.online {
+    background: #eaf8ef;
+    color: #27ae60;
+}
+
+.workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.timer {
+    font-size: 38px;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+.break-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn {
+    padding: 14px 22px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: #2f80ed;
+}
+
+.btn.gray {
+    background: #7b848d;
+}
+
+.btn.danger {
+    background: #e74c3c;
+}
+
+.break-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.activity-box {
+    background: #f6f8fc;
+    padding: 15px;
+    border-radius: 8px;
+    color: #777;
+}

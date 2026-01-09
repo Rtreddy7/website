@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #222;
+}
+
+.pg-header {
+    height: 70px;
+    background: #f8f9fd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    border-bottom: 1px solid #e5e7ef;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pg-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#logoutBtn {
+    padding: 8px 16px;
+    border: 1px solid #d0d5e0;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dashboard-container {
+    padding: 30px 40px;
+}
+
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.admin-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.overview-stuff {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    border: 1px solid #e6e9f0;
+}
+
+.overview-stuff h4 {
+    font-size: 16px;
+    color: #555;
+}
+
+.overview-stuff p {
+    margin-top: 15px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.add-user-section {
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e6e9f0;
+}
+
+.add-user-section h3 {
+    margin-bottom: 15px;
+}
+
+.add-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add-user-form input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #dcdfe6;
+}
+
+#addUserBtn {
+    margin-top: 10px;
+    padding: 10px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.user-management-block,
+.brak-management-section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e6e9f0;
+}
+
+.user-management-block h3,
+.brak-management-section h3 {
+    margin-bottom: 15px;
+}
+
+.user-table,
+.break-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td,
+.break-table th,
+.break-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 14px;
+}
+
+.user-table th,
+.break-table th {
+    background: #f8f9fd;
+    color: #555;
+}
+
+.user-table td span,
+.break-table td span {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+select {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #dcdfe6;
+}
+
+#donwloadCsvBtn {
+    margin-bottom: 15px;
+    padding: 10px 16px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#forceEndBreakBtn {
+    padding: 6px 14px;
+    background: #e5533d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./css/bms.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div id="container" class="show-user">
+
+        <div class="form-box user">
+            <form id="userLoginForm">
+                <h1>User Login</h1>
+
+                <div class="input-box">
+                    <input type="email" id="userEmail" placeholder="User Email" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+
+        <div class="form-box admin">
+            <form id="adminLoginForm">
+                <h1>Admin Login</h1>
+
+                <div class="input-box">
+                    <input type="email" id="adminEmail" placeholder="Admin Email" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+
+        <div class="toggle-box">
+
+            <div class="toggle-panel toggle-left" id="userWelcome">
+                <img src="./images/oppty (1).png" width="90">
+                <h1>Hello, Welcome</h1>
+                <p>Are u an User?</p>
+                <button class="btn user-btn">User</button>
+            </div>
+
+            <div class="toggle-panel toggle-right" id="adminWelcome">
+                <img src="./images/oppty (1).png" width="90">
+                <h1>Hello, Welcome</h1>
+                <p>Are u an Admin?</p>
+                <button class="btn admin-btn">Admin</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const container = document.getElementById("container");
+
+        document.querySelector(".user-btn").onclick = () => {
+            container.classList.add("show-user");
+            container.classList.remove("show-admin");
+        };
+
+        document.querySelector(".admin-btn").onclick = () => {
+            container.classList.add("show-admin");
+            container.classList.remove("show-user");
+        };
+
+        document.getElementById("userLoginForm").addEventListener("submit", function (e) {
+            e.preventDefault()
+            const email = document.getElementById("userEmail").value
+            sessionStorage.setItem("loggedInUser", email)
+            window.location.href = "./html/users.html"
+        })
+
+        document.getElementById("adminLoginForm").addEventListener("submit", function (e) {
+            e.preventDefault()
+            const email = document.getElementById("adminEmail").value
+            sessionStorage.setItem("loggedInUser", email)
+            window.location.href = "./html/admin.html"
+        })
+
+    </script>
+
+</body>
+
+</html>

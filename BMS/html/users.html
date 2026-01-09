@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user Dashboard</title>
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+    <header class="pg-header">
+        <div class="header-left">
+            <img src="../images/oppty (1).png" width="100px">
+            <span class="pg-title">User Dashboard</span>
+        </div>
+        <div class="header-right">
+            <span id="loggedInUser">user@oppty.in</span>
+            <button id="logoutBtn">Logout</button>            
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+    <aside class="sidebar">
+        <h3>My Status</h3>
+        <p id="userCurrentStatus" class="status-pill">WORKING</p>
+
+        <h3>Team Status</h3>
+        <ul id="teamStatusList">
+            <li class="team-user">admin@oppty.in</li>
+            <li class="team-user online">user@oppty.in</li>
+        </ul>
+    </aside>
+
+    <main class="workspace">
+        <section class="current-session card">
+            <h2>Current Session</h2>
+            <p>You are currently <strong id="workstate">WORKING</strong></p>
+            <p id="breakTimer" class="timer">00:00:00</p>
+
+            <div class="break-actions">
+                <button id="lunchBreakBtn" class="btn primary">Start Lunch Break</button>
+                <button id="regularBreakBtn" class="btn gray">Start Regular Break</button>
+                <button id="endBreakBtn" class="btn danger">End Break</button>
+            </div>
+        </section>
+
+        <section class="break-summary">
+            <div class="card">
+                <h3>Lunch Breaks</h3>
+                <p>—</p>
+            </div>
+            <div class="card">
+                <h3>Regular Breaks</h3>
+                <p>—</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Activity</h3>
+            <div class="activity-box">
+                No activity yet
+            </div>
+        </section>
+    </main>
+</div>
+
+
+    <script>
+        const user = sessionStorage.getItem("loggedInUser")
+if(user){
+    document.getElementById("loggedInUser").innerText = user
+}
+
+document.getElementById("logoutBtn").onclick = () => {
+    sessionStorage.clear()
+    window.location.href = "../index.html"
+}
+
+    </script>
+</body>
+</html>
