@@ -1,112 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
     <header class="pg-header">
         <div class="header-left">
-            <img src="../images/oppty (1).png" width="100px">
+            <img src="../images/oppty (1).png" width="100">
             <span class="pg-title">Admin Dashboard</span>
         </div>
         <div class="header-right">
-            <span id="loggedInAdmin">admin@oppty.in</span>
-            <button id="logoutBtn">Logout</button>            
+            <span id="loggedInAdmin"></span>
+            <button id="logoutBtn">Logout</button>
         </div>
     </header>
 
     <div class="dashboard-container">
         <main class="admin-dashboard">
+
             <section class="admin-overview">
                 <div class="overview-stuff">
                     <h4>Total Users</h4>
-                    <p id="totalUsers">-</p>
+                    <p id="totalUsers">0</p>
                 </div>
                 <div class="overview-stuff">
                     <h4>Active Breaks</h4>
-                    <p id="activerBreaks">-</p>
+                    <p id="activeBreaks">0</p>
                 </div>
                 <div class="overview-stuff">
                     <h4>Online Users</h4>
-                    <p id="onlineUsers">-</p>
+                    <p id="onlineUsers">0</p>
                 </div>
             </section>
+
             <section class="add-user-section">
                 <h3>Add New User</h3>
                 <div class="add-user-form">
+                    <input type="text" id="newUsername" placeholder="Username">
                     <input type="email" id="newUserEmail" placeholder="Email">
                     <input type="password" id="newUserPassword" placeholder="Password">
                     <button id="addUserBtn">Add User</button>
                 </div>
             </section>
+
             <section class="user-management-block">
                 <h3>User Management</h3>
                 <table class="user-table">
                     <thead>
                         <tr>
-                            <th>Email</th>
-                            <th>Username</th>
+                            <th>User</th>
                             <th>Status</th>
                             <th>Availability</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="userTableBody">
-                        <tr>
-                            <td>admin@oppty.in</td>
-                            <td>Admin</td>
-                            <td>Active</td>
-                            <td>Online</td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>user@oppty.in</td>
-                            <td>User</td>
-                            <td>Active</td>
-                            <td>Online</td>
-                            <td>
-                                <select id="userActionSelect">
-                                    <option value="">Select</option>
-                                    <option value="deactivate">Deactivate</option>
-                                     <option value="delete">Delete</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="userTableBody"></tbody>
                 </table>
             </section>
-            <section class="brak-management-section">
-                <h3>Break Manaagement</h3>
-                <button id="donwloadCsvBtn">Download Break Report</button>
+
+            <section class="brak-management-section" style="position: relative;">
+                <h3>Break Management</h3>
+                <button id="downloadCsvBtn"><i class="fa-solid fa-download"></i></button>
+
                 <table class="break-table">
                     <thead>
                         <tr>
                             <th>User</th>
                             <th>Break Type</th>
+                            <th>Date</th>
                             <th>Start Time</th>
+                            <th>Duration</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-
-                    <tbody id="breakTableBody">
-                        <tr>
-                            <td>user@oppty.in</td>
-                            <td>Regular</td>
-                            <td>Time</td>
-                            <td>Active</td>
-                            <td>
-                                <button id="forceEndBreakBtn">End</button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="breakTableBody"></tbody>
                 </table>
             </section>
 
         </main>
     </div>
+
+    <script>
+        const adminEmail = sessionStorage.getItem("loggedInAdmin");
+        if (!adminEmail) window.location.href = "../index.html";
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let breaks = JSON.parse(localStorage.getItem("breaks")) || [];
+
+        let adminUser = null;
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].email === adminEmail) adminUser = users[i];
+        }
+
+        document.getElementById("loggedInAdmin").textContent =
+            adminUser ? adminUser.username : adminEmail;
+
+        const userTableBody = document.getElementById("userTableBody");
+        const breakTableBody = document.getElementById("breakTableBody");
+
+        const totalUsersEl = document.getElementById("totalUsers");
+        const onlineUsersEl = document.getElementById("onlineUsers");
+        const activeBreaksEl = document.getElementById("activeBreaks");
+
+        function clear(el) {
+            while (el.firstChild) el.removeChild(el.firstChild);
+        }
+
+        function getBreakDuration(startTime) {
+            let diff = Date.now() - startTime;
+            if (diff > 3600000) diff = 3600000;
+
+            const hrs = Math.floor(diff / 3600000);
+            const mins = Math.floor((diff % 3600000) / 60000);
+            const secs = Math.floor((diff % 60000) / 1000);
+
+            return (
+                String(hrs).padStart(2, "0") + ":" +
+                String(mins).padStart(2, "0") + ":" +
+                String(secs).padStart(2, "0")
+            );
+        }
+
+        function showAdminAlert() {
+            if (document.getElementById("adminAlert")) return;
+
+            const alertBox = document.createElement("div");
+            alertBox.id = "adminAlert";
+            alertBox.textContent = "⚠ One or more users exceeded the break limit!";
+            alertBox.style.background = "#fdecea";
+            alertBox.style.color = "#611a15";
+            alertBox.style.padding = "10px";
+            alertBox.style.marginBottom = "12px";
+            alertBox.style.borderRadius = "6px";
+            alertBox.style.fontWeight = "bold";
+
+            document.querySelector(".admin-dashboard").prepend(alertBox);
+        }
+
+        function renderUsers() {
+            clear(userTableBody);
+
+            for (let i = 0; i < users.length; i++) {
+                const u = users[i];
+                const tr = document.createElement("tr");
+
+                const tdUser = document.createElement("td");
+                tdUser.textContent = u.username + " (" + u.email + ")";
+
+                const tdStatus = document.createElement("td");
+                tdStatus.textContent = u.status;
+
+                const tdAvail = document.createElement("td");
+                const badge = document.createElement("span");
+                badge.className = "status-badge";
+
+                if (u.availability === "ONLINE") {
+                    badge.classList.add("online");
+                    badge.textContent = "ONLINE";
+                } else {
+                    badge.classList.add("offline");
+                    badge.textContent = "OFFLINE";
+                }
+
+                tdAvail.appendChild(badge);
+
+                const tdAct = document.createElement("td");
+                const select = document.createElement("select");
+
+                const actions = ["Select", "Activate", "Deactivate", "Delete"];
+                for (let j = 0; j < actions.length; j++) {
+                    const opt = document.createElement("option");
+                    opt.value = actions[j].toLowerCase();
+                    opt.textContent = actions[j];
+                    select.appendChild(opt);
+                }
+
+                select.onchange = function () {
+                    if (select.value === "activate") {
+                        u.status = "Active";
+                        u.availability = "ONLINE";
+                    }
+                    if (select.value === "deactivate") {
+                        u.status = "Inactive";
+                        u.availability = "OFFLINE";
+                    }
+                    if (select.value === "delete") {
+                        users.splice(i, 1);
+                    }
+
+                    localStorage.setItem("users", JSON.stringify(users));
+                    renderUsers();
+                    renderStats();
+                };
+
+                tdAct.appendChild(select);
+                tr.append(tdUser, tdStatus, tdAvail, tdAct);
+                userTableBody.appendChild(tr);
+            }
+        }
+
+        function renderBreaks() {
+            clear(breakTableBody);
+
+            let activeCount = 0;
+            let exceededFound = false;
+
+            for (let i = 0; i < breaks.length; i++) {
+                const b = breaks[i];
+                if (b.status !== "ACTIVE") continue;
+
+                activeCount++;
+                const d = new Date(b.startTime);
+                const duration = getBreakDuration(b.startTime);
+
+                if (Date.now() - b.startTime >= 3600000) {
+                    b.exceeded = true;
+                    exceededFound = true;
+                }
+
+                const tr = document.createElement("tr");
+
+                const tdUser = document.createElement("td");
+                tdUser.textContent = b.username;
+
+                const tdType = document.createElement("td");
+                tdType.textContent = b.type;
+
+                const tdDate = document.createElement("td");
+                tdDate.textContent = d.toLocaleDateString();
+
+                const tdTime = document.createElement("td");
+                tdTime.textContent = d.toLocaleTimeString();
+
+                const tdDuration = document.createElement("td");
+                tdDuration.textContent = duration;
+
+                const tdStatus = document.createElement("td");
+                if (b.exceeded === true) {
+                    tdStatus.textContent = "EXCEEDED";
+                    tdStatus.style.color = "#1c1c1c";
+                    tdStatus.style.fontWeight = "bold";
+                } else {
+                    tdStatus.textContent = "ACTIVE";
+                }
+
+                const tdBtn = document.createElement("td");
+                const btn = document.createElement("button");
+                btn.textContent = "End";
+                btn.classList.add("end-brk-btn");
+
+                btn.onclick = function () {
+                    b.status = "ENDED";
+
+                    for (let j = 0; j < users.length; j++) {
+                        if (users[j].email === b.email) {
+                            users[j].availability = "ONLINE";
+                        }
+                    }
+
+                    localStorage.setItem("breaks", JSON.stringify(breaks));
+                    localStorage.setItem("users", JSON.stringify(users));
+
+                    renderBreaks();
+                    renderUsers();
+                    renderStats();
+                };
+
+                tdBtn.appendChild(btn);
+
+                tr.append(
+                    tdUser,
+                    tdType,
+                    tdDate,
+                    tdTime,
+                    tdDuration,
+                    tdStatus,
+                    tdBtn
+                );
+
+                breakTableBody.appendChild(tr);
+            }
+
+            activeBreaksEl.textContent = activeCount;
+
+            if (exceededFound) showAdminAlert();
+        }
+
+        function renderStats() {
+            totalUsersEl.textContent = users.length;
+
+            let online = 0;
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].availability === "ONLINE") online++;
+            }
+            onlineUsersEl.textContent = online;
+
+            let active = 0;
+            for (let i = 0; i < breaks.length; i++) {
+                if (breaks[i].status === "ACTIVE") active++;
+            }
+            activeBreaksEl.textContent = active;
+        }
+
+        document.getElementById("addUserBtn").onclick = function () {
+            const username = newUsername.value.trim();
+            const email = newUserEmail.value.trim();
+            const password = newUserPassword.value.trim();
+
+            if (!username || !email || !password) return alert("All fields required");
+
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].email === email) return alert("User already exists");
+            }
+
+            users.push({
+                username: username,
+                email: email,
+                password: password,
+                status: "Active",
+                availability: "OFFLINE"
+            });
+
+            localStorage.setItem("users", JSON.stringify(users));
+
+            newUsername.value = "";
+            newUserEmail.value = "";
+            newUserPassword.value = "";
+
+            renderUsers();
+            renderStats();
+        };
+
+        document.getElementById("downloadCsvBtn").onclick = function () {
+            let csv = "Username,Email,Break Type,Date,Start Time,Duration,Status\n";
+
+            for (let i = 0; i < breaks.length; i++) {
+                const b = breaks[i];
+                const d = new Date(b.startTime);
+                const duration = getBreakDuration(b.startTime);
+
+                csv +=
+                    b.username + "," +
+                    b.email + "," +
+                    b.type + "," +
+                    d.toLocaleDateString() + "," +
+                    d.toLocaleTimeString() + "," +
+                    duration + "," +
+                    b.status + "\n";
+            }
+
+            const blob = new Blob([csv], { type: "text/csv" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "break_report.csv";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        };
+
+        document.getElementById("logoutBtn").onclick = function () {
+            sessionStorage.clear();
+            window.location.href = "../index.html";
+        };
+
+        renderUsers();
+        renderBreaks();
+        renderStats();
+    </script>
+
 </body>
+
 </html>

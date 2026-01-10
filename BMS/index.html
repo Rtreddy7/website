@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title><img src="./images/oppty (1).png" width="30px" alt=""> Login Page</title>
     <link rel="stylesheet" href="./css/bms.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -72,33 +75,83 @@
     </div>
 
     <script>
-        const container = document.getElementById("container");
+        document.addEventListener("DOMContentLoaded", () => {
 
-        document.querySelector(".user-btn").onclick = () => {
-            container.classList.add("show-user");
-            container.classList.remove("show-admin");
-        };
+            const ADMIN_EMAIL = "raviteja.n@oppty.in";
+            const ADMIN_PASSWORD = "admin@123";
 
-        document.querySelector(".admin-btn").onclick = () => {
-            container.classList.add("show-admin");
-            container.classList.remove("show-user");
-        };
+            const container = document.getElementById("container");
 
-        document.getElementById("userLoginForm").addEventListener("submit", function (e) {
-            e.preventDefault()
-            const email = document.getElementById("userEmail").value
-            sessionStorage.setItem("loggedInUser", email)
-            window.location.href = "./html/users.html"
-        })
+            document.querySelector(".user-btn").onclick = () => {
+                container.classList.add("show-user");
+                container.classList.remove("show-admin");
+            };
 
-        document.getElementById("adminLoginForm").addEventListener("submit", function (e) {
-            e.preventDefault()
-            const email = document.getElementById("adminEmail").value
-            sessionStorage.setItem("loggedInUser", email)
-            window.location.href = "./html/admin.html"
-        })
+            document.querySelector(".admin-btn").onclick = () => {
+                container.classList.add("show-admin");
+                container.classList.remove("show-user");
+            };
 
+            document.getElementById("adminLoginForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById("adminEmail").value.trim();
+                const password = this.querySelector('input[type="password"]').value.trim();
+
+                if (!email || !password) {
+                    alert("Please enter admin email and password");
+                    return;
+                }
+
+                if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
+                    alert("Invalid admin credentials");
+                    return;
+                }
+
+                sessionStorage.setItem("loggedInAdmin", email);
+                window.location.href = "./html/admin.html";
+            });
+
+            document.getElementById("userLoginForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById("userEmail").value.trim();
+                const password = this.querySelector('input[type="password"]').value.trim();
+
+                if (!email || !password) {
+                    alert("Please enter user email and password");
+                    return;
+                }
+
+                const users = JSON.parse(localStorage.getItem("users")) || [];
+
+                const user = users.find(u => u.email === email);
+
+                if (!user) {
+                    alert("User not found. Contact admin.");
+                    return;
+                }
+
+                if (user.password !== password) {
+                    alert("Incorrect password");
+                    return;
+                }
+
+                if (user.status !== "Active") {
+                    alert("User is deactivated. Contact admin.");
+                    return;
+                }
+
+                user.availability = "ONLINE";
+                localStorage.setItem("users", JSON.stringify(users));
+
+                sessionStorage.setItem("loggedInUser", email);
+                window.location.href = "./html/users.html";
+            });
+
+        });
     </script>
+
 
 </body>
 

@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 body {
-    background: #f6f8fc;
+    background: #222E3E;
+    color: #e3e6ef;
+
 }
 
 .pg-header {
@@ -17,6 +19,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
+    color: #000;
 }
 
 .header-left {
@@ -40,8 +43,14 @@ body {
     padding: 8px 14px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    background: white;
+    background: rgb(252, 4, 4);
+    color: #ffffff;
     cursor: pointer;
+    transition: 0.35s;
+}
+
+#logoutBtn:hover{
+    background: #b81904;
 }
 
 .dashboard-container {
@@ -81,11 +90,12 @@ body {
 .workspace {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 50px;
+    color: #ffffff;
 }
 
 .card {
-    background: white;
+    background: #F07143;
     border-radius: 12px;
     padding: 24px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
@@ -135,4 +145,19 @@ body {
     padding: 15px;
     border-radius: 8px;
     color: #777;
+}
+
+#lunchBreakBtn, #regularBreakBtn, #endBreakBtn{
+    border: none;
+    border-radius: 8px;
+    padding: 10px 26px;
+    cursor: pointer;
+    background: rgb(60, 48, 238);
+    color: #fff;
+    transition: 0.35s;
+}
+
+#lunchBreakBtn:hover, #regularBreakBtn:hover, #endBreakBtn:hover{
+    background: darkblue;
+    transform: scale(1.1);
 }

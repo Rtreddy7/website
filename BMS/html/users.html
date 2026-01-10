@@ -1,80 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user Dashboard</title>
+    <title>User Dashboard</title>
     <link rel="stylesheet" href="../css/user.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header class="pg-header">
         <div class="header-left">
-            <img src="../images/oppty (1).png" width="100px">
+            <img src="../images/oppty (1).png" width="100">
             <span class="pg-title">User Dashboard</span>
         </div>
         <div class="header-right">
-            <span id="loggedInUser">user@oppty.in</span>
-            <button id="logoutBtn">Logout</button>            
+            <span id="loggedInUser"></span>
+            <button id="logoutBtn">Logout</button>
         </div>
     </header>
 
     <div class="dashboard-container">
-    <aside class="sidebar">
-        <h3>My Status</h3>
-        <p id="userCurrentStatus" class="status-pill">WORKING</p>
+        <aside class="sidebar">
+            <h3>My Status</h3>
+            <p id="userCurrentStatus" class="status-pill">WORKING</p>
 
-        <h3>Team Status</h3>
-        <ul id="teamStatusList">
-            <li class="team-user">admin@oppty.in</li>
-            <li class="team-user online">user@oppty.in</li>
-        </ul>
-    </aside>
+            <h3>Team Status</h3>
+            <ul id="teamStatusList" style="list-style: none;"></ul>
+        </aside>
 
-    <main class="workspace">
-        <section class="current-session card">
-            <h2>Current Session</h2>
-            <p>You are currently <strong id="workstate">WORKING</strong></p>
-            <p id="breakTimer" class="timer">00:00:00</p>
+        <main class="workspace">
+            <section class="current-session card">
+                <h2>Current Session</h2>
+                <p>You are currently <strong id="workstate">WORKING</strong></p>
+                <p id="breakTimer">00:00:00</p>
 
-            <div class="break-actions">
-                <button id="lunchBreakBtn" class="btn primary">Start Lunch Break</button>
-                <button id="regularBreakBtn" class="btn gray">Start Regular Break</button>
-                <button id="endBreakBtn" class="btn danger">End Break</button>
-            </div>
-        </section>
-
-        <section class="break-summary">
-            <div class="card">
-                <h3>Lunch Breaks</h3>
-                <p>—</p>
-            </div>
-            <div class="card">
-                <h3>Regular Breaks</h3>
-                <p>—</p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h3>Activity</h3>
-            <div class="activity-box">
-                No activity yet
-            </div>
-        </section>
-    </main>
-</div>
-
+                <div class="break-actions">
+                    <button id="lunchBreakBtn">Start Lunch Break</button>
+                    <button id="regularBreakBtn">Start Regular Break</button>
+                    <button id="endBreakBtn">End Break</button>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script>
-        const user = sessionStorage.getItem("loggedInUser")
-if(user){
-    document.getElementById("loggedInUser").innerText = user
-}
+        const email = sessionStorage.getItem("loggedInUser");
+        if (!email) window.location.href = "../index.html";
 
-document.getElementById("logoutBtn").onclick = () => {
-    sessionStorage.clear()
-    window.location.href = "../index.html"
-}
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let breaks = JSON.parse(localStorage.getItem("breaks")) || [];
 
+        const currentUser = users.find(u => u.email === email);
+
+        document.getElementById("loggedInUser").textContent = currentUser.username;
+
+        const teamList = document.getElementById("teamStatusList");
+        const statusEl = document.getElementById("userCurrentStatus");
+        const workStateEl = document.getElementById("workstate");
+        const timerEl = document.getElementById("breakTimer");
+
+        let timerInterval = null;
+
+        function getActiveBreak() {
+            for (let i = 0; i < breaks.length; i++) {
+                if (breaks[i].email === email && breaks[i].status === "ACTIVE") {
+                    return breaks[i];
+                }
+            }
+            return null;
+        }
+
+        function updateAvailability(state) {
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].email === email) {
+                    users[i].availability = state;
+                }
+            }
+            localStorage.setItem("users", JSON.stringify(users));
+        }
+
+        function setWorkingUI() {
+            statusEl.textContent = "WORKING 💼";
+            statusEl.style.background = "#27ae60";
+            statusEl.style.color = "#fff";
+            workStateEl.textContent = "WORKING";
+        }
+
+        function setLunchBreakUI() {
+            statusEl.textContent = "LUNCH BREAK 🍱";
+            statusEl.style.background = "#e11c06";
+            statusEl.style.color = "#fff";
+            workStateEl.textContent = "ON BREAK";
+        }
+
+        function setRegularBreakUI() {
+            statusEl.textContent = "REGULAR BREAK ☕";
+            statusEl.style.background = "#e11c06";
+            statusEl.style.color = "#fff";
+            workStateEl.textContent = "ON BREAK";
+        }
+
+        function renderTeam() {
+            teamList.innerHTML = "";
+
+            for (let i = 0; i < users.length; i++) {
+                const li = document.createElement("li");
+                const dot = document.createElement("span");
+
+                dot.style.width = "14px";
+                dot.style.height = "14px";
+                dot.style.borderRadius = "50%";
+                dot.style.display = "inline-block";
+                dot.style.marginRight = "8px";
+
+                if (users[i].availability === "ONLINE") {
+                    dot.style.background = "#27ae60";
+                } else {
+                    dot.style.background = "#e11c06";
+                }
+
+                li.append(dot, document.createTextNode(users[i].username));
+                teamList.appendChild(li);
+            }
+        }
+
+        function startBreak(type) {
+            if (getActiveBreak()) {
+                alert("You already have an active break");
+                return;
+            }
+
+            const breakObj = {
+                email: email,
+                username: currentUser.username,
+                type: type,
+                startTime: Date.now(),
+                status: "ACTIVE"
+            };
+
+            breaks.push(breakObj);
+            localStorage.setItem("breaks", JSON.stringify(breaks));
+
+            updateAvailability("OFFLINE");
+
+            if (type === "LUNCH") {
+                setLunchBreakUI();
+            }
+
+            if (type === "REGULAR") {
+                setRegularBreakUI();
+            }
+
+            startTimer(breakObj.startTime);
+            renderTeam();
+        }
+
+        function endBreak() {
+            const activeBreak = getActiveBreak();
+            if (!activeBreak) {
+                alert("No active break");
+                return;
+            }
+
+            activeBreak.status = "ENDED";
+            localStorage.setItem("breaks", JSON.stringify(breaks));
+
+            updateAvailability("ONLINE");
+            setWorkingUI();
+
+            clearInterval(timerInterval);
+            timerEl.textContent = "00:00:00";
+
+            renderTeam();
+        }
+
+        function startTimer(startTime) {
+            clearInterval(timerInterval);
+
+            timerInterval = setInterval(() => {
+                const diff = Date.now() - startTime;
+
+                const h = Math.floor(diff / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+
+                timerEl.textContent =
+                    String(h).padStart(2, "0") + ":" +
+                    String(m).padStart(2, "0") + ":" +
+                    String(s).padStart(2, "0");
+
+                if (diff >= 3600000) {
+                    alert("Break exceeded 1 hour. Admin notified.");
+                    clearInterval(timerInterval);
+                }
+            }, 1000);
+        }
+
+        document.getElementById("lunchBreakBtn").onclick = function () {
+            startBreak("LUNCH");
+        };
+
+        document.getElementById("regularBreakBtn").onclick = function () {
+            startBreak("REGULAR");
+        };
+
+        document.getElementById("endBreakBtn").onclick = endBreak;
+
+        document.getElementById("logoutBtn").onclick = function () {
+            sessionStorage.clear();
+            window.location.href = "../index.html";
+        };
+
+        const existingBreak = getActiveBreak();
+        if (existingBreak) {
+            updateAvailability("OFFLINE");
+
+            if (existingBreak.type === "LUNCH") {
+                setLunchBreakUI();
+            }
+
+            if (existingBreak.type === "REGULAR") {
+                setRegularBreakUI();
+            }
+
+            startTimer(existingBreak.startTime);
+        } else {
+            setWorkingUI();
+        }
+
+        renderTeam();
     </script>
+
+
 </body>
+
 </html>
