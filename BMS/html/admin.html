@@ -55,6 +55,16 @@
 
             <section class="user-management-block">
                 <h3>User Management</h3>
+
+                <div class="user-filters">
+                    <input type="text" id="userSearch" placeholder="Search username">
+                    <select id="availabilityFilter">
+                        <option value="all">All</option>
+                        <option value="ONLINE" style="font-weight: bold;">Online</option>
+                        <option value="OFFLINE" style="font-weight: bold;">Offline</option>
+                    </select>
+                </div>
+
                 <table class="user-table">
                     <thead>
                         <tr>
@@ -68,8 +78,9 @@
                 </table>
             </section>
 
-            <section class="brak-management-section" style="position: relative;">
+            <section class="brak-management-section">
                 <h3>Break Management</h3>
+                <input type="text" id="breakSearch" placeholder="Search break user">
                 <button id="downloadCsvBtn"><i class="fa-solid fa-download"></i></button>
 
                 <table class="break-table">
@@ -93,291 +104,288 @@
 
     <script>
         const adminEmail = sessionStorage.getItem("loggedInAdmin");
-        if (!adminEmail) window.location.href = "../index.html";
+        if (!adminEmail) {
+            window.location.href = "../index.html";
+        }
 
         let users = JSON.parse(localStorage.getItem("users")) || [];
         let breaks = JSON.parse(localStorage.getItem("breaks")) || [];
 
-        let adminUser = null;
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].email === adminEmail) adminUser = users[i];
-        }
+        let pauseRealtime = false;
 
-        document.getElementById("loggedInAdmin").textContent =
-            adminUser ? adminUser.username : adminEmail;
+        const loggedInAdmin = document.getElementById("loggedInAdmin");
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].email === adminEmail) {
+                loggedInAdmin.textContent = users[i].username;
+            }
+        }
 
         const userTableBody = document.getElementById("userTableBody");
         const breakTableBody = document.getElementById("breakTableBody");
 
-        const totalUsersEl = document.getElementById("totalUsers");
-        const onlineUsersEl = document.getElementById("onlineUsers");
-        const activeBreaksEl = document.getElementById("activeBreaks");
+        const userSearch = document.getElementById("userSearch");
+        const availabilityFilter = document.getElementById("availabilityFilter");
+        const breakSearch = document.getElementById("breakSearch");
 
         function clear(el) {
-            while (el.firstChild) el.removeChild(el.firstChild);
+            while (el.firstChild) {
+                el.removeChild(el.firstChild);
+            }
         }
 
-        function getBreakDuration(startTime) {
-            let diff = Date.now() - startTime;
-            if (diff > 3600000) diff = 3600000;
+        function formatDuration(ms, type) {
+            let limit = 3600000;
+            if (type === "REGULAR") {
+                limit = 900000;
+            }
+            if (ms > limit) {
+                ms = limit;
+            }
 
-            const hrs = Math.floor(diff / 3600000);
-            const mins = Math.floor((diff % 3600000) / 60000);
-            const secs = Math.floor((diff % 60000) / 1000);
+            let h = Math.floor(ms / 3600000);
+            let m = Math.floor((ms % 3600000) / 60000);
+            let s = Math.floor((ms % 60000) / 1000);
 
-            return (
-                String(hrs).padStart(2, "0") + ":" +
-                String(mins).padStart(2, "0") + ":" +
-                String(secs).padStart(2, "0")
-            );
+            return String(h).padStart(2, "0") + ":" +
+                String(m).padStart(2, "0") + ":" +
+                String(s).padStart(2, "0");
         }
 
-        function showAdminAlert() {
-            if (document.getElementById("adminAlert")) return;
-
-            const alertBox = document.createElement("div");
-            alertBox.id = "adminAlert";
-            alertBox.textContent = "⚠ One or more users exceeded the break limit!";
-            alertBox.style.background = "#fdecea";
-            alertBox.style.color = "#611a15";
-            alertBox.style.padding = "10px";
-            alertBox.style.marginBottom = "12px";
-            alertBox.style.borderRadius = "6px";
-            alertBox.style.fontWeight = "bold";
-
-            document.querySelector(".admin-dashboard").prepend(alertBox);
-        }
-
-        function renderUsers() {
+        function renderUsers(search, availability) {
             clear(userTableBody);
 
             for (let i = 0; i < users.length; i++) {
-                const u = users[i];
-                const tr = document.createElement("tr");
+                let u = users[i];
 
-                const tdUser = document.createElement("td");
-                tdUser.textContent = u.username + " (" + u.email + ")";
-
-                const tdStatus = document.createElement("td");
-                tdStatus.textContent = u.status;
-
-                const tdAvail = document.createElement("td");
-                const badge = document.createElement("span");
-                badge.className = "status-badge";
-
-                if (u.availability === "ONLINE") {
-                    badge.classList.add("online");
-                    badge.textContent = "ONLINE";
-                } else {
-                    badge.classList.add("offline");
-                    badge.textContent = "OFFLINE";
+                if (search) {
+                    if (!u.username.toLowerCase().includes(search.toLowerCase())) {
+                        continue;
+                    }
                 }
 
-                tdAvail.appendChild(badge);
+                if (availability !== "all") {
+                    if (u.availability !== availability) {
+                        continue;
+                    }
+                }
 
-                const tdAct = document.createElement("td");
-                const select = document.createElement("select");
+                let tr = document.createElement("tr");
 
-                const actions = ["Select", "Activate", "Deactivate", "Delete"];
+                let tdUser = document.createElement("td");
+                tdUser.textContent = u.username + " (" + u.email + ")";
+
+                let tdStatus = document.createElement("td");
+                tdStatus.textContent = u.status;
+
+                let tdAvail = document.createElement("td");
+                tdAvail.textContent = u.availability;
+
+                let tdAction = document.createElement("td");
+                let select = document.createElement("select");
+
+                let actions = ["Select", "Activate", "Deactivate", "Update", "Delete"];
                 for (let j = 0; j < actions.length; j++) {
-                    const opt = document.createElement("option");
+                    let opt = document.createElement("option");
                     opt.value = actions[j].toLowerCase();
                     opt.textContent = actions[j];
                     select.appendChild(opt);
                 }
 
+                select.onfocus = function () {
+                    pauseRealtime = true;
+                };
+
+                select.onblur = function () {
+                    pauseRealtime = false;
+                };
+
                 select.onchange = function () {
+                    pauseRealtime = false;
+
                     if (select.value === "activate") {
                         u.status = "Active";
                         u.availability = "ONLINE";
                     }
+
                     if (select.value === "deactivate") {
                         u.status = "Inactive";
                         u.availability = "OFFLINE";
                     }
+
+                    if (select.value === "update") {
+                        let n = prompt("New username", u.username);
+                        let e = prompt("New email", u.email);
+                        if (n) u.username = n;
+                        if (e) u.email = e;
+                    }
+
                     if (select.value === "delete") {
                         users.splice(i, 1);
                     }
 
                     localStorage.setItem("users", JSON.stringify(users));
-                    renderUsers();
+                    renderUsers(userSearch.value, availabilityFilter.value);
                     renderStats();
                 };
 
-                tdAct.appendChild(select);
-                tr.append(tdUser, tdStatus, tdAvail, tdAct);
+                tdAction.appendChild(select);
+                tr.append(tdUser, tdStatus, tdAvail, tdAction);
                 userTableBody.appendChild(tr);
             }
         }
 
-        function renderBreaks() {
+        function renderBreaks(search) {
             clear(breakTableBody);
-
-            let activeCount = 0;
-            let exceededFound = false;
+            let active = 0;
+            let today = new Date().toLocaleDateString();
 
             for (let i = 0; i < breaks.length; i++) {
-                const b = breaks[i];
-                if (b.status !== "ACTIVE") continue;
+                let b = breaks[i];
+                let d = new Date(b.startTime);
 
-                activeCount++;
-                const d = new Date(b.startTime);
-                const duration = getBreakDuration(b.startTime);
-
-                if (Date.now() - b.startTime >= 3600000) {
-                    b.exceeded = true;
-                    exceededFound = true;
+                if (d.toLocaleDateString() !== today) {
+                    continue;
                 }
 
-                const tr = document.createElement("tr");
+                if (search) {
+                    if (!b.username.toLowerCase().includes(search.toLowerCase())) {
+                        continue;
+                    }
+                }
 
-                const tdUser = document.createElement("td");
+                if (b.status === "ACTIVE") {
+                    active++;
+                }
+
+                let tr = document.createElement("tr");
+
+                let tdUser = document.createElement("td");
                 tdUser.textContent = b.username;
 
-                const tdType = document.createElement("td");
+                let tdType = document.createElement("td");
                 tdType.textContent = b.type;
 
-                const tdDate = document.createElement("td");
+                let tdDate = document.createElement("td");
                 tdDate.textContent = d.toLocaleDateString();
 
-                const tdTime = document.createElement("td");
+                let tdTime = document.createElement("td");
                 tdTime.textContent = d.toLocaleTimeString();
 
-                const tdDuration = document.createElement("td");
-                tdDuration.textContent = duration;
+                let tdDuration = document.createElement("td");
+                let dur = Date.now() - b.startTime;
+                if (b.endTime) {
+                    dur = b.endTime - b.startTime;
+                }
+                tdDuration.textContent = formatDuration(dur, b.type);
 
-                const tdStatus = document.createElement("td");
-                if (b.exceeded === true) {
-                    tdStatus.textContent = "EXCEEDED";
-                    tdStatus.style.color = "#1c1c1c";
-                    tdStatus.style.fontWeight = "bold";
+                let tdStatus = document.createElement("td");
+                tdStatus.textContent = b.status;
+
+                let tdAction = document.createElement("td");
+
+                if (b.status === "ACTIVE") {
+                    let btn = document.createElement("button");
+                    btn.textContent = "End";
+                    btn.className = "end-brk-btn";
+
+                    btn.onclick = function () {
+                        b.status = "ENDED";
+                        b.endTime = Date.now();
+
+                        for (let j = 0; j < users.length; j++) {
+                            if (users[j].email === b.email) {
+                                users[j].availability = "ONLINE";
+                            }
+                        }
+
+                        localStorage.setItem("breaks", JSON.stringify(breaks));
+                        localStorage.setItem("users", JSON.stringify(users));
+
+                        renderBreaks(breakSearch.value);
+                        renderUsers(userSearch.value, availabilityFilter.value);
+                        renderStats();
+                    };
+
+                    tdAction.appendChild(btn);
                 } else {
-                    tdStatus.textContent = "ACTIVE";
+                    tdAction.textContent = "-";
                 }
 
-                const tdBtn = document.createElement("td");
-                const btn = document.createElement("button");
-                btn.textContent = "End";
-                btn.classList.add("end-brk-btn");
-
-                btn.onclick = function () {
-                    b.status = "ENDED";
-
-                    for (let j = 0; j < users.length; j++) {
-                        if (users[j].email === b.email) {
-                            users[j].availability = "ONLINE";
-                        }
-                    }
-
-                    localStorage.setItem("breaks", JSON.stringify(breaks));
-                    localStorage.setItem("users", JSON.stringify(users));
-
-                    renderBreaks();
-                    renderUsers();
-                    renderStats();
-                };
-
-                tdBtn.appendChild(btn);
-
-                tr.append(
-                    tdUser,
-                    tdType,
-                    tdDate,
-                    tdTime,
-                    tdDuration,
-                    tdStatus,
-                    tdBtn
-                );
-
+                tr.append(tdUser, tdType, tdDate, tdTime, tdDuration, tdStatus, tdAction);
                 breakTableBody.appendChild(tr);
             }
 
-            activeBreaksEl.textContent = activeCount;
-
-            if (exceededFound) showAdminAlert();
+            document.getElementById("activeBreaks").textContent = active;
         }
 
         function renderStats() {
-            totalUsersEl.textContent = users.length;
+            document.getElementById("totalUsers").textContent = users.length;
 
             let online = 0;
             for (let i = 0; i < users.length; i++) {
-                if (users[i].availability === "ONLINE") online++;
+                if (users[i].availability === "ONLINE") {
+                    online++;
+                }
             }
-            onlineUsersEl.textContent = online;
-
-            let active = 0;
-            for (let i = 0; i < breaks.length; i++) {
-                if (breaks[i].status === "ACTIVE") active++;
-            }
-            activeBreaksEl.textContent = active;
+            document.getElementById("onlineUsers").textContent = online;
         }
 
         document.getElementById("addUserBtn").onclick = function () {
-            const username = newUsername.value.trim();
-            const email = newUserEmail.value.trim();
-            const password = newUserPassword.value.trim();
+            let u = document.getElementById("newUsername").value.trim();
+            let e = document.getElementById("newUserEmail").value.trim();
+            let p = document.getElementById("newUserPassword").value.trim();
 
-            if (!username || !email || !password) return alert("All fields required");
+            if (u === "" || e === "" || p === "") {
+                alert("All fields required");
+                return;
+            }
 
             for (let i = 0; i < users.length; i++) {
-                if (users[i].email === email) return alert("User already exists");
+                if (users[i].email === e) {
+                    alert("User already exists");
+                    return;
+                }
             }
 
             users.push({
-                username: username,
-                email: email,
-                password: password,
+                username: u,
+                email: e,
+                password: p,
                 status: "Active",
                 availability: "OFFLINE"
             });
 
             localStorage.setItem("users", JSON.stringify(users));
 
-            newUsername.value = "";
-            newUserEmail.value = "";
-            newUserPassword.value = "";
+            document.getElementById("newUsername").value = "";
+            document.getElementById("newUserEmail").value = "";
+            document.getElementById("newUserPassword").value = "";
 
-            renderUsers();
+            renderUsers(userSearch.value, availabilityFilter.value);
             renderStats();
         };
 
-        document.getElementById("downloadCsvBtn").onclick = function () {
-            let csv = "Username,Email,Break Type,Date,Start Time,Duration,Status\n";
-
-            for (let i = 0; i < breaks.length; i++) {
-                const b = breaks[i];
-                const d = new Date(b.startTime);
-                const duration = getBreakDuration(b.startTime);
-
-                csv +=
-                    b.username + "," +
-                    b.email + "," +
-                    b.type + "," +
-                    d.toLocaleDateString() + "," +
-                    d.toLocaleTimeString() + "," +
-                    duration + "," +
-                    b.status + "\n";
-            }
-
-            const blob = new Blob([csv], { type: "text/csv" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "break_report.csv";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        };
-
         document.getElementById("logoutBtn").onclick = function () {
-            sessionStorage.clear();
+            sessionStorage.removeItem("loggedInAdmin");
             window.location.href = "../index.html";
         };
 
-        renderUsers();
-        renderBreaks();
+        renderUsers("", "all");
+        renderBreaks("");
         renderStats();
+
+        setInterval(function () {
+            if (pauseRealtime) {
+                return;
+            }
+
+            users = JSON.parse(localStorage.getItem("users")) || [];
+            breaks = JSON.parse(localStorage.getItem("breaks")) || [];
+
+            renderUsers(userSearch.value, availabilityFilter.value);
+            renderBreaks(breakSearch.value);
+            renderStats();
+        }, 1000);
     </script>
 
 </body>

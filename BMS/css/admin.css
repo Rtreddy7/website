@@ -1,258 +1,296 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 body {
-    background: #222E3E;
+  background: #222e3e;
 }
 
 .pg-header {
-    height: 70px;
-    background: #f8f9fd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    border-bottom: 1px solid #e5e7ef;
+  height: 70px;
+  background: #f8f9fd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  border-bottom: 1px solid #e5e7ef;
 }
 
 .header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .pg-title {
-    font-size: 20px;
-    font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 #logoutBtn {
-    padding: 8px 16px;
-    border: 1px solid #d0d5e0;
-    background: rgb(252, 4, 4);
-    color: #ffffff;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.35s;
+  padding: 8px 16px;
+  border: 1px solid #d0d5e0;
+  background: rgb(252, 4, 4);
+  color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.35s;
 }
 
-#logoutBtn:hover{
-    background: #b81904;
+#logoutBtn:hover {
+  background: #b81904;
 }
 
 .dashboard-container {
-    padding: 30px 40px;
+  padding: 30px 40px;
 }
 
 .admin-dashboard {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    grid-template-areas:
-        "overview overview"
-        "left right";
-    gap: 25px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-areas:
+    "overview overview"
+    "left right";
+  gap: 25px;
 }
 
 .admin-overview {
-    grid-area: overview;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  grid-area: overview;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .overview-stuff {
-    background: rgb(252, 4, 4);
-    border-radius: 12px;
-    padding: 25px;
-    border: 1px solid #e6e9f0;
+  background: rgb(252, 4, 4);
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid #e6e9f0;
 }
 
 .overview-stuff h4 {
-    font-size: 16px;
-    color: #000;
+  font-size: 16px;
+  color: #000;
 }
 
 .overview-stuff p {
-    margin-top: 15px;
-    font-size: 28px;
-    font-weight: 600;
+  margin-top: 15px;
+  font-size: 28px;
+  font-weight: 600;
 }
 
 .add-user-section {
-    grid-area: left;
-    background: rgb(252, 4, 4);
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid #e6e9f0;
+  grid-area: left;
+  background: rgb(252, 4, 4);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e6e9f0;
 }
 
 .add-user-section h3 {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .add-user-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .add-user-form input {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #dcdfe6;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
 }
 
 #addUserBtn {
-    margin-top: 10px;
-    padding: 10px;
-    background: #3b82f6;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  margin-top: 10px;
+  padding: 10px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .user-management-block {
-    grid-area: right;
-    background: rgb(252, 4, 4);
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid #e6e9f0;
+  grid-area: right;
+  background: rgb(252, 4, 4);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e6e9f0;
 }
 
 .user-management-block h3 {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .brak-management-section {
-    grid-column: 2 / 3;
-    background: rgb(252, 4, 4);
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid #e6e9f0;
+  grid-column: 2 / 3;
+  background: rgb(252, 4, 4);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e6e9f0;
+  position: relative;
 }
 
 .brak-management-section h3 {
-    margin-bottom: 15px;
-    position: relative;
+  margin-bottom: 15px;
+  position: relative;
 }
 
 .user-table,
 .break-table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .user-table th,
 .user-table td,
 .break-table th,
 .break-table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-    font-size: 14px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 14px;
 }
 
 .user-table th,
 .break-table th {
-   background: #555;
-    color: #ffffff;
+  background: #555;
+  color: #ffffff;
 }
 
 select {
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #dcdfe6;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
 }
 
 #donwloadCsvBtn {
-    margin-bottom: 15px;
-    padding: 10px 16px;
-    background: #3b82f6;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin-bottom: 15px;
+  padding: 10px 16px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 #forceEndBreakBtn {
-    padding: 6px 14px;
-    background: #e5533d;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  padding: 6px 14px;
+  background: #e5533d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .status-badge {
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
 }
 
 .status-badge.online {
-    background: #e6f7ed;
-    color: #1e7f43;
+  background: #e6f7ed;
+  color: #1e7f43;
 }
 
 .status-badge.offline {
-    background: #fdecea;
-    color: red;
+  background: #fdecea;
+  color: red;
 }
 
 .user-action {
-    padding: 6px 8px;
-    border-radius: 6px;
-    border: 1px solid #dcdfe6;
-    background: #fff;
-    cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
+  background: #fff;
+  cursor: pointer;
 }
 
-#downloadCsvBtn{
-    border: none;
-    border-radius: 4px;
-    padding: 6px 10px;
-    cursor: pointer;
-    background: rgb(60, 48, 238);
-    transition: 0.35s;
-    position: absolute;
-    top: 20px;
-    right: 40px;
+#downloadCsvBtn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: rgb(60, 48, 238);
+  transition: 0.35s;
+  position: absolute;
+  top: 20px;
+  right: 40px;
 }
 
-#downloadCsvBtn i{
-    font-size: 14px;
-    color: #ffffff;
+#downloadCsvBtn i {
+  font-size: 14px;
+  color: #ffffff;
 }
 
-#downloadCsvBtn:hover{
-    background: darkblue;
-    transform: scale(1.1);
+#downloadCsvBtn:hover {
+  background: darkblue;
+  transform: scale(1.1);
 }
 
-.end-brk-btn{
-    padding: 4px;
-    border: none;
-    border-radius: 2px;
-    background: #b42318;
-    color: #e5e7ef;
-    transition: 0.35s;
-    cursor: pointer;
+.end-brk-btn {
+  padding: 4px;
+  border: none;
+  border-radius: 2px;
+  background: #b42318;
+  color: #e5e7ef;
+  transition: 0.35s;
+  cursor: pointer;
 }
 
-.end-brk-btn:hover{
-    background: #610a04;
-    transform: scale(1.1);
+.end-brk-btn:hover {
+  background: #610a04;
+  transform: scale(1.1);
+}
+
+.user-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.user-filters input,
+.user-filters select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.end-brk-btn {
+  background: #e11c06;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.end-brk-btn:hover {
+  background: #b51204;
+}
+
+#breakSearch {
+  margin-bottom: 10px;
+  width: 250px;
+  border-radius: 999px;
+  border: none;
+  padding: 5px;
 }
