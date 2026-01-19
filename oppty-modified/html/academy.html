@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppty</title>
+    <link rel="stylesheet" href="../css/landingpg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        <header class="header">
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="../images/oppty.png" width="200px" style="background: transparent;" alt="">
+                </div>
+
+                <nav class="nav about-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="aboutusm.html">About Us</a>
+
+                    <div class="dropdown">
+                        <a href="services.html">Services</a>
+                        <div class="dropdown-menu">
+                            <a href="soutions.html">Solutions</a>
+                        </div>
+                    </div>
+
+                    <a href="careers.html">Careers</a>
+                    <a href="contact.html">Contact us</a>
+                    <a href="academy.html">Academy</a>
+                    <a href="../index.html">Training Partner</a>
+                    <span class="phone">📞 +91 9491209900</span>
+                </nav>
+            </div>
+        </header>
+
+        <section class="contact-hero">
+            <video autoplay muted loop playsinline class="bg-video">
+                <source src="../images/7581208-hd_1920_1080_30fps.mp4" type="video/mp4">
+            </video>
+
+            <div class="hero-overlay"></div>
+        </section>
+
+        <section class="academy-why">
+            <div class="academy-why-inner">
+
+                <div class="academy-text">
+                    <h2>Why <span>Oppty Academy</span>?</h2>
+                    <p>
+                        Oppty Academy is designed to transform learners into industry-ready
+                        professionals through hands-on training, real-world projects, and
+                        expert mentorship.
+                    </p>
+
+                    <p>
+                        We focus on practical exposure, not just theory — helping students
+                        build confidence, competence, and career clarity.
+                    </p>
+                </div>
+
+                <div class="academy-cards">
+                    <div class="academy-card">Industry-Relevant Curriculum</div>
+                    <div class="academy-card">Hands-on Project Training</div>
+                    <div class="academy-card">Expert Trainers & Mentors</div>
+                    <div class="academy-card">Career & Placement Support</div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="academy-path">
+            <h2>Our Learning Path</h2>
+            <p class="academy-sub">
+                A structured journey designed to help learners grow step by step.
+            </p>
+
+            <div class="path-steps">
+
+                <div class="path-card">Foundation Training</div>
+                <div class="path-card">Skill Development</div>
+                <div class="path-card">Live Projects</div>
+                <div class="path-card">Career Readiness</div>
+
+            </div>
+        </section>
+
+
+
+
+
+        <footer class="oppty-footer">
+            <div class="oppty-footer-top">
+                <div class="oppty-footer-col footer-about">
+                    <img src="../images/oppty.png">
+                    <p>
+                        Power up your success with innovative IT, BPO, E-commerce,
+                        Web Development, and AI solutions tailored to your vision.
+                    </p>
+                </div>
+
+                <div class="oppty-footer-col">
+                    <h4>HYDERABAD LOCATIONS</h4>
+                    <p>
+                        108/43, Vijaya Lakshmi Enclave,<br>
+                        1st Floor, H.No 2, PJR Enclave Rd,<br>
+                        Gangaram, ICRISAT Colony,<br>
+                        Hyderabad, Telangana 500050
+                    </p>
+                </div>
+
+                <div class="oppty-footer-col">
+                    <h4>UDAIPUR LOCATIONS</h4>
+                    <p>
+                        Udaipur - Plot No: 26, 100 Feet Rd,<br>
+                        Shobhagpura, Udaipur,<br>
+                        Rajasthan 313011
+                    </p>
+                </div>
+
+                <div class="oppty-footer-col ofc-en">
+                    <h4>CONTACT US</h4>
+                    <a class="footer-email">info@oppty.in</a>
+                    <a class="footer-no">+91-9491209900</a>
+                </div>
+
+                <div class="oppty-footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li>Home</li>
+                        <li>About Us</li>
+                        <li>Services</li>
+                        <li>Careers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-hr">
+
+            <div class="oppty-footer-certifications">
+                <img src="../images/msme.png">
+                <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png">
+                <img src="../images/startup-india.jpg">
+            </div>
+
+            <div class="oppty-footer-bottom">
+                ©2025 Oppty. All Rights Reserved.
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        function stickyHeader() {
+            const header = document.querySelector('header')
+            if (!header) return
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    header.classList.add('scrolled')
+                } else {
+                    header.classList.remove('scrolled')
+                }
+            })
+        }
+
+        document.addEventListener('DOMContentLoaded', stickyHeader)
+
+        function initAcademyPage() {
+
+            const academyText = document.querySelector('.academy-text');
+            const academyCards = document.querySelectorAll('.academy-card');
+            const pathCards = document.querySelectorAll('.path-card');
+
+            window.addEventListener('scroll', () => {
+
+                // Section 1 animation
+                if (academyText.getBoundingClientRect().top < window.innerHeight * 0.8) {
+                    academyText.style.opacity = '1';
+                    academyText.style.transform = 'translateX(0)';
+
+                    academyCards.forEach((card, i) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, i * 200);
+                    });
+                }
+
+                // Section 2 animation
+                pathCards.forEach((card, i) => {
+                    if (card.getBoundingClientRect().top < window.innerHeight * 0.85) {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateX(0)';
+                        }, i * 180);
+                    }
+                });
+
+            });
+        }
+
+        initAcademyPage();
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
