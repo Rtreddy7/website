@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Oppty</title>
+  <link rel="stylesheet" href="./css/ednew.css" />
+</head>
+<body>
+
+  <!-- Top Offer Badge -->
+  <div class="top-badge">
+    <span class="badge">NEW</span>
+    <p>Next batch starts soon — Limited seats available</p>
+    <a href="#">Know more →</a>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+
+      <!-- Logo -->
+      <div class="logo">
+        <img src="../oppty-modified/images/oppty.png" alt="Oppty Logo" />
+      </div>
+
+      <!-- Navigation -->
+      <nav class="nav">
+
+        <a href="index.html" class="nav-link" data-page="home">Home</a>
+
+        <div class="dropdown">
+          <button class="nav-link dropdown-btn" data-page="programs">
+            Programs <span>▾</span>
+          </button>
+          <div class="dropdown-menu">
+            <a href="learning-path.html">Learning Path</a>
+          </div>
+        </div>
+
+        <a href="corporate.html" class="nav-link" data-page="corporate">
+          Corporate Training
+        </a>
+
+        <a href="contact.html" class="nav-link" data-page="contact">
+          Contact Us
+        </a>
+
+        <a href="login.html" class="login-btn">Login →</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-tagline">
+      Career-focused learning for the modern workforce
+    </p>
+
+    <h1 class="hero-title">
+      Build Real-World Skills &  
+      <span id="changing-text" class="changing-text">
+        Launch Your Career
+      </span>
+    </h1>
+
+    <p class="hero-subtext">
+      Oppty helps students and professionals gain in-demand skills
+      through structured learning paths, hands-on projects, and
+      industry-ready training.
+    </p>
+
+    <div class="hero-stats">
+      <span>🚀 Startup-driven programs</span>
+      <span>🎯 Industry-relevant skills</span>
+    </div>
+
+    <button class="hero-btn">
+      Explore Programs
+    </button>
+  </div>
+
+</section>
+
+<!-- Floating Info Container -->
+<div class="hero-info-container">
+
+  <!-- Slider Section -->
+  <div class="info-slider">
+    <img src="../oppty-modified/images/oppty.png" alt="Partner" class="slider-logo" />
+
+    <p id="slider-text" class="slider-text">
+      Learners achieved up to 3x career growth after completing Oppty programs*
+    </p>
+
+    <div class="slider-controls">
+      <span class="arrow" id="prev">&#10094;</span>
+      <span class="arrow" id="next">&#10095;</span>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="info-features">
+    <div class="feature">
+      <span>🎓</span>
+      <p>Industry-ready Curriculum</p>
+    </div>
+
+    <div class="feature">
+      <span>🤝</span>
+      <p>1:1 Mentorship Support</p>
+    </div>
+
+    <div class="feature">
+      <span>🛠️</span>
+      <p>Hands-on Projects</p>
+    </div>
+
+    <div class="feature">
+      <span>💼</span>
+      <p>Career & Placement Support</p>
+    </div>
+  </div>
+
+</div>
+
+
+  <script>
+    /* ===== Dropdown hover ===== */
+const dropdown = document.querySelector(".dropdown");
+const dropdownMenu = document.querySelector(".dropdown-menu");
+
+dropdown.addEventListener("mouseenter", () => {
+  dropdownMenu.style.display = "block";
+});
+
+dropdown.addEventListener("mouseleave", () => {
+  dropdownMenu.style.display = "none";
+});
+
+/* ===== Active Nav Item ===== */
+const navLinks = document.querySelectorAll(".nav-link");
+const currentPage = window.location.pathname.split("/").pop();
+
+navLinks.forEach(link => {
+  const page = link.getAttribute("data-page");
+
+  if (
+    (currentPage === "" && page === "home") ||
+    currentPage.includes(page)
+  ) {
+    link.classList.add("active");
+  }
+});
+
+  </script>
+
+  <script>
+    const texts = [
+  "Launch Your Career",
+  "Upskill with Industry Experts",
+  "Get Job-Ready Faster",
+  "Build Skills That Companies Need"
+];
+
+let index = 0;
+const textElement = document.getElementById("changing-text");
+
+setInterval(() => {
+  // Animate out
+  textElement.style.opacity = "0";
+  textElement.style.transform = "translateY(20px)";
+
+  setTimeout(() => {
+    index = (index + 1) % texts.length;
+    textElement.textContent = texts[index];
+
+    // Animate in
+    textElement.style.transform = "translateY(-20px)";
+    requestAnimationFrame(() => {
+      textElement.style.transition = "all 0.6s ease";
+      textElement.style.opacity = "1";
+      textElement.style.transform = "translateY(0)";
+    });
+  }, 600);
+}, 3000);
+
+  </script>
+
+  <script>
+    const sliderTexts = [
+  "Learners achieved up to 3x career growth after completing Oppty programs*",
+  "Startup-focused learning paths designed for real-world roles",
+  "Oppty learners build portfolios with hands-on industry projects",
+  "Mentorship-driven learning for faster career outcomes"
+];
+
+let currentIndex = 0;
+const sliderTextEl = document.getElementById("slider-text");
+
+function updateText(direction) {
+  sliderTextEl.style.opacity = "0";
+  sliderTextEl.style.transform = "translateY(10px)";
+
+  setTimeout(() => {
+    currentIndex =
+      direction === "next"
+        ? (currentIndex + 1) % sliderTexts.length
+        : (currentIndex - 1 + sliderTexts.length) % sliderTexts.length;
+
+    sliderTextEl.textContent = sliderTexts[currentIndex];
+    sliderTextEl.style.transform = "translateY(-10px)";
+
+    requestAnimationFrame(() => {
+      sliderTextEl.style.transition = "all 0.5s ease";
+      sliderTextEl.style.opacity = "1";
+      sliderTextEl.style.transform = "translateY(0)";
+    });
+  }, 300);
+}
+
+document.getElementById("next").onclick = () => updateText("next");
+document.getElementById("prev").onclick = () => updateText("prev");
+
+/* Auto slide */
+setInterval(() => updateText("next"), 5000);
+
+  </script>
+</body>
+</html>

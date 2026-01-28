@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oppty</title>
     <link rel="stylesheet" href="../css/landingpg.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -16,28 +20,30 @@
         <header class="header">
             <div class="header-inner">
                 <div class="logo">
-                    <img src="../images/oppty.png" width="200px" style="background: transparent;" alt="">
+                    <img src="../images/oppty.png" alt="Oppty">
                 </div>
 
-                <nav class="nav about-nav">
-                    <a href="../index.html">Home</a>
-                    <a href="aboutusm.html">About Us</a>
-
-                    <div class="dropdown">
-                        <a href="services.html">Services</a>
-                        <div class="dropdown-menu">
-                            <a href="soutions.html">Solutions</a>
-                        </div>
-                    </div>
-
-                    <a href="careers.html">Careers</a>
-                    <a href="contact.html">Contact us</a>
-                    <a href="academy.html">Academy</a>
-                    <a href="../index.html">Training Partner</a>
-                    <span class="phone">📞 +91 9491209900</span>
-                </nav>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </header>
+
+        <div class="menu-overlay" id="menu">
+            <div class="menu-content">
+                <a href="../index.html">Home</a>
+                <a href="aboutusm.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="soutions.html">Solutions</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="academy.html">Academy</a>
+                <a href="https://www.theprocareer.com/home">Training Partner</a>
+                <span class="menu-phone">📞 +91 9491209900</span>
+            </div>
+        </div>
 
         <section class="contact-hero">
             <video autoplay muted loop playsinline class="bg-video">
@@ -45,7 +51,45 @@
             </video>
 
             <div class="hero-overlay"></div>
+
+            <div class="about-hero-content careers-hero-content">
+                <h1>Contact <span style="color: rgb(232, 154, 10);">Us</span></h1>
+                <p>We provide <span>hassale free services</span> at <span>24/7</span>.</p>
+            </div>
         </section>
+
+        <section class="connect-oppty-dark">
+            <div class="connect-wrap">
+                <div class="connect-media">
+                    <img src="../images/contact-us-1.jpeg">
+                </div>
+
+                <div class="connect-text">
+                    <h2>Why Connect With Oppty</h2>
+                    <p>
+                        Oppty partners with organizations and individuals to solve complex business
+                        challenges through technology, automation, and intelligent solutions.
+                    </p>
+                    <p>
+                        Our expertise across IT services, web development, BPO, e-commerce,
+                        and AI analytics ensures tailored outcomes that drive real growth.
+                    </p>
+
+                    <div class="connect-stats">
+                        <div><span>200+</span>
+                            <p>Projects</p>
+                        </div>
+                        <div><span>98%</span>
+                            <p>Satisfaction</p>
+                        </div>
+                        <div><span>5+</span>
+                            <p>Domains</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <section class="contact-form-section">
             <h2>Get In Touch</h2>
@@ -120,82 +164,98 @@
 
 
         <footer class="oppty-footer">
-            <div class="oppty-footer-top">
-                <div class="oppty-footer-col footer-about">
-                    <img src="../images/oppty.png">
-                    <p>
-                        Power up your success with innovative IT, BPO, E-commerce,
-                        Web Development, and AI solutions tailored to your vision.
-                    </p>
+            <div class="oppty-page-wrapper">
+                <div id="oppty-waterdrop"></div>
+
+                <section class="oppty-empowered">
+                    <h3>We are Empowered By</h3>
+                    <div class="oppty-empowered-logos">
+                        <img src="../images/msme.png" alt="MSME">
+                        <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png" alt="MCA">
+                        <img src="../images/startup-india.jpg" alt="Startup India">
+                    </div>
+                </section>
+                <div class="oppty-footer-main">
+                    <div class="oppty-footer-grid">
+
+                        <div class="oppty-footer-col oppty-brand">
+                            <img src="../images/oppty.png" alt="Oppty Technologies">
+                            <p>
+                                Oppty Technologies is an innovation-driven IT services company delivering
+                                scalable solutions across IT Services, Web Development, BPO, E-Commerce,
+                                and AI Analytics.
+                            </p>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Hyderabad Office</h4>
+                            <a href="https://www.google.com/maps?q=Ganganagar,ICRISAT+Colony,Hyderabad" target="_blank">
+                                1st Floor, H.No. 2-108/43<br>
+                                Vijaya Lakshmi Enclave<br>
+                                PJR Enclave Road<br>
+                                Ganganagar, ICRISAT Colony<br>
+                                Hyderabad, Telangana – 500050
+                            </a>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Udaipur Office</h4>
+                            <a href="https://www.google.com/maps?q=Shobhagpura,Udaipur,Rajasthan" target="_blank">
+                                Plot No. 26, 100 Feet Road<br>
+                                Shobhagpura<br>
+                                Udaipur, Rajasthan – 313011
+                            </a>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Contact</h4>
+                            <a href="mailto:info@oppty.in">info@oppty.in</a>
+                            <a href="tel:+919491209900">+91 94912 09900</a>
+
+                            <div class="oppty-footer-socials">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="oppty-footer-col">
-                    <h4>HYDERABAD LOCATIONS</h4>
-                    <p>
-                        108/43, Vijaya Lakshmi Enclave,<br>
-                        1st Floor, H.No 2, PJR Enclave Rd,<br>
-                        Gangaram, ICRISAT Colony,<br>
-                        Hyderabad, Telangana 500050
-                    </p>
+                <div class="oppty-footer-bottom">
+                    © 2025 Oppty Technologies. All Rights Reserved.
                 </div>
-
-                <div class="oppty-footer-col">
-                    <h4>UDAIPUR LOCATIONS</h4>
-                    <p>
-                        Udaipur - Plot No: 26, 100 Feet Rd,<br>
-                        Shobhagpura, Udaipur,<br>
-                        Rajasthan 313011
-                    </p>
-                </div>
-
-                <div class="oppty-footer-col ofc-en">
-                    <h4>CONTACT US</h4>
-                    <a class="footer-email">info@oppty.in</a>
-                    <a class="footer-no">+91-9491209900</a>
-                </div>
-
-                <div class="oppty-footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li>Home</li>
-                        <li>About Us</li>
-                        <li>Services</li>
-                        <li>Careers</li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="footer-hr">
-
-            <div class="oppty-footer-certifications">
-                <img src="../images/msme.png">
-                <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png">
-                <img src="../images/startup-india.jpg">
-            </div>
-
-            <div class="oppty-footer-bottom">
-                ©2025 Oppty. All Rights Reserved.
-            </div>
         </footer>
+
+        <div class="top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
 
     </div>
 
     <script>
-        function stickyHeader() {
-            const header = document.querySelector('header')
-            if (!header) return
+        const header = document.querySelector('header')
+        const hamburger = document.getElementById('hamburger')
+        const menu = document.getElementById('menu')
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 60) {
-                    header.classList.add('scrolled')
-                } else {
-                    header.classList.remove('scrolled')
-                }
-            })
-        }
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled')
+            } else {
+                header.classList.remove('scrolled')
+            }
+        })
 
-        document.addEventListener('DOMContentLoaded', stickyHeader)
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active')
+            menu.classList.toggle('open')
+            header.classList.toggle('menu-open')
+        })
+    </script>
 
+    <script>
         function initContactPage() {
 
 
@@ -222,6 +282,56 @@
         }
 
         initContactPage();
+
+        function animateConnectOppty() {
+            const section = document.querySelector('.connect-oppty-dark');
+            const img = section.querySelector('img');
+            const text = section.querySelector('.connect-text');
+
+            window.addEventListener('scroll', () => {
+                if (section.getBoundingClientRect().top < window.innerHeight * 0.75) {
+                    img.style.opacity = 1;
+                    img.style.transform = 'translateY(0)';
+                    text.style.opacity = 1;
+                    text.style.transform = 'translateX(0)';
+                }
+            });
+        }
+        animateConnectOppty();
+
+    </script>
+
+    <script>
+        const links = document.querySelectorAll(".menu-content a");
+        const currentPage = window.location.pathname.split("/").pop();
+        
+        links.forEach(link => {
+            const linkPage = link.getAttribute("href");
+
+            if(linkPage === currentPage){
+                link.classList.add("active");
+            }
+        });
+    </script>
+
+    <script>
+        const topBtn = document.querySelector(".top");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                topBtn.classList.add("active");
+            } else {
+                topBtn.classList.remove("active");
+            }
+        })
+
+        topBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
     </script>
 
 

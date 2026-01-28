@@ -1,3 +1,53 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".stat-number");
+  let animated = false;
+
+  function formatNumber(value, suffix) {
+    if (suffix.includes("K")) {
+      return Math.floor(value / 1000) + suffix;
+    }
+    return value + suffix;
+  }
+
+  function animateCounters() {
+    if (animated) return;
+
+    const section = document.querySelector(".stats-grid");
+    const rect = section.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 0.8) {
+      animated = true;
+
+      counters.forEach(counter => {
+        const target = +counter.dataset.target;
+        const suffix = counter.dataset.suffix || "";
+        let current = 0;
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function update(time) {
+          const progress = Math.min((time - startTime) / duration, 1);
+          current = Math.floor(progress * target);
+
+          counter.textContent = formatNumber(current, suffix);
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            counter.textContent = formatNumber(target, suffix);
+          }
+        }
+
+        requestAnimationFrame(update);
+      });
+    }
+  }
+
+  window.addEventListener("scroll", animateCounters);
+  animateCounters();
+});
+
+
 (function () {
   const awardsSection = document.querySelector(".awards-section");
   let awardsAnimated = false;

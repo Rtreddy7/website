@@ -32,7 +32,7 @@ function initPage() {
 
   nextBtn.onclick = nextSlide;
   prevBtn.onclick = prevSlide;
-  interval = setInterval(nextSlide, 6000);
+  interval = setInterval(nextSlide, 3000);
 
   document.querySelectorAll(".tab-item").forEach((tab) => {
     tab.onclick = () => {
@@ -107,7 +107,7 @@ function initPage() {
     if (!featuresSection || featuresDone) return;
 
     const rect = featuresSection.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.8) {
+    if (rect.top < window.innerHeight * 0.7) {
       featuresSection.classList.add("animate-in");
       featuresDone = true;
     }

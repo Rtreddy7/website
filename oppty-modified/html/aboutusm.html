@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oppty</title>
     <link rel="stylesheet" href="../css/landingpg.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -16,28 +20,30 @@
         <header class="header">
             <div class="header-inner">
                 <div class="logo">
-                    <img src="../images/oppty.png" width="200px" style="background: transparent;" alt="">
+                    <img src="../images/oppty.png" alt="Oppty">
                 </div>
 
-                <nav class="nav about-nav">
-                    <a href="../index.html">Home</a>
-                    <a href="aboutusm.html">About Us</a>
-
-                    <div class="dropdown">
-                        <a href="services.html">Services</a>
-                        <div class="dropdown-menu">
-                            <a href="soutions.html">Solutions</a>
-                        </div>
-                    </div>
-
-                    <a href="careers.html">Careers</a>
-                    <a href="contact.html">Contact us</a>
-                    <a href="academy.html">Academy</a>
-                    <a href="../index.html">Training Partner</a>
-                    <span class="phone">📞 +91 9491209900</span>
-                </nav>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </header>
+
+        <div class="menu-overlay" id="menu">
+            <div class="menu-content">
+                <a href="../index.html">Home</a>
+                <a href="aboutusm.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="soutions.html">Solutions</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="academy.html">Academy</a>
+                <a href="https://www.theprocareer.com/home">Training Partner</a>
+                <span class="menu-phone">📞 +91 9491209900</span>
+            </div>
+        </div>
 
         <section class="about-hero">
             <video class="about-hero-video" autoplay muted loop playsinline>
@@ -63,22 +69,22 @@
 
             <div class="stats-grid">
                 <div class="stat">
-                    <span class="stat-number">2K</span>
+                    <span class="stat-number" data-target="2000" data-suffix="K">0</span>
                     <span class="stat-label">Projects Completed</span>
                 </div>
 
                 <div class="stat">
-                    <span class="stat-number">200K</span>
+                    <span class="stat-number" data-target="200000" data-suffix="K">0</span>
                     <span class="stat-label">Happy Customers</span>
                 </div>
 
                 <div class="stat">
-                    <span class="stat-number">10+</span>
+                    <span class="stat-number" data-target="10" data-suffix="+">0</span>
                     <span class="stat-label">Awards Achieved</span>
                 </div>
 
                 <div class="stat">
-                    <span class="stat-number">5+</span>
+                    <span class="stat-number" data-target="5" data-suffix="+">0</span>
                     <span class="stat-label">Global Branches</span>
                 </div>
             </div>
@@ -100,8 +106,6 @@
             </div>
         </section>
 
-
-        <!-- ================= AWARDS SECTION ================= -->
         <section class="awards-section" id="awards">
             <div class="awards-container">
 
@@ -112,7 +116,6 @@
 
                 <div class="awards-timeline">
 
-                    <!-- AWARD 1 -->
                     <div class="award-item left">
                         <div class="award-card">
                             <img src="../images/award-img-01.png" alt="Award 1">
@@ -122,7 +125,6 @@
                         </div>
                     </div>
 
-                    <!-- AWARD 2 -->
                     <div class="award-item middle">
                         <div class="award-card">
                             <img src="../images/award-2.png" alt="Award 2">
@@ -132,7 +134,6 @@
                         </div>
                     </div>
 
-                    <!-- AWARD 3 -->
                     <div class="award-item right">
                         <div class="award-card">
                             <img src="../images/award-img-03.png" alt="Award 3">
@@ -160,35 +161,47 @@
 
                 <div class="why-cards">
                     <div class="why-card from-left">
-                        <h4>Innovation at the Core</h4>
+                        <div class="blob"></div>
+                        <div class="bg">
+                            <h4>Innovation at the Core</h4>
                         <p>
                             We leverage AI-driven and emerging technologies to build smarter,
                             future-ready solutions.
                         </p>
+                        </div>
                     </div>
 
                     <div class="why-card from-left">
-                        <h4>End-to-End Services</h4>
+                        <div class="blob"></div>
+                        <div class="bg">
+                            <h4>End-to-End Services</h4>
                         <p>
                             From IT and BPO to e-commerce and web development,
                             we deliver complete digital ecosystems.
                         </p>
+                        </div>
                     </div>
 
                     <div class="why-card from-right">
-                        <h4>Talent & Skill Empowerment</h4>
+                        <div class="blob"></div>
+                        <div class="bg">
+                             <h4>Talent & Skill Empowerment</h4>
                         <p>
                             Bridging academia and industry through real-world training
                             and enterprise-ready talent.
                         </p>
+                        </div>
                     </div>
 
                     <div class="why-card from-right">
-                        <h4>Trust & Long-Term Partnerships</h4>
+                        <div class="blob"></div>
+                        <div class="bg">
+                            <h4>Trust & Long-Term Partnerships</h4>
                         <p>
                             Built on transparency, collaboration, and measurable results
                             for sustainable growth.
                         </p>
+                        </div>
                     </div>
                 </div>
 
@@ -205,7 +218,6 @@
 
                 <div class="partners-grid">
 
-                    <!-- Partner 1 -->
                     <div class="partner-card from-left">
                         <div class="partner-img">
                             <img src="../images/partner-1.png" alt="Aarav Sharma">
@@ -213,7 +225,6 @@
                         <h4>Aarav Sharma</h4>
                     </div>
 
-                    <!-- Partner 2 -->
                     <div class="partner-card from-left">
                         <div class="partner-img">
                             <img src="../images/partner-2.png" alt="Arjun Singh">
@@ -221,7 +232,6 @@
                         <h4>Arjun Singh</h4>
                     </div>
 
-                    <!-- Partner 3 -->
                     <div class="partner-card from-right">
                         <div class="partner-img">
                             <img src="../images/partner-3.png" alt="Ishaan Verma">
@@ -229,7 +239,6 @@
                         <h4>Ishaan Verma</h4>
                     </div>
 
-                    <!-- Partner 4 -->
                     <div class="partner-card from-right">
                         <div class="partner-img">
                             <img src="../images/partner-4.png" alt="Kabir Patil">
@@ -248,36 +257,31 @@
 
                 <div class="review-item active">
                     <p class="review-text">
-                        “Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’
-                        will uncover many web sites still in their infancy. Various versions have
-                        evolved over the years.”
+                        “Oppty's e-commerce platform increased our online sales by 45% in just three months!”
                     </p>
 
-                    <h4>SARAH AREVIK</h4>
+                    <h4>Anjali Sharma</h4>
                     <span>Chief Executive</span>
                 </div>
 
                 <div class="review-item">
                     <p class="review-text">
-                        “There are many variations of passages of Lorem Ipsum available, but the
-                        majority have suffered alteration in some form by injected humour.”
+                        “Their AI-driven solutions optimized our workflows, saving us significant costs.”
                     </p>
 
-                    <h4>JOHN SMITH</h4>
-                    <span>Product Manager</span>
+                    <h4>Rohan Patel</h4>
+                    <span>Tech Entrepreneur</span>
                 </div>
 
                 <div class="review-item">
                     <p class="review-text">
-                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry’s standard dummy text.”
+                        “The responsive website Oppty built perfectly captures our brand’s essence.”
                     </p>
 
-                    <h4>EMILY WATSON</h4>
-                    <span>UX Director</span>
+                    <h4>Priyanka Reddy</h4>
+                    <span>Marketing Head</span>
                 </div>
 
-                <!-- PAGINATION -->
                 <div class="review-dots">
                     <span class="active"></span>
                     <span></span>
@@ -287,85 +291,195 @@
             </div>
         </section>
 
+        <section class="our-team">
+            <div class="our-team-inner">
+                <h2>Our Team</h2>
+                <p>A passionate team of professionals dedicated to Innovation, Collaboration and delivering meaningful results.</p>
+
+                <div class="our-team-imgs">
+                    <div class="team-card">
+                        <img src="../images/team-img2.webp" alt="">
+                        <div class="team-overlay">
+                            <h3>Dhoni</h3>
+                            <span>Chief Executive Officer</span>
+                            <p>Vision-driven leader shapiing strategy and compnay growth.</p>
+                            <a><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="../images/team-img3.webp" alt="">
+                        <div class="team-overlay">
+                            <h3>Virat</h3>
+                            <span>Director of Operations</span>
+                            <p>Ensuring operational excellenceand strategic execution.</p>
+                            <a><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="../images/team-img4.jpg" alt="">
+                        <div class="team-overlay">
+                            <h3>Rohit Sharma</h3>
+                            <span>HR Manager</span>
+                            <p>Building a people-first culture and strong teams</p>
+                            <a><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="../images/team-img5.webp" alt="">
+                        <div class="team-overlay img5-team">
+                            <h3>Hardik Pandya</h3>
+                            <span>Technical Lead</span>
+                            <p>Guiding Teams to deliver scalable solutions</p>
+                            <a><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="../images/team-img6.webp" alt="">
+                        <div class="team-overlay">
+                            <h3>Shreyas Iyer</h3>
+                            <span>Design Lead</span>
+                            <p>Crafting intutive and impactful user experiences.</p>
+                            <a><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="../images/team-img1.webp" alt="">
+                        <div class="team-overlay">
+                            <h3>Jadeja</h3>
+                            <span>Marketing Lead</span>
+                            <p>Ensures our Oppty upholds the business needs.</p>
+                            <a><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <footer class="oppty-footer">
-            <div class="oppty-footer-top">
-                <div class="oppty-footer-col footer-about">
-                    <img src="../images/oppty.png">
-                    <p>
-                        Power up your success with innovative IT, BPO, E-commerce,
-                        Web Development, and AI solutions tailored to your vision.
-                    </p>
+            <div class="oppty-page-wrapper">
+                <div id="oppty-waterdrop"></div>
+
+                <section class="oppty-empowered">
+                    <h3>We are Empowered By</h3>
+                    <div class="oppty-empowered-logos">
+                        <img src="../images/msme.png" alt="MSME">
+                        <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png" alt="MCA">
+                        <img src="../images/startup-india.jpg" alt="Startup India">
+                    </div>
+                </section>
+                <div class="oppty-footer-main">
+                    <div class="oppty-footer-grid">
+
+                        <div class="oppty-footer-col oppty-brand">
+                            <img src="../images/oppty.png" alt="Oppty Technologies">
+                            <p>
+                                Oppty Technologies is an innovation-driven IT services company delivering
+                                scalable solutions across IT Services, Web Development, BPO, E-Commerce,
+                                and AI Analytics.
+                            </p>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Hyderabad Office</h4>
+                            <a href="https://www.google.com/maps?q=Ganganagar,ICRISAT+Colony,Hyderabad" target="_blank">
+                                1st Floor, H.No. 2-108/43<br>
+                                Vijaya Lakshmi Enclave<br>
+                                PJR Enclave Road<br>
+                                Ganganagar, ICRISAT Colony<br>
+                                Hyderabad, Telangana – 500050
+                            </a>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Udaipur Office</h4>
+                            <a href="https://www.google.com/maps?q=Shobhagpura,Udaipur,Rajasthan" target="_blank">
+                                Plot No. 26, 100 Feet Road<br>
+                                Shobhagpura<br>
+                                Udaipur, Rajasthan – 313011
+                            </a>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Contact</h4>
+                            <a href="mailto:info@oppty.in">info@oppty.in</a>
+                            <a href="tel:+919491209900">+91 94912 09900</a>
+
+                            <div class="oppty-footer-socials">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="oppty-footer-col">
-                    <h4>HYDERABAD LOCATIONS</h4>
-                    <p>
-                        108/43, Vijaya Lakshmi Enclave,<br>
-                        1st Floor, H.No 2, PJR Enclave Rd,<br>
-                        Gangaram, ICRISAT Colony,<br>
-                        Hyderabad, Telangana 500050
-                    </p>
+                <div class="oppty-footer-bottom">
+                    © 2025 Oppty Technologies. All Rights Reserved.
                 </div>
-
-                <div class="oppty-footer-col">
-                    <h4>UDAIPUR LOCATIONS</h4>
-                    <p>
-                        Udaipur - Plot No: 26, 100 Feet Rd,<br>
-                        Shobhagpura, Udaipur,<br>
-                        Rajasthan 313011
-                    </p>
-                </div>
-
-                <div class="oppty-footer-col ofc-en">
-                    <h4>CONTACT US</h4>
-                    <a class="footer-email">info@oppty.in</a>
-                    <a class="footer-no">+91-9491209900</a>
-                </div>
-
-                <div class="oppty-footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li>Home</li>
-                        <li>About Us</li>
-                        <li>Services</li>
-                        <li>Careers</li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="footer-hr">
-
-            <div class="oppty-footer-certifications">
-                <img src="../images/msme.png">
-                <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png">
-                <img src="../images/startup-india.jpg">
-            </div>
-
-            <div class="oppty-footer-bottom">
-                ©2025 Oppty. All Rights Reserved.
-            </div>
         </footer>
+
+        <div class="top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
 
     </div>
     <script src="../js/aboutus.js"></script>
-    <script>function stickyHeader() {
-            const header = document.querySelector('header')
-            if (!header) return
+    <script>
+        const header = document.querySelector('header')
+        const hamburger = document.getElementById('hamburger')
+        const menu = document.getElementById('menu')
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 60) {
-                    header.classList.add('scrolled')
-                } else {
-                    header.classList.remove('scrolled')
-                }
-            })
-        }
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled')
+            } else {
+                header.classList.remove('scrolled')
+            }
+        })
 
-        document.addEventListener('DOMContentLoaded', stickyHeader)
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active')
+            menu.classList.toggle('open')
+            header.classList.toggle('menu-open')
+        })
     </script>
 
+    <script>
+        const links = document.querySelectorAll(".menu-content a");
+        const currentPage = window.location.pathname.split("/").pop();
+        
+        links.forEach(link => {
+            const linkPage = link.getAttribute("href");
 
+            if(linkPage === currentPage){
+                link.classList.add("active");
+            }
+        });
+    </script>
+
+    <script>
+        const topBtn = document.querySelector(".top");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                topBtn.classList.add("active");
+            } else {
+                topBtn.classList.remove("active");
+            }
+        })
+
+        topBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
 
 </body>
 

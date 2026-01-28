@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oppty</title>
     <link rel="stylesheet" href="../css/landingpg.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -16,35 +20,42 @@
         <header class="header">
             <div class="header-inner">
                 <div class="logo">
-                    <img src="../images/oppty.png" width="200px" style="background: transparent;" alt="">
+                    <img src="../images/oppty.png" alt="Oppty">
                 </div>
 
-                <nav class="nav about-nav">
-                    <a href="../index.html">Home</a>
-                    <a href="aboutusm.html">About Us</a>
-
-                    <div class="dropdown">
-                        <a href="services.html">Services</a>
-                        <div class="dropdown-menu">
-                            <a href="soutions.html">Solutions</a>
-                        </div>
-                    </div>
-
-                    <a href="careers.html">Careers</a>
-                    <a href="contact.html">Contact us</a>
-                    <a href="academy.html">Academy</a>
-                    <a href="../index.html">Training Partner</a>
-                    <span class="phone">📞 +91 9491209900</span>
-                </nav>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </header>
 
-        <section class="contact-hero">
+        <div class="menu-overlay" id="menu">
+            <div class="menu-content">
+                <a href="../index.html">Home</a>
+                <a href="aboutusm.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="soutions.html">Solutions</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="academy.html">Academy</a>
+                <a href="https://www.theprocareer.com/home">Training Partner</a>
+                <span class="menu-phone">📞 +91 9491209900</span>
+            </div>
+        </div>
+
+        <section class="contact-hero careers-hero">
             <video autoplay muted loop playsinline class="bg-video">
                 <source src="../images/9034509-uhd_3840_2160_24fps.mp4" type="video/mp4">
             </video>
 
             <div class="hero-overlay"></div>
+
+            <div class="about-hero-content careers-hero-content">
+                <h1>Oppty <span style="color: rgb(232, 154, 10);">Career's</span></h1>
+                <p>Join us to enhance the<span>skills</span> for a life-time updgrade.</p>
+            </div>
         </section>
 
         <section class="career-training">
@@ -74,6 +85,157 @@
 
             </div>
         </section>
+
+        <section class="careers-roles-section">
+            <div class="careers-roles-grid">
+
+                <div class="careers-left">
+                    <h2>Roles & Domains at Oppty</h2>
+                    <p class="intro">
+                        At Oppty, your career is shaped by real-world challenges and meaningful
+                        work. Our teams operate across multiple domains, offering hands-on
+                        experience, mentorship, and long-term growth.
+                    </p>
+
+                    <p>
+                        Whether you’re a technologist, analyst, or strategist, you’ll work on
+                        projects that impact businesses globally while continuously expanding
+                        your skill set.
+                    </p>
+
+                    <ul class="highlights">
+                        <li>Exposure to real client projects</li>
+                        <li>Cross-functional collaboration</li>
+                        <li>Industry-standard tools & practices</li>
+                        <li>Clear growth and learning paths</li>
+                    </ul>
+                </div>
+
+                <div class="careers-right">
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            IT Services
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Work on enterprise IT infrastructure, cloud platforms, cybersecurity,
+                                and technical support systems serving global clients.
+                            </p>
+                            <ul>
+                                <li>Cloud & infrastructure support</li>
+                                <li>System monitoring & security</li>
+                                <li>Enterprise IT operations</li>
+                                <li>Client-facing technical roles</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Web Development
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Design and build modern web applications using scalable frontend and
+                                backend technologies.
+                            </p>
+                            <ul>
+                                <li>Frontend & backend development</li>
+                                <li>Modern JS frameworks</li>
+                                <li>Performance & accessibility</li>
+                                <li>Product-focused engineering</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            BPO Operations
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Support business operations, customer experience, and process
+                                optimization for international clients.
+                            </p>
+                            <ul>
+                                <li>Customer experience management</li>
+                                <li>Process optimization</li>
+                                <li>CRM & reporting tools</li>
+                                <li>Global operations exposure</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            AI & Analytics
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Build AI-driven solutions and analytics models that power intelligent
+                                business decisions.
+                            </p>
+                            <ul>
+                                <li>Machine learning & data analysis</li>
+                                <li>AI automation & insights</li>
+                                <li>Business intelligence tools</li>
+                                <li>Data-driven strategy</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Marketing
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Drive digital growth through performance marketing, branding, and
+                                data-backed strategies.
+                            </p>
+                            <ul>
+                                <li>SEO & content marketing</li>
+                                <li>Performance campaigns</li>
+                                <li>Analytics & optimization</li>
+                                <li>Marketing automation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section class="life-oppty">
+            <div class="life-wrap">
+                <div class="life-text">
+                    <h2>Life at Oppty</h2>
+                    <p>
+                        At Oppty, careers are built through purpose, mentorship, and innovation.
+                        We create an environment where learning is continuous, ownership is valued,
+                        and every individual grows alongside the organization.
+                    </p>
+                    <p>
+                        From real-world projects to industry exposure, Oppty empowers professionals
+                        to transform potential into performance.
+                    </p>
+                </div>
+
+                <div class="life-media">
+                    <img src="../images/life-at-oppty-1.jpeg">
+                    <img src="../images/life-at-oppty-2.jpeg">
+                    <img src="../images/life-at-oppty-3.jpeg">
+                </div>
+            </div>
+        </section>
+
 
         <section class="career-form-section">
             <h2>Apply for Training</h2>
@@ -121,89 +283,98 @@
             <a href="#careerForm">Join Us Now</a>
         </section>
 
-
-
-
-
-
-
         <footer class="oppty-footer">
-            <div class="oppty-footer-top">
-                <div class="oppty-footer-col footer-about">
-                    <img src="../images/oppty.png">
-                    <p>
-                        Power up your success with innovative IT, BPO, E-commerce,
-                        Web Development, and AI solutions tailored to your vision.
-                    </p>
+            <div class="oppty-page-wrapper">
+                <div id="oppty-waterdrop"></div>
+
+                <section class="oppty-empowered">
+                    <h3>We are Empowered By</h3>
+                    <div class="oppty-empowered-logos">
+                        <img src="../images/msme.png" alt="MSME">
+                        <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png" alt="MCA">
+                        <img src="../images/startup-india.jpg" alt="Startup India">
+                    </div>
+                </section>
+                <div class="oppty-footer-main">
+                    <div class="oppty-footer-grid">
+
+                        <div class="oppty-footer-col oppty-brand">
+                            <img src="../images/oppty.png" alt="Oppty Technologies">
+                            <p>
+                                Oppty Technologies is an innovation-driven IT services company delivering
+                                scalable solutions across IT Services, Web Development, BPO, E-Commerce,
+                                and AI Analytics.
+                            </p>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Hyderabad Office</h4>
+                            <a href="https://www.google.com/maps?q=Ganganagar,ICRISAT+Colony,Hyderabad" target="_blank">
+                                1st Floor, H.No. 2-108/43<br>
+                                Vijaya Lakshmi Enclave<br>
+                                PJR Enclave Road<br>
+                                Ganganagar, ICRISAT Colony<br>
+                                Hyderabad, Telangana – 500050
+                            </a>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Udaipur Office</h4>
+                            <a href="https://www.google.com/maps?q=Shobhagpura,Udaipur,Rajasthan" target="_blank">
+                                Plot No. 26, 100 Feet Road<br>
+                                Shobhagpura<br>
+                                Udaipur, Rajasthan – 313011
+                            </a>
+                        </div>
+
+                        <div class="oppty-footer-col">
+                            <h4>Contact</h4>
+                            <a href="mailto:info@oppty.in">info@oppty.in</a>
+                            <a href="tel:+919491209900">+91 94912 09900</a>
+
+                            <div class="oppty-footer-socials">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="oppty-footer-col">
-                    <h4>HYDERABAD LOCATIONS</h4>
-                    <p>
-                        108/43, Vijaya Lakshmi Enclave,<br>
-                        1st Floor, H.No 2, PJR Enclave Rd,<br>
-                        Gangaram, ICRISAT Colony,<br>
-                        Hyderabad, Telangana 500050
-                    </p>
+                <div class="oppty-footer-bottom">
+                    © 2025 Oppty Technologies. All Rights Reserved.
                 </div>
-
-                <div class="oppty-footer-col">
-                    <h4>UDAIPUR LOCATIONS</h4>
-                    <p>
-                        Udaipur - Plot No: 26, 100 Feet Rd,<br>
-                        Shobhagpura, Udaipur,<br>
-                        Rajasthan 313011
-                    </p>
-                </div>
-
-                <div class="oppty-footer-col ofc-en">
-                    <h4>CONTACT US</h4>
-                    <a class="footer-email">info@oppty.in</a>
-                    <a class="footer-no">+91-9491209900</a>
-                </div>
-
-                <div class="oppty-footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li>Home</li>
-                        <li>About Us</li>
-                        <li>Services</li>
-                        <li>Careers</li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="footer-hr">
-
-            <div class="oppty-footer-certifications">
-                <img src="../images/msme.png">
-                <img src="../images/Ministry-for-Corporate-AffairS-1-removebg-preview.png">
-                <img src="../images/startup-india.jpg">
-            </div>
-
-            <div class="oppty-footer-bottom">
-                ©2025 Oppty. All Rights Reserved.
-            </div>
         </footer>
 
+        <div class="top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
     </div>
 
     <script>
-        function stickyHeader() {
-            const header = document.querySelector('header')
-            if (!header) return
+        const header = document.querySelector('header')
+        const hamburger = document.getElementById('hamburger')
+        const menu = document.getElementById('menu')
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 60) {
-                    header.classList.add('scrolled')
-                } else {
-                    header.classList.remove('scrolled')
-                }
-            })
-        }
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled')
+            } else {
+                header.classList.remove('scrolled')
+            }
+        })
 
-        document.addEventListener('DOMContentLoaded', stickyHeader)
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active')
+            menu.classList.toggle('open')
+            header.classList.toggle('menu-open')
+        })
+    </script>
 
+    <script>
         function initCareersPage() {
 
             // Scroll animation for training section
@@ -234,10 +405,75 @@
 
         initCareersPage();
 
+        function animateLifeOppty() {
+            const section = document.querySelector('.life-oppty');
+            const text = section.querySelector('.life-text');
+            const imgs = section.querySelectorAll('img');
+
+            window.addEventListener('scroll', () => {
+                if (section.getBoundingClientRect().top < window.innerHeight * 0.75) {
+                    text.style.opacity = 1;
+                    text.style.transform = 'translateX(0)';
+                    imgs.forEach((img, i) => {
+                        setTimeout(() => {
+                            img.style.opacity = 1;
+                            img.style.transform = 'scale(1)';
+                        }, i * 200);
+                    });
+                }
+            });
+        }
+        animateLifeOppty();
+
+
     </script>
 
+    <script>
+        const links = document.querySelectorAll(".menu-content a");
+        const currentPage = window.location.pathname.split("/").pop();
 
+        links.forEach(link => {
+            const linkPage = link.getAttribute("href");
 
+            if (linkPage === currentPage) {
+                link.classList.add("active");
+            }
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    if (i !== item) i.classList.remove('active');
+                });
+
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+    <script>
+        const topBtn = document.querySelector(".top");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                topBtn.classList.add("active");
+            } else {
+                topBtn.classList.remove("active");
+            }
+        })
+
+        topBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
 
 
 </body>

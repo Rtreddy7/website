@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Oppty – Accordion & Courses</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+  user-select:none;
+}
+body{background:#f7f7fb}
+
+/* ================= ACCORDION ================= */
+.oppty-accordion-section{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  padding:120px 0;
+}
+.oppty-accordion-inner{
+  width:1400px;
+  display:flex;
+  align-items: center;
+  position:relative;
+}
+
+/* RIGHT BACKGROUND ONLY */
+.accordion-bg{
+  position:absolute;
+  right:0;
+  top:0;
+  width:55%;
+  height:100%;
+  background:#f3f2fd;
+  border-radius:28px;
+  z-index:1;
+}
+
+/* LEFT ACCORDION */
+.accordion-card{
+  width:520px;
+  background:#7a6ad8;
+  padding:42px;
+  border-radius:28px;
+  position:relative;
+  z-index:3;
+  margin-left:130px;
+}
+
+.accordion-item{
+  background:#fff;
+  border-radius:40px;
+  padding:18px 24px;
+  margin-bottom:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+}
+.accordion-title{font-weight:600;color:#333}
+.accordion-toggle{
+  width:32px;height:32px;border-radius:50%;
+  background:#7a6ad8;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+
+/* CONTENT */
+.accordion-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .45s ease;
+  padding:0 24px;
+}
+.accordion-content p{
+  color:#fff;
+  font-size:15px;
+  line-height:1.75;
+  margin:12px 0;
+}
+
+/* RIGHT CONTENT */
+.accordion-right{
+  width:520px;
+  padding:90px 70px;
+  position:relative;
+  z-index:2;
+}
+.accordion-right small{
+  color:#7a6ad8;
+  font-weight:700;
+  font-size: 20px;
+  letter-spacing:1px;
+}
+.accordion-right h2{
+  font-size:34px;
+  margin:18px 0;
+}
+.accordion-right p{
+  font-size:15px;
+  line-height:1.2;
+  color:#555;
+  margin-bottom:16px;
+}
+
+/* ================= COURSES ================= */
+.courses-section{
+      width: 100%;
+    background: linear-gradient(135deg, #7a6ad8, #5f4dc4, #4b3ca8);
+    padding: 80px 40px;
+    display: flex;
+    justify-content: center;
+}
+.courses-inner{
+  width:1200px;
+  display:flex;
+  align-items: center;
+  gap:110px;
+}
+.courses-left{
+  width: 560px;
+  color:#fff;
+}
+.courses-left h2{
+  font-size:38px;
+  margin-bottom:40px;
+}
+
+/* STACK */
+.stack{
+  width:420px;
+  height:520px;
+  position:relative;
+  cursor:grab;
+}
+.card{
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 30px 50px rgba(0,0,0,.35);
+  transition:transform .45s ease;
+  color:#fff;
+}
+.card img{
+  width:100%;
+  height:42%;
+  object-fit:cover;
+}
+.card-content{
+  padding:28px;
+  font-size:15.5px;
+  line-height:1.8;
+}
+.card-title{
+  position:absolute;
+  bottom:20px;
+  right:24px;
+  font-size:22px;
+  font-weight:900;
+  color: #333;
+}
+
+/* STACK DEPTH */
+.stack .card:nth-child(1){z-index:5}
+.stack .card:nth-child(2){transform:translate(18px,18px);z-index:4}
+.stack .card:nth-child(3){transform:translate(36px,36px);z-index:3}
+.stack .card:nth-child(4){transform:translate(54px,54px);z-index:2}
+.stack .card:nth-child(5){transform:translate(72px,72px);z-index:1}
+
+.nav{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+.nav button{
+  width:50px;height:50px;
+  border-radius:50%;
+  border:2px solid #fff;
+  background:transparent;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.courses-right{
+  width:100%;
+  height:100%;
+  border-radius:18px;
+  background:url("https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=2400&q=90") center/cover no-repeat;
+  background-attachment: fixed;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ACCORDION -->
+<section class="oppty-accordion-section">
+<div class="oppty-accordion-inner">
+
+<div class="accordion-bg"></div>
+
+<div class="accordion-card">
+
+<div class="accordion-item">
+<div class="accordion-title">Where should I start my career?</div>
+<div class="accordion-toggle">+</div>
+</div>
+<div class="accordion-content">
+<p>Choosing the right career path is essential for long-term success.</p>
+<p>Oppty helps identify strengths, interests, and industry demand.</p>
+<p>Structured learning paths guide learners step by step.</p>
+<p>Beginner-friendly programs with real-world exposure.</p>
+<p>Clear direction toward employable skills.</p>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-title">How does Oppty help with placements?</div>
+<div class="accordion-toggle">+</div>
+</div>
+<div class="accordion-content">
+<p>Industry-aligned curriculum designed with employers.</p>
+<p>Hands-on projects that simulate real job scenarios.</p>
+<p>Resume building and interview preparation sessions.</p>
+<p>Mock interviews with experienced mentors.</p>
+<p>Continuous career guidance until placement.</p>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-title">What learning support is provided?</div>
+<div class="accordion-toggle">+</div>
+</div>
+<div class="accordion-content">
+<p>Dedicated mentors for technical and career guidance.</p>
+<p>Live doubt-clearing sessions and recorded resources.</p>
+<p>Progress tracking and performance feedback.</p>
+<p>Peer collaboration and project reviews.</p>
+<p>Post-training alumni support.</p>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-title">How are courses structured?</div>
+<div class="accordion-toggle">+</div>
+</div>
+<div class="accordion-content">
+<p>Courses are designed with modular learning paths.</p>
+<p>Each module builds on real industry requirements.</p>
+<p>Hands-on labs reinforce theoretical concepts.</p>
+<p>Assessments ensure skill mastery.</p>
+<p>Flexible pacing for different learning speeds.</p>
+</div>
+
+</div>
+
+<div class="accordion-right">
+<small>WHY OPPTY</small>
+<h2>Learning That Leads to Careers</h2>
+<p>Oppty focuses on practical, outcome-driven education.</p>
+<p>We bridge the gap between academic learning and industry needs.</p>
+<p>Our programs are designed to deliver real employability.</p>
+</div>
+
+</div>
+</section>
+
+<!-- COURSES -->
+<section class="courses-section">
+<div class="courses-inner">
+
+<div class="courses-left">
+<h2>Courses We Offer</h2>
+
+<div class="stack" id="stack">
+
+<div class="card" data-color="#3f8cff">
+<img src="./images/cloud_images_of_technology-96608eb4.jpeg">
+<div class="card-content">
+Learn cloud computing from fundamentals to advanced deployment strategies.
+Understand cloud service models (IaaS, PaaS, SaaS), virtualization concepts,
+networking, security best practices, monitoring, automation, and cost optimization.
+Gain hands-on experience with real cloud platforms and production-grade environments.
+</div>
+<div class="card-title">Cloud Computing</div>
+</div>
+
+<div class="card" data-color="#4caf50">
+<img src="./images/wd-2.avif">
+<div class="card-content">
+Become a full-stack web developer with strong frontend and backend skills.
+Learn HTML, CSS, JavaScript, modern frameworks, APIs, databases, authentication,
+performance optimization, and deployment workflows.
+Build multiple real-world projects for a professional portfolio.
+</div>
+<div class="card-title">Web Development</div>
+</div>
+
+<div class="card" data-color="#e28a5c">
+<img src="./images/itservices.jpg">
+<div class="card-content">
+Build a solid foundation in IT infrastructure and enterprise systems.
+Learn operating systems, networking fundamentals, hardware troubleshooting,
+ticketing tools, service desk operations, and IT support workflows.
+Prepare for roles in IT support and infrastructure management.
+</div>
+<div class="card-title">IT Services</div>
+</div>
+
+<div class="card" data-color="#9c6ade">
+<img src="./images/ai-analytics.webp">
+<div class="card-content">
+Develop strong analytical skills using data analytics and AI fundamentals.
+Learn data visualization, dashboards, SQL, predictive models,
+business intelligence tools, and AI-driven decision-making techniques.
+Apply analytics to real business datasets and scenarios.
+</div>
+<div class="card-title">AI Analytics</div>
+</div>
+
+<div class="card" data-color="#e06b6b">
+<img src="./images/bpo.jpeg">
+<div class="card-content">
+Gain expertise in professional communication and customer interaction.
+Learn CRM tools, voice and non-voice processes, quality assurance,
+call handling techniques, and workflow management.
+Prepare for customer-facing roles with confidence and industry standards.
+</div>
+<div class="card-title">BPO</div>
+</div>
+
+</div>
+
+<div class="nav">
+<button id="prev">←</button>
+<button id="next">→</button>
+</div>
+
+</div>
+
+<div class="courses-right"></div>
+
+</div>
+</section>
+
+<script>
+/* ACCORDION */
+document.querySelectorAll(".accordion-item").forEach(item=>{
+  item.onclick=()=>{
+    const open=item.classList.contains("open");
+    document.querySelectorAll(".accordion-item").forEach(i=>{
+      i.classList.remove("open");
+      i.nextElementSibling.style.maxHeight=null;
+      i.querySelector(".accordion-toggle").textContent="+";
+    });
+    if(!open){
+      item.classList.add("open");
+      item.nextElementSibling.style.maxHeight=item.nextElementSibling.scrollHeight+"px";
+      item.querySelector(".accordion-toggle").textContent="×";
+    }
+  };
+});
+
+/* STACK */
+const stack=document.getElementById("stack");
+let startX=0,drag=false,timer;
+
+function layout(){
+  [...stack.children].forEach((c,i)=>{
+    c.style.transform=`translate(${i*18}px,${i*18}px)`;
+    c.style.zIndex=10-i;
+    c.style.background=c.dataset.color;
+  });
+}
+function next(){stack.appendChild(stack.firstElementChild);layout();}
+function prev(){stack.insertBefore(stack.lastElementChild,stack.firstElementChild);layout();}
+function auto(){stop();timer=setInterval(next,4000);}
+function stop(){clearInterval(timer);}
+
+stack.onmousedown=e=>{drag=true;startX=e.clientX;stop();}
+window.onmousemove=e=>{
+  if(!drag)return;
+  const dx=e.clientX-startX;
+  stack.firstElementChild.style.transform=
+    `translate(${dx}px,${Math.abs(dx)*.15}px) rotate(${dx*.04}deg)`;
+};
+window.onmouseup=e=>{
+  if(!drag)return;
+  drag=false;
+  if(Math.abs(e.clientX-startX)>120)next();
+  layout();auto();
+};
+
+document.getElementById("next").onclick=()=>{stop();next();auto();}
+document.getElementById("prev").onclick=()=>{stop();prev();auto();}
+
+layout();auto();
+</script>
+
+</body>
+</html>
