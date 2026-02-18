@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="../css/user.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* Lightweight additions so your new sections look OK even if CSS isn't updated yet */
+    .card { background:#fff; border-radius:14px; padding:18px; margin-bottom:16px; box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+    .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .pill { display:inline-flex; align-items:center; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+    .pill.available { background:#27ae60; color:#fff; }
+    .pill.away { background:#e67e22; color:#fff; }
+    .pill.leave { background:#e11c06; color:#fff; }
+    .pill.present { background:#2d8cff; color:#fff; }
+    .pill.pending { background:#7f8c8d; color:#fff; }
+    .pill.approved { background:#27ae60; color:#fff; }
+    .pill.rejected { background:#e11c06; color:#fff; }
+    .small { font-size:12px; opacity:.85; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { padding:10px; border-bottom:1px solid #eee; text-align:left; font-size:14px; }
+    th { font-size:12px; text-transform:uppercase; letter-spacing:.04em; opacity:.7; }
+    .muted { opacity:.75; }
+    .danger { color:#e11c06; font-weight:700; }
+    .ok { color:#27ae60; font-weight:700; }
+    input, select { padding:10px; border:1px solid #ddd; border-radius:10px; font-family:inherit; }
+    button { padding:10px 14px; border-radius:12px; border:0; cursor:pointer; }
+  </style>
+</head>
+
+<body>
+  <header class="pg-header">
+    <div class="header-left">
+      <img src="../images/oppty (1).png" width="100">
+      <span class="pg-title">User Dashboard</span>
+    </div>
+    <div class="header-right">
+      <span id="loggedInUser"></span>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <h3>My Status</h3>
+      <!-- Requirement words: Available / Away / Leave -->
+      <p id="userCurrentStatus" class="status-pill">AVAILABLE</p>
+
+      <h3>Attendance</h3>
+      <!-- Requirement: attendance in leave or not + leave type (sick/casual) -->
+      <div class="row">
+        <span id="attendancePill" class="pill present">PRESENT</span>
+        <span id="leaveTypePill" class="pill pending" style="display:none;">SICK</span>
+        <span id="permissionPill" class="pill pending" style="display:none;">PENDING</span>
+      </div>
+
+      <h3>Team Status</h3>
+      <p id="teamCountBox"></p>
+      <input id="teamSearch" type="text" placeholder="Search team member" style="padding: 5px;">
+      <div class="small muted" style="margin:8px 0 4px;">On Leave (separate)</div>
+      <ul id="teamLeaveList" style="list-style:none; padding-left:0;"></ul>
+      <div class="small muted" style="margin:8px 0 4px;">Available / Away</div>
+      <ul id="teamStatusList" style="list-style:none; padding-left:0;"></ul>
+    </aside>
+
+    <main class="workspace">
+      <section class="current-session card">
+        <h2>Current Session</h2>
+        <p>You are currently <strong id="workstate">AVAILABLE</strong></p>
+
+        <div class="row" style="justify-content:space-between;">
+          <div>
+            <div class="small muted">Break Timer</div>
+            <p id="breakTimer" style="font-size:28px; margin:6px 0;">00:00:00</p>
+            <div class="small muted">
+              Break limit: <strong>01:00:00</strong> (1 hour)
+              <span id="limitState" class="ok" style="margin-left:8px;">WITHIN LIMIT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="break-actions" style="margin-top:12px;">
+          <!-- Requirement: Lunch / Normal, start/end -->
+          <button id="lunchBreakBtn">Start Lunch Break</button>
+          <button id="regularBreakBtn">Start Normal Break</button>
+          <button id="endBreakBtn">End Break</button>
+        </div>
+
+        <!-- Requirement: show start/end/duration & exceeded -->
+        <div style="margin-top:14px;">
+          <h3 style="margin:8px 0;">Today Break Sessions</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Duration</th>
+                <th>Exceeded &gt; 1 hr</th>
+              </tr>
+            </thead>
+            <tbody id="todayBreakTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Leave (Sick / Casual) — With Permission</h2>
+
+        <!-- Requirement: leave taken with permission + sick/casual -->
+        <form id="leaveForm" class="row" style="margin-top:10px;">
+          <select id="leaveType" required>
+            <option value="" disabled selected>Select leave type</option>
+            <option value="SICK">Sick</option>
+            <option value="CASUAL">Casual</option>
+          </select>
+          <input id="leaveReason" type="text" placeholder="Reason (optional)">
+          <button type="submit">Request Leave</button>
+        </form>
+
+        <div style="margin-top:12px;">
+          <div class="small muted">Your latest leave request</div>
+          <div id="leaveStatusText" style="margin-top:6px;">No leave requested today.</div>
+        </div>
+
+        <!-- Requirement: “leave should come separate” already handled in sidebar team leave list -->
+      </section>
+
+      <section class="card">
+        <h2>My Activity</h2>
+        <div id="activityBox" class="activity-box"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // -----------------------------
+    // AUTH / LOAD
+    // -----------------------------
+    const email = sessionStorage.getItem("loggedInUser");
+    if (!email) window.location.href = "../index.html";
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let breaks = JSON.parse(localStorage.getItem("breaks")) || [];
+    let activities = JSON.parse(localStorage.getItem("userActivities")) || [];
+
+    // Leave + permission storage (no backend)
+    let leaveRequests = JSON.parse(localStorage.getItem("leaveRequests")) || [];
+    // Admin notifications (to "inform admin" when break exceeds 1 hr)
+    let adminNotifications = JSON.parse(localStorage.getItem("adminNotifications")) || [];
+
+    const todayKey = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
+    let currentUser = null;
+    for (let i = 0; i < users.length; i++) {
+      if ((users[i].email || "").toLowerCase() === email.toLowerCase()) {
+        currentUser = users[i];
+        break;
+      }
+    }
+    if (!currentUser) window.location.href = "../index.html";
+
+    document.getElementById("loggedInUser").textContent = currentUser.username || currentUser.email;
+
+    // -----------------------------
+    // UI ELEMENTS
+    // -----------------------------
+    const statusEl = document.getElementById("userCurrentStatus");
+    const workStateEl = document.getElementById("workstate");
+    const timerEl = document.getElementById("breakTimer");
+    const limitStateEl = document.getElementById("limitState");
+
+    const teamList = document.getElementById("teamStatusList");
+    const teamLeaveList = document.getElementById("teamLeaveList");
+    const teamCountBox = document.getElementById("teamCountBox");
+    const teamSearch = document.getElementById("teamSearch");
+
+    const attendancePill = document.getElementById("attendancePill");
+    const leaveTypePill = document.getElementById("leaveTypePill");
+    const permissionPill = document.getElementById("permissionPill");
+    const leaveStatusText = document.getElementById("leaveStatusText");
+
+    const activityBox = document.getElementById("activityBox");
+    const todayBreakTable = document.getElementById("todayBreakTable");
+
+    let timerInterval = null;
+
+    // -----------------------------
+    // REQUIREMENT CONSTANTS
+    // -----------------------------
+    // Requirement: break duration limit 1 hour (keep configurable if you want 2 hr later)
+    const BREAK_LIMIT_MS = 60 * 60 * 1000; // 1 hour
+
+    // -----------------------------
+    // HELPERS: STORAGE
+    // -----------------------------
+    function saveUsers() { localStorage.setItem("users", JSON.stringify(users)); }
+    function saveBreaks() { localStorage.setItem("breaks", JSON.stringify(breaks)); }
+    function saveActivities() { localStorage.setItem("userActivities", JSON.stringify(activities)); }
+    function saveLeaves() { localStorage.setItem("leaveRequests", JSON.stringify(leaveRequests)); }
+    function saveAdminNotifications() { localStorage.setItem("adminNotifications", JSON.stringify(adminNotifications)); }
+
+    function fmtTime(ts) {
+      if (!ts) return "-";
+      return new Date(ts).toLocaleTimeString();
+    }
+    function fmtDuration(ms) {
+      const h = Math.floor(ms / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      return String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    }
+
+    // -----------------------------
+    // ACTIVITIES
+    // -----------------------------
+    function logActivity(message) {
+      if (!message) return;
+      activities.push({ email, message, time: Date.now() });
+      saveActivities();
+      renderActivity();
+    }
+
+    function renderActivity() {
+      activityBox.innerHTML = "";
+      for (let i = 0; i < activities.length; i++) {
+        if (activities[i].email !== email) continue;
+        if (!activities[i].message) continue;
+
+        const div = document.createElement("div");
+        div.className = "activity-item";
+        div.textContent = new Date(activities[i].time).toLocaleTimeString() + " - " + activities[i].message;
+        activityBox.appendChild(div);
+      }
+    }
+
+    // -----------------------------
+    // BREAKS
+    // Requirement: track type, start, end, duration, exceeded > 1 hr, inform admin
+    // -----------------------------
+    function getActiveBreak() {
+      for (let i = 0; i < breaks.length; i++) {
+        if (breaks[i].email === email && breaks[i].status === "ACTIVE") return breaks[i];
+      }
+      return null;
+    }
+
+    function sendAdminNotification(payload) {
+      adminNotifications.push(payload);
+      saveAdminNotifications();
+    }
+
+    function markExceededIfNeeded(activeBreak, elapsedMs) {
+      if (!activeBreak) return;
+
+      if (elapsedMs > BREAK_LIMIT_MS && !activeBreak.exceeded) {
+        activeBreak.exceeded = true;
+        activeBreak.exceededAt = Date.now();
+        saveBreaks();
+
+        // Requirement: "if exceeded it should inform admin"
+        sendAdminNotification({
+          type: "BREAK_LIMIT_EXCEEDED",
+          date: todayKey,
+          time: Date.now(),
+          employeeEmail: email,
+          employeeName: currentUser.username || email,
+          breakType: activeBreak.type,
+          message: `${currentUser.username || email} exceeded break limit (>1 hr) on ${activeBreak.type}`
+        });
+
+        limitStateEl.textContent = "LIMIT EXCEEDED";
+        limitStateEl.className = "danger";
+        alert(activeBreak.type + " break limit exceeded (>1 hr). Admin will be informed.");
+        logActivity(activeBreak.type + " break exceeded 1 hour (admin informed)");
+      }
+    }
+
+    function startTimer(startTime) {
+      clearInterval(timerInterval);
+
+      timerInterval = setInterval(function () {
+        const active = getActiveBreak();
+        if (!active) {
+          clearInterval(timerInterval);
+          return;
+        }
+
+        const diff = Date.now() - startTime;
+
+        // Update timer UI
+        timerEl.textContent = fmtDuration(diff);
+
+        // Check limit (1 hour)
+        if (diff <= BREAK_LIMIT_MS) {
+          limitStateEl.textContent = "WITHIN LIMIT";
+          limitStateEl.className = "ok";
+        } else {
+          limitStateEl.textContent = "LIMIT EXCEEDED";
+          limitStateEl.className = "danger";
+        }
+
+        markExceededIfNeeded(active, diff);
+
+      }, 1000);
+    }
+
+    // -----------------------------
+    // AVAILABILITY + ATTENDANCE + LEAVE
+    // Requirement words:
+    //  - Status: Available / Away (present) / Leave
+    //  - Attendance: on leave or not, leave type sick/casual, permission
+    // -----------------------------
+    function setAvailability(state) {
+      for (let i = 0; i < users.length; i++) {
+        if ((users[i].email || "").toLowerCase() === email.toLowerCase()) {
+          users[i].availability = state; // "AVAILABLE" | "AWAY" | "LEAVE"
+        }
+      }
+      saveUsers();
+    }
+
+    function setStatusUI(state) {
+      // Sidebar pill uses your required words
+      statusEl.textContent = state;
+      statusEl.classList.remove("pill", "available", "away", "leave");
+      // keep your existing class if any
+      if (state === "AVAILABLE") {
+        statusEl.style.background = "#27ae60";
+        statusEl.style.color = "#fff";
+        workStateEl.textContent = "AVAILABLE";
+      } else if (state === "AWAY") {
+        statusEl.style.background = "#e67e22";
+        statusEl.style.color = "#fff";
+        workStateEl.textContent = "AWAY (ON BREAK)";
+      } else if (state === "LEAVE") {
+        statusEl.style.background = "#e11c06";
+        statusEl.style.color = "#fff";
+        workStateEl.textContent = "LEAVE";
+      }
+    }
+
+    function getMyLatestLeaveToday() {
+      // latest request for today
+      let latest = null;
+      for (let i = 0; i < leaveRequests.length; i++) {
+        if (leaveRequests[i].email === email && leaveRequests[i].date === todayKey) {
+          if (!latest || leaveRequests[i].time > latest.time) latest = leaveRequests[i];
+        }
+      }
+      return latest;
+    }
+
+    function applyAttendanceUI() {
+      const leave = getMyLatestLeaveToday();
+
+      if (!leave) {
+        attendancePill.textContent = "PRESENT";
+        attendancePill.className = "pill present";
+        leaveTypePill.style.display = "none";
+        permissionPill.style.display = "none";
+        leaveStatusText.textContent = "No leave requested today.";
+        return;
+      }
+
+      // Show leave type + permission status
+      leaveTypePill.style.display = "inline-flex";
+      leaveTypePill.textContent = leave.leaveType; // SICK / CASUAL
+
+      permissionPill.style.display = "inline-flex";
+      permissionPill.textContent = leave.permission; // PENDING / APPROVED / REJECTED
+      permissionPill.className = "pill " + (leave.permission || "PENDING").toLowerCase();
+
+      if (leave.permission === "APPROVED") {
+        attendancePill.textContent = "ON LEAVE";
+        attendancePill.className = "pill leave";
+        leaveStatusText.innerHTML =
+          `<span class="pill approved">APPROVED</span> You are on <strong>${leave.leaveType}</strong> leave today.`;
+      } else if (leave.permission === "REJECTED") {
+        attendancePill.textContent = "PRESENT";
+        attendancePill.className = "pill present";
+        leaveStatusText.innerHTML =
+          `<span class="pill rejected">REJECTED</span> Leave request (${leave.leaveType}) was rejected.`;
+      } else {
+        attendancePill.textContent = "PRESENT";
+        attendancePill.className = "pill present";
+        leaveStatusText.innerHTML =
+          `<span class="pill pending">PENDING</span> Leave request (${leave.leaveType}) waiting for permission.`;
+      }
+    }
+
+    function enforceStateFromLeaveAndBreak() {
+      // Priority: Approved Leave > Active Break > Available
+      const leave = getMyLatestLeaveToday();
+      const active = getActiveBreak();
+
+      if (leave && leave.permission === "APPROVED") {
+        // Requirement: if on leave -> status Leave and break actions disabled
+        setAvailability("LEAVE");
+        setStatusUI("LEAVE");
+        disableBreakButtons(true);
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00:00";
+        limitStateEl.textContent = "WITHIN LIMIT";
+        limitStateEl.className = "ok";
+        return;
+      }
+
+      // Not approved leave
+      if (active) {
+        setAvailability("AWAY");
+        setStatusUI("AWAY");
+        disableBreakButtons(false, true); // disable start, keep end enabled
+        startTimer(active.startTime);
+        return;
+      }
+
+      // Default available/present
+      setAvailability("AVAILABLE");
+      setStatusUI("AVAILABLE");
+      disableBreakButtons(false, false);
+    }
+
+    function disableBreakButtons(disableAll, activeOnly) {
+      const lunchBtn = document.getElementById("lunchBreakBtn");
+      const regularBtn = document.getElementById("regularBreakBtn");
+      const endBtn = document.getElementById("endBreakBtn");
+
+      if (disableAll) {
+        lunchBtn.disabled = true;
+        regularBtn.disabled = true;
+        endBtn.disabled = true;
+        return;
+      }
+      if (activeOnly) {
+        // during active break: disable start buttons, allow end
+        lunchBtn.disabled = true;
+        regularBtn.disabled = true;
+        endBtn.disabled = false;
+        return;
+      }
+      // normal
+      lunchBtn.disabled = false;
+      regularBtn.disabled = false;
+      endBtn.disabled = false;
+    }
+
+    function startBreak(type) {
+      // If approved leave, block breaks
+      const leave = getMyLatestLeaveToday();
+      if (leave && leave.permission === "APPROVED") {
+        alert("You are on approved leave. Breaks are disabled.");
+        return;
+      }
+
+      if (getActiveBreak()) {
+        alert("You already have an active break");
+        return;
+      }
+
+      const b = {
+        email,
+        username: currentUser.username,
+        date: todayKey,
+        type,                   // LUNCH / NORMAL
+        startTime: Date.now(),
+        status: "ACTIVE",
+        exceeded: false
+      };
+
+      breaks.push(b);
+      saveBreaks();
+
+      // Requirement: Away (present) while on break
+      setAvailability("AWAY");
+      setStatusUI("AWAY");
+      disableBreakButtons(false, true);
+
+      startTimer(b.startTime);
+      logActivity(type + " break started");
+      renderTeam();
+      renderTodayBreaks();
+    }
+
+    function endBreak() {
+      const active = getActiveBreak();
+      if (!active) {
+        alert("No active break");
+        return;
+      }
+
+      active.status = "ENDED";
+      active.endTime = Date.now();
+      active.durationMs = active.endTime - active.startTime;
+      // mark exceeded based on duration
+      if (active.durationMs > BREAK_LIMIT_MS) active.exceeded = true;
+
+      saveBreaks();
+
+      // Requirement: back to Available after break
+      setAvailability("AVAILABLE");
+      setStatusUI("AVAILABLE");
+      disableBreakButtons(false, false);
+
+      clearInterval(timerInterval);
+      timerEl.textContent = "00:00:00";
+      limitStateEl.textContent = "WITHIN LIMIT";
+      limitStateEl.className = "ok";
+
+      logActivity(active.type + " break ended");
+      renderTeam();
+      renderTodayBreaks();
+    }
+
+    function renderTodayBreaks() {
+      todayBreakTable.innerHTML = "";
+      const today = todayKey;
+
+      // show ONLY current user + today
+      const rows = [];
+      for (let i = 0; i < breaks.length; i++) {
+        const b = breaks[i];
+        if (b.email !== email) continue;
+        if ((b.date || new Date(b.startTime).toISOString().slice(0, 10)) !== today) continue;
+        rows.push(b);
+      }
+
+      if (rows.length === 0) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 5;
+        td.className = "muted";
+        td.textContent = "No breaks logged today.";
+        tr.appendChild(td);
+        todayBreakTable.appendChild(tr);
+        return;
+      }
+
+      for (let i = 0; i < rows.length; i++) {
+        const b = rows[i];
+        const tr = document.createElement("tr");
+
+        const tdType = document.createElement("td");
+        tdType.textContent = b.type;
+
+        const tdStart = document.createElement("td");
+        tdStart.textContent = fmtTime(b.startTime);
+
+        const tdEnd = document.createElement("td");
+        tdEnd.textContent = b.endTime ? fmtTime(b.endTime) : "-";
+
+        const tdDur = document.createElement("td");
+        const dur = b.endTime ? (b.durationMs || (b.endTime - b.startTime)) : (Date.now() - b.startTime);
+        tdDur.textContent = fmtDuration(Math.max(0, dur));
+
+        const tdEx = document.createElement("td");
+        const exceeded = (b.exceeded === true) || (b.endTime && (dur > BREAK_LIMIT_MS));
+        tdEx.innerHTML = exceeded ? `<span class="danger">YES</span>` : `<span class="ok">NO</span>`;
+
+        tr.append(tdType, tdStart, tdEnd, tdDur, tdEx);
+        todayBreakTable.appendChild(tr);
+      }
+    }
+
+    // -----------------------------
+    // TEAM RENDER
+    // Requirement: show Available / Leave / Away (present)
+    // Requirement: leave users shown separately
+    // -----------------------------
+    function renderTeam() {
+      teamList.innerHTML = "";
+      teamLeaveList.innerHTML = "";
+
+      users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const filter = (teamSearch.value || "").toLowerCase();
+
+      let available = 0, away = 0, leave = 0;
+
+      for (let i = 0; i < users.length; i++) {
+        const u = users[i];
+        const name = (u.username || u.email || "").toLowerCase();
+        if (filter && !name.includes(filter)) continue;
+
+        const state = (u.availability || "AVAILABLE").toUpperCase();
+
+        if (state === "LEAVE") leave++;
+        else if (state === "AWAY") away++;
+        else available++;
+
+        const li = document.createElement("li");
+        const dot = document.createElement("span");
+        dot.style.width = "14px";
+        dot.style.height = "14px";
+        dot.style.borderRadius = "50%";
+        dot.style.display = "inline-block";
+        dot.style.marginRight = "8px";
+
+        if (state === "AVAILABLE") dot.style.background = "#27ae60";
+        else if (state === "AWAY") dot.style.background = "#e67e22";
+        else dot.style.background = "#e11c06";
+
+        li.append(dot, document.createTextNode(u.username || u.email));
+
+        // Leave separate list
+        if (state === "LEAVE") teamLeaveList.appendChild(li);
+        else teamList.appendChild(li);
+      }
+
+      teamCountBox.textContent = `Available: ${available} | Away: ${away} | Leave: ${leave}`;
+    }
+
+    // -----------------------------
+    // LEAVE REQUEST (User submits; admin approves later on admin page)
+    // Requirement: leave sick/casual with permission; show in attendance and status
+    // -----------------------------
+    document.getElementById("leaveForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const type = document.getElementById("leaveType").value;
+      const reason = document.getElementById("leaveReason").value.trim();
+
+      if (!type) return alert("Select leave type");
+
+      // Create request (default permission = PENDING)
+      const req = {
+        id: "LR-" + Date.now(),
+        date: todayKey,
+        time: Date.now(),
+        email,
+        username: currentUser.username || email,
+        leaveType: type,                 // SICK / CASUAL
+        reason: reason || "",
+        permission: "PENDING"            // PENDING / APPROVED / REJECTED
+      };
+
+      leaveRequests.push(req);
+      saveLeaves();
+
+      logActivity(`Leave requested (${type}) - Permission PENDING`);
+      applyAttendanceUI();
+      enforceStateFromLeaveAndBreak();
+      renderTeam();
+    });
+
+    // -----------------------------
+    // BUTTONS
+    // -----------------------------
+    document.getElementById("lunchBreakBtn").onclick = () => startBreak("LUNCH");
+    document.getElementById("regularBreakBtn").onclick = () => startBreak("NORMAL");
+    document.getElementById("endBreakBtn").onclick = () => endBreak();
+
+    document.getElementById("logoutBtn").onclick = function () {
+      logActivity("User logged out");
+      sessionStorage.removeItem("userLogged");
+      sessionStorage.removeItem("loggedInUser");
+      window.location.href = "../index.html";
+    };
+
+    // -----------------------------
+    // INITIALIZE
+    // -----------------------------
+    if (!sessionStorage.getItem("userLogged")) {
+      logActivity("User logged in");
+      sessionStorage.setItem("userLogged", "true");
+    }
+
+    // Ensure this user starts as AVAILABLE unless on break/leave
+    // (login page may have set ONLINE earlier — normalize to AVAILABLE/AWAY/LEAVE)
+    // If your admin page uses Active/Inactive, keep that separate (status field).
+    renderActivity();
+    applyAttendanceUI();
+    enforceStateFromLeaveAndBreak();
+    renderTeam();
+    renderTodayBreaks();
+
+    // Live refresh: sync changes (admin approvals etc.)
+    setInterval(function () {
+      users = JSON.parse(localStorage.getItem("users")) || [];
+      breaks = JSON.parse(localStorage.getItem("breaks")) || [];
+      leaveRequests = JSON.parse(localStorage.getItem("leaveRequests")) || [];
+      adminNotifications = JSON.parse(localStorage.getItem("adminNotifications")) || [];
+
+      applyAttendanceUI();
+      enforceStateFromLeaveAndBreak();
+      renderTeam();
+      renderTodayBreaks();
+    }, 2000);
+  </script>
+
+</body>
+</html>

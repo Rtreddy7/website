@@ -1,76 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test01</title> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EdTech Hero Section</title>
+  <style>
+    :root {
+      --pra-primary: #2563eb;
+      --pra-border-color: #e5e7eb;
+      --pra-text-muted: #64748b;
+      --pra-radius-2xl: 1.5rem;
+      --pra-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      --pra-scroll-speed: 30s;
+      --color-primary: #2563eb;
+      --color-border: #e5e7eb;
+      --color-text-primary: #0f172a;
+    }
 
-    <style>
-        body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(rgba(101, 97, 97, 0.69), rgba(95, 92, 92, 0.74)), url(./89781.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+    /* --- YOUR EXISTING CSS --- */
+    .hero-section {
+      position: relative;
+      background: radial-gradient(circle, rgba(255, 140, 0, 0.18) 0%, rgba(255, 140, 0, 0.08) 45%, transparent 70%);
+      padding: 3rem 3rem 2.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      font-family: sans-serif;
+    }
 
-        ul{
-            display: flex;
-            padding: 0;
-            gap: 2.0rem;
-            list-style: none;
-        }
+    .hero-centered { text-align: center; max-width: 900px; margin: 0 auto 1.5rem; }
+    .hero-badges { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .hero-badge { background: rgba(255, 140, 0, 0.18); color: #9a3412; padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .hero-heading { font-size: 2.9rem; font-weight: 700; color: #0f172a; margin: 0.8rem 0; }
+    .hero-heading span { color: var(--pra-primary); position: relative; z-index: 1; }
+    .hero-heading span::after { content: ""; position: absolute; left: -6px; bottom: 4px; width: calc(100% + 12px); height: 10px; background: rgba(37, 99, 235, 0.18); z-index: -1; border-radius: 4px; }
+    .hero-subtext { max-width: 640px; margin: 0 auto; font-size: 1.05rem; color: #334155; line-height: 1.6; }
+    
+    .hero-highlight {
+      display: inline-flex; align-items: center; gap: 1.25rem; margin-top: 1rem; padding: 0.65rem 2rem;
+      background: #e0e7ff; color: #1e3a8a; font-size: 0.8rem; font-weight: 600; border-radius: 999px;
+      box-shadow: inset 0 0 0 1px rgba(30, 58, 138, 0.15), 0 8px 20px rgba(37, 99, 235, 0.15);
+    }
 
+    .pra-app-container { display: flex; margin-top: 1.5rem; }
+    .pra-aside { width: 300px; background: #ffffff; border: 1px solid var(--pra-border-color); border-radius: 1rem; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 520px; }
+    .pra-aside h2 { font-size: 2.1rem; color: var(--pra-primary); margin-bottom: 1rem; }
+    .pra-nav-label { font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem; color: var(--pra-text-muted); }
+    .pra-nav-item { width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: none; background: transparent; font-weight: 600; color: var(--pra-text-muted); display: flex; align-items: center; gap: 0.65rem; cursor: pointer; }
+    .pra-nav-item:hover { background: #eff6ff; color: var(--pra-primary); }
+    .pra-nav-dot { width: 6px; height: 6px; background: var(--pra-border-color); border-radius: 50%; }
 
-        li a{
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            text-decoration: none;
-            position: relative;
-            padding-bottom: 6px;
-            transition: 0.5s;
-        }
+    .pra-main { flex: 1; margin-left: 1.5rem; display: flex; align-items: center; overflow: hidden; }
+    .pra-showcase-section { width: 100%; display: flex; flex-direction: column; gap: 0.4rem; }
+    .pra-scroll-container { overflow: hidden; width: 100%; }
 
-        li a::after{
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 4px;
-            background: #ff7b00;
-            transition: transform 1s;
-            transform: scaleX(0);
-            transform-origin: right;
-        }
+    @keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes scrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .pra-animate-row-left { display: flex; animation: scrollLeft var(--pra-scroll-speed) linear infinite; }
+    .pra-animate-row-right { display: flex; animation: scrollRight var(--pra-scroll-speed) linear infinite; }
+    .pra-scroll-container:hover .pra-animate-row-left, .pra-scroll-container:hover .pra-animate-row-right { animation-play-state: paused; }
 
-        li a:hover{
-            background:  linear-gradient(rgba(78, 46, 197, 0.69), rgba(80, 142, 223, 0.74));
-            -webkit-background-clip: text;
-            color: tra;
-        }
+    .pra-course-card {
+      width: 300px; height: 280px; margin-right: 1rem; border-radius: var(--pra-radius-2xl);
+      overflow: hidden; position: relative; box-shadow: var(--pra-shadow-xl); flex-shrink: 0;
+      cursor: pointer; transition: transform 0.3s ease;
+    }
+    .pra-course-card:hover { transform: translateY(-5px); }
+    .pra-course-card img { width: 100%; height: 100%; object-fit: cover; }
+    .pra-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent); }
+    .pra-card-content { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; color: white; }
 
-        li a:hover::after{
-            transform: scaleX(1);
-            transform-origin: left;
-        }
+    /* --- MODAL CSS --- */
+    .video-modal {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-content { position: relative; width: 100%; max-width: 900px; border-radius: 20px; overflow: hidden; }
+    #modalVideo { width: 100%; display: block; border-radius: 12px; }
+    .close-modal {
+      position: absolute; top: -50px; right: 0; color: white;
+      font-size: 40px; cursor: pointer; font-weight: bold;
+    }
 
-       
-
-    </style>
+    @media (max-width: 900px) { .pra-aside { display: none; } .pra-main { margin-left: 0; } }
+  </style>
 </head>
 <body>
-    <ul>
-        <li><a href="#">HOME</a></li>
-        
-        <li><a href="#">ABOUT</a></li>
-        
-        <li><a href="#">CONTACT</a></li>
-    </ul>
+
+<section class="hero-section">
+  <div class="hero-intro hero-centered">
+    <div class="hero-badges">
+      <span class="hero-badge">New Batch Starting Soon</span>
+      <span class="hero-badge">Online & Offline Learning</span>
+    </div>
+    <h1 class="hero-heading">Learn <span>Skills</span> That Matter</h1>
+    <p class="hero-subtext">Predefined learning paths designed to help you learn progressively and apply skills with clarity.</p>
+    <div class="hero-highlight">
+      <span>Structured learning</span>
+      <span>Guided progression</span>
+      <span>Practical development</span>
+    </div>
+  </div>
+
+  <div class="pra-app-container">
+    <aside class="pra-aside">
+      <div>
+        <h2>Select from our pool</h2>
+        <div class="pra-nav-label">Learning Paths</div>
+        <nav class="pra-nav" id="pra-sidebar-nav"></nav>
+      </div>
+      <div class="pra-aside-actions">
+        <button class="btn-primary aside-btn" style="background: var(--pra-primary); color: white; border:none; padding: 12px; border-radius: 8px; cursor: pointer;">Talk to Advisor</button>
+      </div>
+    </aside>
+
+    <main class="pra-main">
+      <section class="pra-showcase-section">
+        <div class="pra-scroll-container">
+          <div class="pra-animate-row-left" id="pra-row-1"></div>
+        </div>
+        <div class="pra-scroll-container">
+          <div class="pra-animate-row-right" id="pra-row-2"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</section>
+
+<div id="videoModal" class="video-modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <video id="modalVideo" controls>
+      <source src="" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<script>
+  const praCourses = [
+    { id:1, name:'Full Stack Web Development', duration:'12 Weeks', rating:4.8, image:'https://images.unsplash.com/photo-1498050108023-c5249f4df085', video: 'https://v.ftcdn.net/05/54/10/44/700_F_554104443_v6X5y8eN8y8.mp4' },
+    { id:2, name:'Data Science Pro', duration:'16 Weeks', rating:4.9, image:'https://images.unsplash.com/photo-1551288049-bebda4e38f71', video: 'https://www.w3schools.com/html/movie.mp4' },
+    { id:3, name:'UI/UX Design Master', duration:'8 Weeks', rating:4.7, image:'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e', video: 'https://v.ftcdn.net/05/54/10/44/700_F_554104443_v6X5y8eN8y8.mp4' },
+    { id:4, name:'Cyber Security', duration:'10 Weeks', rating:4.6, image:'https://images.unsplash.com/photo-1550751827-4bd374c3f58b', video: 'https://www.w3schools.com/html/movie.mp4' },
+    { id:5, name:'Cloud Computing', duration:'14 Weeks', rating:4.8, image:'https://images.unsplash.com/photo-1451187580459-43490279c0fa', video: 'https://v.ftcdn.net/05/54/10/44/700_F_554104443_v6X5y8eN8y8.mp4' }
+  ];
+
+  function createCard(course) {
+    return `
+      <div class="pra-course-card" data-video="${course.video}">
+        <img src="${course.image}" alt="${course.name}">
+        <div class="pra-card-overlay"></div>
+        <div class="pra-card-content">
+          <h3 style="margin:0 0 5px 0; font-size: 1.1rem;">${course.name}</h3>
+          <div style="font-size: 0.8rem; opacity: 0.8;">${course.duration} • ${course.rating} Rating</div>
+        </div>
+      </div>
+    `;
+  }
+
+  const row1 = document.getElementById('pra-row-1');
+  const row2 = document.getElementById('pra-row-2');
+  const nav  = document.getElementById('pra-sidebar-nav');
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const closeModal = document.querySelector('.close-modal');
+
+  // Populate Sidebar
+  praCourses.forEach(course => {
+    const btn = document.createElement('button');
+    btn.className = 'pra-nav-item';
+    btn.innerHTML = `<span class="pra-nav-dot"></span>${course.name}`;
+    nav.appendChild(btn);
+  });
+
+  // Populate Rows (Cloned for infinite effect)
+  row1.innerHTML = [...praCourses, ...praCourses].map(createCard).join('');
+  row2.innerHTML = [...praCourses, ...praCourses].map(createCard).join('');
+
+  // Modal Functionality
+  function openVideo(e) {
+    const card = e.target.closest('.pra-course-card');
+    if (!card) return;
+    const videoSrc = card.getAttribute('data-video');
+    modalVideo.src = videoSrc;
+    modal.style.display = 'flex';
+    modalVideo.play();
+  }
+
+  function closeVideo() {
+    modal.style.display = 'none';
+    modalVideo.pause();
+    modalVideo.src = "";
+  }
+
+  row1.addEventListener('click', openVideo);
+  row2.addEventListener('click', openVideo);
+  closeModal.addEventListener('click', closeVideo);
+  window.addEventListener('click', (e) => { if (e.target === modal) closeVideo(); });
+</script>
+
 </body>
 </html>

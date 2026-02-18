@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppty - Login</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        /* Section Layout */
+        .main-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            gap: 48px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .main-section {
+                flex-direction: row;
+                padding: 48px;
+            }
+        }
+
+        /* Left Side: Form Container */
+        .form-column {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (min-width: 1024px) {
+            .form-column {
+                width: 33.33%;
+            }
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            min-height: 520px;
+        }
+
+        .logo {
+            height: 48px;
+            margin-bottom: 24px;
+            object-fit: contain;
+        }
+
+        .form-header h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .form-header p {
+            color: #64748b;
+            margin-top: 8px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 4px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .mobile-input-wrapper {
+            display: flex;
+        }
+
+        .country-code {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 16px;
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-right: none;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .mobile-input-wrapper .form-input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #0b438c 0%, #1e3a8a 100%);
+            color: white;
+            font-weight: 700;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .success-msg {
+            display: none;
+            margin-top: 16px;
+            padding: 12px;
+            background-color: #dcfce7;
+            color: #15803d;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Verification Steps */
+        .step-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .step-active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            margin-top: 12px;
+            margin-bottom: 24px;
+        }
+
+        .otp-digit {
+            width: 45px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .otp-digit:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .resend-link {
+            display: block;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #3b82f6;
+            margin-top: 16px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.875rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Right Side: Content & Animations */
+        .content-column {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            .content-column {
+                width: 66.66%;
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .header-tag {
+            color: #f97316;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .header-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        /* Scroller Animations */
+        .scroller-row {
+            overflow: hidden;
+            padding: 16px 0;
+            position: relative;
+        }
+
+        .scroller-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .scroll-left { animation: scroll-left 30s linear infinite; }
+        .scroll-right { animation: scroll-right 30s linear infinite; }
+
+        .scroller-row:hover .scroller-track {
+            animation-play-state: paused;
+        }
+
+        /* Course Cards */
+        .course-card {
+            min-width: 280px;
+            height: 160px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left-width: 4px;
+            border-left-style: solid;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-top: 8px;
+        }
+
+        .course-desc {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        /* Specific Card Colors */
+        .card-blue { border-left-color: #2563eb; }
+        .card-blue .card-tag { color: #2563eb; background: #eff6ff; }
+        .card-yellow { border-left-color: #eab308; }
+        .card-yellow .card-tag { color: #854d0e; background: #fefce8; }
+        .card-green { border-left-color: #16a34a; }
+        .card-green .card-tag { color: #166534; background: #f0fdf4; }
+        .card-purple { border-left-color: #9333ea; }
+        .card-purple .card-tag { color: #6b21a8; background: #faf5ff; }
+        .card-indigo { border-left-color: #4f46e5; }
+        .card-indigo .card-tag { color: #3730a3; background: #eef2ff; }
+        .card-cyan { border-left-color: #0891b2; }
+        .card-cyan .card-tag { color: #155e75; background: #ecfeff; }
+        .card-red { border-left-color: #dc2626; }
+        .card-red .card-tag { color: #991b1b; background: #fef2f2; }
+
+        /* Edge Fading */
+        .edge-fade {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 96px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .fade-left { left: 0; background: linear-gradient(to right, #f8fafc, transparent); }
+        .fade-right { right: 0; background: linear-gradient(to left, #f8fafc, transparent); }
+    </style>
+</head>
+<body>
+
+    <section class="main-section">
+        
+        <!-- Left Side: Login / Sign up Form -->
+        <div class="form-column">
+            <div class="form-card">
+                <img src="../images/oppty.png" alt="Oppty Logo" class="logo" onerror="this.src='https://via.placeholder.com/150x50?text=Oppty'">
+
+                <!-- Step 1: Request OTP -->
+                <div id="request-step" class="step-content step-active">
+                    <div class="form-header">
+                        <h2>Login / Sign up</h2>
+                        <p>Enter your details to receive a one-time password (OTP).</p>
+                    </div>
+
+                    <form id="requestForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" placeholder="Enter your name" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number</label>
+                            <div class="mobile-input-wrapper">
+                                <span class="country-code">IN +91</span>
+                                <input type="tel" id="mobileNumber" pattern="[0-9]{10}" placeholder="9876543210" required class="form-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Interested Course</label>
+                            <select class="form-select">
+                                <option>Java Full Stack</option>
+                                <option>Python Full Stack</option>
+                                <option>MERN Stack</option>
+                                <option>AI & Machine Learning</option>
+                                <option>Data Science</option>
+                                <option>Data Analytics</option>
+                                <option>Cyber Security</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="requestBtn">
+                            Get OTP
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Verify OTP -->
+                <div id="verify-step" class="step-content">
+                    <button class="back-btn" onclick="toggleStep('request-step')">← Change Number</button>
+                    
+                    <div class="form-header">
+                        <h2>Verify OTP</h2>
+                        <p id="otp-hint">We sent a 6-digit code to your mobile number.</p>
+                    </div>
+
+                    <form id="verifyForm">
+                        <div class="otp-inputs">
+                            <input type="text" maxlength="1" class="otp-digit" required>
+                            <input type="text" maxlength="1" class="otp-digit" required>
+                            <input type="text" maxlength="1" class="otp-digit" required>
+                            <input type="text" maxlength="1" class="otp-digit" required>
+                            <input type="text" maxlength="1" class="otp-digit" required>
+                            <input type="text" maxlength="1" class="otp-digit" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="verifyBtn">
+                            Verify & Enroll
+                        </button>
+
+                        <a href="#" class="resend-link" onclick="alert('OTP Resent!')">Resend OTP</a>
+                    </form>
+                </div>
+
+                <div id="final-success" class="success-msg">
+                    Success! Welcome to the Oppty community.
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Animated Cards -->
+        <div class="content-column">
+            <div class="section-header">
+                <span class="header-tag">Our Specialized Tracks</span>
+                <h2 class="header-title">Master High-Demand<br/>Tech Skills</h2>
+            </div>
+
+            <div class="scroller-row">
+                <div class="scroller-track scroll-right">
+                    <div class="course-card card-blue">
+                        <span class="card-tag">Most Popular</span>
+                        <h4 class="course-title">Java Full Stack</h4>
+                        <p class="course-desc">Backend + Frontend with Java Ecosystem</p>
+                    </div>
+                    <div class="course-card card-yellow">
+                        <span class="card-tag">Beginner Friendly</span>
+                        <h4 class="course-title">Python Stack</h4>
+                        <p class="course-desc">Django, Flask & Automation Pro</p>
+                    </div>
+                    <div class="course-card card-green">
+                        <span class="card-tag">Modern Web</span>
+                        <h4 class="course-title">MERN Stack</h4>
+                        <p class="course-desc">React, Node, Express & MongoDB</p>
+                    </div>
+                    <div class="course-card card-purple">
+                        <span class="card-tag">Future Tech</span>
+                        <h4 class="course-title">AI & ML</h4>
+                        <p class="course-desc">Neural Networks & Deep Learning</p>
+                    </div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="course-card card-blue">
+                        <span class="card-tag">Most Popular</span>
+                        <h4 class="course-title">Java Full Stack</h4>
+                        <p class="course-desc">Backend + Frontend with Java Ecosystem</p>
+                    </div>
+                    <div class="course-card card-yellow">
+                        <span class="card-tag">Beginner Friendly</span>
+                        <h4 class="course-title">Python Stack</h4>
+                        <p class="course-desc">Django, Flask & Automation Pro</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroller-row">
+                <div class="scroller-track scroll-left">
+                    <div class="course-card card-indigo">
+                        <span class="card-tag">High Growth</span>
+                        <h4 class="course-title">Data Science</h4>
+                        <p class="course-desc">Big Data & Statistical Modeling</p>
+                    </div>
+                    <div class="course-card card-cyan">
+                        <span class="card-tag">In-Demand</span>
+                        <h4 class="course-title">Data Analytics</h4>
+                        <p class="course-desc">Insights, PowerBI & SQL Mastery</p>
+                    </div>
+                    <div class="course-card card-red">
+                        <span class="card-tag">Critical Security</span>
+                        <h4 class="course-title">Cyber Security</h4>
+                        <p class="course-desc">Ethical Hacking & Network Defense</p>
+                    </div>
+                    <div class="course-card card-blue">
+                        <span class="card-tag">Web 3.0</span>
+                        <h4 class="course-title">Web Development</h4>
+                        <p class="course-desc">Crafting Responsive User Interfaces</p>
+                    </div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="course-card card-indigo">
+                        <span class="card-tag">High Growth</span>
+                        <h4 class="course-title">Data Science</h4>
+                        <p class="course-desc">Big Data & Statistical Modeling</p>
+                    </div>
+                    <div class="course-card card-cyan">
+                        <span class="card-tag">In-Demand</span>
+                        <h4 class="course-title">Data Analytics</h4>
+                        <p class="course-desc">Insights, PowerBI & SQL Mastery</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="edge-fade fade-left"></div>
+            <div class="edge-fade fade-right"></div>
+        </div>
+    </section>
+
+    <script>
+        const requestForm = document.getElementById('requestForm');
+        const verifyForm = document.getElementById('verifyForm');
+        const mobileInput = document.getElementById('mobileNumber');
+        const otpHint = document.getElementById('otp-hint');
+        const successMsg = document.getElementById('final-success');
+        const otpDigits = document.querySelectorAll('.otp-digit');
+
+        function toggleStep(stepId) {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('step-active'));
+            document.getElementById(stepId).classList.add('step-active');
+            successMsg.style.display = 'none';
+        }
+
+        // Step 1: Request OTP
+        requestForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const number = mobileInput.value;
+            const btn = document.getElementById('requestBtn');
+            
+            btn.innerText = "Sending OTP...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                otpHint.innerHTML = `We sent a 6-digit code to <strong>+91 ${number}</strong>`;
+                toggleStep('verify-step');
+                btn.innerText = "Get OTP";
+                btn.disabled = false;
+                otpDigits[0].focus();
+            }, 1000);
+        });
+
+        // OTP Input Behavior (auto-focus next)
+        otpDigits.forEach((digit, index) => {
+            digit.addEventListener('keyup', (e) => {
+                if (e.key >= 0 && e.key <= 9) {
+                    if (index < otpDigits.length - 1) otpDigits[index + 1].focus();
+                } else if (e.key === 'Backspace') {
+                    if (index > 0) otpDigits[index - 1].focus();
+                }
+            });
+        });
+
+        // Step 2: Verify OTP
+        verifyForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('verifyBtn');
+            
+            btn.innerText = "Verifying...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerText = "Verified!";
+                successMsg.style.display = 'block';
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

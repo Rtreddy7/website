@@ -1,0 +1,3527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTech Pro - Proven Career Success</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+   *  {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+   }
+
+body{
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+            --pra-primary: #2563eb;
+            --pra-primary-hover: #1d4ed8;
+            --pra-bg-body: #f8fafc;
+            --pra-bg-card: #ffffff;
+            --pra-text-main: #1e293b;
+            --pra-text-muted: #64748b;
+            --pra-border-color: #e2e8f0;
+            --pra-scroll-speed: 40s;
+            --pra-radius-xl: 1.5rem;
+            --pra-radius-2xl: 2rem;
+            --pra-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --pra-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+/** ================= Top Badge ================= **/
+.top-badge1 {
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 101;
+}
+
+.top-badge1 p {
+  margin: 0;
+}
+
+.top-badge1 .badge1 {
+  background: #f97316;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.top-badge1 a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container-h {
+  margin: auto;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ================= Logo ================= */
+.logo img {
+  width: 100%;
+  height: 38px;
+  object-fit: cover;
+  cursor: grab;
+  display: block;
+}
+
+.logo img:hover {
+  opacity: 0.7;
+}
+
+/* ================= Navigation ================= */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Nav Links */
+.nav-link {
+  position: relative;
+  color: #374151;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 6px;
+  cursor: pointer;
+}
+
+/* Underline animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #2563eb;
+
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s ease-in-out;
+}
+
+/* Hover → underline left to right */
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Active state */
+.nav-link.active {
+  color: #2563eb;
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ================= Dropdown ================= */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background: #ffffff;
+  min-width: 180px;
+  padding: 10px 0;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateY(6px);
+  z-index: 1000;
+}
+
+/* Show dropdown when hovering Programs OR menu */
+.dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Dropdown link styling */
+.dropdown-menu a {
+  display: block;
+  padding: 10px 16px;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Hover effect */
+.dropdown-menu a:hover {
+  background: #f2f4ff;
+  color: #3b5cff;
+}
+
+/* ================= Login Button ================= */
+.login-btn {
+  color: #2563eb;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link::after {
+    transition: none;
+  }
+}
+ 
+/** LOGIN MODAL BACKDROP **/
+.loginAuthModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /** above sticky header **/
+}
+
+/** MODAL BOX **/
+.loginAuthBox {
+  background: #fff;
+  width: 360px;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+}
+
+/** CLOSE ICON **/
+.loginAuthClose {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/** TEXT **/
+.loginAuthTitle {
+  margin-bottom: 5px;
+}
+
+.loginAuthSubtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/** INPUTS **/
+#loginAuthInput,
+#loginAuthOtpInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/** BUTTONS **/
+#loginAuthSendOtpBtn,
+#loginAuthVerifyOtpBtn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/** OTP SECTION **/
+.loginAuthOtpSection {
+  display: none;
+}
+
+/** SUCCESS MESSAGE **/
+.loginAuthSuccess {
+  display: none;
+  color: green;
+  margin-top: 12px;
+}
+
+
+/** Accessibility **/
+@media (prefers-reduced-motion: reduce) {
+  .nav-link::after {
+    transition: none;
+  }
+}
+        :root {
+            /* User Provided Brand Colors */
+            --color-primary: #2563eb;
+            --color-primary-hover: #1e40af;
+            --color-page-bg: #f9fafb;
+            --color-section-bg: #ffffff;
+            --color-heading: #111827;
+            --text-main: #374151;
+            --text-dim: #6b7280;
+            --color-border: #e5e7eb;
+            --color-badge-bg: #eff6ff;
+            --color-badge-text: #1e40af;
+            --oppty-orange: #f97315;
+
+            /* Design Tokens */
+            --pra-primary: var(--color-primary);
+            --pra-border-color: var(--color-border);
+            --pra-text-muted: var(--color-text-secondary);
+            --pra-radius-2xl: 1.25rem;
+            --pra-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --pra-scroll-speed: 35s;
+
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-page-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* --- Static Background Elements --- */
+        .bg-wrapper {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #fff 0%, var(--color-page-bg) 100%);
+        }
+
+        .bg-dots {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232563eb' fill-opacity='1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.08;
+            z-index: -1;
+        }
+
+        .blob-1 { width: 600px; height: 600px; background: var(--color-primary); top: -200px; right: -150px; }
+        .blob-2 { width: 500px; height: 500px; background: var(--oppty-orange); bottom: -100px; left: -100px; }
+        .blob-3 { width: 400px; height: 400px; background: var(--color-heading); top: 25%; left: 10%; }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            z-index: 10;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .reveal { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        h1 {
+            font-size: clamp(2.2rem, 6vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
+            color: var(--color-heading);
+        }
+
+        .typing-container {
+            display: inline-block;
+            min-width: 280px;
+           background: linear-gradient(135deg, var(--color-primary) 0%, #60a5fa 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* --- Continuous Carousel Styles --- */
+        .carousel-outer {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto 10px;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 16px;
+            padding: 5px 0 15px;
+            width: max-content;
+            animation: continuous-scroll var(--pra-scroll-speed) linear infinite;
+        }
+
+        .carousel-outer:hover .carousel-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes continuous-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 8px)); }
+        }
+
+        .spec-card {
+            background: var(--color-section-bg);
+            border: 1px solid var(--pra-border-color);
+            padding: 20px 16px;
+            border-radius: var(--pra-radius-2xl);
+            min-width: 220px;
+            text-align: center;
+            box-shadow: var(--pra-shadow-xl);
+            transition: var(--transition);
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--color-primary);
+        }
+
+        .spec-card .label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .spec-card .value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-heading);
+        }
+
+        /* --- CTA Button --- */
+        .btn-enroll {
+            background: var(--color-primary);
+            color: white;
+            padding: 20px 52px;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            transition: var(--transition);
+            margin-top: 0;
+        }
+
+        .btn-enroll:hover { 
+            background: var(--color-primary-hover);
+            transform: translateY(-4px); 
+            box-shadow: 0 18px 45px rgba(37, 99, 235, 0.4); 
+        }
+
+        /* --- Modal (Reduced Height Enhancements) --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 440px;
+            border-radius: 24px;
+            position: relative;
+            padding: 24px 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            animation: modalSlide 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalSlide { from { opacity: 0; transform: scale(0.9) translateY(40px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+        .close-modal { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #cbd5e1; font-size: 1.4rem; cursor: pointer; transition: var(--transition); }
+        .close-modal:hover { color: var(--color-heading); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .modal-header h2 { font-size: 1.4rem; font-weight: 700; line-height: 1.2; color: var(--color-heading); }
+        .modal-header h2 span { color: var(--color-primary); border-bottom: 3px solid var(--color-primary); }
+        .modal-header img { width: 65px; object-fit: contain; }
+
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-dim); margin-bottom: 4px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--color-border); font-size: 0.9rem; outline: none; transition: var(--transition); color: var(--color-heading); }
+        .form-group input:focus, .form-group select:focus { border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+
+        .phone-input { display: flex; gap: 8px; }
+        .country-code { background: #f3f4f6; border: 1px solid var(--color-border); padding: 10px; border-radius: 10px; font-size: 0.85rem; font-weight: 700; color: var(--text-dim); white-space: nowrap; display: flex; align-items: center; }
+        .spam-text { font-size: 9px; color: #9ca3af; margin-top: 4px; }
+        .policy-text { font-size: 9px; color: #9ca3af; margin-bottom: 16px; line-height: 1.4; }
+        .policy-text a { color: var(--color-primary); text-decoration: none; font-weight: 700; }
+
+        .btn-submit { width: 100%; padding: 14px; border-radius: 12px; background: var(--color-primary); color: white; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-submit:hover { background: var(--color-primary-hover); transform: translateY(-2px); }
+        .btn-submit.loading { opacity: 0.7; pointer-events: none; }
+        .btn-submit.success { background: #10b981; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            .hero { padding-top: 30px; padding-bottom: 30px; }
+            .modal-content { height: auto; min-height: unset; border-radius: 24px; padding: 24px; max-width: 90%; }
+        }
+
+
+
+
+
+
+        :root {
+            /* User Provided Tokens */
+            --color-primary: #2563eb;
+            --color-primary-hover: #1e40af;
+
+            --color-page-bg: #f9fafb;
+            --color-section-bg: #ffffff;
+
+            --color-heading: #111827;
+            --color-text-primary: #374151;
+            --color-text-secondary: #6b7280;
+
+            --color-border: #e5e7eb;
+
+            --color-badge-bg: #eff6ff;
+            --color-badge-text: #1e40af;
+            --oppty-orange: #f97315;
+
+            --pra-primary: var(--color-primary);
+            --pra-border-color: var(--color-border);
+            --pra-text-muted: var(--color-text-secondary);
+            --pra-radius-2xl: 1.25rem;
+            --pra-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --pra-scroll-speed: 35s;
+
+            /* Supplementary Brand Colors */
+            --oppty-teal: #018790;
+            --card-bg: #ffffff; /* Updated to white for all cards */
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-page-bg);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Section Layout */
+        .company-showcase-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 1.5rem;
+            overflow: hidden;
+        }
+
+        .company-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .company-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
+            }
+            .company-showcase-section {
+                padding: 4rem;
+            }
+        }
+
+        /* Left Side Content */
+        .company-content-side {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .company-h11 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--color-heading);
+            letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 1024px) {
+            .company-h11 {
+                font-size: 3.75rem;
+            }
+        }
+
+        .company-brand-blue-text {
+            color: var(--color-primary);
+            display: inline-block;
+        }
+
+        .company-description {
+            font-size: 1.125rem;
+            max-width: 32rem;
+            line-height: 1.625;
+            color: var(--color-text-secondary);
+        }
+
+        .company-u-nowrap {
+            white-space: nowrap;
+        }
+
+        /* Stats Grid */
+        .company-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .company-stat-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--pra-radius-2xl);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid transparent;
+        }
+
+        .company-stat-card.orange { border-left-color: var(--oppty-orange); }
+        .company-stat-card.blue { border-left-color: var(--color-primary); }
+
+        .company-stat-number {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.875rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .company-stat-number.orange { color: var(--oppty-orange); }
+        .company-stat-number.blue { color: var(--color-primary); }
+
+        .company-stat-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .company-stat-sub {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        /* Badge Styles */
+        .company-batch-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 1.25rem;
+            background-color: var(--color-badge-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
+            width: fit-content;
+        }
+
+        .company-pulse-dot {
+            position: relative;
+            display: flex;
+            height: 0.75rem;
+            width: 0.75rem;
+        }
+
+        .company-pulse-dot .ping {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: 9999px;
+            background-color: var(--oppty-orange);
+            opacity: 0.75;
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .company-pulse-dot .dot {
+            position: relative;
+            height: 0.75rem;
+            width: 0.75rem;
+            border-radius: 9999px;
+            background-color: var(--oppty-orange);
+        }
+
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .company-badge-text {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--color-badge-text);
+        }
+
+        /* Marquee Styles */
+        .company-marquee-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2.5rem 0;
+        }
+
+        .company-fade-mask {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .company-marquee-row {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .company-marquee-inner {
+            display: flex;
+            gap: 1.5rem;
+            padding-right: 1.5rem;
+            width: max-content;
+        }
+
+        .company-scroll-left { animation: scroll-left var(--pra-scroll-speed) linear infinite; }
+        .company-scroll-right { animation: scroll-right var(--pra-scroll-speed) linear infinite; }
+
+        .company-marquee-container:hover .company-marquee-inner {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .company-logo-card {
+            width: 12rem;
+            height: 8rem;
+            background-color: var(--color-section-bg);
+            border-radius: var(--pra-radius-2xl);
+            border: 1px solid var(--pra-border-color);
+            box-shadow: var(--pra-shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .company-logo-card img {
+            max-width: 80%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+
+
+
+
+
+
+
+
+
+
+         :root {
+            /* User Provided Color Tokens */
+            --color-primary: #2563eb;
+            --color-primary-hover: #1e40af;
+            --color-page-bg: #f9fafb;
+            --color-section-bg: #ffffff;
+            --color-heading: #111827;
+            --color-text-primary: #374151;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-badge-bg: #eff6ff;
+            --color-badge-text: #1e40af;
+            --oppty-orange: #f97315;
+
+            /* Design Tokens */
+            --pra-radius-xl: 1rem;
+            --pra-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-page-bg);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+        }
+
+        .programs-overview {
+            padding: 50px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--oppty-orange);
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--color-heading);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Fixed 3-column Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .programs-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .programs-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Compact Individual Card */
+        .program-card {
+            background: var(--color-section-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--pra-radius-xl);
+            height: 240px; /* Further decreased height */
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .program-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--pra-shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        /* Default View State */
+        .card-main-content {
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .program-card:hover .card-main-content {
+            opacity: 0.1;
+            filter: blur(1px);
+        }
+
+        .program-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .option-label {
+            background: var(--color-badge-bg);
+            color: var(--color-badge-text);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .program-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--color-heading);
+            margin-bottom: 8px;
+        }
+
+        .program-description {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: auto;
+        }
+
+        .tech-icons-row {
+            display: flex;
+            gap: 12px;
+            padding-top: 15px;
+        }
+
+        .tech-icons-row img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* --- HOVER REVEAL LAYER --- */
+        .reveal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform: translateY(100%);
+            transition: var(--transition);
+            z-index: 5;
+        }
+
+        .program-card:hover .reveal-overlay {
+            transform: translateY(0);
+        }
+
+        .highlight-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: var(--color-text-primary);
+        }
+
+        .highlight-item img {
+            width: 14px;
+            height: 14px;
+        }
+
+        .btn-enroll-action {
+            margin-top: 12px;
+            width: 100%;
+            background: var(--oppty-orange);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-enroll-action:hover {
+            background: #ea580c;
+            transform: scale(1.02);
+        }
+
+        .btn-enroll-action img {
+            width: 14px;
+            height: 14px;
+            filter: brightness(0) invert(1);
+        }
+
+
+
+
+
+
+            /* CSS Variables - Based on requested palette */
+        :root {
+            --color-primary: #2563eb;
+            --color-primary-hover: #1e40af;
+            --color-page-bg: #f9fafb;
+            --color-section-bg: #ffffff;
+            --color-heading: #111827;
+            --color-text-primary: #374151;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-badge-bg: #eff6ff;
+            --color-badge-text: #1e40af;
+            --oppty-orange: #f97315;
+
+            --pra-primary: var(--color-primary);
+            --pra-border-color: var(--color-border);
+            --pra-text-muted: var(--color-text-secondary);
+            --pra-radius-2xl: 1.25rem;
+            --pra-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Resets */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-page-bg);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+        }
+
+        /* Layout */
+        .section-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .main-card {
+            max-width: 1150px;
+            width: 100%;
+            background-color: var(--color-section-bg);
+            border-radius: var(--pra-radius-2xl);
+            box-shadow: var(--pra-shadow-xl);
+            border: 1px solid var(--color-border);
+            padding: 3rem 1.5rem;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .main-card { padding: 4rem 3rem; }
+        }
+
+        /* Typography & Gradients */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-heading);
+        }
+
+        @media (min-width: 768px) {
+            .header-title { font-size: 2.5rem; }
+        }
+
+        /* Primary Blue Gradient for "3 Steps" */
+        .text-gradient-blue {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .text-gradient-primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .subtitle {
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Flowchart Styles */
+        .flow-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .flow-container { padding: 0 4rem; }
+        }
+
+        .progress-line-bg {
+            position: absolute;
+            left: 3rem;
+            right: 3rem;
+            top: 50%;
+            height: 4px;
+            background: var(--color-border);
+            transform: translateY(-13px);
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .progress-line-bg { left: 6rem; right: 6rem; }
+        }
+
+        #progressBar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+            transition: width 0.7s ease-in-out;
+        }
+
+        .step-node {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 80px;
+        }
+
+        .circle {
+            width: 3rem;
+            height: 3rem;
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            transition: var(--transition);
+            color: var(--color-text-secondary);
+        }
+
+        @media (min-width: 768px) {
+            .circle { width: 4rem; height: 4rem; font-size: 1.25rem; }
+        }
+
+        .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-align: center;
+            transition: color 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .label { font-size: 0.875rem; }
+        }
+
+        /* Active Logic */
+        .step-node.active .circle {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+            transform: scale(1.1);
+        }
+
+        .step-node.active .label {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .active-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--color-primary);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        .hidden { display: none !important; }
+
+       
+        /* Content Card Styles */
+        .card-container { min-height: 450px; }
+
+        .content-card {
+            background: var(--color-page-bg);
+            border-radius: var(--pra-radius-2xl);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border: 1px solid var(--color-border);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @media (min-width: 1024px) {
+            .content-card { flex-direction: row; padding: 2.5rem; align-items: center; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-badge {
+            display: inline-flex;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background-color: var(--color-badge-bg);
+            color: var(--color-badge-text);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-heading);
+        }
+
+        .content-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Fundamentals Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .tool-item {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+        }
+
+        .tool-item i { font-size: 1.5rem; margin-right: 0.75rem; }
+        .tool-name { font-weight: 600; font-size: 0.875rem; color: var(--color-text-primary); }
+
+        /* Browser Mockup */
+        .browser-mockup {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .browser-header {
+            background: var(--color-page-bg);
+            padding: 0.5rem 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot.red { background: #f87171; }
+        .dot.yellow { background: #fbbf24; }
+        .dot.green { background: #4ade80; }
+
+        .browser-url {
+            flex-grow: 1;
+            background: white;
+            height: 18px;
+            border-radius: 4px;
+            margin-left: 0.6rem;
+            display: flex;
+            align-items: center;
+            padding-left: 0.6rem;
+            font-size: 8px;
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border);
+        }
+
+        .browser-content img { width: 100%; height: auto; display: block; }
+
+        /* Job Track Grid */
+        .job-tracks-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 640px) { .job-tracks-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .job-tracks-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .job-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.05);
+        }
+
+        .job-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-icon-box {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            background: var(--color-badge-bg);
+            color: var(--color-primary);
+        }
+
+        .option-tag {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+        }
+
+        .job-title { font-size: 0.875rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--color-heading); }
+        .job-info { font-size: 9px; color: var(--color-text-secondary); font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; }
+
+        .tech-badge {
+            background: var(--color-page-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            padding: 0.4rem;
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-logo-sm { font-size: 1rem; width: 1.2rem; margin-right: 0.5rem; text-align: center; }
+
+        .portfolio-banner {
+            background-color: var(--color-heading);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .portfolio-banner span { font-weight: 600; font-size: 0.875rem; }
+
+        /* Placement Grid */
+        .placement-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) { .placement-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .placement-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .placement-item:hover {
+            border-color: var(--color-primary);
+            transform: translateX(4px);
+        }
+
+        /* Placement Image Styling */
+        .placement-img {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 1rem;
+            object-fit: contain;
+        }
+
+        .placement-item span { font-size: 0.875rem; font-weight: 600; color: var(--color-text-primary); }
+
+        /* CTA */
+        .cta-container {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 3rem;
+            border-radius: 1rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        @media (min-width: 640px) { .btn-primary { width: auto; } }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .seats-info { font-size: 0.75rem; color: var(--color-text-secondary); }
+
+
+
+
+
+         :root {
+            /* User Provided Colors */
+            --color-primary: #2563eb;
+            --color-primary-hover: #1e40af;
+            --color-page-bg: #f9fafb;
+            --color-section-bg: #ffffff;
+            --color-heading: #111827;
+            --color-text-primary: #374151;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-badge-bg: #eff6ff;
+            --color-badge-text: #1e40af;
+            --oppty-orange: #f97315;
+
+            /* Design Tokens with 'choose' prefix */
+            --choose-primary: var(--color-primary);
+            --choose-border-color: var(--color-border);
+            --choose-text-muted: var(--color-text-secondary);
+            --choose-radius-2xl: 1.25rem;
+            --choose-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background-color: var(--color-page-bg);
+            overflow-x: hidden;
+        }
+
+        .choose-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Global Styles --- */
+        .choose-gradient-text {
+            background: linear-gradient(90deg, var(--color-primary), #3b82f6, var(--color-primary));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            animation: chooseGradientFlow 4s linear infinite;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        @keyframes chooseGradientFlow {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .choose-header {
+            text-align: center;
+            margin-bottom: 40px; 
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .choose-tag {
+            display: inline-block;
+            background: var(--color-badge-bg);
+            color: var(--color-badge-text);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-bottom: 12px; 
+            text-transform: uppercase;
+        }
+
+        .choose-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 12px; 
+            color: var(--color-heading);
+            font-weight: 800;
+        }
+
+        .choose-header p {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* --- WHY CHOOSE US SECTION --- */
+        .choose-section {
+            padding: 60px 0; 
+        }
+
+        .choose-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; 
+        }
+
+        .choose-card {
+            background: var(--color-section-bg);
+            padding: 35px; 
+            border-radius: var(--choose-radius-2xl);
+            border: 1px solid var(--choose-border-color);
+            border-left: 5px solid var(--color-primary);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            z-index: 1;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Background Image Container */
+        .choose-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.7s ease;
+        }
+
+        /* Overlay for text readability on hover */
+        .choose-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 26, 51, 0.45), rgba(0, 26, 51, 0.95));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .choose-card:hover {
+            border-color: var(--oppty-orange);
+            border-left-color: var(--color-primary);
+            transform: translateY(-8px);
+            box-shadow: var(--choose-shadow-xl);
+        }
+
+        .choose-card:hover .choose-bg-img,
+        .choose-card:hover .choose-overlay {
+            opacity: 1;
+        }
+
+        .choose-card:hover .choose-bg-img {
+            transform: scale(1.1);
+        }
+
+        .choose-icon-box {
+            width: 60px;
+            height: 60px;
+            background: var(--color-badge-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            margin-bottom: 20px; 
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+            overflow: hidden;
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .choose-icon-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .choose-card:hover .choose-icon-box {
+            transform: translateY(-15px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .choose-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px; 
+            color: var(--color-heading);
+            font-weight: 700;
+            transition: color 0.4s ease, transform 0.4s ease;
+        }
+
+        .choose-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6; 
+            transition: color 0.4s ease;
+        }
+
+        .choose-card:hover h3 {
+            color: #ffffff;
+        }
+
+        .choose-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .choose-header h2 { font-size: 2rem; }
+            .choose-grid { grid-template-columns: 1fr; gap: 20px; }
+            .choose-section { padding: 40px 0; }
+        }
+
+
+  :root {
+            /* Brand Color Palette */
+            --color-primary: #2563eb;
+            --color-primary-hover: #1e40af;
+            --color-page-bg: #f9fafb;
+            --color-section-bg: #ffffff;
+            --color-heading: #111827;
+            --color-text-primary: #374151;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-badge-bg: #eff6ff;
+            --color-badge-text: #1e40af;
+            --oppty-orange: #f97315;
+
+            /* Design Tokens */
+            --pra-radius-xl: 1rem;
+            --pra-radius-2xl: 1.5rem;
+            --pra-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --pra-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --pra-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+   
+
+        .post-paid-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Typography */
+        .post-paid-main-heading {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 800;
+            color: var(--color-primary);
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+            transition: var(--transition-base);
+        }
+
+        .post-paid-sub-heading {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.625rem;
+        }
+
+        /* Segmented Control (Tabs) */
+        .post-paid-tab-wrapper {
+            display: inline-flex;
+            background-color: #f1f5f9;
+            padding: 0.375rem;
+            border-radius: 0.875rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--color-border);
+        }
+
+        .post-paid-tab-btn {
+            padding: 0.625rem 2rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border-radius: 0.625rem;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: var(--color-text-secondary);
+            transition: var(--transition-base);
+        }
+
+        .post-paid-tab-btn:hover:not(.post-paid-active) {
+            color: var(--color-heading);
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .post-paid-tab-btn.post-paid-active {
+            background-color: white;
+            color: var(--color-primary);
+            box-shadow: var(--pra-shadow-sm);
+        }
+
+        /* Pricing Card Architecture */
+        .post-paid-pricing-card {
+            background-color: var(--color-section-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--pra-radius-2xl);
+            box-shadow: var(--pra-shadow-md);
+            overflow: hidden;
+            text-align: left;
+            transition: var(--transition-base);
+            position: relative;
+        }
+
+        .post-paid-pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--pra-shadow-xl);
+            border-color: #cbd5e1;
+        }
+
+        .post-paid-card-body {
+            padding: 3rem;
+        }
+
+        .post-paid-section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            color: var(--color-heading);
+            letter-spacing: -0.01em;
+        }
+
+        /* Grid & Feature Items */
+        .post-paid-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .post-paid-feature-item {
+            display: flex;
+            gap: 1rem;
+            transition: var(--transition-base);
+        }
+
+        .post-paid-feature-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            color: var(--color-primary);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .post-paid-feature-item:hover .post-paid-feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .post-paid-feature-text {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .post-paid-sub-list {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .post-paid-sub-list li {
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: var(--transition-base);
+        }
+
+        .post-paid-sub-list li:hover {
+            color: var(--color-primary);
+        }
+
+        .post-paid-dot {
+            width: 5px;
+            height: 5px;
+            background-color: var(--color-border);
+            border-radius: 50%;
+        }
+
+        .post-paid-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.125rem 0.5rem;
+            background-color: var(--color-badge-bg);
+            color: var(--color-badge-text);
+            font-size: 0.625rem;
+            font-weight: 700;
+            border-radius: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            margin-left: 0.5rem;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        /* Prepaid Content View */
+        .post-paid-prepaid-view {
+            padding: 1.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .post-paid-prepaid-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .post-paid-prepaid-info h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .post-paid-plus-sign {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--color-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .post-paid-prepaid-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            max-width: 480px;
+        }
+
+        .post-paid-price-display {
+            text-align: right;
+        }
+
+        .post-paid-old-price {
+            display: block;
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+
+        .post-paid-new-price {
+            display: block;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--color-heading);
+            letter-spacing: -0.04em;
+        }
+
+        /* Footer Polishing */
+        .post-paid-card-footer {
+            background-color: #f8fafc;
+            border-top: 1px solid var(--color-border);
+            padding: 2.5rem 3rem;
+        }
+
+        .post-paid-footer-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .post-paid-footer-flex {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .post-paid-postpaid-prices {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .post-paid-price-group p {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .post-paid-main-p {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--color-heading);
+            letter-spacing: -0.03em;
+        }
+
+        .post-paid-plus-divider {
+            font-size: 1.5rem;
+            color: var(--color-border);
+            font-weight: 300;
+        }
+
+        /* Interactive Elements */
+        .post-paid-btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .post-paid-primary-btn {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem 2.25rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-base);
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.25);
+        }
+
+        .post-paid-primary-btn:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+        }
+
+        .post-paid-secondary-btn {
+            background-color: white;
+            color: var(--color-primary);
+            padding: 1rem 2.25rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            border: 2px solid var(--color-primary);
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .post-paid-secondary-btn:hover {
+            background-color: var(--color-badge-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        .post-paid-batch-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .post-paid-pulse-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .post-paid-pulse-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+            border-radius: inherit;
+            animation: post-paid-ripple 2s infinite;
+        }
+
+        @keyframes post-paid-ripple {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(3.5); opacity: 0; }
+        }
+
+        /* Banner Overlay */
+        .post-paid-scholarship-banner {
+            margin-top: 2.5rem;
+            background: linear-gradient(135deg, rgba(249, 115, 21, 0.05) 0%, rgba(249, 115, 21, 0.1) 100%);
+            border: 1px dashed var(--oppty-orange);
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-base);
+        }
+
+        .post-paid-scholarship-banner:hover {
+            background: linear-gradient(135deg, rgba(249, 115, 21, 0.08) 0%, rgba(249, 115, 21, 0.15) 100%);
+            border-style: solid;
+        }
+
+        .post-paid-banner-icon {
+            background-color: var(--oppty-orange);
+            color: white;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            margin-right: 1.25rem;
+        }
+
+        .post-paid-banner-text-bottom {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--oppty-orange);
+        }
+
+        .post-paid-underline-link {
+            color: var(--color-primary);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition-base);
+        }
+
+        .post-paid-underline-link:hover {
+            border-bottom-color: var(--color-primary);
+        }
+
+        .post-paid-hidden {
+            display: none !important;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            body { padding: 2rem 1rem; }
+            .post-paid-card-body { padding: 2rem; }
+            .post-paid-card-footer { padding: 2rem; }
+            .post-paid-postpaid-prices { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .post-paid-plus-divider { display: none; }
+            .post-paid-scholarship-banner { flex-direction: column; text-align: center; gap: 1rem; }
+            .post-paid-price-display { text-align: center; width: 100%; }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        .footer {
+  width: 100vw;                         /** full screen width **/
+  margin-left: calc(-50vw + 50%);       /** parent container restriction remove **/
+  background: #000000;
+  color: #fff;
+  padding-top: 80px;
+}
+
+/** Footer content container **/
+.footer-container {
+  width: 100%;
+  max-width: 1400px; /* content neat ga undadaniki */
+  margin: 0 auto;
+  padding: 0 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+}
+
+.footer-col img{
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 12px
+}
+
+/** Headings & text **/
+.footer h2.logo {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.footer h3 {
+  margin-bottom: 15px;
+}
+
+.footer p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+/** Lists **/
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #eee;
+}
+
+.footer ul li i {
+  margin-right: 8px;
+  color: #4da3ff;
+}
+
+/** Links hover **/
+.links li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.links li:hover {
+  color: #4da3ff;
+  padding-left: 5px;
+}
+
+/** Social icons **/
+.social-icons i {
+  margin-right: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.social-icons i:hover {
+  color: #4da3ff;
+}
+
+/** Footer bottom **/
+.footer-bottom {
+  width: 100%;
+  margin-top: 40px;
+  padding: 15px 60px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #bbb;
+}
+
+.footer-bottom span {
+  color: #4da3ff;
+  cursor: pointer;
+}
+
+/** ================= RESPONSIVE ================= **/
+
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px;
+  }
+
+  .footer-bottom {
+    padding: 15px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+}
+    </style>
+</head>
+<body>
+
+<header class="header">
+        <div class="container-h">
+
+            <div class="logo">
+                <a href="./index.html"> <img src="../images/oppty.png" alt="Oppty Logo" /></a>
+            </div>
+
+            <nav class="nav">
+
+                <a href="../index.html" class="nav-link" data-page="home">Home</a>
+
+                <a href="./program.html" class="nav-link" data-page="home">Programs</a>
+                <a href="../Oppty careers edu-tech/careers-updated.html" class="nav-link" data-page="home">Careers</a>
+                <a href="../EduTech Oppty/corporate.html" class="nav-link" data-page="corporate">
+                    Corporate Training
+                </a>
+
+                <a href="../contactus/contact.html" class="nav-link" data-page="contact">
+                    Contact Us
+                </a>
+
+                 <a href="../contactus/html/login.html" id="loginAuthTrigger" class="login-btn">Login →</a>
+
+                <div class="loginAuthModal" id="loginAuthModal">
+  <div class="loginAuthBox">
+
+    <span class="loginAuthClose" id="loginAuthClose">&times;</span>
+
+    <h2 class="loginAuthTitle">Welcome Back</h2>
+    <p class="loginAuthSubtitle">
+      One step ahead for a successful career 🚀
+    </p>
+
+    <input
+      type="text"
+      id="loginAuthInput"
+      placeholder="Email or Phone Number"
+    />
+
+    <button id="loginAuthSendOtpBtn">
+      Send OTP
+    </button>
+
+    <div class="loginAuthOtpSection" id="loginAuthOtpSection">
+      <input
+        type="text"
+        id="loginAuthOtpInput"
+        placeholder="Enter OTP"
+      />
+      <button id="loginAuthVerifyOtpBtn">
+        Verify OTP
+      </button>
+    </div>
+
+    <p class="loginAuthSuccess" id="loginAuthSuccess">
+      OTP submitted successfully ✅
+    </p>
+
+  </div>
+</div>
+
+            </nav>
+        </div>
+    </header>
+
+
+
+
+<section>
+    <div class="bg-wrapper">
+        <div class="bg-dots"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="hero">
+        <!-- Badge removed for a cleaner look -->
+
+        <h1 class="reveal" id="reveal-1">
+            A Proven Program To Make You a <br>
+            <span class="typing-container" id="typewriter">Full Stack Developer</span>
+        </h1>
+
+        <p style="font-size: 17px;" class="subtitle reveal" id="reveal-2">
+            3 Hours Classes & 3 Hours Labs Daily. From any background to high-paying software jobs. 
+            Get 9AM-9PM doubt clarification and dedicated career coaching from 1500+ expert mentors.
+        </p>
+
+        <!-- Continuous Auto-Scrolling Carousel -->
+        <div class="carousel-outer reveal" id="reveal-3">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Original Items -->
+                <div class="spec-card">
+                    <p class="label">Course Duration</p>
+                    <p class="value">5-8 Months</p>
+                </div>
+                <div class="spec-card">
+                    <p class="label">Eligibility</p>
+                    <p class="value">B.Tech, BSc, B.Com, BBA...</p>
+                </div>
+                <div class="spec-card">
+                    <p class="label">Format</p>
+                    <p class="value">Daily Online Labs</p>
+                </div>
+                <div class="spec-card">
+                    <p class="label">Support</p>
+                    <p class="value">Dedicated Success Coach</p>
+                </div>
+                <div class="spec-card">
+                    <p class="label">Curriculum</p>
+                    <p class="value">Industry-led Projects</p>
+                </div>
+                <div class="spec-card">
+                    <p class="label">Outcome</p>
+                    <p class="value">94% Placement Rate</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal" id="reveal-4">
+            <button class="btn-enroll" id="openModal">
+                Enroll Now <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Modal Form -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-header">
+                <h2>Book a Live Demo<br>For <span>Free !</span></h2>
+                <img src="https://oppty.in/wp-content/uploads/2025/07/oppty.png" alt="Oppty Logo">
+            </div>
+            <form id="enrollmentForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number (WhatsApp Number)</label>
+                    <div class="phone-input">
+                        <div class="country-code">IN +91</div>
+                        <input type="tel" placeholder="Enter Mobile Number" required>
+                    </div>
+                    <p class="spam-text">We assure you that we practice a strict 'NO-SPAM' policy</p>
+                </div>
+                <div class="form-group">
+                    <label>Highest Qualification</label>
+                    <select required>
+                        <option value="" disabled selected>Select Highest Qualification</option>
+                        <option>B.Tech / B.E.</option>
+                        <option>Degree (B.Sc, B.Com, BBA...)</option>
+                        <option>Post Graduation (M.Tech, MBA...)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Native State</label>
+                    <select required>
+                        <option value="" disabled selected>Enter your State</option>
+                        <option>Telangana</option>
+                        <option>Andhra Pradesh</option>
+                        <option>Karnataka</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <p class="policy-text">By proceeding further, I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> of Oppty.</p>
+                <button type="submit" class="btn-submit" id="submitBtn"><span>Continue</span></button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+  <section class="company-showcase-section">
+        <div class="company-container">
+            
+            <!-- Left Side: Content -->
+            <div class="company-content-side">
+                <div class="company-heading-block">
+                    <h1 class="company-h11">
+                        <span class="company-u-nowrap">Trusted by Thousands</span> to Become <span class="company-brand-blue-text">IT Professionals</span>
+                    </h1>
+                    <p class="company-description">
+                        Step into the world of high-growth tech careers with industry-proven curriculum and placement support tailored for the modern workforce.
+                    </p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="company-stats-grid">
+                    <div class="company-stat-card orange">
+                        <div class="company-stat-number orange">2000+</div>
+                        <div class="company-stat-label">Companies Hired</div>
+                        <div class="company-stat-sub">OpptyTechHub Learners</div>
+                    </div>
+                    <div class="company-stat-card blue">
+                        <div class="company-stat-number blue">₹38 LPA</div>
+                        <div class="company-stat-label">Highest Package</div>
+                        <div class="company-stat-sub">Offered recently</div>
+                    </div>
+                </div>
+
+                <!-- Info Badge -->
+                <div class="company-badge-wrapper">
+                    <div class="company-batch-badge">
+                        <div class="company-pulse-dot">
+                            <span class="ping"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <span class="company-badge-text">Next batch starts on Feb 2nd</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Animated Logo Marquee -->
+            <div class="company-marquee-container company-fade-mask">
+                
+                <!-- Row 1: Right to Left -->
+                <div class="company-marquee-row">
+                    <div class="company-marquee-inner company-scroll-left">
+                        <!-- Group 1 -->
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o6.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o8-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o5-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o2-150x150.png" alt="Company Logo"></div>
+                        <!-- Group 2 (Duplicate) -->
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o6.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o8-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o5-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o2-150x150.png" alt="Company Logo"></div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Left to Right -->
+                <div class="company-marquee-row">
+                    <div class="company-marquee-inner company-scroll-right">
+                        <!-- Group 1 -->
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o3-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o9-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o1-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o4-150x150.png" alt="Company Logo"></div>
+                        <!-- Group 2 (Duplicate) -->
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o3-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o9-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o1-150x150.png" alt="Company Logo"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o4-150x150.png" alt="Company Logo"></div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Right to Left -->
+                <div class="company-marquee-row">
+                    <div class="company-marquee-inner company-scroll-left">
+                        <!-- Group 1 -->
+                        <div class="company-logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"></div>
+                        <div class="company-logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg" alt="Slack"></div>
+                        <div class="company-logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o1-150x150.png" alt="Company Logo"></div>
+                        <!-- Group 2 (Duplicate) -->
+                        <div class="company-logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"></div>
+                        <div class="company-logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg" alt="Slack"></div>
+                        <div class="company-logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></div>
+                        <div class="company-logo-card"><img src="https://oppty.in/wp-content/uploads/2025/07/o1-150x150.png" alt="Company Logo"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+     <section class="programs-overview" id="programs">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Learning Paths</span>
+                <h2>Choose Your <span class="gradient-text">Career Path</span></h2>
+            </div>
+
+            <div class="programs-grid">
+                
+                <!-- Option 1: MERN -->
+                <div class="program-card">
+                    <div class="card-main-content">
+                        <div class="program-header">
+                            <div class="option-label">Option 1</div>
+                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--oppty-orange)"> Popular</span>
+                        </div>
+                        <h3>MERN Full Stack</h3>
+                        <p class="program-description" style="font-size: 14px;">Master modern web development with MongoDB, Express.js, React, and Node.js.</p>
+                        <div class="tech-icons-row">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MD">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="RE">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="NO">
+                        </div>
+                    </div>
+                    <div class="reveal-overlay">
+                        <div class="highlight-title">Why choose this?</div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Live Interactive Sessions</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Industry Capstones</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>100% Placement Support</span></div>
+                        <button class="btn-enroll-action" onclick="enrollNow('MERN')">Enroll Now <img src="https://img.icons8.com/material-rounded/24/ffffff/right.png"></button>
+                    </div>
+                </div>
+
+                <!-- Option 2: Java -->
+                <div class="program-card">
+                    <div class="card-main-content">
+                        <div class="program-header">
+                            <div class="option-label">Option 2</div>
+                        </div>
+                        <h3>Java Full Stack</h3>
+                        <p class="program-description" style="font-size: 14px;">Build enterprise applications with Java, Spring Boot, and Microservices architecture.</p>
+                        <div class="tech-icons-row">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
+                        </div>
+                    </div>
+                    <div class="reveal-overlay">
+                        <div class="highlight-title">Key Focus Areas</div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Spring Boot Expert</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Microservices Design</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>AWS Cloud Integration</span></div>
+                        <button class="btn-enroll-action" onclick="enrollNow('Java')">Enroll Now</button>
+                    </div>
+                </div>
+
+                <!-- Option 3: Data Science -->
+                <div class="program-card">
+                    <div class="card-main-content">
+                        <div class="program-header">
+                            <div class="option-label">Option 3</div>
+                        </div>
+                        <h3>Data Science & AI</h3>
+                        <p class="program-description" style="font-size: 14px;">Deep dive into ML, Deep Learning, and AI with Python and advanced TensorFlow modules.</p>
+                        <div class="tech-icons-row">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg">
+                        </div>
+                    </div>
+                    <div class="reveal-overlay">
+                        <div class="highlight-title">Expertise Gained</div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>NLP & Computer Vision</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Predictive Analytics</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Large Language Models</span></div>
+                        <button class="btn-enroll-action" onclick="enrollNow('Data Science')">Enroll Now</button>
+                    </div>
+                </div>
+
+                <!-- Option 4: Cloud -->
+                <div class="program-card">
+                    <div class="card-main-content">
+                        <div class="program-header">
+                            <div class="option-label">Option 4</div>
+                        </div>
+                        <h3>Cloud & DevOps</h3>
+                        <p class="program-description" style="font-size: 14px;">Master AWS, Docker, Kubernetes, and CI/CD pipelines to build scalable infrastructure.</p>
+                        <div class="tech-icons-row">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg">
+                        </div>
+                    </div>
+                    <div class="reveal-overlay">
+                        <div class="highlight-title">Infrastructure Mastery</div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>AWS Certified Prep</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Terraform & IaC</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Jenkins Pipelines</span></div>
+                        <button class="btn-enroll-action" onclick="enrollNow('Cloud')">Enroll Now</button>
+                    </div>
+                </div>
+
+                <!-- Option 5: QA -->
+                <div class="program-card">
+                    <div class="card-main-content">
+                        <div class="program-header">
+                            <div class="option-label">Option 5</div>
+                        </div>
+                        <h3>QA Automation</h3>
+                        <p class="program-description" style="font-size: 14px;">Learn automated testing with Selenium, TestNG, Cucumber, and API performance testing.</p>
+                        <div class="tech-icons-row">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cucumber/cucumber-plain.svg">
+                        </div>
+                    </div>
+                    <div class="reveal-overlay">
+                        <div class="highlight-title">Quality Assurance</div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Automation Architect</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>REST API Testing</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Mobile App testing</span></div>
+                        <button class="btn-enroll-action" onclick="enrollNow('QA')">Enroll Now</button>
+                    </div>
+                </div>
+
+                <!-- Option 6: Analytics -->
+                <div class="program-card">
+                    <div class="card-main-content">
+                        <div class="program-header">
+                            <div class="option-label">Option 6</div>
+                        </div>
+                        <h3>Data Analytics</h3>
+                        <p class="program-description" style="font-size: 14px;">Transform raw data into insights with SQL, Python, Power BI, and Tableau visualization.</p>
+                        <div class="tech-icons-row">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg">
+                        </div>
+                    </div>
+                    <div class="reveal-overlay">
+                        <div class="highlight-title">Data Insights</div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Business Intelligence</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Statistical Analysis</span></div>
+                        <div class="highlight-item"><img src="https://img.icons8.com/ios-filled/50/10b981/checked--v1.png"><span>Tableau Expert</span></div>
+                        <button class="btn-enroll-action" onclick="enrollNow('Analytics')">Enroll Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+     <section class="section-wrapper">
+        <div class="main-card">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="header-title">
+                    Your Path to an IT Career in <span class="text-gradient-blue">3 Steps</span>
+                </h2>
+                <p class="subtitle">Click on each step to explore the curriculum and outcomes of our intensive training program.</p>
+            </div>
+
+            <!-- Animated Flowchart -->
+            <div class="flow-container">
+                <div class="progress-line-bg">
+                    <div id="progressBar"></div>
+                </div>
+
+                <div onclick="manualSelect(1)" class="step-node active" id="node1">
+                    <div class="circle">
+                        1
+                        <div class="active-ring" id="ring1"></div>
+                    </div>
+                    <span class="label">Fundamentals</span>
+                </div>
+
+                <div onclick="manualSelect(2)" class="step-node" id="node2">
+                    <div class="circle">
+                        2
+                        <div class="active-ring hidden" id="ring2"></div>
+                    </div>
+                    <span class="label">Job Track</span>
+                </div>
+
+                <div onclick="manualSelect(3)" class="step-node" id="node3">
+                    <div class="circle">
+                        3
+                        <div class="active-ring hidden" id="ring3"></div>
+                    </div>
+                    <span class="label">Placement</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Content Area -->
+            <div class="card-container">
+                
+                <!-- CONTENT 1: Fundamentals -->
+                <div id="content1" class="content-card">
+                    <div style="flex: 1;" class="text-left">
+                        <div class="step-badge">Step 01: Duration 2 Months</div>
+                        <h3 class="content-title text-gradient-primary">Build Your Foundation</h3>
+                        <p class="content-desc " style="font-size: 15px;">Master core technologies required for modern web development with 3 hours of classes and 3 hours of labs per day.</p>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-item">
+                                <i class="fab fa-html5" style="color: #E34F26;"></i>
+                                <span class="tool-name">HTML5</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fab fa-css3-alt" style="color: #1572B6;"></i>
+                                <span class="tool-name">CSS3</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fab fa-python" style="color: #3776AB;"></i>
+                                <span class="tool-name">Python</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fas fa-database" style="color: #336791;"></i>
+                                <span class="tool-name">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="dot red"></div>
+                                <div class="dot yellow"></div>
+                                <div class="dot green"></div>
+                                <div class="browser-url">www.foodmunch.opptyTechHub</div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="https://nxtwave.imgix.net/ccbp-website/nxtwave-intensive-2.0/food-munch-project-status.png" alt="Food Munch Project">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENT 2: Job Track -->
+                <div id="content2" class="content-card hidden">
+                    <div class="text-left" style="width: 100%;">
+                        <div class="step-badge">Step 02: Specialization</div>
+                        <h3 class="content-title text-gradient-primary">Choose your Job Track</h3>
+                        <p class="content-desc" style="font-size: 15px;">Based on your Fundamentals exam score, we'll also recommend you a suitable Job Track.</p>
+                        
+                        <div class="job-tracks-grid">
+                            <div class="job-card">
+                                <div class="job-card-header">
+                                    <div class="job-icon-box"><i class="fab fa-react"></i></div>
+                                    <span class="option-tag">Option 1</span>
+                                </div>
+                                <h4 class="job-title">MERN Full Stack</h4>
+                                <p class="job-info">6 Months | 3 - 12 LPA</p>
+                                <div class="tech-badge"><i class="fas fa-leaf tech-logo-sm" style="color: #47A248;"></i> MongoDB</div>
+                                <div class="tech-badge"><i class="fas fa-server tech-logo-sm" style="color: #64748b;"></i> Express JS</div>
+                                <div class="tech-badge"><i class="fab fa-react tech-logo-sm" style="color: #61DAFB;"></i> React JS</div>
+                                <div class="tech-badge"><i class="fab fa-node-js tech-logo-sm" style="color: #339933;"></i> Node JS</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-card-header">
+                                    <div class="job-icon-box"><i class="fab fa-java"></i></div>
+                                    <span class="option-tag">Option 2</span>
+                                </div>
+                                <h4 class="job-title">Java Full Stack</h4>
+                                <p class="job-info">6 Months | 3 - 12 LPA</p>
+                                <div class="tech-badge"><i class="fab fa-react tech-logo-sm" style="color: #61DAFB;"></i> React JS</div>
+                                <div class="tech-badge"><i class="fab fa-java tech-logo-sm" style="color: #e76f00;"></i> Java</div>
+                                <div class="tech-badge"><i class="fas fa-leaf tech-logo-sm" style="color: #6DB33F;"></i> Spring</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-card-header">
+                                    <div class="job-icon-box"><i class="fas fa-chart-bar"></i></div>
+                                    <span class="option-tag">Option 3</span>
+                                </div>
+                                <h4 class="job-title">Data Analytics</h4>
+                                <p class="job-info">3 Months | 2 - 7 LPA</p>
+                                <div class="tech-badge"><i class="fas fa-chart-pie tech-logo-sm" style="color: #F2C811;"></i> Power BI</div>
+                                <div class="tech-badge"><i class="fas fa-table tech-logo-sm" style="color: #E97627;"></i> Tableau</div>
+                                <div class="tech-badge"><i class="fas fa-file-excel tech-logo-sm" style="color: #1D6F42;"></i> Excel</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-card-header">
+                                    <div class="job-icon-box"><i class="fas fa-vial"></i></div>
+                                    <span class="option-tag">Option 4</span>
+                                </div>
+                                <h4 class="job-title">QA Testing</h4>
+                                <p class="job-info">3 Months | 2 - 7 LPA</p>
+                                <div class="tech-badge"><i class="fas fa-robot tech-logo-sm"></i> Selenium</div>
+                                <div class="tech-badge"><i class="fas fa-bug tech-logo-sm" style="color: #f87171;"></i> Manual Testing</div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-banner">
+                            <div style="display: flex; align-items: center;">
+                                <i class="fas fa-project-diagram" style="color: var(--oppty-orange); margin-right: 1rem; font-size: 1.25rem;"></i>
+                                <span>Includes Real-time Industry Portfolio Projects</span>
+                            </div>
+                            <i class="fas fa-arrow-right" style="color: var(--oppty-orange);"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENT 3: Placement - Updated with your provided images -->
+                <div id="content3" class="content-card hidden">
+                    <div class="text-left" style="width: 100%;">
+                        <div class="step-badge">Step 03: Career Support</div>
+                        <h3 class="content-title text-gradient-primary">Placement Assistance for Your Job</h3>
+                        <p class="content-desc" style="font-size: 15px;">Up to 16 Months from the date of joining. Career support includes:</p>
+                        
+                        <div class="placement-grid">
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/Aptitude.png" class="placement-img" alt="Aptitude">
+                                <span>Aptitude Training</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/soft-skills-coaching.png" class="placement-img" alt="Soft Skills">
+                                <span>Soft Skills Training</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/resume-preparation.png" class="placement-img" alt="Resume">
+                                <span>Resume Preparation</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/intensive/3.0-upgrades-mock-interviews.png" class="placement-img" alt="AI Mock">
+                                <span>AI-Powered Mock Interviews</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/mock-interviews.png" class="placement-img" alt="Panel Mock">
+                                <span>Mock Interviews by Tech and HR Panels</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/scheduling.png" class="placement-img" alt="Scheduling">
+                                <span>Scheduling Interviews</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/access-interview-experiences.png" class="placement-img" alt="Senior Experiences">
+                                <span>Access to 300+ Senior Interview Experiences</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/access-placement-corner.png" class="placement-img" alt="Portal">
+                                <span>Access to Placement Portal</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/intensive/3.0-upgrades-offline-drives.png" class="placement-img" alt="Offline Drives">
+                                <span>Mega Offline Placement Drives</span>
+                            </div>
+                            <div class="placement-item">
+                                <img src="https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/negotiation-with-companies.png" class="placement-img" alt="Negotiation">
+                                <span>Negotiation with companies for higher salaries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer CTA -->
+            <div class="cta-container">
+                <button class="btn-primary">Book a Free Demo</button>
+                <p class="seats-info">Next batch starts on Feb 2nd • Limited Seats Available</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section class="choose-section">
+        <div class="choose-container">
+            <div class="choose-header" data-aos="fade-up">
+                <span class="choose-tag">WHY CHOOSE US</span>
+                <h2>What Makes Our Programs&nbsp;<span class="choose-gradient-text">Different</span></h2>
+                <p>Industry-leading features that ensure your success in the tech world</p>
+            </div>
+
+            <div class="choose-grid">
+                <!-- Expert Mentors -->
+                <div class="choose-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600" class="choose-bg-img" alt="Expert Mentors Background">
+                    <div class="choose-overlay"></div>
+                    
+                    <div class="choose-icon-box">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=120&h=120" alt="Mentor Icon">
+                    </div>
+                    <h3>Expert Mentors</h3>
+                    <p>Learn from industry professionals with 10+ years of experience in top tech companies like Google, Amazon, and Microsoft.</p>
+                </div>
+
+                <!-- Hands-on Projects -->
+                <div class="choose-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600" class="choose-bg-img" alt="Hands-on Projects Background">
+                    <div class="choose-overlay"></div>
+
+                    <div class="choose-icon-box">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=120&h=120" alt="Projects Icon">
+                    </div>
+                    <h3>Hands-on Projects</h3>
+                    <p>Work on 15+ real-world projects and build a strong portfolio that impresses recruiters and showcases your skills.</p>
+                </div>
+
+                <!-- Placement Assistance -->
+                <div class="choose-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600" class="choose-bg-img" alt="Placement Background">
+                    <div class="choose-overlay"></div>
+
+                    <div class="choose-icon-box">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=120&h=120" alt="Placement Icon">
+                    </div>
+                    <h3>Placement Assistance</h3>
+                    <p>100% placement support with resume building, mock interviews, and direct connections to 300+ hiring partners.</p>
+                </div>
+
+                <!-- Industry Certification -->
+                <div class="choose-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&q=80&w=600" class="choose-bg-img" alt="Certification Background">
+                    <div class="choose-overlay"></div>
+
+                    <div class="choose-icon-box">
+                        <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&q=80&w=120&h=120" alt="Certification Icon">
+                    </div>
+                    <h3>Industry Certification</h3>
+                    <p>Receive industry-recognized certificates and prepare for global certifications like AWS, Azure, and Google Cloud.</p>
+                </div>
+
+                <!-- Small Batch Size -->
+                <div class="choose-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600" class="choose-bg-img" alt="Batch Background">
+                    <div class="choose-overlay"></div>
+
+                    <div class="choose-icon-box">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=120&h=120" alt="Batch Icon">
+                    </div>
+                    <h3>Small Batch Size</h3>
+                    <p>Learn in small batches of 15-20 students ensuring personalized attention and better learning outcomes.</p>
+                </div>
+
+                <!-- 24/7 Support -->
+                <div class="choose-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?auto=format&fit=crop&q=80&w=600" class="choose-bg-img" alt="Support Background">
+                    <div class="choose-overlay"></div>
+
+                    <div class="choose-icon-box">
+                        <img src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?auto=format&fit=crop&q=80&w=120&h=120" alt="Support Icon">
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Get instant doubt resolution through dedicated TAs, peer forums, and live chat support anytime you need help.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+<!-- Main Section Replacement -->
+    <section class="post-paid-container">
+        <h2 class="post-paid-main-heading">Your Success is our Success</h2>
+        <p class="post-paid-sub-heading"> Choose your Payment Plan</p>
+
+        <!-- Tab Toggle -->
+        <div class="post-paid-tab-wrapper">
+            <button id="btn-postpaid" class="post-paid-tab-btn post-paid-active">Post-paid</button>
+            <button id="btn-prepaid" class="post-paid-tab-btn">Pre-paid</button>
+        </div>
+
+        <!-- Main Content Card -->
+        <div class="post-paid-pricing-card">
+            <div class="post-paid-card-body">
+                <h3 class="post-paid-section-title">What's included?</h3>
+                
+                <!-- Post-paid Content -->
+                <div id="content-postpaid" class="post-paid-features-grid">
+                    <div class="post-paid-column">
+                        <div class="post-paid-feature-item">
+                            <div class="post-paid-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/></svg>
+                            </div>
+                            <div>
+                                <div class="post-paid-feature-text">Fundamentals of IT</div>
+                            </div>
+                        </div>
+                        <div class="post-paid-feature-item" style="margin-top: 2rem;">
+                            <div class="post-paid-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.1 6.27a2 2 0 0 0 0 3.46l9.07 4.09a2 2 0 0 0 1.66 0l9.07-4.09a2 2 0 0 0 0-3.46Z"/><path d="m2.1 14.27 9.07 4.09a2 2 0 0 0 1.66 0l9.07-4.09"/><path d="m2.1 10.27 9.07 4.09a2 2 0 0 0 1.66 0l9.07-4.09"/></svg>
+                            </div>
+                            <div>
+                                <div class="post-paid-feature-text">Multiple Job Tracks</div>
+                                <ul class="post-paid-sub-list">
+                                    <li><span class="post-paid-dot"></span>Java Full Stack</li>
+                                    <li><span class="post-paid-dot"></span>MERN Full Stack</li>
+                                    <li><span class="post-paid-dot"></span>Data Analytics <span class="post-paid-badge">Next batch: Jul 2026</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-paid-column">
+                        <div class="post-paid-feature-item">
+                            <div class="post-paid-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            </div>
+                            <div class="post-paid-feature-text">Unlimited opportunities from 3000+ companies</div>
+                        </div>
+                        <div class="post-paid-feature-item" style="margin-top: 2rem;">
+                            <div class="post-paid-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            </div>
+                            <div>
+                                <div class="post-paid-feature-text">Placement Support</div>
+                                <ul class="post-paid-sub-list">
+                                    <li><span class="post-paid-dot"></span>Resume Preparation</li>
+                                    <li><span class="post-paid-dot"></span>AI Mock Interviews</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-paid-column">
+                        <div class="post-paid-feature-item">
+                            <div class="post-paid-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            </div>
+                            <div class="post-paid-feature-text">8AM - 9PM Doubt Clarification</div>
+                        </div>
+                        <div class="post-paid-feature-item" style="margin-top: 2rem;">
+                            <div class="post-paid-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div class="post-paid-feature-text">24/7 Online Lab Access</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pre-paid Content -->
+                <div id="content-prepaid" class="post-paid-hidden post-paid-prepaid-view">
+                    <div class="post-paid-prepaid-info">
+                        <h4>Everything in Postpaid</h4>
+                        <div class="post-paid-plus-sign">+</div>
+                        <p class="post-paid-prepaid-desc">
+                            After you complete the course, if you don't get a job, the amount paid will be refunded with a deduction (Terms and Conditions Apply).
+                        </p>
+                    </div>
+                    <div class="post-paid-price-display">
+                        <span class="post-paid-old-price">₹1,50,000/-</span>
+                        <span class="post-paid-new-price">₹95,000/-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="post-paid-card-footer">
+                <div class="post-paid-footer-flex">
+                    <!-- Postpaid Prices -->
+                    <div id="footer-price-postpaid" class="post-paid-postpaid-prices">
+                        <div class="post-paid-price-group">
+                            <span class="post-paid-old-price" style="font-size: 0.875rem;">₹75,000/-</span>
+                            <div class="post-paid-main-p">₹45,000/-</div>
+                            <p>Non-refundable Upfront Fee</p>
+                        </div>
+                        <div class="post-paid-plus-divider">+</div>
+                        <div class="post-paid-price-group">
+                            <div class="post-paid-main-p">12% of Annual CTC</div>
+                            <p>Pay after you get a job</p>
+                        </div>
+                    </div>
+
+                    <!-- Prepaid Prices -->
+                    <div id="footer-price-prepaid" class="post-paid-hidden post-paid-batch-indicator">
+                        <div class="post-paid-pulse-dot"></div>
+                        <p style="font-size: 0.9375rem; font-weight: 600; color: var(--color-heading);">Next batch starts on Feb 2nd</p>
+                    </div>
+
+                    <div class="post-paid-btn-group">
+                        <button class="post-paid-primary-btn">Book a Free Demo</button>
+                        <button id="btn-prepaid-seat" class="post-paid-secondary-btn post-paid-hidden">Book Your Seat for 2000/-</button>
+                    </div>
+                </div>
+
+                <!-- Scholarship Banner -->
+                <div id="scholarship-banner" class="post-paid-scholarship-banner">
+                    <div style="display: flex; align-items: center;">
+                        <div class="post-paid-banner-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.875rem; font-weight: 700; color: var(--color-heading);">Additional Scholarships Up To</p>
+                            <p class="post-paid-banner-text-bottom">₹16,000/-</p>
+                        </div>
+                    </div>
+                    <a href="#" class="post-paid-underline-link"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer" style="margin-top: 30px;">
+    <div class="footer-container">
+   
+    <div class="footer-col">
+      <img src="./images/322343.png">
+      <p>
+        Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>108/43, Vijaya Lakshmi Enclave,1st Floor, H.No 2, PJR Enclave
+           Rd, Gangaram, 
+          ICRISAT Colony, Hyderabad, Telangana 500050</li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>  
+    </div>
+  <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>Udaipur - Plot No: 26, 100 Feet Rd, Shobhagpura, Udaipur, Rajasthan 313011
+        </li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>
+       <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    
+    </div>
+    
+    <div class="footer-col">
+      <h3>Our Courses</h3>
+      <ul class="links">
+        <li>Web Design</li>
+        <li>Apps Design</li>
+        <li>Marketing</li>
+        <li>Research</li>
+        <li>SEO</li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      
+
+      <h3 class="mt">Quick Links</h3>
+      <ul class="links">
+        <li>Privacy Policy</li>
+        <li>Terms & Condition</li>
+        <li>Regular FAQs</li>
+        <li>Help & Support</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>©2025 Oppty. All Rights Reserved.</p>
+    <p>Designed by <span>Oppty Techhub</span> Distributed by <span>Oppty</span></p>
+  </div>
+</footer>
+
+      <script>
+        let currentStep = 1;
+        let autoPlayInterval;
+
+        function showStep(stepNumber) {
+            currentStep = stepNumber;
+            const bar = document.getElementById('progressBar');
+            bar.style.width = ((stepNumber - 1) / 2 * 100) + '%';
+
+            for (let i = 1; i <= 3; i++) {
+                const node = document.getElementById('node' + i);
+                const ring = document.getElementById('ring' + i);
+                
+                if (i <= stepNumber) {
+                    node.classList.add('active');
+                } else {
+                    node.classList.remove('active');
+                }
+
+                if (i === stepNumber) {
+                    ring.classList.remove('hidden');
+                } else {
+                    ring.classList.add('hidden');
+                }
+            }
+
+            for (let i = 1; i <= 3; i++) {
+                const content = document.getElementById('content' + i);
+                if (i === stepNumber) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            }
+        }
+
+        function nextStep() {
+            let next = currentStep + 1;
+            if (next > 3) next = 1;
+            showStep(next);
+        }
+
+        function manualSelect(stepNumber) {
+            showStep(stepNumber);
+            resetAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextStep, 3000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        window.onload = () => {
+            showStep(1);
+            startAutoPlay();
+        };
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Staggered Entrance
+            const revealItems = document.querySelectorAll('.reveal');
+            revealItems.forEach((item, index) => {
+                setTimeout(() => item.classList.add('active'), index * 120);
+            });
+
+            // 2. Typing Effect
+            const roles = ["Full Stack Developer", "Data Analyst", "QA Engineer", "Software Developer"];
+            let roleIdx = 0;
+            const typewriter = document.getElementById('typewriter');
+            setInterval(() => {
+                roleIdx = (roleIdx + 1) % roles.length;
+                typewriter.style.opacity = '0';
+                setTimeout(() => {
+                    typewriter.innerText = roles[roleIdx];
+                    typewriter.style.opacity = '1';
+                }, 400);
+            }, 3000);
+
+            // 3. Continuous Carousel Cloning
+            const track = document.getElementById('carouselTrack');
+            const items = Array.from(track.children);
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                track.appendChild(clone);
+            });
+
+            // 4. Modal Logic
+            const modal = document.getElementById('modalOverlay');
+            const openBtn = document.getElementById('openModal');
+            const closeBtn = document.getElementById('closeModal');
+
+            openBtn.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+
+            const hideModal = () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            };
+
+            closeBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (e) => { if(e.target === modal) hideModal(); });
+
+            // 5. Form Submission
+            const form = document.getElementById('enrollmentForm');
+            const submitBtn = document.getElementById('submitBtn');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitBtn.classList.add('loading');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.classList.add('success');
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Registered Successfully!';
+                    setTimeout(() => {
+                        hideModal();
+                        form.reset();
+                        submitBtn.classList.remove('success');
+                        submitBtn.innerHTML = '<span>Continue</span>';
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+         const btnPostpaid = document.getElementById('btn-postpaid');
+        const btnPrepaid = document.getElementById('btn-prepaid');
+        const contentPostpaid = document.getElementById('content-postpaid');
+        const contentPrepaid = document.getElementById('content-prepaid');
+        const footerPostpaid = document.getElementById('footer-price-postpaid');
+        const footerPrepaid = document.getElementById('footer-price-prepaid');
+        const scholarshipBanner = document.getElementById('scholarship-banner');
+        const btnPrepaidSeat = document.getElementById('btn-prepaid-seat');
+
+        function setTab(tab) {
+            if (tab === 'postpaid') {
+                btnPostpaid.classList.add('post-paid-active');
+                btnPrepaid.classList.remove('post-paid-active');
+
+                contentPostpaid.classList.remove('post-paid-hidden');
+                contentPrepaid.classList.add('post-paid-hidden');
+                footerPostpaid.classList.remove('post-paid-hidden');
+                footerPrepaid.classList.add('post-paid-hidden');
+                scholarshipBanner.classList.remove('post-paid-hidden');
+                btnPrepaidSeat.classList.add('post-paid-hidden');
+            } else {
+                btnPrepaid.classList.add('post-paid-active');
+                btnPostpaid.classList.remove('post-paid-active');
+
+                contentPostpaid.classList.add('post-paid-hidden');
+                contentPrepaid.classList.remove('post-paid-hidden');
+                footerPostpaid.classList.add('post-paid-hidden'); 
+                footerPrepaid.classList.remove('post-paid-hidden');
+                scholarshipBanner.classList.add('post-paid-hidden');
+                btnPrepaidSeat.classList.remove('post-paid-hidden');
+            }
+        }
+
+        btnPostpaid.addEventListener('click', () => setTab('postpaid'));
+        btnPrepaid.addEventListener('click', () => setTab('prepaid'));
+    </script>
+
+
+<script>
+        function enrollNow(courseName) {
+            console.log("Enrolling in: " + courseName);
+        }
+    </script>
+
+
+ <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                offset: 100,
+                once: true
+            });
+        });
+    </script>
+
+
+</body>
+</html>

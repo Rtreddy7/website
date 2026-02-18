@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPPTY Electronics | Valentine's Sale 2026</title>
+    <link rel="stylesheet" href="cameras.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <a href="./home.html">
+                <i class="fa-solid fa-bolt" style="margin-right:10px; color:#ed01ee;"></i>
+                <span> Hi-Tech <span class="highlight">Electronics</span></span>
+            </a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for 'Smartwatch for Her'...">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="nav-actions">
+            <div class="nav-item"><i class="fa-solid fa-heart"></i> <span>Wishlist</span></div>
+            <div class="nav-item"><i class="fa-solid fa-cart-shopping"></i> <span>Cart (0)</span></div>
+            <div class="nav-item"><i class="fa-regular fa-user"></i> <span>Login</span></div>
+        </div>
+    </header>
+
+    <nav class="sub-nav">
+        <a href="./home.html">Home</a>
+        <a href="#mobiles">Mobiles</a>
+        <a href="#laptops">Laptops</a>
+        <a href="./smart.html">Smart TVs & AC, WM and Fridge </a>
+        <a href="#audio">Audio & Video</a>
+        <a href="#cameras">Cameras</a>
+        <a href="#accessories">Accessories</a>
+        <a href="#valentines" class="special-link">❤️ Valentine's Deals</a>
+    </nav>
+
+    <div class="valentine-banner" id="valentines">
+        <div class="v-content">
+            <h2>❤️ Valentine's Super Sale ❤️</h2>
+            <p>Special Offers for Best Couples! Valid Feb 10 - Feb 20, 2026</p>
+        </div>
+        <div class="countdown">
+            <span>Ends in: </span>
+            <span id="timer">00d : 00h : 00m : 00s</span>
+        </div>
+    </div>
+
+    <section class="camCat">
+  <div class="camCat__wrap">
+
+    <div class="camCat__head">
+      <h2 class="camCat__title">Shop Cameras & Optics</h2>
+      <p class="camCat__sub">Find the perfect gear for every moment</p>
+    </div>
+
+    <div class="camCat__track" data-track></div>
+
+    <div class="camCat__dots" data-dots></div>
+
+  </div>
+</section>
+
+<section class="bs" aria-labelledby="bsTitle">
+  <div class="bs__wrap">
+    <h2 class="bs__title" id="bsTitle">Bestseller</h2>
+
+    <div class="bs__grid" data-bs-grid>
+      <!-- JS will render 6 cards here -->
+    </div>
+  </div>
+</section>
+
+<section class="bankOff" aria-labelledby="bankOffTitle">
+  <div class="bankOff__wrap">
+    <h2 class="bankOff__title" id="bankOffTitle">Bank Offers</h2>
+
+    <div class="bankOff__row" data-bank-row>
+      <!-- JS renders 3 offer cards here -->
+    </div>
+  </div>
+</section>
+
+<section class="bb" aria-label="Brand banner section">
+  <div class="bb__wrap">
+    <div class="bb__banner" data-bb-banner role="link" tabindex="0">
+      <!-- JS renders the banner content -->
+    </div>
+  </div>
+</section>
+
+<section class="typeSec" aria-labelledby="typeTitle">
+  <div class="typeSec__wrap">
+    <div class="typeSec__head">
+      <h2 class="typeSec__title" id="typeTitle">Choose Your Type</h2>
+    </div>
+
+    <div class="typeSec__shell">
+      <button class="typeSec__arrow typeSec__arrow--left" type="button" aria-label="Previous" data-type-prev>
+        ‹
+      </button>
+
+      <div class="typeSec__track" data-type-track tabindex="0" aria-label="Camera type carousel">
+        <!-- JS renders cards -->
+      </div>
+
+      <button class="typeSec__arrow typeSec__arrow--right" type="button" aria-label="Next" data-type-next>
+        ›
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="brandSec" aria-labelledby="brandTitle">
+  <div class="brandSec__wrap">
+    <h2 class="brandSec__title" id="brandTitle">Pick Your Camera Brand</h2>
+
+    <div class="brandSec__shell">
+      <button class="brandSec__arrow brandSec__arrow--left" type="button" aria-label="Previous" data-brand-prev>
+        ‹
+      </button>
+
+      <div class="brandSec__track" data-brand-track tabindex="0" aria-label="Camera brands carousel">
+        <!-- JS renders brand cards -->
+      </div>
+
+      <button class="brandSec__arrow brandSec__arrow--right" type="button" aria-label="Next" data-brand-next>
+        ›
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="budgetSec" aria-labelledby="budgetTitle">
+  <div class="budgetSec__wrap">
+    <h2 class="budgetSec__title" id="budgetTitle">For Your Budget</h2>
+
+    <div class="budgetSec__row" data-budget-row>
+      <!-- JS will render 4 cards here -->
+    </div>
+  </div>
+</section>
+
+<section class="knowGrid" aria-labelledby="knowGridTitle">
+  <div class="knowGrid__wrap">
+    <div class="knowGrid__head">
+      <h2 class="knowGrid__title" id="knowGridTitle">Know Your Cameras</h2>
+      <p class="knowGrid__sub">Guides to help you choose the right gear.</p>
+    </div>
+
+    <div class="knowGrid__layout" data-knowgrid>
+      <div class="knowGrid__left" data-know-left></div>
+      <div class="knowGrid__right" data-know-right></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="accSec" aria-labelledby="accTitle">
+  <div class="accSec__wrap">
+    <h2 class="accSec__title" id="accTitle">Camera Accessories</h2>
+
+    <!-- Top Row -->
+    <div class="accTop">
+      <div class="accBanner" data-acc-banner></div>
+      <div class="accClear" data-acc-clear></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="accGrid" data-acc-grid></div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+       <footer>
+        <div class="footer-grid">
+            <div class="col">
+                <h4>Contact Us</h4>
+                <p>1800-200-OPPTY</p>
+                <p>help@High-Tech.com</p>
+                <p>Vijayawada, India</p>
+            </div>
+            <div class="col">
+                <h4>Make Money</h4>
+                <a href="#">Sell on OPPTY</a>
+                <a href="#">Affiliate</a>
+            </div>
+            <div class="col">
+                <h4>Policy</h4>
+                <a href="#">Return Policy</a>
+                <a href="#">Security</a>
+            </div>
+            <div class="col">
+                <h4>Download App</h4>
+                <div class="app-buttons">
+                    <button><i class="fa-brands fa-google-play"></i> Google Play</button>
+                    <button><i class="fa-brands fa-apple"></i> App Store</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 High-Tech Electronics. All rights reserved. 🧡</p>
+        </div>
+    </footer>
+
+    </main>
+
+    <script>
+        // --- 2. VALENTINE'S COUNTDOWN TIMER (FEB 20, 2026) ---
+// --- 2. VALENTINE'S COUNTDOWN TIMER (FEB 20, 2026) ---
+function startTimer() {
+    const endDate = new Date("Feb 20, 2026 23:59:59").getTime();
+    const timerElement = document.getElementById("timer");
+
+    // Run immediately to avoid 1s delay
+    updateTimer(endDate, timerElement);
+
+    const interval = setInterval(function() {
+        if (!updateTimer(endDate, timerElement)) {
+            clearInterval(interval);
+        }
+    }, 1000);
+}
+
+function updateTimer(endDate, element) {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+
+    if (distance < 0) {
+        if(element) element.innerHTML = "EXPIRED";
+        return false;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    if(element) {
+        element.innerHTML = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+    }
+    return true;
+}
+
+// --- 3. REDIRECT SIMULATION & CART LOGIC ---
+document.addEventListener("DOMContentLoaded", () => {
+    startTimer();
+    
+    // Select all product cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card) => {
+        card.style.cursor = "pointer";
+        card.addEventListener('click', (e) => {
+            // Prevent triggering if clicked on a button specifically (like "Add Bundle")
+            if (e.target.tagName === 'BUTTON') return;
+
+            const productName = card.querySelector('h3') ? card.querySelector('h3').innerText : "Item";
+            console.log(`Navigating to: ${productName}`);
+            // alert(`Redirecting to product page for: ${productName}`);
+        });
+    });
+
+    // Add to Cart Buttons
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if(this.innerText.includes("Add")) {
+                alert("Added to Valentine's Cart! 💝");
+            }
+        });
+    });
+});
+
+(function () {
+  if (window.__camSlider) return;
+  window.__camSlider = true;
+
+  function el(tag, cls) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  function formatINR(v) {
+    return "₹" + v.toLocaleString("en-IN");
+  }
+
+  function buildCard(item) {
+    var card = el("div", "camCat__card");
+
+    if (item.type === "promo") {
+      card.classList.add("camCat__card--promo");
+    }
+
+    // 🔥 click whole card
+    card.addEventListener("click", function () {
+      window.location.href = item.href;
+    });
+
+    // LEFT
+    var content = el("div", "camCat__content");
+
+    var title = el("div", "camCat__cardTitle");
+    title.textContent = item.title;
+
+    var desc = el("div", "camCat__desc");
+    desc.textContent = item.description;
+
+    var price = el("div", "camCat__price");
+
+    if (item.type === "promo") {
+      price.textContent = item.offerText;
+    } else {
+      price.textContent = "From " + formatINR(item.startingPrice);
+    }
+
+    content.appendChild(title);
+    content.appendChild(desc);
+    content.appendChild(price);
+
+    // RIGHT IMAGE
+    var imgWrap = el("div", "camCat__imageWrap");
+    var img = el("img", "camCat__img");
+    img.src = item.imageSrc;
+    img.alt = item.title;
+
+    imgWrap.appendChild(img);
+
+    card.appendChild(content);
+    card.appendChild(imgWrap);
+
+    return card;
+  }
+
+  function init() {
+    var track = document.querySelector("[data-track]");
+    var dotsWrap = document.querySelector("[data-dots]");
+
+    fetch("./categories.json")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+
+        var items = data.items;
+        var current = 0;
+
+        items.forEach(function (item) {
+          track.appendChild(buildCard(item));
+        });
+
+        var step = track.children[0].offsetWidth + 16;
+
+        // dots
+        items.forEach(function (_, i) {
+          var dot = el("button", "camCat__dot");
+
+          dot.addEventListener("click", function () {
+            current = i;
+            track.scrollTo({ left: step * i, behavior: "smooth" });
+            updateDots();
+          });
+
+          dotsWrap.appendChild(dot);
+        });
+
+        function updateDots() {
+          var dots = dotsWrap.children;
+          for (var i = 0; i < dots.length; i++) {
+            dots[i].classList.toggle("active", i === current);
+          }
+        }
+
+        updateDots();
+
+        // AUTO SLIDE + PAUSE
+        var paused = false;
+
+        track.addEventListener("mouseenter", function () {
+          paused = true;
+        });
+
+        track.addEventListener("mouseleave", function () {
+          paused = false;
+        });
+
+        setInterval(function () {
+          if (paused) return;
+
+          current = (current + 1) % items.length;
+
+          track.scrollTo({
+            left: step * current,
+            behavior: "smooth"
+          });
+
+          updateDots();
+        }, 3000);
+
+        // sync on scroll
+        track.addEventListener("scroll", function () {
+          current = Math.round(track.scrollLeft / step);
+          updateDots();
+        });
+
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
+
+(function () {
+  "use strict";
+
+  if (window.__BestSellerGridInitialized) return;
+  window.__BestSellerGridInitialized = true;
+
+  function el(tag, className) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    return n;
+  }
+
+  function formatINR(value) {
+    try {
+      return new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+      }).format(value);
+    } catch (e) {
+      return "₹" + String(value);
+    }
+  }
+
+  function calcOffPercent(mrp, price) {
+    if (!mrp || !price || mrp <= 0 || price <= 0 || price >= mrp) return 0;
+    return Math.round(((mrp - price) / mrp) * 100);
+  }
+
+  function buildStars(rating) {
+    var wrap = el("div", "bsStars");
+    var filled = Math.round(rating || 0);
+    for (var i = 1; i <= 5; i++) {
+      var s = el("span", "bsStar");
+      s.textContent = "★";
+      if (i <= filled) s.classList.add("isFilled");
+      wrap.appendChild(s);
+    }
+    return wrap;
+  }
+
+  function buildCard(item) {
+    var card = el("div", "bsCard");
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", item.name || "Bestseller product");
+
+    // redirect on click
+    function go() {
+      if (item.href) window.location.href = item.href;
+    }
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+
+    // media
+    var media = el("div", "bsCard__media");
+    var img = el("img", "bsCard__img");
+    img.setAttribute("src", item.imageSrc || "");
+    img.setAttribute("alt", item.name || "Product image");
+    img.setAttribute("loading", "lazy");
+    media.appendChild(img);
+
+    // body
+    var body = el("div", "bsCard__body");
+
+    var name = el("p", "bsCard__name");
+    name.textContent = item.name || "";
+    body.appendChild(name);
+
+    // price row
+    var priceRow = el("div", "bsCard__priceRow");
+
+    var price = el("span", "bsCard__price");
+    price.textContent = formatINR(item.price || 0);
+
+    var mrp = el("span", "bsCard__mrp");
+    mrp.textContent = formatINR(item.mrp || 0);
+
+    var off = el("span", "bsCard__off");
+    var offPct = calcOffPercent(item.mrp, item.price);
+    off.textContent = offPct > 0 ? (offPct + "% OFF") : "";
+
+    priceRow.appendChild(price);
+    priceRow.appendChild(mrp);
+    priceRow.appendChild(off);
+    body.appendChild(priceRow);
+
+    // rating row
+    var ratingRow = el("div", "bsCard__ratingRow");
+    ratingRow.appendChild(buildStars(item.rating));
+
+    var ratingText = el("span", "bsCard__ratingText");
+    var r = (typeof item.rating === "number") ? item.rating.toFixed(1) : "0.0";
+    var c = item.ratingCount || 0;
+    ratingText.textContent = r + " (" + c + ")";
+    ratingRow.appendChild(ratingText);
+
+    body.appendChild(ratingRow);
+
+    card.appendChild(media);
+    card.appendChild(body);
+
+    return card;
+  }
+
+  function initBestSellerGrid() {
+    var grid = document.querySelector("[data-bs-grid]");
+    if (!grid) return;
+
+    fetch("./bestsellers.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("JSON not found");
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.items)) return;
+
+        // render max 6
+        for (var i = 0; i < data.items.length && i < 6; i++) {
+          grid.appendChild(buildCard(data.items[i]));
+        }
+      })
+      .catch(function () {
+        // silent fail (won't break your page)
+      });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBestSellerGrid);
+  } else {
+    initBestSellerGrid();
+  }
+})();
+
+(function () {
+  "use strict";
+
+  if (window.__BankOffersInitialized) return;
+  window.__BankOffersInitialized = true;
+
+  function el(tag, className) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    return n;
+  }
+
+  function buildOfferCard(item) {
+    var card = el("div", "bankCard");
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", (item.bankName || "Bank") + " offer");
+
+    function go() {
+      if (item.href) window.location.href = item.href;
+    }
+
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+
+    var inner = el("div", "bankCard__inner");
+
+    var logoWrap = el("div", "bankCard__logoWrap");
+    var logo = el("img", "bankCard__logo");
+    logo.setAttribute("src", item.logoSrc || "");
+    logo.setAttribute("alt", (item.bankName || "Bank") + " logo");
+    logo.setAttribute("loading", "lazy");
+    logoWrap.appendChild(logo);
+
+    var text = el("div", "bankCard__text");
+
+    var headline = el("p", "bankCard__headline");
+    headline.textContent = item.headline || "Offer";
+    text.appendChild(headline);
+
+    var sub = el("p", "bankCard__sub");
+    sub.textContent = item.subtext || "";
+    text.appendChild(sub);
+
+    if (item.pill) {
+      var pill = el("span", "bankCard__pill");
+      pill.textContent = item.pill;
+      text.appendChild(pill);
+    }
+
+    var chev = el("div", "bankCard__chev");
+    chev.textContent = "›";
+
+    inner.appendChild(logoWrap);
+    inner.appendChild(text);
+    inner.appendChild(chev);
+
+    card.appendChild(inner);
+    return card;
+  }
+
+  function initBankOffers() {
+    var row = document.querySelector("[data-bank-row]");
+    if (!row) return;
+
+    fetch("./bankoffers.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("bankoffers.json not found");
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.items)) return;
+
+        for (var i = 0; i < data.items.length && i < 3; i++) {
+          row.appendChild(buildOfferCard(data.items[i]));
+        }
+      })
+      .catch(function () {
+        // silent fail
+      });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBankOffers);
+  } else {
+    initBankOffers();
+  }
+})();
+
+(function () {
+  "use strict";
+
+  if (window.__BrandBannerInitialized) return;
+  window.__BrandBannerInitialized = true;
+
+  function el(tag, className) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    return n;
+  }
+
+  function initBrandBanner() {
+    var banner = document.querySelector("[data-bb-banner]");
+    if (!banner) return;
+
+    fetch("./brandbanner.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("brandbanner.json not found");
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.items) || !data.items[0]) return;
+
+        var item = data.items[0];
+
+        // ✅ ONLY background image
+        banner.style.backgroundImage = 'url("' + item.backgroundImage + '")';
+
+        function go() {
+          if (item.href) window.location.href = item.href;
+        }
+        banner.addEventListener("click", go);
+        banner.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            go();
+          }
+        });
+
+        var overlay = el("div", "bb__overlay");
+        var content = el("div", "bb__content");
+
+        var left = el("div", "bb__left");
+
+        var kicker = el("p", "bb__kicker");
+        kicker.textContent = item.kicker || "";
+        left.appendChild(kicker);
+
+        var head = el("h3", "bb__headline");
+        head.textContent = item.headline || "";
+        left.appendChild(head);
+
+        var sub = el("p", "bb__sub");
+        sub.textContent = item.subtext || "";
+        left.appendChild(sub);
+
+        var price = el("p", "bb__price");
+        price.textContent = item.priceText || "";
+        left.appendChild(price);
+
+        content.appendChild(left);
+
+        banner.appendChild(overlay);
+        banner.appendChild(content);
+      })
+      .catch(function () {
+        // silent fail
+      });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBrandBanner);
+  } else {
+    initBrandBanner();
+  }
+})();
+
+(function () {
+  "use strict";
+
+  if (window.__TypeCarouselInitialized) return;
+  window.__TypeCarouselInitialized = true;
+
+  function el(tag, className) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    return n;
+  }
+
+  function buildTypeCard(item) {
+    var card = el("div", "typeCard");
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", item.title || "Type card");
+
+    function go() {
+      if (item.href) window.location.href = item.href;
+    }
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+
+    var img = el("img", "typeCard__img");
+    img.setAttribute("src", item.imageSrc || "");
+    img.setAttribute("alt", item.title || "Camera type");
+    img.setAttribute("loading", "lazy");
+
+    var shade = el("div", "typeCard__shade");
+
+    var text = el("div", "typeCard__text");
+
+    var name = el("p", "typeCard__name");
+    name.textContent = item.title || "";
+
+    var sub = el("p", "typeCard__sub");
+    sub.textContent = item.subtitle || "";
+
+    text.appendChild(name);
+    text.appendChild(sub);
+
+    card.appendChild(img);
+    card.appendChild(shade);
+    card.appendChild(text);
+
+    return card;
+  }
+
+  function getStep(track) {
+    var first = track.querySelector(".typeCard");
+    if (!first) return 320;
+
+    var gap = 0;
+    try {
+      var s = window.getComputedStyle(track);
+      var g = s.getPropertyValue("gap") || s.getPropertyValue("column-gap");
+      gap = parseFloat(g) || 0;
+    } catch (e) {
+      gap = 0;
+    }
+
+    return Math.round(first.getBoundingClientRect().width + gap);
+  }
+
+  function updateArrows(track, prev, next) {
+    var maxLeft = track.scrollWidth - track.clientWidth;
+    var tol = 2;
+    prev.disabled = track.scrollLeft <= tol;
+    next.disabled = track.scrollLeft >= (maxLeft - tol);
+  }
+
+  function initTypeCarousel() {
+    var track = document.querySelector("[data-type-track]");
+    var prev = document.querySelector("[data-type-prev]");
+    var next = document.querySelector("[data-type-next]");
+    if (!track || !prev || !next) return;
+
+    fetch("./types.json")
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.items)) return;
+
+        for (var i = 0; i < data.items.length; i++) {
+          track.appendChild(buildTypeCard(data.items[i]));
+        }
+
+        var step = getStep(track);
+
+        prev.addEventListener("click", function () {
+          step = getStep(track);
+          track.scrollBy({ left: -step, behavior: "smooth" });
+        });
+
+        next.addEventListener("click", function () {
+          step = getStep(track);
+          track.scrollBy({ left: step, behavior: "smooth" });
+        });
+
+        track.addEventListener("scroll", function () {
+          updateArrows(track, prev, next);
+        });
+
+        window.addEventListener("resize", function () {
+          updateArrows(track, prev, next);
+        });
+
+        // keyboard on track
+        track.addEventListener("keydown", function (e) {
+          step = getStep(track);
+          if (e.key === "ArrowRight") track.scrollBy({ left: step, behavior: "smooth" });
+          if (e.key === "ArrowLeft") track.scrollBy({ left: -step, behavior: "smooth" });
+        });
+
+        updateArrows(track, prev, next);
+      })
+      .catch(function () {
+        // silent fail
+      });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTypeCarousel);
+  } else {
+    initTypeCarousel();
+  }
+})();
+
+
+(function () {
+  "use strict";
+
+  if (window.__BrandCarouselInitialized) return;
+  window.__BrandCarouselInitialized = true;
+
+  function el(tag, className) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    return n;
+  }
+
+  function buildBrandCard(item) {
+    var card = el("div", "brandCard");
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", (item.brand || "Brand") + " brand card");
+
+    function go() {
+      if (item.href) window.location.href = item.href;
+    }
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+
+    var img = el("img", "brandCard__img");
+    img.setAttribute("src", item.imageSrc || "");
+    img.setAttribute("alt", item.brand || "Brand");
+    img.setAttribute("loading", "lazy");
+
+    var shade = el("div", "brandCard__shade");
+
+    var label = el("div", "brandCard__label");
+    label.textContent = item.brand || "";
+
+    card.appendChild(img);
+    card.appendChild(shade);
+    card.appendChild(label);
+
+    return card;
+  }
+
+  function getStep(track) {
+    var first = track.querySelector(".brandCard");
+    if (!first) return 320;
+
+    var gap = 0;
+    try {
+      var s = window.getComputedStyle(track);
+      var g = s.getPropertyValue("gap") || s.getPropertyValue("column-gap");
+      gap = parseFloat(g) || 0;
+    } catch (e) {
+      gap = 0;
+    }
+
+    return Math.round(first.getBoundingClientRect().width + gap);
+  }
+
+  function updateArrows(track, prev, next) {
+    var maxLeft = track.scrollWidth - track.clientWidth;
+    var tol = 2;
+    prev.disabled = track.scrollLeft <= tol;
+    next.disabled = track.scrollLeft >= (maxLeft - tol);
+  }
+
+  function initBrandCarousel() {
+    var track = document.querySelector("[data-brand-track]");
+    var prev = document.querySelector("[data-brand-prev]");
+    var next = document.querySelector("[data-brand-next]");
+    if (!track || !prev || !next) return;
+
+    fetch("./brands.json")
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.items)) return;
+
+        for (var i = 0; i < data.items.length; i++) {
+          track.appendChild(buildBrandCard(data.items[i]));
+        }
+
+        var step = getStep(track);
+
+        prev.addEventListener("click", function () {
+          step = getStep(track);
+          track.scrollBy({ left: -step, behavior: "smooth" });
+        });
+
+        next.addEventListener("click", function () {
+          step = getStep(track);
+          track.scrollBy({ left: step, behavior: "smooth" });
+        });
+
+        track.addEventListener("scroll", function () {
+          updateArrows(track, prev, next);
+        });
+
+        window.addEventListener("resize", function () {
+          updateArrows(track, prev, next);
+        });
+
+        // keyboard support
+        track.addEventListener("keydown", function (e) {
+          step = getStep(track);
+          if (e.key === "ArrowRight") track.scrollBy({ left: step, behavior: "smooth" });
+          if (e.key === "ArrowLeft") track.scrollBy({ left: -step, behavior: "smooth" });
+        });
+
+        updateArrows(track, prev, next);
+      })
+      .catch(function () {
+        // silent fail
+      });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBrandCarousel);
+  } else {
+    initBrandCarousel();
+  }
+})();
+
+(function () {
+  "use strict";
+
+  if (window.__BudgetSectionInitialized) return;
+  window.__BudgetSectionInitialized = true;
+
+  function el(tag, className) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    return n;
+  }
+
+  // ✅ Reliable "real images" (always loads) using picsum with fixed seeds
+  // You can change the seed names to change photos.
+  var budgetItems = [
+  {
+    id: "under50",
+    label: "Below",
+    amount: "₹ 50,000",
+    href: "/cameras/budget-under-50000",
+    bgImage: "https://upload.wikimedia.org/wikipedia/commons/b/be/Assembled_compact_camera.jpg"
+  },
+  {
+    id: "50to70",
+    label: "₹50,001 to",
+    amount: "₹ 70,000",
+    href: "/cameras/budget-50001-70000",
+    bgImage: "https://upload.wikimedia.org/wikipedia/commons/8/82/Nikon_camera_on_a_table.jpg"
+  },
+  {
+    id: "70to90",
+    label: "₹70,001 to",
+    amount: "₹ 90,000",
+    href: "/cameras/budget-70001-90000",
+    bgImage: "https://upload.wikimedia.org/wikipedia/commons/1/19/Mirrorless_camera.jpg"
+  },
+  {
+    id: "above90",
+    label: "Above",
+    amount: "₹ 90,000",
+    href: "/cameras/budget-above-90000",
+    bgImage: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Nikon_D7000_Digital_SLR_Camera_05.jpg"
+  }
+];
+
+
+  // Preload image before setting as background + fallback if fails
+  function setBgSafely(bgEl, url) {
+    var img = new Image();
+    img.onload = function () {
+      bgEl.style.backgroundImage = 'url("' + url + '")';
+    };
+    img.onerror = function () {
+      // fallback gradient if image fails
+      bgEl.style.backgroundImage =
+        "linear-gradient(135deg, rgba(0,0,0,0.55), rgba(0,0,0,0.15))";
+    };
+    img.src = url;
+  }
+
+  function buildBudgetCard(item) {
+    var card = el("div", "budgetCard");
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", item.label + " " + item.amount);
+
+    function go() {
+      window.location.href = item.href;
+    }
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+
+    var bg = el("div", "budgetCard__bg");
+    setBgSafely(bg, item.bgImage);
+
+    var shade = el("div", "budgetCard__shade");
+
+    var text = el("div", "budgetCard__text");
+
+    var small = el("div", "budgetCard__small");
+    small.textContent = item.label;
+
+    var price = el("div", "budgetCard__price");
+    price.textContent = item.amount;
+
+    text.appendChild(small);
+    text.appendChild(price);
+
+    card.appendChild(bg);
+    card.appendChild(shade);
+    card.appendChild(text);
+
+    return card;
+  }
+
+  function initBudgetSection() {
+    var row = document.querySelector("[data-budget-row]");
+    if (!row) return;
+
+    for (var i = 0; i < budgetItems.length; i++) {
+      row.appendChild(buildBudgetCard(budgetItems[i]));
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBudgetSection);
+  } else {
+    initBudgetSection();
+  }
+})();
+
+(function () {
+  "use strict";
+
+  if (window.__KnowGridInitialized) return;
+  window.__KnowGridInitialized = true;
+
+  function el(tag, className) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    return n;
+  }
+
+  // ✅ Wikimedia Special:FilePath = very reliable direct image delivery
+  function commons(fileName, width) {
+    var base = "https://commons.wikimedia.org/wiki/Special:FilePath/";
+    var safe = encodeURIComponent(fileName).replace(/%2F/g, "/");
+    if (width) return base + safe + "?width=" + width;
+    return base + safe;
+  }
+
+  // ✅ Cards data (edit href to your guide pages)
+  var guides = [
+    {
+      featured: true,
+      pill: "BUYING GUIDE",
+      title: "Want to make your decision easier?",
+      desc: "Let’s find the right camera for you based on your use-case, skill level, and budget.",
+      href: "/guides/camera-buying-guide",
+      img: commons("Nikon camera on a table.jpg", 1200),
+      meta: ["Beginner Friendly", "4 min read", "Updated weekly"],
+      bullets: [
+        "Mirrorless vs DSLR: what to pick in 2026",
+        "What specs actually matter (AF, sensor, stabilization)",
+        "Budget breakdown: best value ranges"
+      ]
+    },
+    {
+      title: "A guide to mirrorless cameras",
+      desc: "Mirrorless cameras are lightweight, fast autofocus, and future-ready.",
+      href: "/guides/mirrorless-camera-guide",
+      img: commons("Nikon camera on a table.jpg", 900)
+    },
+    {
+      title: "Sony vs Nikon: which brand is better?",
+      desc: "Compare autofocus, color science, lens ecosystem and pricing.",
+      href: "/guides/sony-vs-nikon",
+      img: commons("Cameras and Lenses.jpg", 900)
+    },
+    {
+      title: "Importance of light setup in photography",
+      desc: "Learn key light, fill light and softbox basics for great shots.",
+      href: "/guides/photography-lighting-basics",
+      img: commons("Photographic studio setup.jpg", 900)
+    },
+    {
+      title: "Types of lenses every photographer must have",
+      desc: "Prime vs zoom, wide vs telephoto — which lens is for what.",
+      href: "/guides/lens-types-explained",
+      img: commons("Photographic lenses front view.jpg", 900)
+    }
+  ];
+
+  function setImageWithFallback(imgEl, url) {
+    imgEl.onerror = function () {
+      // fallback: keep layout but show a neutral bg (no broken icon)
+      imgEl.removeAttribute("src");
+      imgEl.style.background = "linear-gradient(135deg, rgba(0,0,0,0.08), rgba(0,0,0,0.03))";
+      imgEl.style.width = "100%";
+      imgEl.style.height = "100%";
+    };
+    imgEl.src = url;
+  }
+
+  function buildCard(item, isFeatured) {
+    var card = el("article", isFeatured ? "kgCard kgCard--featured" : "kgCard");
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", item.title || "Guide");
+
+    function go() {
+      if (item.href) window.location.href = item.href;
+    }
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+
+    // Media
+    var media = el("div", "kgCard__media");
+    var img = el("img", "kgCard__img");
+    img.alt = item.title || "Guide image";
+    img.loading = "eager"; // ✅ ensure left cards load immediately
+    setImageWithFallback(img, item.img || "");
+    media.appendChild(img);
+
+    // Bookmark mark (top-right)
+    var mark = el("div", "kgCard__mark");
+    mark.textContent = "🔖";
+
+    // Optional pill
+    if (item.pill) {
+      var pill = el("div", "kgCard__pill");
+      pill.textContent = item.pill;
+      card.appendChild(pill);
+    }
+
+    // Body
+    var body = el("div", "kgCard__body");
+
+    var t = el("h3", "kgCard__title");
+    t.textContent = item.title || "";
+    body.appendChild(t);
+
+    var d = el("p", "kgCard__desc");
+    d.textContent = item.desc || "";
+    body.appendChild(d);
+
+    // Featured extras to fill space
+    if (isFeatured) {
+      if (item.meta && item.meta.length) {
+        var metaRow = el("div", "kgCard__metaRow");
+        for (var m = 0; m < item.meta.length; m++) {
+          var chip = el("span", "kgCard__chip");
+          chip.textContent = item.meta[m];
+          metaRow.appendChild(chip);
+        }
+        body.appendChild(metaRow);
+      }
+
+      if (item.bullets && item.bullets.length) {
+        var ul = el("ul", "kgCard__list");
+        for (var b = 0; b < item.bullets.length; b++) {
+          var li = el("li");
+          li.textContent = item.bullets[b];
+          ul.appendChild(li);
+        }
+        body.appendChild(ul);
+      }
+    }
+
+    card.appendChild(mark);
+    card.appendChild(media);
+    card.appendChild(body);
+
+    return card;
+  }
+
+  function initKnowGrid() {
+    var left = document.querySelector("[data-know-left]");
+    var right = document.querySelector("[data-know-right]");
+    if (!left || !right) return;
+
+    // Clear (in case you reload script)
+    while (left.firstChild) left.removeChild(left.firstChild);
+    while (right.firstChild) right.removeChild(right.firstChild);
+
+    // Featured on right
+    right.appendChild(buildCard(guides[0], true));
+
+    // 4 cards on left
+    for (var i = 1; i <= 4; i++) {
+      left.appendChild(buildCard(guides[i], false));
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initKnowGrid);
+  } else {
+    initKnowGrid();
+  }
+})();
+
+
+(function () {
+  "use strict";
+
+  if (window.__AccessoriesSectionInitialized) return;
+  window.__AccessoriesSectionInitialized = true;
+
+  function el(tag, cls) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    return n;
+  }
+
+  var bannerData = {
+    title: "Tripods & Stabilizers",
+    sub: "Steady shots for every moment",
+    href: "/accessories/tripods",
+    bg: "https://img.freepik.com/free-photo/portrait-fitness-influencer_23-2151564802.jpg?semt=ais_wordcount_boost&w=740&q=80" // ✅ put your banner background image path here
+    // example: "images/accessories/tripod-banner.jpg"
+  };
+
+  var clearData = {
+    title: "Up to 75% OFF",
+    sub: "Accessories Sale",
+    href: "/accessories/sale",
+    bg: "https://images.indianexpress.com/2018/04/1-1.jpg"
+  };
+
+  var items = [
+    { name: "Lenses", href: "/lenses", img: "https://media.greatbigphotographyworld.com/wp-content/uploads/2019/05/Types-of-Lenses.png" },
+    { name: "Tripods", href: "/tripods", img: "https://cameraclub.in/cdn/shop/collections/5.webp?v=1720266828&width=1500" },
+    { name: "Camera Bags", href: "/bags", img: "https://m.media-amazon.com/images/I/81DtAN13caL._AC_UF1000,1000_QL80_.jpg" },
+    { name: "Lighting", href: "/lighting", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPJTQHCB8EXZSbO0P-Yj8TpPK9XrkXxQR5ZA&s" },
+    { name: "Microphones", href: "/mic", img: "https://zoomcorp.com/media/original_images/onCamera_1.jpg.500x370_q70_crop_focal_area-1606%2C1800%2C3187%2C3600_size_canvas_upscale_zoom-50.jpg" },
+    { name: "Batteries", href: "/battery", img: "https://m.media-amazon.com/images/I/71bEequnhRL.jpg" },
+    { name: "Memory Cards", href: "/sd", img: "https://robu.in/wp-content/uploads/2019/01/Micro-SD-Card-to-SD-Card-Adapter-1-1.jpg" },
+    { name: "Filters", href: "/filters", img: "https://cdn.britannica.com/87/124887-050-1DBEED1A/lens-filters.jpg" }
+  ];
+
+  function buildBanner() {
+    var b = document.querySelector("[data-acc-banner]");
+    if (!b) return;
+
+    // background image (you set it in bannerData.bg)
+    if (bannerData.bg) {
+      b.style.backgroundImage = 'url("' + bannerData.bg + '")';
+    }
+
+    var content = el("div", "accBanner__content");
+
+    var t = el("h3", "accBanner__title");
+    t.textContent = bannerData.title;
+
+    var s = el("p", "accBanner__sub");
+    s.textContent = bannerData.sub;
+
+    content.appendChild(t);
+    content.appendChild(s);
+    b.appendChild(content);
+
+    b.addEventListener("click", function () {
+      window.location.href = bannerData.href;
+    });
+  }
+
+  function buildClear() {
+    var c = document.querySelector("[data-acc-clear]");
+    if (!c) return;
+
+    var wrap = el("div", "");
+    var t = el("h3", "accClear__title");
+    t.textContent = clearData.title;
+
+    var s = el("p", "accClear__sub");
+    s.textContent = clearData.sub;
+
+    wrap.appendChild(t);
+    wrap.appendChild(s);
+    c.appendChild(wrap);
+
+    c.addEventListener("click", function () {
+      window.location.href = clearData.href;
+    });
+  }
+
+  function buildGrid() {
+    var grid = document.querySelector("[data-acc-grid]");
+    if (!grid) return;
+
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+
+    for (var i = 0; i < items.length; i++) {
+      (function (item) {
+        var card = el("div", "accCard");
+        card.setAttribute("role", "link");
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("aria-label", item.name);
+
+        function go() {
+          window.location.href = item.href;
+        }
+
+        card.addEventListener("click", go);
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            go();
+          }
+        });
+
+        var imgWrap = el("div", "accCard__imgWrap");
+
+        var img = document.createElement("img");
+        img.className = "accCard__img";
+        img.alt = item.name;
+        img.loading = "lazy";
+
+        // ✅ You set item.img (local path). If empty, image won't be added.
+        if (item.img) {
+          img.src = item.img;
+          imgWrap.appendChild(img);
+        }
+
+        var name = el("div", "accCard__name");
+        name.textContent = item.name;
+
+        card.appendChild(imgWrap);
+        card.appendChild(name);
+        grid.appendChild(card);
+      })(items[i]);
+    }
+  }
+
+  function init() {
+    buildBanner();
+    buildClear();
+    buildGrid();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+
+    </script>
+</body>
+
+</html>

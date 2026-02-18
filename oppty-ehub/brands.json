@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "id": "canon",
+      "brand": "Canon",
+      "imageSrc": "camera/canon.jpg",
+      "href": "/brands/canon"
+    },
+    {
+      "id": "nikon",
+      "brand": "Nikon",
+      "imageSrc": "https://jaiswalphotogoods.in/wp-content/uploads/2025/05/Nikon-Z5-II-With-24-70-lens.jpg",
+      "href": "/brands/nikon"
+    },
+    {
+      "id": "sony",
+      "brand": "SONY",
+      "imageSrc": "camera/sony digital.jpg",
+      "href": "/brands/sony"
+    },
+    {
+      "id": "fujifilm",
+      "brand": "FUJIFILM",
+      "imageSrc": "https://asset.fujifilm.com/www/us/files/styles/600x400/public/2022-05/c28aa5cda80b07453400ea94ec59dce3/pic_xsystem_61.jpg?itok=dVssJeKp",
+      "href": "/brands/fujifilm"
+    },
+    {
+      "id": "gopro",
+      "brand": "GoPro",
+      "imageSrc": "https://x.imastudent.com/content/0027934_gopro-hero-10-black-5k-action-camera_500.jpeg",
+      "href": "/brands/gopro"
+    }
+  ]
+}

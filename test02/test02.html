@@ -3,140 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Course Showcase - Professional Learning</title>
     <style>
-        body{
-            margin: 0;
-        }
-        .task{
-            padding: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
+        /* Base Reset & Variables */
 
-        .card{
-        padding: 0;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: ;
-    padding-bottom: 20px;
-        }
+        .trainingHeroSection {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  padding: 80px 6%;
+  background: #f9fafb;
+}
 
-        .card-txt{
-            padding: 0 20px 20px 20px;
-            display: flex;
-            flex-direction: column;
-            background: #aaaaaa;
-        }
+.trainingHeroContent { flex: 1; }
 
-        .card img{
-            width: 100%;
-            object-fit: cover;
-        }
+.trainingHeroBadge {
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
 
-        .card h2{
-            font-size: 32px;
-            font-weight: 800;
-        }
+.trainingHeroTitle {
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
 
-        .card p{
-            font-size: 22px;
-        }
+.trainingHeroTitle span { color: #4f46e5; }
 
-        .card a{
-            text-decoration: none;
-            border: 1px solid transparent;
-            background: #fff;
-            font-size: 18px;
-            color: black;
-            padding: 10px 20px;
-        }
+.trainingHeroDesc {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
 
-        .images-c{
-            display: flex;
-            justify-content: center;
-            padding: 0 40px;
-            gap: 20px;
-            align-items: stretch;
-        }
+.trainingHeroPoints {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 26px;
+}
 
-        .images-x{
-            flex: 1;
-            display: flex;
-        }
-        .images-x img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+.trainingHeroPoints li {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
 
-        .img-y{
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+.trainingHeroCTA {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-        .img1 img{
-            width: 200px;
-        }
+/* SLIDER */
+.trainingHeroSlider { flex: 1; }
+
+.trainingHeroSliderStage {
+  position: relative;
+}
+
+.trainingHeroSliderStage img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+.trainingHeroNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 50%;
+}
+
+.trainingHeroPrev { left: 14px; }
+.trainingHeroNext { right: 14px; }
+
+.trainingHeroThumbs {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.trainingHeroThumb {
+  width: 72px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.trainingHeroThumb.active {
+  opacity: 1;
+  border: 2px solid #4f46e5;
+}
+
+/* ===============================
+   OPPTY – INDUSTRY PROJECTS
+   =============================== */
+
+.oppty-projects-section {
+  padding: 100px 0;
+  background: #f7f8fc;
+  overflow: hidden;
+}
+
+.oppty-projects-heading {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 60px;
+  color: #1f1f1f;
+}
+
+.oppty-projects-heading span {
+  color: #3b5cff;
+}
+
+/* Scroll Container */
+.oppty-projects-scroll-wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Horizontal Track */
+.oppty-projects-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 120px;
+  padding: 0 120px;
+  will-change: transform;
+}
+
+/* Project Row (NOT cards) */
+.oppty-project-item {
+  min-width: 520px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.oppty-project-item img {
+  width: 64px;
+  height: 64px;
+}
+
+.oppty-project-item h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  color: #1f1f1f;
+}
+
+.oppty-project-item p {
+  margin: 0;
+  font-size: 15px;
+  color: #555;
+  max-width: 420px;
+}
 
 
     </style>
 </head>
 <body>
-    <div class="task">
-        <div class="card">
-            <img src="./WhatsApp Image 2025-12-22 at 3.23.43 PM.jpeg">
-            <div class="card-txt">
-            <h2>Loreum Ipsium Doler</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repudiandae similique hic laboriosam omnis alias, iusto esse quae perspiciatis adipisci ullam sunt est fugit dicta eos. Doloribus dolore corporis voluptatibus!</p>
-            <a href="#" style="align-self: center;">Details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="./WhatsApp Image 2025-12-22 at 3.23.43 PM (1).jpeg" height="330px">
-             <div class="card-txt">
-            <h2>Loreum Ipsium Doler</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repudiandae similique hic laboriosam omnis alias, iusto esse quae perspiciatis adipisci ullam sunt est fugit dicta eos. Doloribus dolore corporis voluptatibus!</p>
-            <a href="#" style="align-self: center;">Details</a>
-             </div>
-        </div>
+    <section class="trainingHeroSection">
+
+  <!-- LEFT CONTENT -->
+  <div class="trainingHeroContent">
+    <span class="trainingHeroBadge">New Batch Open</span>
+
+    <h1 class="trainingHeroTitle">
+      Get Job-Ready with <span>Industry-Focused Training</span>
+    </h1>
+
+    <p class="trainingHeroDesc">
+      Learn in-demand skills through hands-on projects, real-world scenarios,
+      and expert-led sessions designed to make you industry ready from day one.
+    </p>
+
+    <ul class="trainingHeroPoints">
+      <li>✔ Practical & real-time training</li>
+      <li>✔ Mentorship from industry experts</li>
+      <li>✔ Placement & career guidance</li>
+    </ul>
+
+    <button class="trainingHeroCTA">Request a Call Back</button>
+  </div>
+
+  <!-- RIGHT SLIDER -->
+  <div class="trainingHeroSlider">
+
+    <div class="trainingHeroSliderStage">
+      <button class="trainingHeroNav trainingHeroPrev" onclick="trainingHeroPrev()">‹</button>
+
+      <img
+        id="trainingHeroMainImage"
+        src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655"
+        alt="Training session"
+      />
+
+      <button class="trainingHeroNav trainingHeroNext" onclick="trainingHeroNext()">›</button>
     </div>
 
-    <section class="images-c">
-        <div class="images-x">
-            <img src="https://th.bing.com/th/id/OIP.MBlOJPg-beF5E6q2yR5k9gHaLH?w=115&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.7&pid=1.7&rm=3&ucfimg=1">
-        </div>
-        <div class="img-y">
-            <div class="img1">
-                <img src="https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?cs=srgb&dl=pexels-craigmdennis-205421.jpg&fm=jpg">
-                <div>
-                    <h2>Etium tincidunt ullamcorper</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolorem magni laudantium ad nihil illum! Dignissimos reiciendis maxime debitis</p>
-                </div>
-            </div>
-             <div class="img1">
-                <img src="https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?cs=srgb&dl=pexels-craigmdennis-205421.jpg&fm=jpg">
-                <div>
-                    <h2>Sed et finibus tortor</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolorem magni laudantium ad nihil illum! Dignissimos reiciendis maxime debitis</p>
-                </div>
-            </div>
-             <div class="img1">
-                <img src="https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?cs=srgb&dl=pexels-craigmdennis-205421.jpg&fm=jpg">
-                <div>
-                    <h2>vestibulum sit amet</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolorem magni laudantium ad nihil illum! Dignissimos reiciendis maxime debitis</p>
-                </div>
-            </div>
+    <div class="trainingHeroThumbs">
+      <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655" class="trainingHeroThumb active" onclick="trainingHeroGo(0)">
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786" class="trainingHeroThumb" onclick="trainingHeroGo(1)">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" class="trainingHeroThumb" onclick="trainingHeroGo(2)">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" class="trainingHeroThumb" onclick="trainingHeroGo(3)">
+    </div>
 
-        </div>
+  </div>
+</section>
 
-    </section>
+<section class="oppty-projects-section">
+  <h2 class="oppty-projects-heading">
+    Build <span>Industry Grade Projects</span>
+  </h2>
+
+  <div class="oppty-projects-scroll-wrapper">
+    <div class="oppty-projects-track">
+
+      <div class="oppty-project-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/airbnb/airbnb-original.svg" />
+        <div>
+          <h3>Airbnb Clone</h3>
+          <p>
+            Build a full-stack travel & listing platform with authentication,
+            bookings, payments, and dashboards.
+          </p>
+        </div>
+      </div>
+
+      <div class="oppty-project-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+        <div>
+          <h3>Zerodha Clone</h3>
+          <p>
+            Create a stock-trading platform using MERN stack, REST APIs,
+            charts, and secure authentication.
+          </p>
+        </div>
+      </div>
+
+      <div class="oppty-project-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
+        <div>
+          <h3>GitHub-Like Version Control</h3>
+          <p>
+            Implement repositories, commits, branches, and collaboration
+            features from scratch.
+          </p>
+        </div>
+      </div>
+
+      <div class="oppty-project-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
+        <div>
+          <h3>LinkedIn-Style Social Platform</h3>
+          <p>
+            Build a scalable social media app with posts, connections,
+            messaging, and feeds.
+          </p>
+        </div>
+      </div>
+
+      <div class="oppty-project-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webrtc/webrtc-original.svg" />
+        <div>
+          <h3>Live Video Streaming App</h3>
+          <p>
+            Develop a real-time video conferencing platform using WebRTC,
+            Socket.io, and scalable backends.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+  const trainingHeroImages = [
+    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655",
+    "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+  ];
+
+  let trainingHeroIndex = 0;
+  const trainingHeroMain = document.getElementById("trainingHeroMainImage");
+  const trainingHeroThumbs = document.querySelectorAll(".trainingHeroThumb");
+
+  function trainingHeroUpdate() {
+    trainingHeroMain.src = trainingHeroImages[trainingHeroIndex];
+    trainingHeroThumbs.forEach((t, i) =>
+      t.classList.toggle("active", i === trainingHeroIndex)
+    );
+  }
+
+  function trainingHeroNext() {
+    trainingHeroIndex = (trainingHeroIndex + 1) % trainingHeroImages.length;
+    trainingHeroUpdate();
+  }
+
+  function trainingHeroPrev() {
+    trainingHeroIndex =
+      (trainingHeroIndex - 1 + trainingHeroImages.length) % trainingHeroImages.length;
+    trainingHeroUpdate();
+  }
+
+  function trainingHeroGo(i) {
+    trainingHeroIndex = i;
+    trainingHeroUpdate();
+  }
+</script>
+
+<script>
+  const opptyProjectsWrapper = document.querySelector('.oppty-projects-scroll-wrapper');
+  const opptyProjectsTrack = document.querySelector('.oppty-projects-track');
+
+  window.addEventListener('scroll', () => {
+    const rect = opptyProjectsWrapper.getBoundingClientRect();
+    const scrollProgress = Math.min(
+      Math.max(-rect.top / rect.height, 0),
+      1
+    );
+
+    const maxTranslate =
+      opptyProjectsTrack.scrollWidth - window.innerWidth;
+
+    opptyProjectsTrack.style.transform =
+      `translateX(-${scrollProgress * maxTranslate}px)`;
+  });
+</script>
+
+
 </body>
 </html>

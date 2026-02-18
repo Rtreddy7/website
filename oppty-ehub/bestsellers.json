@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": "p1",
+      "name": "DJI Osmo Action 4 Pro Adventure Combo 4K",
+      "price": 45990,
+      "mrp": 49990,
+      "rating": 4.6,
+      "ratingCount": 218,
+      "imageSrc": "camera/dji osmo.jpg",
+      "href": "/product/dji-osmo-action-4"
+    },
+    {
+      "id": "p2",
+      "name": "Fujifilm Instax Mini 12 Instant Camera (Mint Green)",
+      "price": 7499,
+      "mrp": 7999,
+      "rating": 4.5,
+      "ratingCount": 154,
+      "imageSrc": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/a10ad746-668e-49b6-931f-2d27c4e07ada.__CR0,0,800,600_PT0_SX800_V1___.jpg",
+      "href": "/product/instax-mini-12-mint"
+    },
+    {
+      "id": "p3",
+      "name": "DJI Osmo Pocket 3",
+      "price": 7499,
+      "mrp": 7999,
+      "rating": 4.5,
+      "ratingCount": 131,
+      "imageSrc": "https://www.cined.com/content/uploads/2023/10/DJI-osmo-Pocket-3-nature1.jpg",
+      "href": "/product/instax-mini-12-pink"
+    },
+    {
+      "id": "p4",
+      "name": "Sony ZV-E10 Mirrorless Vlogging Camera (Body Only)",
+      "price": 54990,
+      "mrp": 59990,
+      "rating": 4.7,
+      "ratingCount": 96,
+      "imageSrc": "https://static.bhphoto.com/images/rich_content/desktop/IMG_2283996.jpg",
+      "href": "/product/sony-zv-e10"
+    },
+    {
+      "id": "p5",
+      "name": "Canon EOS 1500D DSLR Camera with 18-55mm Lens",
+      "price": 30990,
+      "mrp": 34990,
+      "rating": 4.4,
+      "ratingCount": 412,
+      "imageSrc": "https://i.gadgets360cdn.com/large/Canon_EOS_1500D_thumb_ndtv_1528789901800.jpg",
+      "href": "/product/canon-eos-1500d"
+    },
+    {
+      "id": "p6",
+      "name": "Nikon AF-S 50mm f/1.8G Prime Lens",
+      "price": 11990,
+      "mrp": 13990,
+      "rating": 4.6,
+      "ratingCount": 205,
+      "imageSrc": "https://miro.medium.com/1*GrF9gJGV4xz_gYcAORBkAw.jpeg",
+      "href": "/product/nikon-50mm-1-8g"
+    }
+  ]
+}

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevAcademy - Course Landing Page</title>
+    <link rel="stylesheet" href="../css/lp.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top Offer Badge -->
+    <div class="top-badge">
+        <span class="badge-1">NEW</span>
+        <p>Next batch starts soon — Limited seats available</p>
+        <a href="#">Know more →</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container-h">
+
+            <!-- Logo -->
+            <div class="logo">
+                <img src="../images/oppty.png" alt="Oppty Logo" />
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+
+                <a href="../index.html" class="nav-link" data-page="home">Home</a>
+
+                <div class="dropdown">
+                    <button class="nav-link dropdown-btn" data-page="programs">
+                        Programs <span>▾</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="./lp.html">Learning Path</a>
+                    </div>
+                </div>
+
+                <a href="./ct.html" class="nav-link" data-page="corporate">
+                    Corporate Training
+                </a>
+
+                <a href="./contact.html" class="nav-link" data-page="contact">
+                    Contact Us
+                </a>
+
+                <a href="./login.html" target="_blank" class="login-btn">Login →</a>
+
+            </nav>
+        </div>
+    </header>
+
+
+
+    
+<section style="margin-top: 30px; margin-bottom: 30px;">
+    <!-- Background Layers -->
+    <div class="bg-mesh"></div>
+    <div class="bg-grid"></div>
+
+
+    <div>
+        <div class="container">
+            <div class="hero-grid">
+                
+                <!-- Left Content -->
+                <div id="hero-content" class="fade-element">
+                    <div class="badge">
+                        Batch Starts Soon
+                    </div>
+                    
+                    <h1>
+                        Master <span id="course-title" class="gradient-text">Java Fullstack</span>
+                    </h1>
+                    
+                    <p id="course-description" class="description">
+                        Building enterprise-grade applications with Spring Boot and Microservices architecture.
+                    </p>
+
+                    <div id="course-tags" class="tags">
+                        <!-- Tags will be injected -->
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn-primary">
+                            Start Learning Now
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                        <button class="btn-secondary">View Syllabus</button>
+                    </div>
+                </div>
+
+                <!-- Right Image -->
+                <div class="image-wrapper">
+                    <div id="deco-blob" class="deco-blob blob-1"></div>
+                    <div id="hero-image-container" class="fade-element">
+                        <div class="main-card">
+                            <img id="course-image" src="" alt="Course">
+                            
+                            <div class="overlay-card">
+                                <div id="icon-box" class="icon-box">
+                                    <!-- Icon injected -->
+                                </div>
+                                <div>
+                                    <h4 id="course-subtitle">Enterprise Apps</h4>
+                                    <p>Professional Track</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="trainingHeroSection">
+
+  <!-- LEFT CONTENT -->
+  <div class="trainingHeroContent">
+    <span class="trainingHeroBadge">New Batch Open</span>
+
+    <h1 class="trainingHeroTitle">
+      Get Job-Ready with <span>Industry-Focused Training</span>
+    </h1>
+
+    <p class="trainingHeroDesc">
+      Learn in-demand skills through hands-on projects, real-world scenarios,
+      and expert-led sessions designed to make you industry ready from day one.
+    </p>
+
+    <ul class="trainingHeroPoints">
+      <li>✔ Practical & real-time training</li>
+      <li>✔ Mentorship from industry experts</li>
+      <li>✔ Placement & career guidance</li>
+    </ul>
+
+    <button class="trainingHeroCTA">Request a Call Back</button>
+  </div>
+
+  <!-- RIGHT SLIDER -->
+  <div class="trainingHeroSlider">
+
+    <div class="trainingHeroSliderStage">
+      <button class="trainingHeroNav trainingHeroPrev" onclick="trainingHeroPrev()">‹</button>
+
+      <img
+        id="trainingHeroMainImage"
+        src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655"
+        alt="Training session"
+      />
+
+      <button class="trainingHeroNav trainingHeroNext" onclick="trainingHeroNext()">›</button>
+    </div>
+
+    <div class="trainingHeroThumbs">
+      <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655" class="trainingHeroThumb active" onclick="trainingHeroGo(0)">
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786" class="trainingHeroThumb" onclick="trainingHeroGo(1)">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" class="trainingHeroThumb" onclick="trainingHeroGo(2)">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" class="trainingHeroThumb" onclick="trainingHeroGo(3)">
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-white text-slate-800">
+
+    <div class="max-w-7xl mx-auto px-4 py-12 lg:py-24">
+        <div class="flex flex-col lg:flex-row relative" style="padding-left: 20px;">
+            
+            <!-- Left Side: Sticky Content -->
+            <div class="lg:w-1/3 lg:sticky lg:top-24 h-fit mb-12 lg:mb-0 pr-8">
+                <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-[#1e293b]">
+                    Get Ready for Your <br />
+                    IT Career in <span class="text-indigo-600 sketch-underline">3 Steps</span>
+                </h1>
+                
+                <div class="mt-12 flex items-center space-x-3 mb-8">
+                    <div class="w-4 h-4 rounded-full bg-blue-500 ring-4 ring-blue-100"></div>
+                    <span class="text-slate-600 font-medium italic">Batch starts today</span>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-md font-semibold transition shadow-lg shadow-indigo-200">
+                        Enroll Now
+                    </button>
+                    <button class="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-md font-semibold hover:bg-indigo-50 transition">
+                        Book a Free Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Scrollable Content with Spine -->
+            <div class="lg:w-2/3 lg:pl-12 relative ml-2 lg:ml-0 border-l-2 border-slate-100">
+                
+                <!-- Step 1: Fundamentals -->
+                <div class="mb-24 relative pl-8 lg:pl-16">
+                    <div class="step-node">1</div>
+                    
+                    <div class="max-w-2xl">
+                        <h2 class="text-2xl font-bold mb-6">Fundamentals</h2>
+                        
+                        <div class="space-y-4 text-slate-600 mb-8">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>
+                                <span>Duration: <span class="font-semibold text-slate-800">2 Months</span></span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="monitor" class="w-4 h-4 text-slate-400"></i>
+                                <span>3 Hours Classes and 3 Hours Labs per day</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
+                                <span>Courses Include</span>
+                            </div>
+                        </div>
+
+                        <!-- Course Badges -->
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <div class="flex flex-col items-center justify-center p-3 w-20 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md transition">
+                                <i data-lucide="code" class="text-orange-500 mb-2"></i>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase">HTML</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-3 w-20 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md transition">
+                                <i data-lucide="layout" class="text-blue-500 mb-2"></i>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase">CSS</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-3 w-20 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md transition">
+                                <i data-lucide="terminal" class="text-yellow-500 mb-2"></i>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase">Python</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-3 w-20 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md transition">
+                                <i data-lucide="database" class="text-blue-400 mb-2"></i>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center text-indigo-600 font-semibold mb-12 cursor-pointer group">
+                            <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
+                            <span>Fundamentals Exam</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition"></i>
+                            <span class="ml-auto text-sm">View Curriculum</span>
+                        </div>
+
+                        <!-- Slider -->
+                        <div class="bg-blue-50 rounded-2xl p-8 flex flex-col items-center justify-center relative overflow-hidden min-h-[300px]">
+                            <div id="slider-container" class="relative z-10 text-center w-full">
+                                <img src="https://nxtwave.imgix.net/ccbp-website/nxtwave-intensive-2.0/food-munch-project-status.png" alt="Step 1" class="slider-image active mx-auto rounded-lg mix-blend-multiply opacity-80">
+                                <img src="https://nxtwave.imgix.net/ccbp-website/nxtwave-intensive-2.0/website-chat-project-status.png" alt="Step 2" class="slider-image mx-auto rounded-lg mix-blend-multiply opacity-80">
+                                <img src="https://nxtwave.imgix.net/ccbp-website/intensive/slider-fundamenatils-image.png" alt="Step 3" class="slider-image mx-auto rounded-lg mix-blend-multiply opacity-80">
+                            </div>
+                            <div class="flex space-x-2 mt-6" id="slider-dots">
+                                <div class="w-6 h-2 rounded-full bg-indigo-600 transition-all dot"></div>
+                                <div class="w-2 h-2 rounded-full bg-slate-300 transition-all dot"></div>
+                                <div class="w-2 h-2 rounded-full bg-slate-300 transition-all dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Job Tracks -->
+                <div class="mb-24 relative pl-8 lg:pl-16">
+                    <div class="step-node">2</div>
+                    <h2 class="text-2xl font-bold mb-2">Choose your Job Track</h2>
+                    <p class="text-slate-500 mb-8 max-w-xl">
+                        Based on your Fundamentals exam score, we'll also recommend you a suitable Job Track.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Card 1 -->
+                        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col">
+                            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-indigo-50 text-indigo-600 rounded-md w-fit mb-4">Option 1</span>
+                            <h3 class="text-lg font-bold mb-4">MERN Full Stack</h3>
+                            <div class="space-y-2 mb-6 text-sm text-slate-500">
+                                <div class="flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-2"></i> Duration: <span class="font-semibold text-slate-700 ml-1">6 Months</span></div>
+                                <div class="flex items-center"><i data-lucide="trending-up" class="w-3.5 h-3.5 mr-2"></i> Salary: <span class="font-semibold text-slate-700 ml-1">3 LPA - 12 LPA</span></div>
+                            </div>
+                            <div class="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+                                <span class="text-xs text-green-600 font-medium flex items-center"><i data-lucide="check-circle" class="w-3 h-3 mr-1"></i> Seats Available</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition"></i>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col">
+                            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-orange-50 text-orange-600 rounded-md w-fit mb-4">Option 2</span>
+                            <h3 class="text-lg font-bold mb-4">Java Full Stack</h3>
+                            <div class="space-y-2 mb-6 text-sm text-slate-500">
+                                <div class="flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-2"></i> Duration: <span class="font-semibold text-slate-700 ml-1">6 Months</span></div>
+                                <div class="flex items-center"><i data-lucide="trending-up" class="w-3.5 h-3.5 mr-2"></i> Salary: <span class="font-semibold text-slate-700 ml-1">3 LPA - 12 LPA</span></div>
+                            </div>
+                            <div class="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+                                <span class="text-xs text-green-600 font-medium flex items-center"><i data-lucide="check-circle" class="w-3 h-3 mr-1"></i> Seats Available</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition"></i>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col">
+                            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-purple-50 text-purple-600 rounded-md w-fit mb-4">Option 3</span>
+                            <h3 class="text-lg font-bold mb-4">QA/Automation Testing</h3>
+                            <div class="space-y-2 mb-6 text-sm text-slate-500">
+                                <div class="flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-2"></i> Duration: <span class="font-semibold text-slate-700 ml-1">3 Months</span></div>
+                                <div class="flex items-center"><i data-lucide="trending-up" class="w-3.5 h-3.5 mr-2"></i> Salary: <span class="font-semibold text-slate-700 ml-1">2 LPA - 7 LPA</span></div>
+                            </div>
+                            <div class="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+                                <span class="text-xs text-green-600 font-medium flex items-center"><i data-lucide="check-circle" class="w-3 h-3 mr-1"></i> Seats Available</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition"></i>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col">
+                            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-green-50 text-green-600 rounded-md w-fit mb-4">Option 4</span>
+                            <h3 class="text-lg font-bold mb-4">Data Analytics</h3>
+                            <div class="space-y-2 mb-6 text-sm text-slate-500">
+                                <div class="flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-2"></i> Duration: <span class="font-semibold text-slate-700 ml-1">3 Months</span></div>
+                                <div class="flex items-center"><i data-lucide="trending-up" class="w-3.5 h-3.5 mr-2"></i> Salary: <span class="font-semibold text-slate-700 ml-1">2 LPA - 7 LPA</span></div>
+                            </div>
+                            <div class="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+                                <span class="text-xs text-green-600 font-medium flex items-center"><i data-lucide="check-circle" class="w-3 h-3 mr-1"></i> Seats Available</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Placement Assistance -->
+                <div class="mb-12 relative pl-8 lg:pl-16">
+                    <div class="step-node">3</div>
+                    <h2 class="text-2xl font-bold mb-2">Placement Assistance for Your Job</h2>
+                    <p class="text-slate-500 mb-8">Up to 18 Months from the date of joining</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-12">
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-red-50 transition"><i data-lucide="calculator" class="w-4 h-4 text-red-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">Aptitude Training</span>
+                        </div>
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-blue-50 transition"><i data-lucide="message-square" class="w-4 h-4 text-blue-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">Soft Skills Training</span>
+                        </div>
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-purple-50 transition"><i data-lucide="file-text" class="w-4 h-4 text-purple-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">Resume Preparation</span>
+                        </div>
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-indigo-50 transition"><i data-lucide="search" class="w-4 h-4 text-indigo-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">AI-Powered Mock Interviews</span>
+                        </div>
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-orange-50 transition"><i data-lucide="users" class="w-4 h-4 text-orange-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">Mock Interviews by Panelists</span>
+                        </div>
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-teal-50 transition"><i data-lucide="clock" class="w-4 h-4 text-teal-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">Scheduling Interviews</span>
+                        </div>
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-pink-50 transition"><i data-lucide="settings" class="w-4 h-4 text-pink-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">Access to 300+ Interviews</span>
+                        </div>
+                        <div class="flex items-center space-x-3 group">
+                            <div class="p-2 bg-slate-50 rounded-lg group-hover:bg-green-50 transition"><i data-lucide="shield-check" class="w-4 h-4 text-green-500"></i></div>
+                            <span class="text-sm font-medium text-slate-700">Access to Placement Portal</span>
+                        </div>
+                    </div>
+
+                    <!-- Mock Dashboard -->
+                    <div class="bg-slate-50 rounded-3xl p-8 flex flex-col items-center">
+                        <div class="bg-white rounded-xl shadow-xl p-4 w-full max-w-md border border-slate-100 overflow-hidden">
+                           <div class="flex items-center justify-between mb-4 border-b pb-3">
+                             <span class="font-bold text-sm">Placement Dashboard</span>
+                             <div class="flex space-x-1">
+                               <div class="w-2 h-2 rounded-full bg-slate-200"></div>
+                               <div class="w-2 h-2 rounded-full bg-slate-200"></div>
+                             </div>
+                           </div>
+                           <div class="space-y-3">
+                             <div class="p-3 bg-blue-50 border border-blue-100 rounded-lg flex justify-between items-center">
+                               <div>
+                                 <p class="text-[10px] uppercase font-bold text-blue-400">TCS</p>
+                                 <p class="text-sm font-bold">Software Engineer</p>
+                               </div>
+                               <span class="bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full">Applied</span>
+                             </div>
+                             <div class="p-3 bg-slate-50 border border-slate-100 rounded-lg flex justify-between items-center">
+                               <div>
+                                 <p class="text-[10px] uppercase font-bold text-slate-400">Wipro</p>
+                                 <p class="text-sm font-bold">Full Stack Dev</p>
+                               </div>
+                               <span class="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full">Shortlisted</span>
+                             </div>
+                           </div>
+                        </div>
+                     </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="courses-choosing-section">
+  <h2>Courses You Can Choose</h2>
+
+  <div class="courses-ch-wrapper">
+
+    <!-- Course 1 -->
+    <div class="course-ch-card">
+      <div class="course-ch-info">
+        <span class="course-ch-label">COURSE 1</span>
+        <h3>Web Development Full Stack</h3>
+
+        <p class="meta">⏱ 6 Months</p>
+        <p class="meta">💻 10+ Real-Time Projects</p>
+
+        <button>View Curriculum</button>
+      </div>
+
+      <div class="tech-slider">
+        <div class="slider-track">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg">
+
+          <!-- Duplicate -->
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg">
+        </div>
+      </div>
+    </div>
+
+    <!-- Course 2 -->
+    <div class="course-ch-card yellow">
+      <div class="course-ch-info">
+        <span class="course-ch-label">COURSE 2</span>
+        <h3>Java Full Stack Development</h3>
+
+        <p class="meta">⏱ 6 Months</p>
+        <p class="meta">💻 10+ Real-Time Projects</p>
+
+        <button>View Curriculum</button>
+      </div>
+
+      <div class="tech-slider">
+        <div class="slider-track">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
+
+          <!-- Duplicate -->
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="oppty-doubt-section">
+
+  <!-- Left Visual Stack -->
+  <div class="oppty-doubt-visuals">
+
+    <div class="oppty-doubt-item oppty-doubt-item-1">
+      <img src="https://images.unsplash.com/photo-1603575448878-868a20723f5d" alt="Doubt Solved" />
+      <p><strong>[SOLVED]</strong> Linked List</p>
+    </div>
+
+    <div class="oppty-doubt-item oppty-doubt-item-2">
+      <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" alt="Doubt Solved" />
+      <p><strong>[SOLVED]</strong> Graph DFS</p>
+    </div>
+
+    <div class="oppty-doubt-item oppty-doubt-item-3">
+      <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935" alt="Doubt Solved" />
+      <p><strong>[SOLVED]</strong> Prime Number</p>
+    </div>
+
+  </div>
+
+  <!-- Right Content -->
+  <div class="oppty-doubt-content">
+    <h2>
+      Exclusive <span> Doubt Assistance</span>
+    </h2>
+
+    <p class="oppty-doubt-subtitle">
+      Get <strong>1:1 doubt support</strong> from expert mentors, dedicated teaching
+      assistants, and an active learning community.
+    </p>
+
+    <ul class="oppty-doubt-features">
+      <li>✔ Instant doubt resolution during practice sessions</li>
+      <li>✔ Dedicated TAs for every batch</li>
+      <li>✔ Real-time code debugging and walkthroughs</li>
+      <li>✔ Peer-to-peer discussion support</li>
+      <li>✔ Deep concept clarification with examples</li>
+    </ul>
+
+    <button class="oppty-doubt-cta">
+      Enroll Now →
+    </button>
+  </div>
+
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+   
+    <div class="footer-col">
+      <img src="../images/oppty.png">
+      <p>
+        Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>108/43, Vijaya Lakshmi Enclave,1st Floor, H.No 2, PJR Enclave
+           Rd, Gangaram, 
+          ICRISAT Colony, Hyderabad, Telangana 500050</li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>  
+    </div>
+  <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>Udaipur - Plot No: 26, 100 Feet Rd, Shobhagpura, Udaipur, Rajasthan 313011
+        </li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>
+       <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    
+    </div>
+    
+    <div class="footer-col">
+      <h3>Our Courses</h3>
+      <ul class="links">
+        <li>Web Design</li>
+        <li>Apps Design</li>
+        <li>Marketing</li>
+        <li>Research</li>
+        <li>SEO</li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      
+
+      <h3 class="mt">Quick Links</h3>
+      <ul class="links">
+        <li>Privacy Policy</li>
+        <li>Terms & Condition</li>
+        <li>Regular FAQs</li>
+        <li>Help & Support</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>©2025 Oppty. All Rights Reserved.</p>
+    <p>Designed by <span>Oppty Techhub</span> Distributed by <span>Oppty</span></p>
+  </div>
+</footer>
+
+
+    <script>
+        const courses = [
+            {
+                title: "Java Fullstack",
+                subtitle: "Enterprise Apps",
+                description: "Master Spring Boot, Microservices, and Angular. Build scalable, robust backend systems with the world's most popular enterprise language.",
+                tags: ["Spring Boot", "Hibernate", "Angular", "MySQL"],
+                gradient: "var(--grad-java)",
+                icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>',
+                image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=3840&auto=format&fit=crop"
+            },
+            {
+                title: "Python Fullstack",
+                subtitle: "AI & Web Apps",
+                description: "Combine the power of Django and React. Learn to build data-driven web applications with Python's clean syntax and powerful libraries.",
+                tags: ["Django", "PostgreSQL", "React", "Docker"],
+                gradient: "var(--grad-python)",
+                icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>',
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=3840&auto=format&fit=crop"
+            },
+            {
+                title: "MERN Stack",
+                subtitle: "Modern Web Standard",
+                description: "Become a JavaScript pro using MongoDB, Express, React, and Node.js. Build real-time, high-performance applications from scratch.",
+                tags: ["MongoDB", "Express", "React", "Node.js"],
+                gradient: "var(--grad-mern)",
+                icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=3840&auto=format&fit=crop"
+            }
+        ];
+
+        let currentIndex = 0;
+        const contentEl = document.getElementById('hero-content');
+        const imageEl = document.getElementById('hero-image-container');
+
+        function updateHero(index) {
+            currentIndex = index;
+            const course = courses[currentIndex];
+
+            // Hide with animation
+            contentEl.classList.add('is-hidden');
+            imageEl.classList.add('is-hidden-image');
+
+            setTimeout(() => {
+                // Update text & colors
+                document.getElementById('course-title').textContent = course.title;
+                document.getElementById('course-title').style.background = course.gradient;
+                document.getElementById('course-title').style.webkitBackgroundClip = "text";
+                document.getElementById('course-description').textContent = course.description;
+                document.getElementById('course-subtitle').textContent = course.subtitle;
+                
+                // Set background image and icon colors
+                document.getElementById('course-image').src = course.image;
+                document.getElementById('icon-box').innerHTML = course.icon;
+                document.getElementById('icon-box').style.background = course.gradient;
+                document.getElementById('deco-blob').style.background = course.gradient;
+
+                // Update tags
+                const tagsContainer = document.getElementById('course-tags');
+                tagsContainer.innerHTML = course.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+                // Show with animation
+                contentEl.classList.remove('is-hidden');
+                imageEl.classList.remove('is-hidden-image');
+            }, 450);
+        }
+
+        // Auto transition - 5 seconds
+        let autoSlide = setInterval(() => {
+            let next = (currentIndex + 1) % courses.length;
+            updateHero(next);
+        }, 5000);
+
+        // Start initial display
+        updateHero(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const trainingHeroImages = [
+    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655",
+    "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+  ];
+
+  let trainingHeroIndex = 0;
+  const trainingHeroMain = document.getElementById("trainingHeroMainImage");
+  const trainingHeroThumbs = document.querySelectorAll(".trainingHeroThumb");
+
+  function trainingHeroUpdate() {
+    trainingHeroMain.src = trainingHeroImages[trainingHeroIndex];
+    trainingHeroThumbs.forEach((t, i) =>
+      t.classList.toggle("active", i === trainingHeroIndex)
+    );
+  }
+
+  function trainingHeroNext() {
+    trainingHeroIndex = (trainingHeroIndex + 1) % trainingHeroImages.length;
+    trainingHeroUpdate();
+  }
+
+  function trainingHeroPrev() {
+    trainingHeroIndex =
+      (trainingHeroIndex - 1 + trainingHeroImages.length) % trainingHeroImages.length;
+    trainingHeroUpdate();
+  }
+
+  function trainingHeroGo(i) {
+    trainingHeroIndex = i;
+    trainingHeroUpdate();
+  }
+    </script>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Simple Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-image');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                dots[i].classList.remove('bg-indigo-600', 'w-6');
+                dots[i].classList.add('bg-slate-300', 'w-2');
+            });
+
+            slides[index].classList.add('active');
+            dots[index].classList.remove('bg-slate-300', 'w-2');
+            dots[index].classList.add('bg-indigo-600', 'w-6');
+        }
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 4000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": "mirrorless",
+      "title": "Mirrorless Cameras",
+      "subtitle": "Light, versatile, and new-age",
+      "imageSrc": "https://images.pexels.com/photos/20255589/pexels-photo-20255589.jpeg?cs=srgb&dl=pexels-m-noor-tm-435414576-20255589.jpg&fm=jpg",
+      "href": "/cameras/mirrorless"
+    },
+    {
+      "id": "dslr",
+      "title": "DSLR Cameras",
+      "subtitle": "Durable, reliable, and robust",
+      "imageSrc": "https://i.pinimg.com/736x/e7/5d/db/e75ddbda351d44e24b6b8099fa200aad.jpg",
+      "href": "/cameras/dslr"
+    },
+    {
+      "id": "instant",
+      "title": "Instant Cameras",
+      "subtitle": "Point, shoot, print — it’s that simple",
+      "imageSrc": "https://www.instax.in/cdn/shop/files/CopyofCopyof2_4.webp?v=1710487175",
+      "href": "/cameras/instant"
+    },
+    {
+      "id": "action",
+      "title": "Action Cameras",
+      "subtitle": "Document your adrenaline-rush moments",
+      "imageSrc": "https://cdn.thewirecutter.com/wp-content/media/2025/06/BEST-ACTION-CAMERAS-2374-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
+      "href": "/cameras/action"
+    },
+    {
+      "id": "lenses",
+      "title": "Camera Lenses",
+      "subtitle": "Wide, prime, telephoto — upgrade your kit",
+      "imageSrc": "https://blog.henrys.com/wp-content/uploads/Camera-Lens.jpg",
+      "href": "/lenses"
+    },
+    {
+      "id": "binoculars",
+      "title": "Binoculars",
+      "subtitle": "Sharp long-distance viewing",
+      "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQffYrrzkjC-oFJoBScQboOpgEHKdTroo7EFA&s",
+      "href": "/optics/binoculars"
+    }
+  ]
+}

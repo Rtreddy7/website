@@ -1,0 +1,2631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>E-Hub Header</title>
+
+<style>
+  *{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+  body{margin:0;background:#f1f3f6}
+
+  /* ===== TOP HEADER ===== */
+  .top-header{
+    background: #2874f0;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    padding:12px 20px;
+    gap:18px;
+  }
+  .logo{position:relative;display:flex;align-items:center}
+  .logo img{height:46px}
+  .logo span{
+    position:absolute;
+    right:-10px;
+    bottom:-6px;
+    font-size:11px;
+    color:#ff9f00;
+    font-weight:700;
+    letter-spacing:.5px;
+  }
+  .search{flex:1;display:flex;justify-content:center}
+  .search input{
+    width:min(520px, 100%);
+    padding:10px 14px;
+    border:none;
+    border-radius:4px;
+    outline:none;
+  }
+  .actions{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:22px;
+    white-space:nowrap;
+  }
+  .action{
+    cursor:pointer;
+    position:relative;
+    font-size:14px;
+    opacity:.95;
+    user-select:none;
+  }
+  .action:hover{opacity:1}
+
+  /* ===== USER MENU (ONLY WHEN LOGGED IN) ===== */
+  .user-menu{
+    display:none;
+    position:fixed;
+    background:#fff;
+    color:#111;
+    width:230px;
+    border-radius:10px;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+    z-index:3000;
+    overflow:hidden;
+  }
+  .user-menu .head{
+    padding:12px 14px;
+    font-weight:700;
+    border-bottom:1px solid #eee;
+    background:#fafafa;
+  }
+  .user-menu .item{
+    padding:10px 14px;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+  }
+  .user-menu .item:hover{background:#f2f2f2}
+
+  /* ===== CATEGORY BAR (2 ROWS, FILLS SPACE) ===== */
+  .category-bar{
+    background:#fff;
+    padding:14px 18px;
+    border-bottom:1px solid #ddd;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));
+    gap:14px 16px; /* row gap + col gap */
+    align-items:stretch;
+  }
+
+  /* each category becomes a "card" that stretches */
+  .cat{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    cursor:pointer;
+    position:relative;
+    padding:12px 14px;
+    border-radius:14px;
+    background:#ffffff;
+    border:1px solid #f0f0f0;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+  }
+  .cat:hover{
+    background:#f8f8f8;
+    border-color:#e6e6e6;
+  }
+
+  /* BIGGER + CLEARER ICONS */
+  .cat img{
+    width:62px;     /* INCREASED */
+    height:62px;    /* INCREASED */
+    object-fit:cover;
+    border-radius:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+    background:#fff;
+    flex:0 0 auto;
+  }
+  .cat span{
+    font-size:15px;
+    font-weight:800;
+    color:#222;
+  }
+
+  /* ===== MEGA MENU ===== */
+  .mega{
+    display:none;
+    position:fixed;
+    background:#fff;
+    width:min(1100px, calc(100vw - 40px));
+    max-height:460px;
+    overflow:auto;
+    padding:22px;
+    border-radius:14px;
+    box-shadow:0 16px 40px rgba(0,0,0,.25);
+    z-index:2500;
+  }
+  .mega-grid{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0,1fr));
+    gap:22px 26px;
+  }
+  .mega h4{
+    margin:0 0 10px;
+    font-size:14px;
+    color:#2874f0;
+  }
+  .mega .link{
+    font-size:13px;
+    padding:5px 0;
+    color:#333;
+    cursor:pointer;
+    line-height:1.2;
+  }
+  .mega .link:hover{color:#ff9f00}
+
+  /* ===== LOGIN MODAL ===== */
+  .modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.62);
+    backdrop-filter:blur(6px);
+    align-items:center;
+    justify-content:center;
+    z-index:4000;
+  }
+  .modal.active{display:flex}
+  .card{
+    width:min(420px, calc(100vw - 40px));
+    backgroundlbackground:#fff;
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 16px 40px rgba(0,0,0,.25);
+  }
+  .card h3{margin:0 0 12px}
+  .card p{margin:0 0 14px;color:#666;font-size:13px}
+  .card input{
+    width:100%;
+    padding:11px 12px;
+    margin-top:10px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+  }
+
+  .card p{
+    color: #111;
+  }
+  .card input:focus{border-color:#2874f0}
+  .card button{
+    width:100%;
+    padding:11px 12px;
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+    background:#2874f0;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .hint{margin-top:10px;font-size:12px;color:#777}
+
+  /* ===== E-HUB HERO ===== */
+.eh-hero{
+  padding: 18px 18px 24px;
+  background: #f1f3f6;
+}
+.eh-hero__grid{
+  display:grid;
+  grid-template-columns: 1.9fr 1fr;
+  gap:16px;
+  align-items:stretch;
+  max-width:1280px;
+  margin:0 auto;
+}
+
+/* Slider container */
+.eh-slider{
+  position:relative;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+  overflow:hidden;
+  min-height:540px;
+}
+
+/* top row */
+.eh-slider__top{
+  position:absolute;
+  top:14px; left:14px; right:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:4;
+}
+.eh-slider__tag,
+.eh-slider__count{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:.6px;
+  color:#111;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(6px);
+}
+
+/* viewport */
+.eh-slider__viewport{
+  height:540px;
+  position:relative;
+}
+
+/* slide */
+.eh-slide{
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:14px;
+  padding:56px 22px 18px;
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .35s ease, transform .35s ease;
+}
+.eh-slide.is-active{
+  opacity:1;
+  transform:translateY(0);
+}
+.eh-slide__content{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
+  padding:6px 6px 6px 10px;
+}
+.eh-slide__headline{
+  font-size:44px;
+  line-height:1.05;
+  font-weight:950;
+  color:#111;
+  margin:0;
+}
+.eh-slide__subline{
+  font-size:15px;
+  color:#444;
+  margin:0;
+  line-height:1.45;
+  max-width:520px;
+}
+.eh-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.eh-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 14px;
+  border-radius:12px;
+  font-weight:900;
+  text-decoration:none;
+  font-size:14px;
+  border:1px solid #e7e7e7;
+  color:#111;
+  background:#fff;
+}
+.eh-btn--primary{
+  background:#2874f0;
+  border-color:#2874f0;
+  color:#fff;
+}
+.eh-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.eh-badge{
+  font-size:12px;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid #eee;
+  background:#fafafa;
+  color:#222;
+  font-weight:800;
+}
+
+/* visual area */
+.eh-slide__visual{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  min-height:460px;
+  background:#f6f7fb;
+}
+.eh-visual__img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* collage layout */
+.eh-collage{position:absolute;inset:0}
+.eh-collage__a{position:absolute;left:8%;top:14%;width:52%;height:62%;border-radius:18px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.eh-collage__b{position:absolute;right:10%;top:10%;width:48%;height:48%;border-radius:18px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.16)}
+.eh-collage__c{position:absolute;right:8%;bottom:2%;width:52%;height:44%;border-radius:18px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.16)}
+.eh-collage img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* chips */
+.eh-chip{
+  position:absolute;
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(17,17,17,.82);
+  color:#fff;
+  font-weight:950;
+  font-size:12px;
+  letter-spacing:.4px;
+  backdrop-filter:blur(6px);
+}
+.eh-chip--one{left:14px;bottom:14px}
+.eh-chip--two{right:14px;bottom:14px}
+
+/* nav arrows */
+.eh-slider__nav{
+  position:absolute;
+  bottom:10%;
+  transform:translateY(-50%);
+  width:44px;height:44px;
+  border:none;
+  border-radius:14px;
+  background:rgba(0,0,0,.62);
+    backdrop-filter:blur(6px);
+  box-shadow:0 10px 24px rgba(0,0,0,.15);
+  cursor:pointer;
+  z-index:5;
+  font-size:26px;
+  font-weight:950;
+  color:#fff;
+}
+.eh-slider__nav--prev{left:12px}
+.eh-slider__nav--next{right:12px}
+
+/* bottom */
+.eh-slider__bottom{
+  position:absolute;
+  left:14px;right:14px;bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  z-index:4;
+}
+.eh-dots{display:flex;gap:8px}
+.eh-dot{
+  width:10px;height:10px;
+  border-radius:999px;border:none;
+  cursor:pointer;
+  background:#d7d7d7;
+}
+.eh-dot.is-active{background:#2874f0}
+.eh-progress{
+  flex:1;height:6px;
+  background:#ececec;
+  border-radius:999px;
+  overflow:hidden;
+}
+.eh-progress__bar{
+  height:100%;width:0%;
+  background:#2874f0;
+  transition:width .2s linear;
+}
+
+/* right panels */
+.eh-side{display:flex;flex-direction:column;gap:12px}
+.eh-panel{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+  padding:14px;
+  text-decoration:none;
+  color:inherit;
+}
+.eh-panel__head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:baseline;
+}
+.eh-panel__title{font-weight:950;font-size:14px;color:#111}
+.eh-panel__timer{font-size:12px;font-weight:900;color:#ff7a00}
+.eh-panel__body{display:flex;gap:12px;margin-top:12px;align-items:center}
+.eh-panel__img{
+  width:92px;height:92px;
+  border-radius:16px;
+  object-fit:cover;
+  background:#f3f3f3;
+  flex:0 0 auto;
+}
+.eh-panel__meta{display:flex;flex-direction:column;gap:8px;min-width:0}
+.eh-panel__product{font-weight:950;font-size:14px;color:#111;line-height:1.2}
+.eh-panel__priceRow{display:flex;align-items:baseline;gap:8px}
+.eh-panel__price{font-weight:950;color:#111}
+.eh-panel__mrp{color:#777;text-decoration:line-through;font-size:12px}
+.eh-panel__cta{
+  display:inline-flex;
+  width:max-content;
+  padding:9px 12px;
+  border-radius:12px;
+  font-weight:950;
+  font-size:13px;
+  background:#111;
+  color:#fff;
+}
+
+/* offer strip */
+.eh-strip{
+  background:#111;
+  color:#fff;
+  border-radius:18px;
+  padding:14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+.eh-strip__pill{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  padding:9px 11px;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.3px;
+}
+
+@media (max-width: 980px){
+  .eh-hero__grid{grid-template-columns:1fr}
+  .eh-slider{min-height:520px}
+  .eh-slider__viewport{height:520px}
+  .eh-slide__headline{font-size:38px}
+}
+
+/* ===================== AFTER HERO STYLES ===================== */
+.eh-wrap{max-width:1280px;margin:0 auto}
+.eh-section{padding:18px;background:#f1f3f6}
+.eh-afterhero{padding:14px 18px;background:#f1f3f6}
+
+.eh-services{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.eh-service{
+  background:#fff;border-radius:16px;padding:14px;
+  box-shadow:0 10px 22px rgba(0,0,0,.06);
+  display:flex;gap:12px;align-items:center;
+}
+.eh-service__icon{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:#111;color:#fff;font-size:20px;flex:0 0 auto;
+}
+.eh-service__t{font-weight:900;color:#111}
+.eh-service__d{font-size:12px;color:#666;margin-top:2px}
+
+.eh-sec-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:0 0 12px;
+}
+.eh-sec-head h3{margin:0;font-size:18px;font-weight:950;color:#111}
+.eh-sec-actions{display:flex;gap:8px}
+.eh-sbtn{
+  border:none;border-radius:12px;
+  padding:10px 12px;font-weight:950;
+  background:#fff;cursor:pointer;
+  box-shadow:0 10px 22px rgba(0,0,0,.06);
+}
+.eh-sbtn:hover{background:#f7f7f7}
+
+.eh-tiles{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.eh-tile{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  min-height:160px;
+  background:#111;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+}
+.eh-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.03)}
+.eh-tile__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.12) 70%);
+  padding:16px;
+  display:flex;flex-direction:column;justify-content:center;gap:8px;
+}
+.eh-tile__tag{
+  width:max-content;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  padding:7px 10px;border-radius:999px;
+  font-weight:950;font-size:12px;letter-spacing:.3px;
+}
+.eh-tile__t{color:#fff;font-weight:950;font-size:22px;line-height:1.1}
+.eh-tile__d{color:#f1f1f1;font-size:13px;max-width:320px}
+.eh-tile__cta{
+  width:max-content;
+  background:#fff;color:#111;
+  padding:9px 12px;border-radius:12px;
+  font-weight:950;text-decoration:none;margin-top:6px;
+}
+
+.eh-carousel{
+  background:#fff;border-radius:18px;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+.eh-carousel--brands{padding:4px 0}
+.eh-track{
+  display:flex;gap:12px;
+  padding:14px;
+  overflow:auto;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+}
+.eh-track::-webkit-scrollbar{height:8px}
+.eh-track::-webkit-scrollbar-thumb{background:#d9d9d9;border-radius:999px}
+
+.eh-card{
+  flex:0 0 auto;
+  width:240px;
+  border:1px solid #f0f0f0;
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+  cursor:pointer;
+}
+.eh-card__img{
+  height:150px;background:#eee;position:relative;
+}
+.eh-card__img img{width:100%;height:100%;object-fit:cover;display:block}
+.eh-card__badge{
+  position:absolute;left:10px;top:10px;
+  background:rgba(17,17,17,.85);color:#fff;
+  padding:7px 10px;border-radius:999px;
+  font-weight:950;font-size:12px;
+}
+.eh-card__body{padding:12px}
+.eh-card__t{font-weight:950;color:#111;font-size:14px;line-height:1.2}
+.eh-card__m{color:#666;font-size:12px;margin-top:4px}
+.eh-card__priceRow{display:flex;gap:8px;align-items:baseline;margin-top:10px}
+.eh-card__price{font-weight:950;color:#111}
+.eh-card__mrp{color:#777;text-decoration:line-through;font-size:12px}
+.eh-card__off{color:#0a7d2c;font-weight:950;font-size:12px}
+.eh-card__btn{
+  margin-top:10px;
+  width:100%;
+  border:none;border-radius:12px;
+  padding:10px 12px;
+  font-weight:950;
+  background:#111;color:#fff;
+  cursor:pointer;
+}
+
+.eh-brand{
+  flex:0 0 auto;
+  width:220px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid #f0f0f0;
+  padding:12px;
+  display:flex;align-items:center;gap:12px;
+}
+.eh-brand__logo{
+  width:58px;height:58px;border-radius:16px;
+  background:#f3f3f3;overflow:hidden;flex:0 0 auto;
+}
+.eh-brand__logo img{width:100%;height:100%;object-fit:cover;display:block}
+.eh-brand__t{font-weight:950;color:#111}
+.eh-brand__d{font-size:12px;color:#666;margin-top:2px}
+
+.eh-dealstrip{
+  border-radius:18px;
+  background:linear-gradient(90deg,#111 0%, #2b2b2b 60%, #111 100%);
+  color:#fff;
+  padding:16px;
+  display:flex;justify-content:space-between;gap:14px;align-items:center;
+  box-shadow:0 12px 26px rgba(0,0,0,.10);
+}
+.eh-dealstrip__tag{
+  width:max-content;
+  padding:7px 10px;border-radius:999px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.14);
+  font-weight:950;font-size:12px;
+}
+.eh-dealstrip__title{font-weight:950;font-size:20px;margin-top:6px}
+.eh-dealstrip__sub{font-size:12px;color:#eaeaea;margin-top:4px}
+.eh-dealstrip__right{display:flex;gap:12px;align-items:center}
+.eh-countdown{
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.10);
+  padding:10px 12px;border-radius:16px;
+}
+.eh-countdown__label{font-size:12px;color:#eaeaea;font-weight:900}
+.eh-countdown__time{font-size:16px;font-weight:950;letter-spacing:1px;margin-top:2px}
+.eh-dealstrip__cta{
+  background:#fff;color:#111;
+  padding:11px 14px;border-radius:14px;
+  text-decoration:none;font-weight:950;
+}
+
+.eh-banners{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.eh-banner{
+  border-radius:18px;overflow:hidden;position:relative;
+  min-height:200px;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+}
+.eh-banner img{width:100%;height:100%;object-fit:cover;display:block}
+.eh-banner__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.16) 70%);
+  padding:16px;display:flex;flex-direction:column;justify-content:center;gap:8px;
+}
+.eh-banner__t{color:#fff;font-weight:950;font-size:24px;line-height:1.1}
+.eh-banner__d{color:#f1f1f1;font-size:13px;max-width:380px}
+.eh-banner__cta{
+  width:max-content;background:#fff;color:#111;
+  padding:9px 12px;border-radius:12px;
+  font-weight:950;text-decoration:none;margin-top:6px;
+}
+
+.eh-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+.eh-grid .eh-card{width:auto}
+
+.eh-cta{
+  background:#fff;border-radius:18px;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+  padding:18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.eh-cta__t{font-weight:950;font-size:20px;color:#111}
+.eh-cta__d{color:#666;font-size:13px;margin-top:4px}
+.eh-cta__form{display:flex;gap:10px;align-items:center}
+.eh-cta__input{
+  width:320px;max-width:44vw;
+  padding:12px 12px;border-radius:14px;
+  border:1px solid #e6e6e6;outline:none;
+}
+.eh-cta__btn{
+  border:none;border-radius:14px;
+  padding:12px 14px;font-weight:950;
+  background:#111;color:#fff;cursor:pointer;
+}
+
+.eh-footer{
+  background:#0f0f0f;color:#dcdcdc;
+  padding:28px 18px;
+}
+.eh-footer__grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:16px;
+}
+.eh-footbrand{font-weight:950;color:#fff;font-size:18px}
+.eh-foottext{font-size:13px;color:#bdbdbd;margin-top:8px;line-height:1.5}
+.eh-foottitle{font-weight:950;color:#fff;margin-bottom:8px}
+.eh-footcol a{
+  display:block;
+  color:#bdbdbd;text-decoration:none;
+  font-size:13px;
+  padding:6px 0;
+}
+.eh-footcol a:hover{color:#fff}
+.eh-footchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.eh-footchip{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
+  padding:7px 10px;border-radius:999px;
+  font-weight:900;font-size:12px;color:#fff;
+}
+.eh-footer__bottom{
+  display:flex;justify-content:space-between;gap:12px;
+  border-top:1px solid rgba(255,255,255,.12);
+  margin-top:18px;padding-top:14px;
+  font-size:13px;color:#bdbdbd;
+}
+.eh-payrow{display:flex;gap:8px;align-items:center}
+.eh-pay{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
+  padding:6px 10px;border-radius:999px;
+  color:#fff;font-weight:900;font-size:12px;
+}
+
+/* Quick view modal */
+.eh-qv{display:none;position:fixed;inset:0;z-index:9999}
+.eh-qv.is-open{display:block}
+.eh-qv__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(6px)}
+.eh-qv__card{
+  position:relative;
+  width:min(920px, calc(100vw - 40px));
+  margin: clamp(24px, 6vh, 80px) auto 0;
+  background:#fff;border-radius:18px;
+  box-shadow:0 18px 50px rgba(0,0,0,.30);
+  overflow:hidden;
+}
+.eh-qv__x{
+  position:absolute;top:10px;right:10px;
+  width:44px;height:44px;border:none;border-radius:14px;
+  background:#fff;cursor:pointer;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+  font-weight:950;
+}
+.eh-qv__body{display:grid;grid-template-columns:1.2fr 1fr;gap:0}
+.eh-qv__img{width:100%;height:100%;min-height:420px;object-fit:cover;background:#eee}
+.eh-qv__info{padding:18px}
+.eh-qv__title{font-weight:950;font-size:22px;color:#111}
+.eh-qv__meta{color:#666;font-size:13px;margin-top:6px;line-height:1.4}
+.eh-qv__priceRow{display:flex;gap:10px;align-items:baseline;margin-top:14px}
+.eh-qv__price{font-weight:950;font-size:20px;color:#111}
+.eh-qv__mrp{color:#777;text-decoration:line-through}
+.eh-qv__off{color:#0a7d2c;font-weight:950}
+.eh-qv__btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.eh-qv__btn{
+  padding:12px 14px;border:none;border-radius:14px;
+  font-weight:950;cursor:pointer;background:#f3f3f3;color:#111;
+}
+.eh-qv__btn--primary{background:#111;color:#fff}
+.eh-qv__small{color:#777;font-size:12px;margin-top:12px}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .eh-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width: 980px){
+  .eh-services{grid-template-columns:repeat(2,1fr)}
+  .eh-tiles{grid-template-columns:1fr}
+  .eh-banners{grid-template-columns:1fr}
+  .eh-footer__grid{grid-template-columns:1fr 1fr}
+  .eh-footer__bottom{flex-direction:column}
+}
+@media (max-width: 620px){
+  .eh-grid{grid-template-columns:repeat(2,1fr)}
+  .eh-qv__body{grid-template-columns:1fr}
+  .eh-qv__img{min-height:260px}
+}
+/* ===================== /AFTER HERO STYLES ===================== */
+/* ===== EXTRA SECTIONS (BUNDLE + DELIVERY) ===== */
+.eh-miniNote{font-size:12px;color:#666;font-weight:800}
+
+/* ---- Bundles ---- */
+.eh-bundleGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.eh-bundle{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+  overflow:hidden;
+  border:1px solid #f1f1f1;
+}
+.eh-bundleHead{
+  padding:14px 14px 10px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.eh-bundleTitle{
+  font-weight:950;
+  color:#111;
+  font-size:15px;
+  line-height:1.2;
+}
+.eh-bundleSave{
+  background:#0a7d2c;
+  color:#fff;
+  font-weight:950;
+  font-size:12px;
+  padding:7px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.eh-bundleItems{
+  padding:0 14px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.eh-bItem{
+  display:grid;
+  grid-template-columns:64px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:10px;
+  border-radius:16px;
+  background:#fafafa;
+  border:1px solid #f0f0f0;
+}
+.eh-bItemImg{
+  width:64px;height:52px;border-radius:14px;overflow:hidden;background:#eee;
+}
+.eh-bItemImg img{width:100%;height:100%;object-fit:cover;display:block}
+.eh-bItemName{font-weight:950;color:#111;font-size:13px;line-height:1.2}
+.eh-bItemMeta{color:#666;font-size:12px;margin-top:3px}
+.eh-bItemPrice{font-weight:950;color:#111;font-size:13px}
+.eh-bundleFoot{
+  padding:12px 14px 14px;
+  border-top:1px solid #f1f1f1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.eh-bundleTotal{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.eh-bundleTotal span{font-size:12px;color:#666;font-weight:800}
+.eh-bundleTotal strong{font-weight:950;color:#111;font-size:16px}
+.eh-bundleBtn{
+  border:none;
+  border-radius:14px;
+  padding:12px 14px;
+  font-weight:950;
+  cursor:pointer;
+  background:#111;
+  color:#fff;
+  white-space:nowrap;
+}
+.eh-bundleBtn:hover{filter:brightness(1.05)}
+
+/* ---- Delivery / Store ---- */
+.eh-deliveryGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.eh-dCard{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+  padding:16px;
+  border:1px solid #f1f1f1;
+}
+.eh-dCard__title{font-weight:950;color:#111;font-size:16px}
+.eh-dCard__sub{color:#666;font-size:12px;margin-top:6px;line-height:1.4}
+
+.eh-dForm{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+}
+.eh-dInput{
+  flex:1;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid #e6e6e6;
+  outline:none;
+  font-weight:900;
+}
+.eh-dBtn{
+  border:none;
+  border-radius:14px;
+  padding:12px 14px;
+  font-weight:950;
+  background:#2874f0;
+  color:#fff;
+  cursor:pointer;
+}
+.eh-dBtn:hover{filter:brightness(1.05)}
+
+.eh-dResult{
+  margin-top:12px;
+  padding:12px;
+  border-radius:16px;
+  background:#f6f7fb;
+  border:1px solid #eef0f8;
+  color:#111;
+  font-weight:850;
+  font-size:13px;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+}
+.eh-dResult.is-bad{
+  background:#fff3f3;
+  border-color:#ffe0e0;
+  color:#9b1c1c;
+}
+.eh-dBadges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.eh-dBadge{
+  background:#fafafa;
+  border:1px solid #eee;
+  border-radius:999px;
+  padding:8px 10px;
+  font-size:12px;
+  font-weight:900;
+  color:#222;
+}
+
+.eh-storeTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.eh-ghostBtn{
+  border:1px solid #e6e6e6;
+  background:#fff;
+  color:#111;
+  padding:10px 12px;
+  border-radius:14px;
+  font-weight:950;
+  cursor:pointer;
+}
+.eh-ghostBtn:hover{background:#f7f7f7}
+
+.eh-storeMap{
+  margin-top:12px;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+  height:210px;
+  background:#eee;
+}
+.eh-storeMap img{width:100%;height:100%;object-fit:cover;display:block}
+.eh-storeOverlay{
+  position:absolute;
+  inset:auto 12px 12px 12px;
+  padding:12px;
+  border-radius:16px;
+  background:rgba(17,17,17,.78);
+  color:#fff;
+  backdrop-filter:blur(6px);
+}
+.eh-storeOverlay__t{font-weight:950}
+.eh-storeOverlay__d{font-size:12px;color:#f1f1f1;margin-top:4px}
+
+.eh-storeList{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.eh-storeItem{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+  padding:12px;
+  border-radius:16px;
+  background:#fafafa;
+  border:1px solid #f0f0f0;
+}
+.eh-storeItem__t{font-weight:950;color:#111}
+.eh-storeItem__d{font-size:12px;color:#666;margin-top:4px;line-height:1.35}
+.eh-storeItem__pill{
+  background:#111;
+  color:#fff;
+  font-weight:950;
+  font-size:12px;
+  padding:8px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .eh-bundleGrid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 900px){
+  .eh-deliveryGrid{grid-template-columns:1fr}
+}
+@media (max-width: 620px){
+  .eh-bundleGrid{grid-template-columns:1fr}
+  .eh-dForm{flex-direction:column}
+  .eh-dBtn{width:100%}
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<div class="top-header">
+  <div class="logo">
+    <img src="https://oppty.in/wp-content/uploads/2025/07/oppty.png" alt="Logo">
+    <span>E-HUB</span>
+  </div>
+
+  <div class="search">
+    <input placeholder="Search for electronics & appliances" />
+  </div>
+
+  <div class="actions">
+    <div class="action">♡ Wishlist</div>
+    <div class="action">🛒 Cart</div>
+    <div class="action" id="userBtn">👤 Login</div>
+  </div>
+</div>
+
+<div class="user-menu" id="userMenu">
+  <div class="head">Your Account</div>
+  <div class="item">👤 My Profile</div>
+  <div class="item">📦 Orders</div>
+  <div class="item">🏷️ Coupons</div>
+  <div class="item">💳 Saved Cards & Wallet</div>
+  <div class="item">📍 Saved Addresses</div>
+  <div class="item">♡ Wishlist</div>
+  <div class="item" id="logoutBtn">↩ Logout</div>
+</div>
+
+<div class="category-bar" id="catBar"></div>
+
+<div class="modal" id="modal">
+  <div class="card">
+    <h3>Login / Signup</h3>
+    <p>Enter your mobile number to receive an OTP.</p>
+    <input id="mobile" placeholder="Mobile number" inputmode="numeric" />
+    <input id="otp" placeholder="Enter OTP" inputmode="numeric" style="display:none" />
+    <button id="otpBtn">Send OTP</button>
+  </div>
+</div>
+
+<!-- ===== E-HUB HERO SECTION ===== -->
+<section class="eh-hero" id="eh-hero">
+  <div class="eh-hero__grid">
+
+    <!-- LEFT: Main Slider -->
+    <div class="eh-slider" aria-label="Hero slider">
+      <button class="eh-slider__nav eh-slider__nav--prev" type="button" aria-label="Previous slide">‹</button>
+      <button class="eh-slider__nav eh-slider__nav--next" type="button" aria-label="Next slide">›</button>
+
+      <div class="eh-slider__top">
+        <span class="eh-slider__tag" id="ehSlideTag">MEGA SALE</span>
+        <span class="eh-slider__count" id="ehSlideCount">01 / 06</span>
+      </div>
+
+      <div class="eh-slider__viewport" id="ehSlideViewport">
+        <!-- JS injects slides here -->
+      </div>
+
+      <div class="eh-slider__bottom">
+        <div class="eh-dots" id="ehDots" aria-label="Slide dots"></div>
+        <div class="eh-progress" aria-hidden="true">
+          <div class="eh-progress__bar" id="ehProgressBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Mini panels -->
+    <aside class="eh-side">
+
+      <!-- Panel A: Top Deal -->
+      <a class="eh-panel eh-panel--deal" id="ehDealLink" href="#top-deal">
+        <div class="eh-panel__head">
+          <div class="eh-panel__title" id="ehDealTitle">Today’s Top Deal</div>
+          <div class="eh-panel__timer" id="ehDealTimer">Ends in 03:12:45</div>
+        </div>
+
+        <div class="eh-panel__body">
+          <img class="eh-panel__img" id="ehDealImg" alt="Top deal" />
+          <div class="eh-panel__meta">
+            <div class="eh-panel__product" id="ehDealProduct">Sony Soundbar 2.1</div>
+            <div class="eh-panel__priceRow">
+              <span class="eh-panel__price" id="ehDealPrice">₹9,999</span>
+              <span class="eh-panel__mrp" id="ehDealMrp">₹14,999</span>
+            </div>
+            <div class="eh-panel__cta" id="ehDealCta">Grab Deal</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Panel B: New Launch -->
+      <a class="eh-panel eh-panel--launch" id="ehLaunchLink" href="#new-launch">
+        <div class="eh-panel__head">
+          <div class="eh-panel__title" id="ehLaunchTitle">Just Launched</div>
+        </div>
+        <div class="eh-panel__body">
+          <img class="eh-panel__img" id="ehLaunchImg" alt="New launch" />
+          <div class="eh-panel__meta">
+            <div class="eh-panel__product" id="ehLaunchProduct">New Wireless Earbuds</div>
+            <div class="eh-panel__cta" id="ehLaunchCta">View Launch</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Panel C: Offer Strip -->
+      <div class="eh-strip" id="ehOfferStrip"></div>
+
+    </aside>
+  </div>
+</section>
+<!-- ===== /E-HUB HERO SECTION ===== -->
+
+<!-- ===================== AFTER-HERO SECTIONS ===================== -->
+
+<!-- Quick service strip (like real ecom) -->
+<section class="eh-afterhero">
+  <div class="eh-wrap eh-services">
+    <div class="eh-service">
+      <div class="eh-service__icon">🚚</div>
+      <div>
+        <div class="eh-service__t">Free Delivery*</div>
+        <div class="eh-service__d">On orders above ₹999</div>
+      </div>
+    </div>
+    <div class="eh-service">
+      <div class="eh-service__icon">💳</div>
+      <div>
+        <div class="eh-service__t">No-Cost EMI</div>
+        <div class="eh-service__d">Up to 12 months</div>
+      </div>
+    </div>
+    <div class="eh-service">
+      <div class="eh-service__icon">🔁</div>
+      <div>
+        <div class="eh-service__t">Exchange Offers</div>
+        <div class="eh-service__d">Best value guaranteed*</div>
+      </div>
+    </div>
+    <div class="eh-service">
+      <div class="eh-service__icon">🛡️</div>
+      <div>
+        <div class="eh-service__t">Brand Warranty</div>
+        <div class="eh-service__d">100% genuine products</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Offers row (3 promo tiles) -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-tiles" id="ehOfferTiles"></div>
+  </div>
+</section>
+
+<!-- Featured Categories Carousel -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-sec-head">
+      <h3>Top Categories</h3>
+      <div class="eh-sec-actions">
+        <button class="eh-sbtn" data-carousel-prev="#ehCatTrack">‹</button>
+        <button class="eh-sbtn" data-carousel-next="#ehCatTrack">›</button>
+      </div>
+    </div>
+
+    <div class="eh-carousel">
+      <div class="eh-track" id="ehCatTrack" aria-label="Top Categories"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Big Deal strip (countdown + callouts) -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-dealstrip">
+      <div class="eh-dealstrip__left">
+        <div class="eh-dealstrip__tag">LIMITED TIME</div>
+        <div class="eh-dealstrip__title">Mega Deals of the Day</div>
+        <div class="eh-dealstrip__sub">Extra bank offers • Exchange bonus • No-cost EMI</div>
+      </div>
+      <div class="eh-dealstrip__right">
+        <div class="eh-countdown">
+          <div class="eh-countdown__label">Ends in</div>
+          <div class="eh-countdown__time" id="ehDayDealTimer">06:00:00</div>
+        </div>
+        <a class="eh-dealstrip__cta" href="#deals">View All Deals</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deals Carousel -->
+<section class="eh-section" id="deals">
+  <div class="eh-wrap">
+    <div class="eh-sec-head">
+      <h3>Deals for You</h3>
+      <div class="eh-sec-actions">
+        <button class="eh-sbtn" data-carousel-prev="#ehDealsTrack">‹</button>
+        <button class="eh-sbtn" data-carousel-next="#ehDealsTrack">›</button>
+      </div>
+    </div>
+
+    <div class="eh-carousel">
+      <div class="eh-track" id="ehDealsTrack" aria-label="Deals Carousel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Row -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-sec-head">
+      <h3>Shop by Brand</h3>
+      <div class="eh-sec-actions">
+        <button class="eh-sbtn" data-carousel-prev="#ehBrandTrack">‹</button>
+        <button class="eh-sbtn" data-carousel-next="#ehBrandTrack">›</button>
+      </div>
+    </div>
+
+    <div class="eh-carousel eh-carousel--brands">
+      <div class="eh-track" id="ehBrandTrack" aria-label="Brands"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Two big banners (like Flipkart/Amazon mid-page) -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-banners" id="ehMidBanners"></div>
+  </div>
+</section>
+
+<!-- New Launches carousel -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-sec-head">
+      <h3>New Launches</h3>
+      <div class="eh-sec-actions">
+        <button class="eh-sbtn" data-carousel-prev="#ehLaunchTrack">‹</button>
+        <button class="eh-sbtn" data-carousel-next="#ehLaunchTrack">›</button>
+      </div>
+    </div>
+
+    <div class="eh-carousel">
+      <div class="eh-track" id="ehLaunchTrack" aria-label="New Launches"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Recommended grid (real ecom style) -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-sec-head">
+      <h3>Recommended for You</h3>
+      <div class="eh-sec-actions">
+        <button class="eh-sbtn" id="ehShuffleRecs">Shuffle</button>
+      </div>
+    </div>
+
+    <div class="eh-grid" id="ehRecGrid"></div>
+  </div>
+</section>
+
+<!-- ===== SECTION 1: BUNDLE & SAVE (COMBOS) ===== -->
+<section class="eh-section eh-bundles" id="eh-bundles">
+  <div class="eh-wrap">
+    <div class="eh-sec-head">
+      <h3>Bundle & Save</h3>
+      <div class="eh-sec-actions">
+        <span class="eh-miniNote">Smart combos people actually buy together</span>
+      </div>
+    </div>
+
+    <div class="eh-bundleGrid" id="ehBundleGrid"></div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: DELIVERY CHECK + STORE/PICKUP ===== -->
+<section class="eh-section eh-delivery" id="eh-delivery">
+  <div class="eh-wrap">
+    <div class="eh-sec-head">
+      <h3>Delivery & Store Pickup</h3>
+      <div class="eh-sec-actions">
+        <span class="eh-miniNote">Check serviceability, installation & delivery date</span>
+      </div>
+    </div>
+
+    <div class="eh-deliveryGrid">
+      <!-- Delivery checker -->
+      <div class="eh-dCard">
+        <div class="eh-dCard__title">Check Delivery to your Pincode</div>
+        <div class="eh-dCard__sub">Get estimated delivery + installation availability</div>
+
+        <div class="eh-dForm">
+          <input id="ehPincode" class="eh-dInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit pincode" />
+          <button id="ehCheckPinBtn" class="eh-dBtn" type="button">Check</button>
+        </div>
+
+        <div class="eh-dResult" id="ehPinResult" aria-live="polite"></div>
+
+        <div class="eh-dBadges">
+          <span class="eh-dBadge">Free Delivery*</span>
+          <span class="eh-dBadge">No-Cost EMI*</span>
+          <span class="eh-dBadge">Easy Returns*</span>
+        </div>
+      </div>
+
+      <!-- Store locator -->
+      <div class="eh-dCard eh-storeCard">
+        <div class="eh-storeTop">
+          <div>
+            <div class="eh-dCard__title">Find a Store Near You</div>
+            <div class="eh-dCard__sub">Pickup available for select items & fast delivery</div>
+          </div>
+          <button id="ehUseLocation" class="eh-ghostBtn" type="button">Use my location</button>
+        </div>
+
+        <div class="eh-storeMap">
+          <img
+            id="ehStoreMapImg"
+            src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1800&q=90"
+            alt="Store map"
+          />
+          <div class="eh-storeOverlay">
+            <div class="eh-storeOverlay__t">Stores in your city</div>
+            <div class="eh-storeOverlay__d" id="ehStoreHint">Enter pincode to see nearest store</div>
+          </div>
+        </div>
+
+        <div class="eh-storeList" id="ehStoreList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- App/Newsletter CTA -->
+<section class="eh-section">
+  <div class="eh-wrap">
+    <div class="eh-cta">
+      <div>
+        <div class="eh-cta__t">Get Offers & New Launch Alerts</div>
+        <div class="eh-cta__d">Subscribe to E-Hub updates. No spam, only deals.</div>
+      </div>
+      <form class="eh-cta__form" onsubmit="return false">
+        <input class="eh-cta__input" placeholder="Enter your email" />
+        <button class="eh-cta__btn" type="button">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="eh-footer">
+  <div class="eh-wrap">
+    <div class="eh-footer__grid">
+      <div class="eh-footcol">
+        <div class="eh-footbrand">E-Hub Electronics</div>
+        <div class="eh-foottext">Your one-stop store for mobiles, appliances, audio, TVs, cameras, accessories & more.</div>
+        <div class="eh-footchips">
+          <span class="eh-footchip">100% Genuine</span>
+          <span class="eh-footchip">Secure Payments</span>
+          <span class="eh-footchip">Fast Delivery*</span>
+        </div>
+      </div>
+
+      <div class="eh-footcol">
+        <div class="eh-foottitle">Customer Service</div>
+        <a href="#">Help Center</a>
+        <a href="#">Track Order</a>
+        <a href="#">Returns & Refunds</a>
+        <a href="#">Warranty</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <div class="eh-footcol">
+        <div class="eh-foottitle">Shop</div>
+        <a href="#mobiles">Mobiles & Tablets</a>
+        <a href="#tv">TV & Audio</a>
+        <a href="#appliances">Home Appliances</a>
+        <a href="#kitchen">Kitchen Appliances</a>
+        <a href="#smart">Smart Devices</a>
+      </div>
+
+      <div class="eh-footcol">
+        <div class="eh-foottitle">Policies</div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Cancellation Policy</a>
+      </div>
+    </div>
+
+    <div class="eh-footer__bottom">
+      <div>© <span id="ehYear"></span> E-Hub. All rights reserved.</div>
+      <div class="eh-payrow">
+        <span>Payments:</span>
+        <span class="eh-pay">VISA</span>
+        <span class="eh-pay">Mastercard</span>
+        <span class="eh-pay">UPI</span>
+        <span class="eh-pay">NetBanking</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- QUICK VIEW MODAL (product preview) -->
+<div class="eh-qv" id="ehQV" aria-hidden="true">
+  <div class="eh-qv__backdrop" id="ehQVClose"></div>
+  <div class="eh-qv__card" role="dialog" aria-modal="true">
+    <button class="eh-qv__x" id="ehQVX" aria-label="Close">✕</button>
+    <div class="eh-qv__body">
+      <img class="eh-qv__img" id="ehQVImg" alt="">
+      <div class="eh-qv__info">
+        <div class="eh-qv__title" id="ehQVTitle"></div>
+        <div class="eh-qv__meta" id="ehQVMeta"></div>
+        <div class="eh-qv__priceRow">
+          <span class="eh-qv__price" id="ehQVPrice"></span>
+          <span class="eh-qv__mrp" id="ehQVMrp"></span>
+          <span class="eh-qv__off" id="ehQVOff"></span>
+        </div>
+        <div class="eh-qv__btns">
+          <button class="eh-qv__btn eh-qv__btn--primary" type="button">Add to Cart</button>
+          <button class="eh-qv__btn" type="button">Add to Wishlist</button>
+        </div>
+        <div class="eh-qv__small">*Demo UI only</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== /AFTER-HERO SECTIONS ===================== -->
+ 
+
+
+
+
+<script>
+/* ===== DATA (same as before) ===== */
+const CATEGORIES = [
+  {
+    name: "Mobiles & Tablets",
+    img: "https://img.freepik.com/free-vector/digital-device-electronic-technology-communication-concept_53876-34741.jpg",
+    sections: {
+      "Mobiles": ["Smartphones","5G Phones","Foldables","Gaming Phones","Feature Phones","Refurbished Phones"],
+      "Tablets": ["Android Tablets","iPads","Kids Tablets","Windows Tablets","Graphic Tablets","Tablet Accessories"],
+      "Accessories": ["Chargers","Cables","Power Banks","Cases & Covers","Screen Guards","Mobile Holders","Memory Cards"],
+      "Wearables": ["Smart Watches","Fitness Bands","TWS Earbuds","Neckbands","VR Headsets"]
+    }
+  },
+  {
+    name: "Computers",
+    img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=90",
+    sections: {
+      "Laptops": ["Gaming Laptops","Business Laptops","Student Laptops","2-in-1 Laptops","MacBooks","Chromebooks"],
+      "Desktops": ["Gaming PCs","All-in-One PCs","Mini PCs","CPU / Tower","Workstations"],
+      "Monitors": ["4K Monitors","Curved Monitors","Gaming Monitors","Ultrawide","Office Monitors"],
+      "Accessories": ["Keyboards","Mouse","Webcams","Speakers","Laptop Bags","Cooling Pads","Routers"]
+    }
+  },
+  {
+    name: "TV & Audio",
+    img: "https://img.freepik.com/premium-vector/tv-audio-system-stand-vector_116137-6229.jpg",
+    sections: {
+      "Televisions": ["Smart TVs","4K UHD TVs","OLED TVs","QLED TVs","Android TVs","32 inch TVs","55 inch TVs+"],
+      "Audio": ["Soundbars","Home Theatre","Bluetooth Speakers","Party Speakers","AV Receivers"],
+      "Personal Audio": ["Headphones","Earphones","TWS Earbuds","Neckbands","Studio Headphones"],
+      "Streaming": ["Streaming Devices","TV Sticks","Set-top Boxes","Media Players"]
+    }
+  },
+  {
+    name: "Cameras",
+    img: "https://static.vecteezy.com/system/resources/previews/006/998/434/non_2x/photo-camera-icons-photo-camera-icon-design-illustration-photo-camera-simple-sign-photo-camera-logo-vector.jpg",
+    sections: {
+      "Cameras": ["DSLR","Mirrorless","Point & Shoot","Instant Cameras","Camcorders"],
+      "Lenses": ["Prime Lenses","Zoom Lenses","Wide Angle","Telephoto","Lens Kits"],
+      "Accessories": ["Tripods","Gimbals","Memory Cards","Camera Bags","Batteries","Flash & Lighting"],
+      "Action": ["Action Cameras","360 Cameras","Dash Cams"]
+    }
+  },
+  {
+    name: "Home Appliances",
+    img: "https://img.freepik.com/free-vector/household-appliances-realistic-composition_1284-65307.jpg?semt=ais_user_personalization&w=740&q=80",
+    sections: {
+      "Large": ["Refrigerators","Washing Machines","Air Conditioners","Dishwashers","Deep Freezers"],
+      "Cooling": ["Air Coolers","Ceiling Fans","Exhaust Fans","Air Purifiers","Dehumidifiers"],
+      "Laundry": ["Dryers","Irons","Steam Irons","Garment Steamers"],
+      "Home Care": ["Vacuum Cleaners","Robot Vacuums","Water Purifiers","Geysers / Water Heaters","Inverters"]
+    }
+  },
+  {
+    name: "Kitchen Appliances",
+    img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=90",
+    sections: {
+      "Cooking": ["Microwave Ovens","OTG Ovens","Induction Cooktops","Gas Stoves","Rice Cookers","Air Fryers"],
+      "Prep": ["Mixer Grinders","Juicers","Food Processors","Hand Blenders","Choppers"],
+      "Beverages": ["Electric Kettles","Coffee Makers","Tea Makers","Water Dispensers"],
+      "Chimney & Hob": ["Kitchen Chimneys","Built-in Hobs","Cooktops","Toasters","Sandwich Makers"]
+    }
+  },
+  {
+    name: "Personal Grooming",
+    img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=90",
+    sections: {
+      "Men": ["Trimmers","Shavers","Hair Clippers","Beard Groomers"],
+      "Women": ["Hair Dryers","Straighteners","Curlers","Stylers","Epilators"],
+      "Health": ["BP Monitors","Thermometers","Weighing Scales","Glucometers","Oximeters"],
+      "Wellness": ["Massage Guns","Foot Massagers","Heating Pads"]
+    }
+  },
+  {
+    name: "Smart Devices",
+    img: "https://cdn-icons-png.flaticon.com/512/1295/1295141.png",
+    sections: {
+      "Smart Home": ["Smart Speakers","Smart Lights","Smart Plugs","Smart Switches","Smart Locks","Smart Sensors"],
+      "Security": ["CCTV Cameras","Video Doorbells","Alarm Systems","Baby Monitors"],
+      "Networking": ["Wi-Fi Routers","Mesh Wi-Fi","Range Extenders","Network Switches"],
+      "Streaming & Gaming": ["Streaming Devices","Game Consoles","Controllers","VR Headsets"]
+    }
+  },
+  {
+    name: "Power & Accessories",
+    img: "https://fortuners.net/wp-content/uploads/2024/03/Inverter-Bunch-copy-scaled.jpg",
+    sections: {
+      "Power": ["Inverters","UPS","Stabilizers","Surge Protectors","Extension Boards"],
+      "Storage": ["External HDD","External SSD","Pendrives","Memory Cards","NAS Storage"],
+      "Cables": ["HDMI Cables","Type-C Cables","Audio Cables","LAN Cables","Adapters"],
+      "Printers": ["Inkjet Printers","Laser Printers","All-in-One Printers","Cartridges & Toners"]
+    }
+  }
+];
+
+/* ===== build categories ===== */
+const catBar=document.getElementById("catBar");
+CATEGORIES.forEach((c, idx)=>{
+  const el=document.createElement("div");
+  el.className="cat";
+  el.innerHTML=`
+    <img src="${c.img}" alt="${c.name}">
+    <span>${c.name}</span>
+    <div class="mega" id="mega-${idx}">
+      <div class="mega-grid">
+        ${Object.entries(c.sections).map(([title, items])=>`
+          <div>
+            <h4>${title}</h4>
+            ${items.map(it=>`<div class="link">${it}</div>`).join("")}
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+  catBar.appendChild(el);
+});
+
+/* ===== mega dropdown hold + clamp ===== */
+let closeTimer=null, openMegaEl=null;
+const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+
+function positionMega(catEl, megaEl){
+  megaEl.style.display="block";
+  const rect=catEl.getBoundingClientRect();
+  const megaRect=megaEl.getBoundingClientRect();
+  const margin=20;
+  const desiredLeft=rect.left + rect.width/2 - megaRect.width/2;
+  const left=clamp(desiredLeft, margin, window.innerWidth - megaRect.width - margin);
+  const top=rect.bottom + 8;
+  megaEl.style.left=`${left}px`;
+  megaEl.style.top=`${top}px`;
+}
+function openMega(catEl){
+  const megaEl=catEl.querySelector(".mega");
+  if(openMegaEl && openMegaEl!==megaEl) openMegaEl.style.display="none";
+  openMegaEl=megaEl;
+  positionMega(catEl, megaEl);
+}
+function scheduleClose(){
+  clearTimeout(closeTimer);
+  closeTimer=setTimeout(()=>{ if(openMegaEl) openMegaEl.style.display="none"; openMegaEl=null; },260);
+}
+function cancelClose(){ clearTimeout(closeTimer); }
+
+document.querySelectorAll(".cat").forEach(catEl=>{
+  const megaEl=catEl.querySelector(".mega");
+  catEl.addEventListener("mouseenter",()=>{cancelClose(); openMega(catEl);});
+  catEl.addEventListener("mouseleave",()=>scheduleClose());
+  megaEl.addEventListener("mouseenter",()=>cancelClose());
+  megaEl.addEventListener("mouseleave",()=>scheduleClose());
+});
+window.addEventListener("resize",()=>{
+  if(!openMegaEl) return;
+  const parent=openMegaEl.closest(".cat");
+  if(parent) positionMega(parent, openMegaEl);
+});
+
+/* ===== user dropdown only after login ===== */
+const userBtn=document.getElementById("userBtn");
+const userMenu=document.getElementById("userMenu");
+const modal=document.getElementById("modal");
+const otpBtn=document.getElementById("otpBtn");
+const otp=document.getElementById("otp");
+const mobile=document.getElementById("mobile");
+
+let loggedIn=false, otpStep=false;
+let userCloseTimer=null;
+
+function posUserMenu(){
+  userMenu.style.display="block";
+  const rect=userBtn.getBoundingClientRect();
+  const mRect=userMenu.getBoundingClientRect();
+  const margin=12;
+  const left=clamp(rect.right - mRect.width, margin, window.innerWidth - mRect.width - margin);
+  const top=rect.bottom + 8;
+  userMenu.style.left=`${left}px`;
+  userMenu.style.top=`${top}px`;
+}
+function userScheduleClose(){
+  clearTimeout(userCloseTimer);
+  userCloseTimer=setTimeout(()=>userMenu.style.display="none",260);
+}
+function userCancelClose(){ clearTimeout(userCloseTimer); }
+
+function onUserEnter(){ if(!loggedIn) return; userCancelClose(); posUserMenu(); }
+function onUserLeave(){ if(!loggedIn) return; userScheduleClose(); }
+function onMenuEnter(){ if(!loggedIn) return; userCancelClose(); }
+function onMenuLeave(){ if(!loggedIn) return; userScheduleClose(); }
+
+userBtn.addEventListener("mouseenter", onUserEnter);
+userBtn.addEventListener("mouseleave", onUserLeave);
+userMenu.addEventListener("mouseenter", onMenuEnter);
+userMenu.addEventListener("mouseleave", onMenuLeave);
+
+userBtn.addEventListener("click",()=>{
+  if(loggedIn) return;
+  modal.classList.add("active");
+});
+modal.addEventListener("click",(e)=>{
+  if(e.target===modal){
+    modal.classList.remove("active");
+    otpStep=false;
+    otp.style.display="none";
+    otpBtn.textContent="Send OTP";
+    mobile.value=""; otp.value="";
+  }
+});
+otpBtn.addEventListener("click",()=>{
+  if(!otpStep){
+    otp.style.display="block";
+    otpBtn.textContent="Verify OTP";
+    otpStep=true;
+    return;
+  }
+  if((otp.value||"").trim().length<4){ alert("Enter 4 digit OTP"); return; }
+  loggedIn=true;
+  modal.classList.remove("active");
+  userBtn.textContent="👤 Rahul ▼";
+  otpStep=false;
+  otp.style.display="none";
+  otpBtn.textContent="Send OTP";
+  mobile.value=""; otp.value="";
+});
+document.getElementById("logoutBtn").addEventListener("click",()=>{
+  loggedIn=false;
+  userBtn.textContent="👤 Login";
+  userMenu.style.display="none";
+});
+
+(function initHeroInline(){
+  // ---------- INLINE JSON (no fetch needed) ----------
+  const HERO_DATA = {
+    settings: { autoplay: true, intervalMs: 5200, progress: true },
+    slides: [
+      {
+        id: "mega-sale",
+        tag: "MEGA SALE",
+        headline: "Mega Electronics Sale",
+        subline: "Up to 60% Off • Exchange Bonus • No-Cost EMI",
+        ctas: [
+          { label: "Shop Mega Sale", href: "#mega-sale" },
+          { label: "Explore All Deals", href: "#deals" }
+        ],
+        badges: ["No-Cost EMI", "Exchange", "Bank Offers", "Free Delivery*"],
+        visual: {
+          layout: "collage",
+          images: [
+            { src: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=90", alt: "Smartphone offer" },
+            { src: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=1400&q=90", alt: "Smart TV offer" },
+            { src: "https://shop.haierindia.com/blog/wp-content/uploads/2024/06/Haier-Appliances-range-shot.jpg", alt: "Home appliance offer" }
+          ],
+          chips: ["UP TO 60% OFF", "₹0 Down Payment*"]
+        }
+      },
+      {
+        id: "mobiles-tabs",
+        tag: "MOBILES & TABLETS",
+        headline: "Smartphone Bonanza",
+        subline: "Flat ₹3,000 Off • 5G Deals • Extra Exchange Value",
+        ctas: [
+          { label: "Shop Mobiles", href: "#mobiles" },
+          { label: "Shop Tablets", href: "#tablets" }
+        ],
+        badges: ["5G Deals", "Exchange", "Bank ₹ Off"],
+        visual: {
+          layout: "split",
+          images: [
+            { src: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=1600&q=90", alt: "Smartphones collection" },
+            { src: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1600&q=90", alt: "Tablet device" }
+          ],
+          chips: ["Starting ₹9,999", "Extra ₹2,000 Exchange"]
+        }
+      },
+      {
+        id: "tv-audio",
+        tag: "TV & AUDIO",
+        headline: "Cinematic Week",
+        subline: "4K Smart TVs • Soundbars • Extra Bank Discount",
+        ctas: [
+          { label: "Shop TVs", href: "#tv" },
+          { label: "Shop Audio", href: "#audio" }
+        ],
+        badges: ["4K", "Dolby Audio", "Bank Discount"],
+        visual: {
+          layout: "single",
+          images: [
+            { src: "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1700&q=90", alt: "Modern TV setup" }
+          ],
+          chips: ["Up to 45% Off", "No-Cost EMI"]
+        }
+      },
+      {
+        id: "home-appliances",
+        tag: "HOME APPLIANCES",
+        headline: "Cool & Clean Deals",
+        subline: "ACs • Washing Machines • Refrigerators",
+        ctas: [
+          { label: "Shop Appliances", href: "#appliances" },
+          { label: "Compare Deals", href: "#compare" }
+        ],
+        badges: ["Installation*", "Exchange", "EMI"],
+        visual: {
+          layout: "collage",
+          images: [
+            { src: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=90", alt: "Refrigerator" },
+            { src: "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?auto=format&fit=crop&w=1600&q=90", alt: "Washing machine" },
+            { src: "https://web-res.midea.com/content/dam/comfee-aem/global/products/heating-cooling/split-air-conditioner/kv4.jpg/jcr:content/renditions/cq5dam.web.5000.5000.jpeg", alt: "Air conditioner" }
+          ],
+          chips: ["Free Installation*", "Up to 50% Off"]
+        }
+      },
+      {
+        id: "kitchen-smart",
+        tag: "KITCHEN & SMART",
+        headline: "Upgrade Your Home",
+        subline: "Air Fryers • Chimneys • Smart Speakers • Combo Offers",
+        ctas: [
+          { label: "Explore Kitchen", href: "#kitchen" },
+          { label: "Explore Smart", href: "#smart" }
+        ],
+        badges: ["Combo Deals", "EMI", "New Arrivals"],
+        visual: {
+          layout: "split",
+          images: [
+            { src: "https://media.istockphoto.com/id/1196974664/photo/set-of-home-kitchen-appliances-in-the-room-on-the-wall-background.webp?b=1&s=612x612&w=0&k=20&c=BjkZyLeGqKsHJCZe50HRi-i_2rVLH37FGxW-HngoyfM=", alt: "Kitchen appliances" },
+            { src: "https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=1700&q=90", alt: "Smart speaker" }
+          ],
+          chips: ["Extra 10% on Combos"]
+        }
+      },
+      {
+        id: "brand-spotlight",
+        tag: "BRAND SPOTLIGHT",
+        headline: "Samsung Day",
+        subline: "Galaxy • TVs • Appliances — Extra 10% Off",
+        ctas: [
+          { label: "Shop Samsung", href: "#samsung" },
+          { label: "View Brand Store", href: "#brand-store" }
+        ],
+        badges: ["Brand Offers", "Bank Discount", "Exchange"],
+        visual: {
+          layout: "single",
+          images: [
+            { src: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1800&q=90", alt: "Premium electronics brand showcase" }
+          ],
+          chips: ["Extra 10% Off", "Limited Time"]
+        }
+      }
+    ],
+    sidePanels: {
+      topDeal: {
+        title: "Today’s Top Deal",
+        timerSecondsTotal: 3*3600 + 12*60 + 45,
+        productTitle: "Sony Soundbar 2.1",
+        price: "₹9,999",
+        mrp: "₹14,999",
+        ctaLabel: "Grab Deal",
+        href: "#top-deal",
+        image: {
+          src: "https://www.sony.co.in/image/3d3a90045fd945574b42b191f60f34e6?fmt=pjpeg&bgcolor=FFFFFF&bgc=FFFFFF&wid=2515&hei=1320",
+          alt: "Soundbar product"
+        }
+      },
+      newLaunch: {
+        title: "Just Launched",
+        productTitle: "New Wireless Earbuds",
+        ctaLabel: "View Launch",
+        href: "#new-launch",
+        image: {
+          src: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1200&q=90",
+          alt: "Wireless earbuds"
+        }
+      },
+      offerStrip: {
+        items: ["10% Bank Offer", "No-Cost EMI", "Exchange Bonus", "Free Delivery*"]
+      }
+    }
+  };
+
+  // ---------- DOM ----------
+  const viewport = document.getElementById("ehSlideViewport");
+  const tagEl = document.getElementById("ehSlideTag");
+  const countEl = document.getElementById("ehSlideCount");
+  const dotsWrap = document.getElementById("ehDots");
+  const progressBar = document.getElementById("ehProgressBar");
+
+  const prevBtn = document.querySelector(".eh-slider__nav--prev");
+  const nextBtn = document.querySelector(".eh-slider__nav--next");
+  const slider = document.querySelector(".eh-slider");
+
+  if (!viewport || !tagEl || !countEl || !dotsWrap || !progressBar || !prevBtn || !nextBtn || !slider) {
+    console.error("[E-Hub Hero] Missing hero DOM. Paste HTML section correctly.");
+    return;
+  }
+
+  // ---------- Side panels ----------
+  const deal = HERO_DATA.sidePanels.topDeal;
+  const launch = HERO_DATA.sidePanels.newLaunch;
+
+  document.getElementById("ehDealLink").href = deal.href;
+  document.getElementById("ehDealTitle").textContent = deal.title;
+  document.getElementById("ehDealImg").src = deal.image.src;
+  document.getElementById("ehDealImg").alt = deal.image.alt;
+  document.getElementById("ehDealProduct").textContent = deal.productTitle;
+  document.getElementById("ehDealPrice").textContent = deal.price;
+  document.getElementById("ehDealMrp").textContent = deal.mrp;
+  document.getElementById("ehDealCta").textContent = deal.ctaLabel;
+
+  document.getElementById("ehLaunchLink").href = launch.href;
+  document.getElementById("ehLaunchTitle").textContent = launch.title;
+  document.getElementById("ehLaunchImg").src = launch.image.src;
+  document.getElementById("ehLaunchImg").alt = launch.image.alt;
+  document.getElementById("ehLaunchProduct").textContent = launch.productTitle;
+  document.getElementById("ehLaunchCta").textContent = launch.ctaLabel;
+
+  const strip = document.getElementById("ehOfferStrip");
+  strip.innerHTML = HERO_DATA.sidePanels.offerStrip.items
+    .map(t => `<span class="eh-strip__pill">${t}</span>`)
+    .join("");
+
+  // Deal timer
+  let remaining = deal.timerSecondsTotal;
+  const timerEl = document.getElementById("ehDealTimer");
+  const fmt = (n) => String(n).padStart(2, "0");
+  setInterval(() => {
+    if (remaining > 0) remaining--;
+    const h = Math.floor(remaining / 3600);
+    const m = Math.floor((remaining % 3600) / 60);
+    const s = remaining % 60;
+    timerEl.textContent = `Ends in ${fmt(h)}:${fmt(m)}:${fmt(s)}`;
+  }, 1000);
+
+  // ---------- Build slides ----------
+  const slides = HERO_DATA.slides;
+  viewport.innerHTML = slides.map((s, i) => renderSlide(s, i)).join("");
+
+  const slideEls = Array.from(viewport.querySelectorAll(".eh-slide"));
+
+  // Dots
+  dotsWrap.innerHTML = slides.map((_, i) =>
+    `<button class="eh-dot ${i===0 ? "is-active":""}" aria-label="Go to slide ${i+1}" data-i="${i}"></button>`
+  ).join("");
+
+  const dotEls = Array.from(dotsWrap.querySelectorAll(".eh-dot"));
+  dotEls.forEach(btn => btn.addEventListener("click", () => goTo(+btn.dataset.i, true)));
+
+  let idx = 0;
+  let autoplayTimer = null;
+  let progressTimer = null;
+  let progressStart = 0;
+
+  function setTopUI(){
+    tagEl.textContent = slides[idx].tag;
+    countEl.textContent = `${String(idx+1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
+  }
+
+  function setActive(){
+    slideEls.forEach((el, i) => el.classList.toggle("is-active", i===idx));
+    dotEls.forEach((el, i) => el.classList.toggle("is-active", i===idx));
+    setTopUI();
+  }
+
+  function startProgress(){
+    if(!HERO_DATA.settings.progress) return;
+    progressStart = performance.now();
+    progressBar.style.width = "0%";
+    clearInterval(progressTimer);
+    progressTimer = setInterval(() => {
+      const elapsed = performance.now() - progressStart;
+      const pct = Math.min(100, (elapsed / HERO_DATA.settings.intervalMs) * 100);
+      progressBar.style.width = pct + "%";
+    }, 60);
+  }
+
+  function stopProgress(){
+    clearInterval(progressTimer);
+    progressBar.style.width = "0%";
+  }
+
+  function startAutoplay(){
+    if(!HERO_DATA.settings.autoplay) return;
+    clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(() => goTo((idx+1) % slides.length, false), HERO_DATA.settings.intervalMs);
+    startProgress();
+  }
+
+  function stopAutoplay(){
+    clearInterval(autoplayTimer);
+    stopProgress();
+  }
+
+  function goTo(nextIndex, userAction){
+    idx = (nextIndex + slides.length) % slides.length;
+    setActive();
+
+    if(userAction){
+      stopAutoplay();
+      startAutoplay();
+    }else{
+      startProgress();
+    }
+  }
+
+  prevBtn.addEventListener("click", () => goTo(idx - 1, true));
+  nextBtn.addEventListener("click", () => goTo(idx + 1, true));
+
+  slider.addEventListener("mouseenter", stopAutoplay);
+  slider.addEventListener("mouseleave", startAutoplay);
+
+  setActive();
+  startAutoplay();
+
+  // ---------- renderer ----------
+  function renderSlide(s, i){
+    const badges = (s.badges || []).map(b => `<span class="eh-badge">${b}</span>`).join("");
+    const ctas = (s.ctas || []).map((c, j) => {
+      const cls = j === 0 ? "eh-btn eh-btn--primary" : "eh-btn";
+      return `<a class="${cls}" href="${c.href}">${c.label}</a>`;
+    }).join("");
+
+    const chips = (s.visual?.chips || []);
+    const chipHtml = [
+      chips[0] ? `<span class="eh-chip eh-chip--one">${chips[0]}</span>` : "",
+      chips[1] ? `<span class="eh-chip eh-chip--two">${chips[1]}</span>` : ""
+    ].join("");
+
+    const imgs = s.visual?.images || [];
+    let visualHtml = "";
+
+    if (s.visual?.layout === "collage" && imgs.length >= 3){
+      visualHtml = `
+        <div class="eh-slide__visual">
+          <div class="eh-collage">
+            <div class="eh-collage__a"><img src="${imgs[0].src}" alt="${imgs[0].alt}"></div>
+            <div class="eh-collage__b"><img src="${imgs[1].src}" alt="${imgs[1].alt}"></div>
+            <div class="eh-collage__c"><img src="${imgs[2].src}" alt="${imgs[2].alt}"></div>
+          </div>
+          ${chipHtml}
+        </div>
+      `;
+    } else if (s.visual?.layout === "split" && imgs.length >= 2){
+      visualHtml = `
+        <div class="eh-slide__visual">
+          <img class="eh-visual__img" src="${imgs[0].src}" alt="${imgs[0].alt}">
+          <div style="position:absolute; right:14px; top:14px; width:46%; height:46%; border-radius:16px; overflow:hidden; box-shadow:0 14px 30px rgba(0,0,0,.18);">
+            <img class="eh-visual__img" src="${imgs[1].src}" alt="${imgs[1].alt}">
+          </div>
+          ${chipHtml}
+        </div>
+      `;
+    } else {
+      const img = imgs[0] || { src:"", alt:"" };
+      visualHtml = `
+        <div class="eh-slide__visual">
+          <img class="eh-visual__img" src="${img.src}" alt="${img.alt}">
+          ${chipHtml}
+        </div>
+      `;
+    }
+
+    return `
+      <article class="eh-slide ${i===0 ? "is-active":""}" data-id="${s.id}">
+        <div class="eh-slide__content">
+          <h2 class="eh-slide__headline">${s.headline}</h2>
+          <p class="eh-slide__subline">${s.subline}</p>
+          <div class="eh-ctas">${ctas}</div>
+          <div class="eh-badges">${badges}</div>
+        </div>
+        ${visualHtml}
+      </article>
+    `;
+  }
+})();
+
+(function eHubLandingAfterHero(){
+  // ========= DATA (INLINE JSON so it works in a single file) =========
+  const DATA = {
+    year: new Date().getFullYear(),
+
+    offerTiles: [
+      {
+        tag: "BANK OFFER",
+        title: "Extra 10% Off",
+        desc: "On select cards • No-Cost EMI available",
+        cta: "View Offers",
+        href: "#deals",
+        img: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=1600&q=90"
+      },
+      {
+        tag: "NEW ARRIVALS",
+        title: "Latest Gadgets",
+        desc: "Fresh launches across audio & mobiles",
+        cta: "Explore New",
+        href: "#new-launch",
+        img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1600&q=90"
+      },
+      {
+        tag: "EXCHANGE",
+        title: "Upgrade & Save",
+        desc: "Best exchange bonus on phones & appliances",
+        cta: "Check Exchange",
+        href: "#exchange",
+        img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=90"
+      }
+    ],
+
+    categories: [
+      { name:"Mobiles & Tablets", meta:"5G • iPads • Accessories", badge:"Hot", img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=90" },
+      { name:"Laptops & PCs", meta:"Gaming • Work • Student", badge:"Top", img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1400&q=90" },
+      { name:"TVs", meta:"4K • OLED • QLED", badge:"Best", img:"https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1400&q=90" },
+      { name:"Audio", meta:"Soundbars • TWS • Speakers", badge:"Deal", img:"https://shopcgx.com/cdn/shop/files/6579924_rd.jpg" },
+      { name:"Home Appliances", meta:"AC • Washer • Fridge", badge:"Mega", img:"https://media3.bosch-home.com/Images/225x300/25204057_OffersHomeSetup_WebsiteTeaserBanners_900x12001.jpg" },
+      { name:"Kitchen Appliances", meta:"Air fryer • OTG • Mixer", badge:"Combo", img:"https://media.istockphoto.com/id/1211554164/photo/3d-render-of-home-appliances-collection-set.jpg?s=612x612&w=0&k=20&c=blm3IyPyZo5ElWLOjI-hFMG-NrKQ0G76JpWGyNttF8s=" },
+      { name:"Cameras", meta:"DSLR • Mirrorless • Action", badge:"Pro", img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=90" },
+      { name:"Smart Devices", meta:"CCTV • Speakers • Wi-Fi", badge:"New", img:"https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=1400&q=90" }
+    ],
+
+    deals: [
+      mk("Apple iPhone (New Series)", "Mobiles", 79999, 89999, 11, "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1600&q=90", "EXTRA ₹2,000 OFF"),
+      mk("Samsung 55\" 4K Smart TV", "TVs", 42999, 54999, 22, "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=1600&q=90", "UP TO 22% OFF"),
+      mk("Noise Cancelling Headphones", "Audio", 6999, 9999, 30, "https://m.media-amazon.com/images/I/51f7KKP25PL._AC_UF1000,1000_QL80_.jpg", "LIMITED DEAL"),
+      mk("Gaming Laptop i7 / RTX", "Computers", 99999, 129999, 23, "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=1600&q=90", "NO-COST EMI"),
+      mk("Front Load Washing Machine", "Appliances", 27999, 36999, 24, "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?auto=format&fit=crop&w=1600&q=90", "EXCHANGE BONUS"),
+      mk("Air Conditioner Inverter 1.5T", "Appliances", 36999, 46999, 21, "https://www.daikinindia.com/sites/default/files/daikin-blog_1_0.jpg", "FREE INSTALL*"),
+      mk("Air Fryer XL", "Kitchen", 6999, 9999, 30, "https://rukminim2.flixcart.com/image/480/640/xif0q/air-fryer/f/o/z/black-4-5-1400-airryer-paf-4-0-mech-control-prestige-original-imahh7n3yaa9udvy.jpeg?q=90", "COMBO OFFER"),
+      mk("Mirrorless Camera Kit", "Cameras", 58999, 69999, 16, "https://www.jiomart.com/images/product/original/491936045/nikon-z-6ii-mirrorless-camera-with-24-70mm-lens-kit-digital-o491936045-p590441890-0-202511251317.jpeg?im=Resize=(420,420)", "BEST SELLER")
+    ],
+
+    launches: [
+      mk("New Wireless Earbuds Pro", "Audio", 4999, 6999, 28, "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1600&q=90", "JUST LAUNCHED"),
+      mk("Ultra-Slim Laptop OLED", "Computers", 89999, 109999, 18, "https://i5.walmartimages.com/asr/048048b7-80b9-4561-b34e-c8d556a892d6.7932779640cf3fa8efd59d848bb8dacd.jpeg", "NEW"),
+      mk("Smart Watch Series X", "Wearables", 12999, 15999, 19, "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1600&q=90", "NEW"),
+      mk("4K Projector Home Cinema", "TV & Audio", 39999, 49999, 20, "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1600&q=90", "NEW"),
+      mk("Robot Vacuum Cleaner", "Appliances", 17999, 24999, 28, "https://jamesandco.in/wp-content/uploads/2024/09/61Vt8i4F8gL._SL1500.jpg", "TRENDING"),
+      mk("Smart Security Camera", "Smart Devices", 2999, 3999, 25, "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1600&q=90", "NEW")
+    ],
+
+    midBanners: [
+      {
+        title: "TV Carnival",
+        desc: "Up to 45% off on 4K Smart TVs + Soundbars",
+        cta: "Shop TVs",
+        href: "#tv",
+        img: "https://images.unsplash.com/photo-1558888401-3cc1de77652d?auto=format&fit=crop&w=1700&q=90"
+      },
+      {
+        title: "Appliance Mega Exchange",
+        desc: "Upgrade your home with extra exchange bonus",
+        cta: "Shop Appliances",
+        href: "#appliances",
+        img: "https://static.india.com/wp-content/uploads/2024/07/Designer-27.jpeg"
+      }
+    ],
+
+    brands: [
+      brand("Apple", "Premium phones & more", "https://www.freepnglogos.com/uploads/apple-logo-png/apple-logo-icon-16.png"),
+      brand("Samsung", "Mobiles • TVs • Appliances", "https://static.vecteezy.com/system/resources/previews/020/975/545/non_2x/samsung-logo-samsung-icon-transparent-free-png.png"),
+      brand("Sony", "Audio • TVs", "https://cdn.freebiesupply.com/images/thumbs/2x/sony-logo.png"),
+      brand("HP", "Laptops • Desktops", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqn4BiyQe_C6jSpAz9NYZQiUpqel_3mPaUrw&s"),
+      brand("LG", "Home appliances", "https://toppng.com/uploads/preview/795px-lg-logo-lg-logo-11563499956so69ucwzgc.png"),
+      brand("Philips", "Personal care", "https://www.logo.wine/a/logo/Philips/Philips-Logo.wine.svg"),
+      brand("Canon", "Cameras", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiCnah0DGPX3l40-hMz67b6KRjujnl4NXfoA&s"),
+      brand("Bose", "Premium audio", "https://iconlogovector.com/uploads/images/2024/11/lg-6741253027927-Bose.webp")
+    ]
+  };
+
+  // ========= HELPERS =========
+  function mk(title, cat, price, mrp, offPct, img, badge){
+    return { title, cat, price, mrp, offPct, img, badge };
+  }
+  function brand(name, desc, logo){
+    return { name, desc, logo };
+  }
+  function money(n){ return "₹" + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function el(id){ return document.getElementById(id); }
+
+  // ========= RENDERERS =========
+  // Offer tiles
+  const tilesWrap = el("ehOfferTiles");
+  if(tilesWrap){
+    tilesWrap.innerHTML = DATA.offerTiles.map(t => `
+      <div class="eh-tile">
+        <img src="${t.img}" alt="${t.title}">
+        <div class="eh-tile__overlay">
+          <div class="eh-tile__tag">${t.tag}</div>
+          <div class="eh-tile__t">${t.title}</div>
+          <div class="eh-tile__d">${t.desc}</div>
+          <a class="eh-tile__cta" href="${t.href}">${t.cta}</a>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // Categories carousel
+  const catTrack = el("ehCatTrack");
+  if(catTrack){
+    catTrack.innerHTML = DATA.categories.map(c => cardHTML({
+      title: c.name,
+      meta: c.meta,
+      price: null,
+      mrp: null,
+      offPct: null,
+      img: c.img,
+      badge: c.badge,
+      cta: "Explore"
+    })).join("");
+  }
+
+  // Deals carousel
+  const dealsTrack = el("ehDealsTrack");
+  if(dealsTrack){
+    dealsTrack.innerHTML = DATA.deals.map(p => productCardHTML(p, "Grab Deal")).join("");
+  }
+
+  // Brands
+  const brandTrack = el("ehBrandTrack");
+  if(brandTrack){
+    brandTrack.innerHTML = DATA.brands.map(b => `
+      <div class="eh-brand">
+        <div class="eh-brand__logo"><img src="${b.logo}" alt="${b.name}"></div>
+        <div>
+          <div class="eh-brand__t">${b.name}</div>
+          <div class="eh-brand__d">${b.desc}</div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // Mid banners
+  const midB = el("ehMidBanners");
+  if(midB){
+    midB.innerHTML = DATA.midBanners.map(b => `
+      <div class="eh-banner">
+        <img src="${b.img}" alt="${b.title}">
+        <div class="eh-banner__overlay">
+          <div class="eh-banner__t">${b.title}</div>
+          <div class="eh-banner__d">${b.desc}</div>
+          <a class="eh-banner__cta" href="${b.href}">${b.cta}</a>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // Launches carousel
+  const launchTrack = el("ehLaunchTrack");
+  if(launchTrack){
+    launchTrack.innerHTML = DATA.launches.map(p => productCardHTML(p, "View")).join("");
+  }
+
+  // Recommended grid (mix)
+  const recGrid = el("ehRecGrid");
+  let recPool = [...DATA.deals, ...DATA.launches];
+  function renderRecs(){
+    if(!recGrid) return;
+    // shuffle
+    recPool = recPool.sort(() => Math.random() - 0.5);
+    const pick = recPool.slice(0, 10);
+    recGrid.innerHTML = pick.map(p => productCardHTML(p, "Quick View", true)).join("");
+    attachQuickViewHandlers();
+  }
+  renderRecs();
+
+  const shuffleBtn = el("ehShuffleRecs");
+  if(shuffleBtn) shuffleBtn.addEventListener("click", renderRecs);
+
+  // Footer year
+  const y = el("ehYear");
+  if(y) y.textContent = DATA.year;
+
+  // ========= CAROUSEL BUTTONS =========
+  document.querySelectorAll("[data-carousel-prev]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sel = btn.getAttribute("data-carousel-prev");
+      const track = document.querySelector(sel);
+      if(track) track.scrollBy({ left: -640, behavior: "smooth" });
+    });
+  });
+  document.querySelectorAll("[data-carousel-next]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sel = btn.getAttribute("data-carousel-next");
+      const track = document.querySelector(sel);
+      if(track) track.scrollBy({ left: 640, behavior: "smooth" });
+    });
+  });
+
+  // ========= COUNTDOWN (Deal strip) =========
+  let dayDeal = 6 * 3600; // 6 hours demo
+  const dayEl = el("ehDayDealTimer");
+  const pad = n => String(n).padStart(2, "0");
+  setInterval(() => {
+    if(dayDeal > 0) dayDeal--;
+    const h = Math.floor(dayDeal / 3600);
+    const m = Math.floor((dayDeal % 3600) / 60);
+    const s = dayDeal % 60;
+    if(dayEl) dayEl.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+  }, 1000);
+
+  // ========= QUICK VIEW MODAL =========
+  const qv = el("ehQV");
+  const qvClose = el("ehQVClose");
+  const qvX = el("ehQVX");
+  const qvImg = el("ehQVImg");
+  const qvTitle = el("ehQVTitle");
+  const qvMeta = el("ehQVMeta");
+  const qvPrice = el("ehQVPrice");
+  const qvMrp = el("ehQVMrp");
+  const qvOff = el("ehQVOff");
+
+  function openQV(p){
+    if(!qv) return;
+    qv.classList.add("is-open");
+    qv.setAttribute("aria-hidden", "false");
+    qvImg.src = p.img;
+    qvImg.alt = p.title;
+    qvTitle.textContent = p.title;
+    qvMeta.textContent = `${p.cat} • Bank offer • EMI available`;
+    qvPrice.textContent = money(p.price);
+    qvMrp.textContent = money(p.mrp);
+    qvOff.textContent = `${p.offPct}% OFF`;
+    document.body.style.overflow = "hidden";
+  }
+  function closeQV(){
+    if(!qv) return;
+    qv.classList.remove("is-open");
+    qv.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  if(qvClose) qvClose.addEventListener("click", closeQV);
+  if(qvX) qvX.addEventListener("click", closeQV);
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeQV();
+  });
+
+  function attachQuickViewHandlers(){
+    document.querySelectorAll("[data-qv]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const key = btn.getAttribute("data-qv");
+        const p = recPool.find(x => x.title === key) || DATA.deals.find(x => x.title === key) || DATA.launches.find(x => x.title === key);
+        if(p) openQV(p);
+      });
+    });
+    document.querySelectorAll("[data-card]").forEach(card => {
+      card.addEventListener("click", (e) => {
+        // If user clicked button inside card, ignore here
+        if(e.target.closest("button")) return;
+        const key = card.getAttribute("data-card");
+        const p = recPool.find(x => x.title === key) || DATA.deals.find(x => x.title === key) || DATA.launches.find(x => x.title === key);
+        if(p) openQV(p);
+      });
+    });
+  }
+  attachQuickViewHandlers();
+
+  // ========= CARD HTML =========
+  function cardHTML({title, meta, img, badge, cta}){
+    return `
+      <div class="eh-card" data-card="${escapeHTML(title)}">
+        <div class="eh-card__img">
+          <img src="${img}" alt="${escapeHTML(title)}">
+          <div class="eh-card__badge">${badge || "Featured"}</div>
+        </div>
+        <div class="eh-card__body">
+          <div class="eh-card__t">${escapeHTML(title)}</div>
+          <div class="eh-card__m">${escapeHTML(meta || "")}</div>
+          <button class="eh-card__btn" type="button" data-qv="${escapeHTML(title)}">${cta || "Explore"}</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function productCardHTML(p, btnLabel, enableQVButton){
+    const meta = `${p.cat} • Best price`;
+    const btn = enableQVButton
+      ? `<button class="eh-card__btn" type="button" data-qv="${escapeHTML(p.title)}">${btnLabel}</button>`
+      : `<button class="eh-card__btn" type="button">${btnLabel}</button>`;
+    return `
+      <div class="eh-card" data-card="${escapeHTML(p.title)}">
+        <div class="eh-card__img">
+          <img src="${p.img}" alt="${escapeHTML(p.title)}">
+          <div class="eh-card__badge">${p.badge || "Deal"}</div>
+        </div>
+        <div class="eh-card__body">
+          <div class="eh-card__t">${escapeHTML(p.title)}</div>
+          <div class="eh-card__m">${escapeHTML(meta)}</div>
+          <div class="eh-card__priceRow">
+            <span class="eh-card__price">${money(p.price)}</span>
+            <span class="eh-card__mrp">${money(p.mrp)}</span>
+            <span class="eh-card__off">${p.offPct}% OFF</span>
+          </div>
+          ${btn}
+        </div>
+      </div>
+    `;
+  }
+
+  function escapeHTML(str){
+    return String(str).replace(/[&<>"']/g, s => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+    }[s]));
+  }
+})();
+
+(function addTwoMoreSections(){
+  // ===== INLINE JSON DATA =====
+  const BUNDLES = [
+    {
+      title: "Work From Home Kit",
+      saveText: "SAVE ₹3,500",
+      items: [
+        {
+          name: "Laptop (Thin & Light)",
+          meta: "i5 • 16GB • 512GB",
+          price: 57999,
+          img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1400&q=90"
+        },
+        {
+          name: "Wireless Mouse",
+          meta: "Ergonomic • 2.4GHz",
+          price: 999,
+          img: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1400&q=90"
+        },
+        {
+          name: "Backpack",
+          meta: "Water resistant • 15.6\"",
+          price: 1499,
+          img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1400&q=90"
+        }
+      ],
+      bundleOff: 3500
+    },
+    {
+      title: "Home Theatre Combo",
+      saveText: "SAVE ₹5,000",
+      items: [
+        {
+          name: "55\" 4K Smart TV",
+          meta: "Dolby • HDR • 120Hz",
+          price: 42999,
+          img: "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1400&q=90"
+        },
+        {
+          name: "Soundbar 2.1",
+          meta: "Bass boost • HDMI ARC",
+          price: 9999,
+          img: "https://images.unsplash.com/photo-1612444530582-fc66183b16f4?auto=format&fit=crop&w=1400&q=90"
+        },
+        {
+          name: "Streaming Stick",
+          meta: "4K • Voice remote",
+          price: 3499,
+          img: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1400&q=90"
+        }
+      ],
+      bundleOff: 5000
+    },
+    {
+      title: "Kitchen Starter Pack",
+      saveText: "SAVE ₹2,000",
+      items: [
+        {
+          name: "Air Fryer XL",
+          meta: "Digital • 6L",
+          price: 6999,
+          img: "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=1400&q=90"
+        },
+        {
+          name: "Mixer Grinder",
+          meta: "750W • 3 jars",
+          price: 3499,
+          img: "https://images.unsplash.com/photo-1589923188651-268a9765e432?auto=format&fit=crop&w=1400&q=90"
+        },
+        {
+          name: "Electric Kettle",
+          meta: "1.5L • Auto cut-off",
+          price: 1199,
+          img: "https://images.unsplash.com/photo-1556911220-e15b29be8c62?auto=format&fit=crop&w=1400&q=90"
+        }
+      ],
+      bundleOff: 2000
+    }
+  ];
+
+  const STORES = [
+    {
+      name: "E-Hub Electronics • Central",
+      addr: "Near Main Bus Stand, City Center",
+      hours: "Open • 10am–9pm",
+      eta: "Pickup in 2 hrs"
+    },
+    {
+      name: "E-Hub Electronics • North",
+      addr: "Ring Road, Opp. Metro Gate",
+      hours: "Open • 10am–9pm",
+      eta: "Pickup today"
+    },
+    {
+      name: "E-Hub Electronics • East",
+      addr: "Market Street, Next to Mall",
+      hours: "Open • 11am–9pm",
+      eta: "Pickup in 4 hrs"
+    }
+  ];
+
+  // ===== DOM =====
+  const bundleGrid = document.getElementById("ehBundleGrid");
+  const pinInput = document.getElementById("ehPincode");
+  const checkBtn = document.getElementById("ehCheckPinBtn");
+  const pinResult = document.getElementById("ehPinResult");
+  const storeList = document.getElementById("ehStoreList");
+  const storeHint = document.getElementById("ehStoreHint");
+  const useLocBtn = document.getElementById("ehUseLocation");
+
+  // ===== Helpers =====
+  const money = (n) => "₹" + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const escapeHTML = (s) => String(s).replace(/[&<>"']/g, ch => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+  }[ch]));
+
+  // ===== Render Bundles =====
+  if(bundleGrid){
+    bundleGrid.innerHTML = BUNDLES.map((b, idx) => {
+      const total = b.items.reduce((a,x)=>a+x.price,0);
+      const final = Math.max(0, total - b.bundleOff);
+
+      return `
+        <article class="eh-bundle" data-bundle="${idx}">
+          <div class="eh-bundleHead">
+            <div class="eh-bundleTitle">${escapeHTML(b.title)}</div>
+            <div class="eh-bundleSave">${escapeHTML(b.saveText)}</div>
+          </div>
+
+          <div class="eh-bundleItems">
+            ${b.items.map(it => `
+              <div class="eh-bItem">
+                <div class="eh-bItemImg"><img src="${it.img}" alt="${escapeHTML(it.name)}"></div>
+                <div>
+                  <div class="eh-bItemName">${escapeHTML(it.name)}</div>
+                  <div class="eh-bItemMeta">${escapeHTML(it.meta)}</div>
+                </div>
+                <div class="eh-bItemPrice">${money(it.price)}</div>
+              </div>
+            `).join("")}
+          </div>
+
+          <div class="eh-bundleFoot">
+            <div class="eh-bundleTotal">
+              <span>Total after bundle savings</span>
+              <strong>${money(final)}</strong>
+            </div>
+            <button class="eh-bundleBtn" type="button" data-bundlebtn="${idx}">
+              Add Bundle
+            </button>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    bundleGrid.querySelectorAll("[data-bundlebtn]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const i = Number(btn.getAttribute("data-bundlebtn"));
+        const b = BUNDLES[i];
+        const total = b.items.reduce((a,x)=>a+x.price,0);
+        const final = Math.max(0, total - b.bundleOff);
+        alert(`Bundle added!\n\n${b.title}\nPay: ${money(final)} (Saved ${money(b.bundleOff)})`);
+      });
+    });
+  }
+
+  // ===== Render Stores =====
+  function renderStores(){
+    if(!storeList) return;
+    storeList.innerHTML = STORES.map(s => `
+      <div class="eh-storeItem">
+        <div>
+          <div class="eh-storeItem__t">${escapeHTML(s.name)}</div>
+          <div class="eh-storeItem__d">${escapeHTML(s.addr)}<br>${escapeHTML(s.hours)}</div>
+        </div>
+        <div class="eh-storeItem__pill">${escapeHTML(s.eta)}</div>
+      </div>
+    `).join("");
+  }
+  renderStores();
+
+  // ===== Pincode Checker =====
+  const savedPin = localStorage.getItem("eh_pincode");
+  if(savedPin && pinInput){
+    pinInput.value = savedPin;
+    checkPincode(savedPin);
+  }
+
+  function checkPincode(pin){
+    if(!pinResult) return;
+    const ok = /^\d{6}$/.test(pin);
+
+    if(!ok){
+      pinResult.classList.add("is-bad");
+      pinResult.textContent = "Please enter a valid 6-digit pincode.";
+      if(storeHint) storeHint.textContent = "Enter a valid pincode to see nearest store";
+      return;
+    }
+
+    // Simple deterministic ETA (looks realistic)
+    const n = Number(pin.slice(-2));
+    const days = (n % 4) + 1; // 1–4 days
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + days);
+
+    const dd = String(deliveryDate.getDate()).padStart(2,"0");
+    const mm = deliveryDate.toLocaleString(undefined, { month:"short" });
+    const msg = `Deliverable to ${pin} • Delivery by ${dd} ${mm} • Installation available* • COD available*`;
+
+    pinResult.classList.remove("is-bad");
+    pinResult.textContent = msg;
+
+    localStorage.setItem("eh_pincode", pin);
+    if(storeHint) storeHint.textContent = `Nearest stores found for pincode ${pin}`;
+  }
+
+  if(checkBtn && pinInput){
+    checkBtn.addEventListener("click", ()=> checkPincode(pinInput.value.trim()));
+    pinInput.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter") checkPincode(pinInput.value.trim());
+    });
+  }
+
+  // Optional: Use my location button (safe fallback)
+  if(useLocBtn){
+    useLocBtn.addEventListener("click", ()=>{
+      if(!navigator.geolocation){
+        alert("Location not supported in this browser.");
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(()=>{
+        alert("Location detected (demo). Enter pincode to filter stores.");
+      }, ()=>{
+        alert("Location permission denied. Enter pincode instead.");
+      }, { enableHighAccuracy:false, timeout:7000 });
+    });
+  }
+})();
+
+
+
+</script>
+
+</body>
+</html>

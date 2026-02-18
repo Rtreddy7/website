@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#121826;
+      --muted:rgba(18,24,38,.7);
+      --line:rgba(18,24,38,.10);
+      --green:#27ae60;
+      --orange:#e67e22;
+      --red:#e11c06;
+      --blue:#2d8cff;
+      --grey:#7f8c8d;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Space Grotesk",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .topbar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--card);border-bottom:1px solid var(--line);z-index:10}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg, rgba(45,140,255,.20), rgba(39,174,96,.20));display:flex;align-items:center;justify-content:center;font-weight:900}
+    .title{font-weight:900;font-size:18px}
+    .sub{font-size:12px;color:var(--muted)}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .btn{padding:10px 12px;border-radius:12px;border:1px solid transparent;cursor:pointer;font-weight:900;background:var(--blue);color:#fff}
+    .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .btn.danger{background:var(--red)}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+
+    .layout{display:grid;grid-template-columns:330px 1fr;gap:16px;padding:16px}
+    .sidebar,.main{display:flex;flex-direction:column;gap:16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 10px 24px rgba(18,24,38,.04)}
+    .card-title{font-weight:900;margin-bottom:10px}
+    .hint{font-size:12px;color:var(--muted);font-weight:900}
+
+    .menu{display:flex;flex-direction:column;gap:8px}
+    .menu-item{text-align:left;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:900}
+    .menu-item.active{border-color:rgba(45,140,255,.35);box-shadow:0 10px 24px rgba(45,140,255,.10)}
+    .tab{display:none}
+    .tab.show{display:block}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .kpi{
+      border:1px solid var(--line);border-radius:14px;padding:12px;
+      cursor:pointer;background:#fff;transition:.15s transform ease;
+    }
+    .kpi:hover{transform:translateY(-1px)}
+    .kpi-label{font-size:12px;color:var(--muted);font-weight:900}
+    .kpi-value{font-size:22px;font-weight:900;margin-top:6px}
+    .kpi-sub{margin-top:6px;font-size:12px;color:var(--muted);font-weight:900}
+
+    .pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;user-select:none}
+    .pill.available{background:var(--green);color:#fff}
+    .pill.away{background:var(--orange);color:#fff}
+    .pill.leave{background:var(--red);color:#fff}
+    .pill.present{background:var(--blue);color:#fff}
+    .pill.pending{background:var(--grey);color:#fff}
+    .pill.break{background:rgba(45,140,255,.12);color:var(--blue)}
+
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+    .muted{color:var(--muted);font-weight:900}
+
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    input,select{
+      padding:10px 12px;border-radius:12px;border:1px solid var(--line);
+      outline:none;font-family:inherit;min-width:220px;background:#fff;
+    }
+
+    /* Details drawer */
+    .drawer-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.25);
+      display:none;z-index:80;
+    }
+    .drawer-backdrop.show{display:block}
+    .drawer{
+      position:fixed;top:0;right:0;height:100%;width:min(520px, 92vw);
+      background:#fff;border-left:1px solid var(--line);
+      box-shadow:-20px 0 40px rgba(18,24,38,.12);
+      transform:translateX(105%);
+      transition:.2s transform ease;
+      z-index:90;
+      display:flex;flex-direction:column;
+    }
+    .drawer.show{transform:translateX(0)}
+    .drawer-head{
+      padding:14px 14px;border-bottom:1px solid var(--line);
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+    }
+    .drawer-title{font-weight:900}
+    .drawer-body{padding:14px;overflow:auto}
+    .user-card{
+      border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;
+      display:flex;justify-content:space-between;gap:10px;align-items:flex-start;
+    }
+    .uc-name{font-weight:900}
+    .uc-meta{font-size:12px;color:var(--muted);font-weight:900}
+    .uc-right{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+
+    /* 3 dots menu for user management */
+    .dots{
+      width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
+      background:#fff;cursor:pointer;font-weight:900;
+      display:inline-flex;align-items:center;justify-content:center;
+    }
+    .rel{position:relative; display:inline-block}
+    .menu-pop{
+      position:absolute; right:0; top:42px;
+      width:240px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      box-shadow:0 10px 24px rgba(18,24,38,.10);
+      padding:6px;
+      z-index:50;
+      display:none;
+    }
+    .menu-pop.show{display:block}
+    .menu-item2{
+      width:100%;
+      text-align:left;
+      padding:10px 10px;
+      border-radius:12px;
+      border:0;
+      background:#fff;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .menu-item2:hover{background:rgba(18,24,38,.04)}
+    .menu-item2.danger{color:var(--red)}
+    .menu-item2.sep{
+      cursor:default;
+      color:var(--muted);
+      background:transparent;
+      font-size:12px;
+      padding:8px 10px;
+    }
+
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">OP</div>
+      <div>
+        <div class="title">Admin Dashboard</div>
+        <div class="sub">Clickable KPI cards → show users</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <button class="btn ghost" id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Today</div>
+        <div class="hint" id="todayLabel">—</div>
+        <div class="hint" style="margin-top:8px;">
+          Click any dashboard card to view users list.
+        </div>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-tab="tab-dashboard">Dashboard</button>
+        <button class="menu-item" data-tab="tab-leaves">Leave Approvals</button>
+        <button class="menu-item" data-tab="tab-users">User Management</button>
+        <button class="menu-item" data-tab="tab-breaks">Break Monitor</button>
+      </nav>
+
+      <div class="card">
+        <div class="card-title">Reports</div>
+        <!-- <div class="hint">D</div> -->
+        <div class="row" style="margin-top:10px;">
+          <input id="reportDate" type="date" />
+          <button class="btn" id="downloadTodayBtn">Download Daily CSV</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- DASHBOARD -->
+      <section id="tab-dashboard" class="tab card show">
+        <div class="card-title">Overview</div>
+        <div class="hint">Present / On Leave based on approved leaves today • Active breaks show break type</div>
+
+        <div class="grid">
+          <div class="kpi" id="kpiPresent">
+            <div class="kpi-label">Present</div>
+            <div class="kpi-value" id="vPresent">0</div>
+            <div class="kpi-sub">Click to view users</div>
+          </div>
+          <div class="kpi" id="kpiLeave">
+            <div class="kpi-label">On Leave</div>
+            <div class="kpi-value" id="vLeave">0</div>
+            <div class="kpi-sub">Click to view users</div>
+          </div>
+          <div class="kpi" id="kpiBreaks">
+            <div class="kpi-label">Active Breaks</div>
+            <div class="kpi-value" id="vBreaks">0</div>
+            <div class="kpi-sub">Click to view break type</div>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:12px;">
+          <div class="kpi" id="kpiAvailable">
+            <div class="kpi-label">Available</div>
+            <div class="kpi-value" id="vAvailable">0</div>
+            <div class="kpi-sub">Click to view users</div>
+          </div>
+          <div class="kpi" id="kpiAway">
+            <div class="kpi-label">Away</div>
+            <div class="kpi-value" id="vAway">0</div>
+            <div class="kpi-sub">Click to view users</div>
+          </div>
+          <div class="kpi" id="kpiExceeded">
+            <div class="kpi-label">Break Limit Exceeded</div>
+            <div class="kpi-value" id="vExceeded">0</div>
+            <div class="kpi-sub">Click to view users</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-title">Latest Notifications</div>
+          <div class="hint">Leave request + break limit notifications</div>
+          <div style="margin-top:12px;overflow:auto;">
+            <table>
+              <thead>
+                <tr><th>Time</th><th>Type</th><th>User</th><th>Message</th></tr>
+              </thead>
+              <tbody id="notifTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEAVE APPROVALS -->
+      <section id="tab-leaves" class="tab card">
+        <div class="card-title">Leave Requests</div>
+        <div class="hint">Approve/Reject only here • Sick proof downloadable</div>
+
+        <div style="margin-top:12px;overflow:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Type</th>
+                <th>Reason</th>
+                <th>Proof</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leaveTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- USER MANAGEMENT -->
+      <section id="tab-users" class="tab card">
+        <div class="card-title">User Management</div>
+        <div class="hint">3 dots: Edit / Remove(last) / Force Availability / Force Leave</div>
+
+        <div class="row" style="margin-top:12px;">
+          <input id="newName" placeholder="Name" />
+          <input id="newEmail" placeholder="Email" />
+          <input id="newPass" placeholder="Password" />
+          <button class="btn" id="addUserBtn">Add User</button>
+        </div>
+
+        <div style="margin-top:12px;overflow:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Availability</th>
+                <th>Status</th>
+                <th>Active Break</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="userTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- BREAK MONITOR -->
+      <section id="tab-breaks" class="tab card">
+        <div class="card-title">Break Monitor</div>
+        <div class="hint">Shows who is on break and the break type</div>
+
+        <div style="margin-top:12px;overflow:auto;">
+          <table>
+            <thead>
+              <tr><th>User</th><th>Break Type</th><th>Started</th><th>Duration</th><th>Exceeded</th></tr>
+            </thead>
+            <tbody id="breakTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title" id="drawerTitle">Details</div>
+        <div class="hint" id="drawerHint">—</div>
+      </div>
+      <button class="btn ghost" id="drawerClose">Close</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+  </div>
+
+  <script>
+   (() => {
+  // ==== AUTH ====
+  const adminEmail = (sessionStorage.getItem("loggedInAdmin") || "").toLowerCase();
+  if (adminEmail !== "raviteja.n@oppty.in") return window.location.href = "./login.html";
+
+  // ==== CONSTANTS ====
+  const todayKey = new Date().toISOString().slice(0, 10);
+
+  // ==== HELPERS ====
+  const read = (k, fallback) => {
+    const v = localStorage.getItem(k);
+    if (!v) return fallback;
+    try { return JSON.parse(v); } catch { return fallback; }
+  };
+  const write = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+  const fmtTime = (ts) => ts ? new Date(ts).toLocaleTimeString() : "—";
+  const fmtDT = (ts) => ts ? new Date(ts).toLocaleString() : "—";
+  const fmtDur = (ms) => {
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  };
+  const csvEscape = (v) => {
+    const s = String(v ?? "");
+    if (/[",\n]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+    return s;
+  };
+
+  // ==== STATE ====
+  let users = read("users", []);
+  let breaks = read("breaks", []);
+  let leaveRequests = read("leaveRequests", []);
+  let adminNotifications = read("adminNotifications", []);
+  let attendanceLogs = read("attendanceLogs", []);
+
+  // ensure storage exists
+  const ensure = (k, v) => localStorage.getItem(k) ?? localStorage.setItem(k, JSON.stringify(v));
+  ensure("users", []);
+  ensure("breaks", []);
+  ensure("leaveRequests", []);
+  ensure("adminNotifications", []);
+  ensure("attendanceLogs", []);
+
+  const saveAll = () => {
+    write("users", users);
+    write("breaks", breaks);
+    write("leaveRequests", leaveRequests);
+    write("adminNotifications", adminNotifications);
+    write("attendanceLogs", attendanceLogs);
+  };
+  const sync = () => {
+    users = read("users", []);
+    breaks = read("breaks", []);
+    leaveRequests = read("leaveRequests", []);
+    adminNotifications = read("adminNotifications", []);
+    attendanceLogs = read("attendanceLogs", []);
+  };
+
+  // ==== ELEMENTS (IDs from your admin UI) ====
+  const refreshBtn = document.getElementById("refreshBtn");
+  const todayLabel = document.getElementById("todayLabel");
+
+  const reportDate = document.getElementById("reportDate");
+  const downloadTodayBtn = document.getElementById("downloadTodayBtn");
+
+  const vPresent = document.getElementById("vPresent");
+  const vLeave = document.getElementById("vLeave");
+  const vBreaks = document.getElementById("vBreaks");
+  const vAvailable = document.getElementById("vAvailable");
+  const vAway = document.getElementById("vAway");
+  const vExceeded = document.getElementById("vExceeded");
+
+  const notifTable = document.getElementById("notifTable");
+  const leaveTable = document.getElementById("leaveTable");
+  const userTable = document.getElementById("userTable");
+  const breakTable = document.getElementById("breakTable");
+
+  const newName = document.getElementById("newName");
+  const newEmail = document.getElementById("newEmail");
+  const newPass = document.getElementById("newPass");
+  const addUserBtn = document.getElementById("addUserBtn");
+
+  // Drawer
+  const drawerBackdrop = document.getElementById("drawerBackdrop");
+  const drawer = document.getElementById("drawer");
+  const drawerTitle = document.getElementById("drawerTitle");
+  const drawerHint = document.getElementById("drawerHint");
+  const drawerBody = document.getElementById("drawerBody");
+  const drawerClose = document.getElementById("drawerClose");
+
+  // KPI click targets
+  const kpiPresent = document.getElementById("kpiPresent");
+  const kpiLeave = document.getElementById("kpiLeave");
+  const kpiBreaks = document.getElementById("kpiBreaks");
+  const kpiAvailable = document.getElementById("kpiAvailable");
+  const kpiAway = document.getElementById("kpiAway");
+  const kpiExceeded = document.getElementById("kpiExceeded");
+
+  // Tabs
+  document.querySelectorAll(".menu-item").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".menu-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const tab = btn.dataset.tab;
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("show"));
+      document.getElementById(tab)?.classList.add("show");
+    });
+  });
+
+  refreshBtn?.addEventListener("click", () => {
+    sync();
+    renderAll();
+  });
+
+  // ==== DRAWER ====
+  const openDrawer = (title, hint, items) => {
+    if (!drawer || !drawerBackdrop || !drawerBody || !drawerTitle || !drawerHint) return;
+    drawerTitle.textContent = title;
+    drawerHint.textContent = hint || "";
+    drawerBody.innerHTML = "";
+
+    if (!items || !items.length) {
+      drawerBody.innerHTML = `<div class="muted">No users found.</div>`;
+    } else {
+      items.forEach(it => {
+        const div = document.createElement("div");
+        div.className = "user-card";
+        div.innerHTML = `
+          <div>
+            <div class="uc-name">${it.username}</div>
+            <div class="uc-meta">${it.email}</div>
+            ${it.extra ? `<div class="uc-meta" style="margin-top:6px;">${it.extra}</div>` : ""}
+          </div>
+          <div class="uc-right">${it.pillHtml || ""}</div>
+        `;
+        drawerBody.appendChild(div);
+      });
+    }
+
+    drawerBackdrop.classList.add("show");
+    drawer.classList.add("show");
+  };
+
+  const closeDrawer = () => {
+    drawerBackdrop?.classList.remove("show");
+    drawer?.classList.remove("show");
+  };
+
+  drawerBackdrop?.addEventListener("click", closeDrawer);
+  drawerClose?.addEventListener("click", closeDrawer);
+
+  // ==== LOGIC ====
+  const getActiveBreakByEmail = (email) =>
+    breaks.find(b => (b.email || "").toLowerCase() === (email || "").toLowerCase() && b.status === "ACTIVE") || null;
+
+  const getLatestLeaveTodayByEmail = (email) => {
+    const arr = leaveRequests
+      .filter(l => (l.email || "").toLowerCase() === (email || "").toLowerCase() && l.date === todayKey)
+      .sort((a, b) => b.time - a.time);
+    return arr[0] || null;
+  };
+
+  const isOnApprovedLeaveToday = (email) => {
+    const l = getLatestLeaveTodayByEmail(email);
+    return !!(l && l.permission === "APPROVED");
+  };
+
+  // ==== KPI LISTS (click to show users) ====
+  const listPresentUsers = () => {
+    const items = users
+      .filter(u => !isOnApprovedLeaveToday(u.email))
+      .map(u => ({
+        username: u.username || u.email,
+        email: u.email,
+        pillHtml: `<span class="pill present">PRESENT</span>`
+      }));
+    openDrawer("Present Users", "Based on approved leave today", items);
+  };
+
+  const listLeaveUsers = () => {
+    const items = users
+      .filter(u => isOnApprovedLeaveToday(u.email))
+      .map(u => {
+        const l = getLatestLeaveTodayByEmail(u.email);
+        return {
+          username: u.username || u.email,
+          email: u.email,
+          extra: `Leave Type: ${l?.leaveType || "—"} • Permission: ${l?.permission || "—"}`,
+          pillHtml: `<span class="pill leave">ON LEAVE</span>`
+        };
+      });
+    openDrawer("On Leave Users", "Approved leaves only", items);
+  };
+
+  const listActiveBreakUsers = () => {
+    const act = breaks.filter(b => b.status === "ACTIVE");
+    const items = act.map(b => ({
+      username: b.username,
+      email: b.email,
+      extra: `Break Type: ${b.type} • Started: ${fmtTime(b.startTime)}`,
+      pillHtml: `<span class="pill break">${b.type}</span>`
+    }));
+    openDrawer("Active Break Users", "Shows break type (Lunch/Normal)", items);
+  };
+
+  const listAvailableUsers = () => {
+    const items = users
+      .filter(u => (u.availability || "AVAILABLE").toUpperCase() === "AVAILABLE")
+      .map(u => ({
+        username: u.username || u.email,
+        email: u.email,
+        pillHtml: `<span class="pill available">AVAILABLE</span>`
+      }));
+    openDrawer("Available Users", "Based on availability flag", items);
+  };
+
+  const listAwayUsers = () => {
+    const items = users
+      .filter(u => (u.availability || "AVAILABLE").toUpperCase() === "AWAY")
+      .map(u => ({
+        username: u.username || u.email,
+        email: u.email,
+        pillHtml: `<span class="pill away">AWAY</span>`
+      }));
+    openDrawer("Away Users", "Users on break generally show away", items);
+  };
+
+  const listExceededUsers = () => {
+    const ex = adminNotifications.filter(n => n.type === "BREAK_LIMIT_EXCEEDED" && n.date === todayKey);
+    const items = ex.map(n => ({
+      username: n.employeeName,
+      email: n.employeeEmail,
+      extra: `Break Type: ${n.breakType} • Time: ${fmtTime(n.time)}`,
+      pillHtml: `<span class="pill leave">EXCEEDED</span>`
+    }));
+    openDrawer("Break Limit Exceeded", "Exceeded > 1 hour", items);
+  };
+
+  kpiPresent?.addEventListener("click", listPresentUsers);
+  kpiLeave?.addEventListener("click", listLeaveUsers);
+  kpiBreaks?.addEventListener("click", listActiveBreakUsers);
+  kpiAvailable?.addEventListener("click", listAvailableUsers);
+  kpiAway?.addEventListener("click", listAwayUsers);
+  kpiExceeded?.addEventListener("click", listExceededUsers);
+
+  // ==== DASHBOARD RENDER ====
+  const renderDashboard = () => {
+    todayLabel && (todayLabel.textContent = new Date().toLocaleDateString(undefined, {
+      weekday: "long", year: "numeric", month: "short", day: "numeric"
+    }));
+
+    let present = 0, onLeave = 0;
+    users.forEach(u => isOnApprovedLeaveToday(u.email) ? onLeave++ : present++);
+
+    const activeBreakCount = breaks.filter(b => b.status === "ACTIVE").length;
+
+    const availableCount = users.filter(u => (u.availability || "AVAILABLE").toUpperCase() === "AVAILABLE").length;
+    const awayCount = users.filter(u => (u.availability || "AVAILABLE").toUpperCase() === "AWAY").length;
+
+    const exceededCount = adminNotifications.filter(n => n.type === "BREAK_LIMIT_EXCEEDED" && n.date === todayKey).length;
+
+    vPresent && (vPresent.textContent = String(present));
+    vLeave && (vLeave.textContent = String(onLeave));
+    vBreaks && (vBreaks.textContent = String(activeBreakCount));
+    vAvailable && (vAvailable.textContent = String(availableCount));
+    vAway && (vAway.textContent = String(awayCount));
+    vExceeded && (vExceeded.textContent = String(exceededCount));
+
+    // Notifications
+    if (!notifTable) return;
+    const notifs = adminNotifications.slice().sort((a, b) => b.time - a.time).slice(0, 15);
+    notifTable.innerHTML = "";
+    if (!notifs.length) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td colspan="4" class="muted">No notifications.</td>`;
+      notifTable.appendChild(tr);
+    } else {
+      notifs.forEach(n => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${fmtTime(n.time)}</td>
+          <td>${n.type}</td>
+          <td>${n.employeeName || "—"}</td>
+          <td>${n.message || "—"}</td>
+        `;
+        notifTable.appendChild(tr);
+      });
+    }
+  };
+
+  // ==== LEAVE APPROVALS (only in admin) ====
+  const setLeavePermission = (leaveId, status) => {
+    leaveRequests = leaveRequests.map(l => l.id === leaveId ? { ...l, permission: status } : l);
+
+    const leaveObj = leaveRequests.find(l => l.id === leaveId);
+    if (leaveObj && status === "APPROVED") {
+      // mark availability leave
+      users = users.map(u => (u.email || "").toLowerCase() === (leaveObj.email || "").toLowerCase()
+        ? { ...u, availability: "LEAVE" }
+        : u
+      );
+    }
+    saveAll();
+    renderAll();
+  };
+
+  const downloadProof = (leaveId) => {
+    const leaveObj = leaveRequests.find(l => l.id === leaveId);
+    if (!leaveObj?.proof?.dataUrl) return alert("No proof found.");
+    const a = document.createElement("a");
+    a.href = leaveObj.proof.dataUrl;
+    a.download = leaveObj.proof.name || "proof";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+
+  const renderLeaves = () => {
+    if (!leaveTable) return;
+    const todayLeaves = leaveRequests.filter(l => l.date === todayKey).sort((a, b) => b.time - a.time);
+    leaveTable.innerHTML = "";
+
+    if (!todayLeaves.length) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td colspan="6" class="muted">No leave requests today.</td>`;
+      leaveTable.appendChild(tr);
+      return;
+    }
+
+    todayLeaves.forEach(l => {
+      const proofBtn =
+        (l.leaveType === "SICK" && l.proof?.dataUrl)
+          ? `<button class="btn ghost" data-proof="${l.id}" type="button">Download</button><div class="hint">${l.proof.name}</div>`
+          : `<span class="hint">—</span>`;
+
+      const statusPill =
+        l.permission === "PENDING" ? `<span class="pill pending">PENDING</span>` :
+          l.permission === "APPROVED" ? `<span class="pill available">APPROVED</span>` :
+            `<span class="pill leave">REJECTED</span>`;
+
+      const actions =
+        l.permission === "PENDING"
+          ? `<button class="btn" data-approve="${l.id}" type="button">Approve</button>
+             <button class="btn danger" data-reject="${l.id}" type="button">Reject</button>`
+          : `<span class="hint">—</span>`;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><div style="font-weight:900;">${l.username}</div><div class="hint">${l.email}</div></td>
+        <td><div style="font-weight:900;">${l.leaveType}</div><div class="hint">${fmtDT(l.time)}</div></td>
+        <td>${l.note ? l.note : "<span class='hint'>—</span>"}</td>
+        <td>${proofBtn}</td>
+        <td>${statusPill}</td>
+        <td>${actions}</td>
+      `;
+      leaveTable.appendChild(tr);
+    });
+
+    leaveTable.querySelectorAll("[data-approve]").forEach(b => b.onclick = () => setLeavePermission(b.dataset.approve, "APPROVED"));
+    leaveTable.querySelectorAll("[data-reject]").forEach(b => b.onclick = () => setLeavePermission(b.dataset.reject, "REJECTED"));
+    leaveTable.querySelectorAll("[data-proof]").forEach(b => b.onclick = () => downloadProof(b.dataset.proof));
+  };
+
+  // ==== USER MANAGEMENT (3 dots menu) ====
+  const closeAllMenus = () => document.querySelectorAll(".menu-pop").forEach(m => m.classList.remove("show"));
+  document.addEventListener("click", (e) => { if (!e.target.closest(".rel")) closeAllMenus(); });
+
+  const updateUserAvailability = (email, state) => {
+    users = users.map(u => (u.email || "").toLowerCase() === (email || "").toLowerCase()
+      ? { ...u, availability: state }
+      : u
+    );
+    saveAll(); renderAll();
+  };
+
+  const toggleUserActive = (email) => {
+    users = users.map(u => {
+      if ((u.email || "").toLowerCase() !== (email || "").toLowerCase()) return u;
+      const next = (u.status || "Active") === "Active" ? "Inactive" : "Active";
+      return { ...u, status: next };
+    });
+    saveAll(); renderAll();
+  };
+
+  const removeUser = (email) => {
+    const e = (email || "").toLowerCase();
+    users = users.filter(u => (u.email || "").toLowerCase() !== e);
+    breaks = breaks.filter(b => (b.email || "").toLowerCase() !== e);
+    leaveRequests = leaveRequests.filter(l => (l.email || "").toLowerCase() !== e);
+    attendanceLogs = attendanceLogs.filter(a => (a.email || "").toLowerCase() !== e);
+    saveAll(); renderAll();
+  };
+
+  const renderUsers = () => {
+    if (!userTable) return;
+    userTable.innerHTML = "";
+
+    users.forEach(u => {
+      const activeBreak = getActiveBreakByEmail(u.email);
+      const availability = (u.availability || "AVAILABLE").toUpperCase();
+
+      const availPill =
+        availability === "AVAILABLE" ? `<span class="pill available">AVAILABLE</span>` :
+          availability === "AWAY" ? `<span class="pill away">AWAY</span>` :
+            `<span class="pill leave">LEAVE</span>`;
+
+      const statusPill = (u.status || "Active") === "Active"
+        ? `<span class="pill available">Active</span>`
+        : `<span class="pill leave">Inactive</span>`;
+
+      const breakPill = activeBreak ? `<span class="pill break">${activeBreak.type}</span>` : `<span class="hint">—</span>`;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><div style="font-weight:900;">${u.username || u.email}</div><div class="hint">${u.email}</div></td>
+        <td>${availPill}</td>
+        <td>${statusPill}</td>
+        <td>${breakPill} ${activeBreak ? `<span class="hint">${fmtTime(activeBreak.startTime)}</span>` : ""}</td>
+        <td>
+          <div class="rel">
+            <button class="dots" title="Options">⋮</button>
+            <div class="menu-pop">
+              <button class="menu-item2 sep" type="button">USER ACTIONS</button>
+
+              <button class="menu-item2" type="button" data-act="edit">Edit</button>
+              <button class="menu-item2" type="button" data-act="toggleActive">${(u.status || "Active") === "Active" ? "Deactivate" : "Activate"}</button>
+
+              <button class="menu-item2 sep" type="button">FORCE AVAILABILITY / LEAVE</button>
+              <button class="menu-item2" type="button" data-act="avail-available">Set Available</button>
+              <button class="menu-item2" type="button" data-act="avail-away">Set Away</button>
+              <button class="menu-item2" type="button" data-act="avail-leave">Set Leave</button>
+
+              <button class="menu-item2 sep" type="button">REMOVE</button>
+              <button class="menu-item2 danger" type="button" data-act="remove">Remove (last)</button>
+            </div>
+          </div>
+        </td>
+      `;
+
+      const dotsBtn = tr.querySelector(".dots");
+      const pop = tr.querySelector(".menu-pop");
+      dotsBtn.onclick = (ev) => { ev.stopPropagation(); closeAllMenus(); pop.classList.add("show"); };
+
+      pop.onclick = (ev) => {
+        const btn = ev.target.closest("button[data-act]");
+        if (!btn) return;
+        const act = btn.dataset.act;
+
+        if (act === "edit") {
+          const name = prompt("Edit username:", u.username || "");
+          if (name === null) return;
+          users = users.map(x => (x.email || "").toLowerCase() === (u.email || "").toLowerCase()
+            ? { ...x, username: name.trim() || x.username }
+            : x
+          );
+          saveAll(); renderAll();
+        }
+        if (act === "toggleActive") toggleUserActive(u.email);
+        if (act === "avail-available") updateUserAvailability(u.email, "AVAILABLE");
+        if (act === "avail-away") updateUserAvailability(u.email, "AWAY");
+        if (act === "avail-leave") updateUserAvailability(u.email, "LEAVE");
+        if (act === "remove") {
+          if (confirm(`Remove user ${u.username || u.email}?`)) removeUser(u.email);
+        }
+        closeAllMenus();
+      };
+
+      userTable.appendChild(tr);
+    });
+  };
+
+  // ==== BREAK MONITOR ====
+  const renderBreakMonitor = () => {
+    if (!breakTable) return;
+    const activeBreaks = breaks.filter(b => b.status === "ACTIVE").sort((a, b) => b.startTime - a.startTime);
+    breakTable.innerHTML = "";
+
+    if (!activeBreaks.length) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td colspan="5" class="muted">No active breaks right now.</td>`;
+      breakTable.appendChild(tr);
+      return;
+    }
+
+    activeBreaks.forEach(b => {
+      const dur = Date.now() - b.startTime;
+      const exceeded = dur > (60 * 60 * 1000);
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><div style="font-weight:900;">${b.username}</div><div class="hint">${b.email}</div></td>
+        <td><span class="pill break">${b.type}</span></td>
+        <td>${fmtTime(b.startTime)}</td>
+        <td>${fmtDur(dur)}</td>
+        <td>${exceeded ? "<span style='font-weight:900;color:var(--red);'>YES</span>" : "<span style='font-weight:900;color:var(--green);'>NO</span>"}</td>
+      `;
+      breakTable.appendChild(tr);
+    });
+  };
+
+  // ==== ADD USER (FIXED: add + show + login works) ====
+  addUserBtn?.addEventListener("click", () => {
+    const name = (newName?.value || "").trim();
+    const email = (newEmail?.value || "").trim().toLowerCase();
+    const pass = (newPass?.value || "").trim();
+
+    if (!name || !email || !pass) return alert("Enter Name, Email, Password");
+    if (users.some(u => (u.email || "").toLowerCase() === email)) return alert("User already exists");
+
+    users.push({
+      email,
+      username: name,
+      password: pass,
+      status: "Active",
+      availability: "AVAILABLE",
+      employeeId: "EMP" + String(Date.now()).slice(-4)
+    });
+
+    saveAll();
+    sync();
+    renderAll();
+
+    newName && (newName.value = "");
+    newEmail && (newEmail.value = "");
+    newPass && (newPass.value = "");
+
+    alert("User added successfully ✅");
+  });
+
+  // ==== CSV REPORT (daily) ====
+  const buildDailyReport = (dateKey) => {
+    const lines = [];
+    lines.push([
+      "Date", "Username", "Email", "Status", "Availability",
+      "LeaveType", "LeavePermission",
+      "CheckIn", "CheckOut",
+      "ActiveBreakType", "ActiveBreakStart", "ActiveBreakDuration"
+    ].join(","));
+
+    const dayLeaves = leaveRequests.filter(l => l.date === dateKey);
+    const dayAttendance = attendanceLogs.filter(a => a.date === dateKey);
+
+    users.forEach(u => {
+      const leaveList = dayLeaves.filter(l => (l.email || "").toLowerCase() === (u.email || "").toLowerCase())
+        .sort((a, b) => b.time - a.time);
+      const lastLeave = leaveList[0] || null;
+
+      const att = dayAttendance.find(a => (a.email || "").toLowerCase() === (u.email || "").toLowerCase()) || null;
+      const active = breaks.find(b => (b.email || "").toLowerCase() === (u.email || "").toLowerCase() && b.status === "ACTIVE") || null;
+
+      const row = [
+        dateKey,
+        u.username || "",
+        u.email || "",
+        (u.status || "Active"),
+        (u.availability || "AVAILABLE"),
+        lastLeave ? lastLeave.leaveType : "",
+        lastLeave ? lastLeave.permission : "",
+        att?.checkIn ? new Date(att.checkIn).toLocaleString() : "",
+        att?.checkOut ? new Date(att.checkOut).toLocaleString() : "",
+        active ? active.type : "",
+        active ? new Date(active.startTime).toLocaleTimeString() : "",
+        active ? fmtDur(Date.now() - active.startTime) : ""
+      ].map(csvEscape).join(",");
+
+      lines.push(row);
+    });
+
+    return lines.join("\n");
+  };
+
+  downloadTodayBtn?.addEventListener("click", () => {
+    const d = reportDate?.value || todayKey;
+    const csv = buildDailyReport(d);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `daily_report_${d}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(url);
+  });
+
+  // ==== RENDER ALL ====
+  const renderAll = () => {
+    renderDashboard();
+    renderLeaves();
+    renderUsers();
+    renderBreakMonitor();
+  };
+
+  // init report date
+  if (reportDate) reportDate.value = todayKey;
+
+  renderAll();
+
+  // realtime sync
+  setInterval(() => {
+    sync();
+    renderAll();
+  }, 2000);
+})();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss>
+  <channel>
+    <item>
+      <title>Learning XML in Frontend</title>
+      <link>https://example.com/xml</link>
+    </item>
+    <item>
+      <title>RSS Reader Project</title>
+      <link>https://example.com/rss</link>
+    </item>
+    <item>
+      <title>Frontend + XML</title>
+      <link>https://example.com/frontend</link>
+    </item>
+  </channel>
+</rss>

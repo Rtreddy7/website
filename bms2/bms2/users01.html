@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>User Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#121826;
+      --muted:rgba(18,24,38,.7);
+      --line:rgba(18,24,38,.10);
+      --green:#27ae60;
+      --orange:#e67e22;
+      --red:#e11c06;
+      --blue:#2d8cff;
+      --grey:#7f8c8d;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Space Grotesk",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .topbar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--card);border-bottom:1px solid var(--line);z-index:10}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg, rgba(45,140,255,.20), rgba(39,174,96,.20));display:flex;align-items:center;justify-content:center;font-weight:900}
+    .title{font-weight:900;font-size:18px}
+    .sub{font-size:12px;color:var(--muted)}
+    .top-actions{display:flex;gap:14px;align-items:center}
+    .who .name{font-weight:900}
+    .who .meta{font-size:12px;color:var(--muted)}
+
+    .layout{display:grid;grid-template-columns:330px 1fr;gap:16px;padding:16px}
+    .sidebar,.main{display:flex;flex-direction:column;gap:16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 10px 24px rgba(18,24,38,.04)}
+    .card-title{font-weight:900;margin-bottom:10px}
+    .status-row{display:flex;gap:8px;flex-wrap:wrap}
+
+    .pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;user-select:none}
+    .pill.available{background:var(--green);color:#fff}
+    .pill.away{background:var(--orange);color:#fff}
+    .pill.leave{background:var(--red);color:#fff}
+    .pill.present{background:var(--blue);color:#fff}
+    .pill.pending{background:var(--grey);color:#fff}
+    .pill.approved{background:var(--green);color:#fff}
+    .pill.rejected{background:var(--red);color:#fff}
+
+    .mini{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+    .mini-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0}
+    .mini-label{color:var(--muted)}
+    .mini-value{font-weight:900}
+
+    .menu{display:flex;flex-direction:column;gap:8px}
+    .menu-item{text-align:left;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:900}
+    .menu-item.active{border-color:rgba(45,140,255,.35);box-shadow:0 10px 24px rgba(45,140,255,.10)}
+
+    .search input{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);outline:none;font-family:inherit}
+
+    .team-block{margin-top:10px}
+    .team-head{font-size:12px;color:var(--muted);font-weight:900;margin-bottom:8px}
+    .team-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    .team-list li{display:flex;align-items:center;gap:8px;font-weight:800}
+    .dot{width:12px;height:12px;border-radius:50%}
+
+    .tab{display:none}
+    .tab.show{display:block}
+    .tab-head{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+    .tab-head h2{margin:0}
+    .hint{font-size:12px;color:var(--muted)}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .stat{border:1px solid var(--line);border-radius:14px;padding:12px}
+    .stat-label{font-size:12px;color:var(--muted);font-weight:900}
+    .stat-value{font-size:20px;font-weight:900;margin-top:6px}
+
+    .alert{margin-top:12px;border:1px solid rgba(225,28,6,.25);background:rgba(225,28,6,.08);padding:10px 12px;border-radius:14px;font-weight:900;color:var(--red);display:none}
+
+    .btn{padding:10px 12px;border-radius:12px;border:1px solid transparent;cursor:pointer;font-weight:900;background:var(--blue);color:#fff}
+    .btn.danger{background:var(--red)}
+    .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+
+    .break-panel{display:flex;justify-content:space-between;gap:14px;margin-top:12px;flex-wrap:wrap}
+    .timer-label{font-size:12px;color:var(--muted);font-weight:900}
+    .timer-value{font-size:34px;font-weight:900;margin:6px 0}
+    .timer-meta{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center}
+    .limit{padding:4px 8px;border-radius:999px;font-weight:900}
+    .limit.ok{background:rgba(39,174,96,.12);color:var(--green)}
+    .limit.bad{background:rgba(225,28,6,.12);color:var(--red)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+
+    .table-wrap{margin-top:14px}
+    .table-title{font-weight:900;margin-bottom:10px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+    th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+    .muted{color:var(--muted);font-weight:900}
+
+    .leave-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .leave-form select,.leave-form input{
+      padding:10px 12px;border-radius:12px;border:1px solid var(--line);
+      outline:none;font-family:inherit;min-width:220px;background:#fff
+    }
+    .leave-form input[type="file"]{min-width:260px}
+    .leave-status{margin-top:12px;border:1px dashed var(--line);padding:12px;border-radius:14px;font-weight:900;color:var(--muted)}
+
+    .attendance-box{margin-top:12px;border:1px solid var(--line);border-radius:14px;padding:12px}
+    .attendance-box .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
+    .attendance-box .row:last-child{border-bottom:none}
+    .label{font-weight:900;color:var(--muted)}
+    .value{font-weight:900}
+
+    .dash-row{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
+    .cio-box{border:1px solid var(--line);border-radius:14px;padding:12px}
+    .cio-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .cio-title{font-weight:900}
+    .cio-time{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .cio-chip{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:220px}
+    .cio-chip .k{font-size:12px;color:var(--muted);font-weight:900}
+    .cio-chip .v{margin-top:6px;font-weight:900}
+    .cio-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+    .cal{border:1px solid var(--line);border-radius:14px;padding:12px}
+    .cal-top{display:flex;justify-content:space-between;align-items:center}
+    .cal-month{font-weight:900}
+    .cal-sub{font-size:12px;color:var(--muted);font-weight:900}
+    .cal-grid{margin-top:10px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+    .cal-dow{font-size:11px;color:var(--muted);font-weight:900;text-align:center;padding:6px 0}
+    .cal-cell{
+      height:38px;border:1px solid var(--line);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;font-weight:900;background:#fff;user-select:none
+    }
+    .cal-cell.muted{opacity:.35}
+    .cal-cell.today{border-color:rgba(45,140,255,.35);box-shadow:0 10px 24px rgba(45,140,255,.08)}
+    .cal-cell.checked-in{background:rgba(39,174,96,.18);border-color:rgba(39,174,96,.45);color:var(--text)}
+    .cal-legend{margin-top:10px;font-size:12px;color:var(--muted);font-weight:900;display:flex;gap:10px;flex-wrap:wrap}
+    .legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+    .lg-today{background:rgba(45,140,255,.55)}
+    .lg-in{background:rgba(39,174,96,.55)}
+
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+      .dash-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">OP</div>
+      <div>
+        <div class="title">User Dashboard</div>
+        <div class="sub">Demo user • No validation</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <div class="who">
+        <div class="name" id="userName">—</div>
+        <div class="meta" id="userEmail">—</div>
+      </div>
+      <button class="btn ghost" id="resetDemoBtn">Reset Demo Data</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">My Status</div>
+        <div class="status-row">
+          <span id="myStatusPill" class="pill available">AVAILABLE</span>
+          <span id="myAttendancePill" class="pill present">PRESENT</span>
+        </div>
+
+        <div class="mini">
+          <div class="mini-row">
+            <span class="mini-label">Leave Type</span>
+            <span id="myLeaveType" class="mini-value">—</span>
+          </div>
+          <div class="mini-row">
+            <span class="mini-label">Permission</span>
+            <span id="myPermission" class="mini-value">—</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-tab="tab-dashboard">Dashboard</button>
+        <button class="menu-item" data-tab="tab-breaks">Break Tracking</button>
+        <button class="menu-item" data-tab="tab-leave">Leave (Sick/Casual)</button>
+        <button class="menu-item" data-tab="tab-attendance">Attendance</button>
+      </nav>
+
+      <div class="card">
+        <div class="card-title">Team Status</div>
+        <div class="search">
+          <input id="teamSearch" type="text" placeholder="Search team member" />
+        </div>
+
+        <div class="team-block">
+          <div class="team-head">On Leave (Separate)</div>
+          <ul id="teamLeaveList" class="team-list"></ul>
+        </div>
+
+        <div class="team-block">
+          <div class="team-head">Available / Away</div>
+          <ul id="teamStatusList" class="team-list"></ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section id="tab-dashboard" class="tab card show">
+        <div class="tab-head">
+          <h2>Today Overview</h2>
+          <div class="hint">Check-In/Out auto time • Calendar turns green on Check-In • Break limit: 1 hour</div>
+        </div>
+
+        <div class="dash-row">
+          <div class="cio-box">
+            <div class="cio-head">
+              <div class="cio-title">Check In / Check Out</div>
+              <div class="cal-sub" id="todayLabel">—</div>
+            </div>
+
+            <div class="cio-time">
+              <div class="cio-chip">
+                <div class="k">Check-In Time</div>
+                <div class="v" id="checkInText">—</div>
+              </div>
+              <div class="cio-chip">
+                <div class="k">Check-Out Time</div>
+                <div class="v" id="checkOutText">—</div>
+              </div>
+            </div>
+
+            <div class="cio-actions">
+              <button class="btn" id="checkInBtn" type="button">Check-In (Now)</button>
+              <button class="btn danger" id="checkOutBtn" type="button">Check-Out (Now)</button>
+            </div>
+
+            <div class="leave-status" id="cioStatus" style="margin-top:12px;">
+              No check-in/check-out saved today.
+            </div>
+          </div>
+
+          <div class="cal">
+            <div class="cal-top">
+              <div>
+                <div class="cal-month" id="calMonth">—</div>
+                <div class="cal-sub">Calendar</div>
+              </div>
+              <div class="cal-sub">Today becomes green after Check-In</div>
+            </div>
+            <div class="cal-grid" id="calDow"></div>
+            <div class="cal-grid" id="calGrid"></div>
+            <div class="cal-legend">
+              <span><span class="legend-dot lg-today"></span>Today</span>
+              <span><span class="legend-dot lg-in"></span>Checked-In</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="stat-label">Breaks Taken</div>
+            <div class="stat-value" id="statBreakCount">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Total Break Duration</div>
+            <div class="stat-value" id="statBreakDuration">00:00:00</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Limit Exceeded</div>
+            <div class="stat-value" id="statExceeded">NO</div>
+          </div>
+        </div>
+
+        <div class="alert" id="alertBox"></div>
+      </section>
+
+      <section id="tab-breaks" class="tab card">
+        <div class="tab-head">
+          <h2>Break Tracking</h2>
+          <div class="hint">Lunch / Normal • Start/End • If &gt; 1 hour → inform admin</div>
+        </div>
+
+        <div class="break-panel">
+          <div class="timer">
+            <div class="timer-label">Current Break Timer</div>
+            <div class="timer-value" id="breakTimer">00:00:00</div>
+            <div class="timer-meta">
+              <span>Limit:</span> <strong>01:00:00</strong>
+              <span id="limitState" class="limit ok">WITHIN LIMIT</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="startLunchBtn" type="button">Start Lunch Break</button>
+            <button class="btn" id="startNormalBtn" type="button">Start Normal Break</button>
+            <button class="btn danger" id="endBreakBtn" type="button">End Break</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-title">Today Break Sessions</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Duration</th>
+                <th>Exceeded &gt; 1 hr</th>
+              </tr>
+            </thead>
+            <tbody id="breakTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-leave" class="tab card">
+        <div class="tab-head">
+          <h2>Leave Request</h2>
+          <div class="hint">Sick/Casual • Permission required • Sick needs proof upload</div>
+        </div>
+
+        <form id="leaveForm" class="leave-form">
+          <select id="leaveType" required>
+            <option value="" selected disabled>Select leave type</option>
+            <option value="SICK">Sick</option>
+            <option value="CASUAL">Casual</option>
+          </select>
+          <input id="leaveNote" type="text" placeholder="Reason (optional)" />
+          <input id="sickProof" type="file" accept="image/*,.pdf" />
+          <button class="btn" type="submit">Request Permission</button>
+        </form>
+
+        <div class="leave-status" id="leaveStatus">No leave requested today.</div>
+      </section>
+
+      <section id="tab-attendance" class="tab card">
+        <div class="tab-head">
+          <h2>Attendance</h2>
+          <div class="hint">Present / On Leave (On Leave only after admin approves)</div>
+        </div>
+
+        <div class="attendance-box">
+          <div class="row">
+            <div class="label">Attendance Today</div>
+            <div id="attendanceToday" class="pill present">PRESENT</div>
+          </div>
+          <div class="row">
+            <div class="label">Leave Type</div>
+            <div id="attendanceLeaveType" class="value">—</div>
+          </div>
+          <div class="row">
+            <div class="label">Permission</div>
+            <div id="attendancePermission" class="value">—</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const APP_VERSION = "v5-user-no-clear";
+    const BREAK_LIMIT_MS = 60*60*1000;
+    const todayKey = new Date().toISOString().slice(0,10);
+    const SAMPLE_USER_EMAIL = "sample.user@company.com";
+    const ADMIN_EMAIL = "admin@company.com";
+
+    function seedDemoData(){
+      const demoUsers = [
+        { email:SAMPLE_USER_EMAIL, username:"Sample User", employeeId:"EMP001", availability:"AVAILABLE", status:"Active" },
+        { email:"a@company.com", username:"Arun", employeeId:"EMP002", availability:"AVAILABLE", status:"Active" },
+        { email:"b@company.com", username:"Bhanu", employeeId:"EMP003", availability:"AWAY", status:"Active" },
+        { email:"c@company.com", username:"Chinna", employeeId:"EMP004", availability:"LEAVE", status:"Active" }
+      ];
+      localStorage.setItem("users", JSON.stringify(demoUsers));
+      localStorage.setItem("breaks", JSON.stringify([]));
+      localStorage.setItem("leaveRequests", JSON.stringify([]));
+      localStorage.setItem("adminNotifications", JSON.stringify([]));
+      localStorage.setItem("attendanceLogs", JSON.stringify([]));
+      localStorage.setItem("app_version", APP_VERSION);
+    }
+    if (localStorage.getItem("app_version") !== APP_VERSION) seedDemoData();
+    if (!localStorage.getItem("users")) seedDemoData();
+
+    let users = JSON.parse(localStorage.getItem("users"))||[];
+    let breaks = JSON.parse(localStorage.getItem("breaks"))||[];
+    let leaveRequests = JSON.parse(localStorage.getItem("leaveRequests"))||[];
+    let adminNotifications = JSON.parse(localStorage.getItem("adminNotifications"))||[];
+    let attendanceLogs = JSON.parse(localStorage.getItem("attendanceLogs"))||[];
+    let currentUser = users.find(u=>u.email===SAMPLE_USER_EMAIL) || users[0];
+
+    const userNameEl = document.getElementById("userName");
+    const userEmailEl = document.getElementById("userEmail");
+    document.getElementById("resetDemoBtn").onclick=()=>{ seedDemoData(); location.reload(); };
+
+    const myStatusPill = document.getElementById("myStatusPill");
+    const myAttendancePill = document.getElementById("myAttendancePill");
+    const myLeaveTypeEl = document.getElementById("myLeaveType");
+    const myPermissionEl = document.getElementById("myPermission");
+
+    const teamSearch = document.getElementById("teamSearch");
+    const teamLeaveList = document.getElementById("teamLeaveList");
+    const teamStatusList = document.getElementById("teamStatusList");
+
+    const statBreakCount = document.getElementById("statBreakCount");
+    const statBreakDuration = document.getElementById("statBreakDuration");
+    const statExceeded = document.getElementById("statExceeded");
+    const alertBox = document.getElementById("alertBox");
+
+    const breakTimerEl = document.getElementById("breakTimer");
+    const limitStateEl = document.getElementById("limitState");
+    const breakTable = document.getElementById("breakTable");
+    const startLunchBtn = document.getElementById("startLunchBtn");
+    const startNormalBtn = document.getElementById("startNormalBtn");
+    const endBreakBtn = document.getElementById("endBreakBtn");
+
+    const leaveForm = document.getElementById("leaveForm");
+    const leaveTypeSel = document.getElementById("leaveType");
+    const leaveNote = document.getElementById("leaveNote");
+    const sickProofInput = document.getElementById("sickProof");
+    const leaveStatus = document.getElementById("leaveStatus");
+
+    const attendanceToday = document.getElementById("attendanceToday");
+    const attendanceLeaveType = document.getElementById("attendanceLeaveType");
+    const attendancePermission = document.getElementById("attendancePermission");
+
+    const todayLabel = document.getElementById("todayLabel");
+    const checkInText = document.getElementById("checkInText");
+    const checkOutText = document.getElementById("checkOutText");
+    const cioStatus = document.getElementById("cioStatus");
+    const checkInBtn = document.getElementById("checkInBtn");
+    const checkOutBtn = document.getElementById("checkOutBtn");
+    const calMonthEl = document.getElementById("calMonth");
+    const calDowEl = document.getElementById("calDow");
+    const calGridEl = document.getElementById("calGrid");
+
+    // Tabs
+    document.querySelectorAll(".menu-item").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        document.querySelectorAll(".menu-item").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const tab = btn.dataset.tab;
+        document.querySelectorAll(".tab").forEach(t=>t.classList.remove("show"));
+        document.getElementById(tab).classList.add("show");
+      });
+    });
+
+    function saveAll(){
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("breaks", JSON.stringify(breaks));
+      localStorage.setItem("leaveRequests", JSON.stringify(leaveRequests));
+      localStorage.setItem("adminNotifications", JSON.stringify(adminNotifications));
+      localStorage.setItem("attendanceLogs", JSON.stringify(attendanceLogs));
+    }
+    function setPill(el, cls, text){ el.className="pill "+cls; el.textContent=text; }
+    function fmtTime(ts){ return ts? new Date(ts).toLocaleTimeString() : "—"; }
+    function fmtDateTime(ts){ return ts? new Date(ts).toLocaleString() : "—"; }
+    function fmtDuration(ms){
+      const h=Math.floor(ms/3600000), m=Math.floor((ms%3600000)/60000), s=Math.floor((ms%60000)/1000);
+      return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+    }
+    function getActiveBreak(){ return breaks.find(b=>b.email===currentUser.email && b.status==="ACTIVE") || null; }
+    function getTodayBreaks(){ return breaks.filter(b=>b.email===currentUser.email && (b.date||todayKey)===todayKey); }
+    function getLatestLeaveToday(){
+      const today = leaveRequests.filter(l=>l.email===currentUser.email && l.date===todayKey);
+      if (!today.length) return null;
+      today.sort((a,b)=>b.time-a.time);
+      return today[0];
+    }
+    function setAvailability(state){
+      currentUser.availability = state;
+      users = users.map(u=>u.email===currentUser.email ? currentUser : u);
+      saveAll();
+    }
+    function disableBreakControls(mode){
+      if (mode==="LEAVE"){ startLunchBtn.disabled=true; startNormalBtn.disabled=true; endBreakBtn.disabled=true; return; }
+      if (mode==="ACTIVE_BREAK"){ startLunchBtn.disabled=true; startNormalBtn.disabled=true; endBreakBtn.disabled=false; return; }
+      startLunchBtn.disabled=false; startNormalBtn.disabled=false; endBreakBtn.disabled=false;
+    }
+
+    // Attendance logs
+    function getTodayAttendanceLog(){ return attendanceLogs.find(a=>a.email===currentUser.email && a.date===todayKey) || null; }
+    function ensureTodayAttendanceLog(){
+      let log = getTodayAttendanceLog();
+      if (!log){
+        log = { email:currentUser.email, username:currentUser.username, date:todayKey, checkIn:null, checkOut:null };
+        attendanceLogs.push(log);
+      }
+      return log;
+    }
+
+    function renderCalendar(){
+      if (!calDowEl.dataset.ready){
+        ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+          const el=document.createElement("div");
+          el.className="cal-dow";
+          el.textContent=d;
+          calDowEl.appendChild(el);
+        });
+        calDowEl.dataset.ready="1";
+      }
+      const now=new Date();
+      const y=now.getFullYear(), m=now.getMonth();
+      const first=new Date(y,m,1), last=new Date(y,m+1,0);
+      const startDow=first.getDay(), daysInMonth=last.getDate();
+      const prevLast=new Date(y,m,0), prevDays=prevLast.getDate();
+      calMonthEl.textContent = now.toLocaleDateString(undefined,{month:"long",year:"numeric"});
+      calGridEl.innerHTML="";
+      const checkedInToday = !!(getTodayAttendanceLog() && getTodayAttendanceLog().checkIn);
+
+      for (let i=0;i<42;i++){
+        const cell=document.createElement("div");
+        cell.className="cal-cell";
+        const dayNum=i-startDow+1;
+        let displayDay, isCurrentMonth=true;
+        if (dayNum<=0){ displayDay=prevDays+dayNum; isCurrentMonth=false; cell.classList.add("muted"); }
+        else if (dayNum>daysInMonth){ displayDay=dayNum-daysInMonth; isCurrentMonth=false; cell.classList.add("muted"); }
+        else displayDay=dayNum;
+
+        cell.textContent=displayDay;
+
+        if (isCurrentMonth && displayDay===now.getDate()){
+          cell.classList.add("today");
+          if (checkedInToday) cell.classList.add("checked-in");
+        }
+        calGridEl.appendChild(cell);
+      }
+    }
+
+    function renderCIO(){
+      const now=new Date();
+      todayLabel.textContent = now.toLocaleDateString(undefined,{weekday:"long",year:"numeric",month:"short",day:"numeric"});
+      const log=getTodayAttendanceLog();
+
+      if (!log || (!log.checkIn && !log.checkOut)){
+        checkInText.textContent="—";
+        checkOutText.textContent="—";
+        cioStatus.textContent="No check-in/check-out saved today.";
+        checkInBtn.disabled=false;
+        checkOutBtn.disabled=true;
+        renderCalendar();
+        return;
+      }
+      checkInText.textContent = log.checkIn ? fmtDateTime(log.checkIn) : "—";
+      checkOutText.textContent = log.checkOut ? fmtDateTime(log.checkOut) : "—";
+
+      if (log.checkIn && !log.checkOut){
+        cioStatus.innerHTML = `You are <strong>Checked-In</strong>. Checkout when you finish.`;
+        checkInBtn.disabled=true;
+        checkOutBtn.disabled=false;
+      } else if (log.checkIn && log.checkOut){
+        cioStatus.innerHTML = `Today complete ✅ Check-In and Check-Out saved.`;
+        checkInBtn.disabled=true;
+        checkOutBtn.disabled=true;
+      }
+      renderCalendar();
+    }
+
+    checkInBtn.onclick=()=>{
+      const log=ensureTodayAttendanceLog();
+      if (log.checkIn) return;
+      log.checkIn = Date.now();
+      saveAll();
+      renderCIO();
+    };
+    checkOutBtn.onclick=()=>{
+      const log=ensureTodayAttendanceLog();
+      if (!log.checkIn) return alert("Please Check-In first.");
+      if (log.checkOut) return;
+      log.checkOut = Date.now();
+      saveAll();
+      renderCIO();
+    };
+
+    // Breaks
+    let timerInt=null;
+    function resetTimerUI(){
+      clearInterval(timerInt);
+      breakTimerEl.textContent="00:00:00";
+      limitStateEl.className="limit ok";
+      limitStateEl.textContent="WITHIN LIMIT";
+    }
+    function informAdminExceeded(activeBreak){
+      adminNotifications.push({
+        type:"BREAK_LIMIT_EXCEEDED",
+        date:todayKey,
+        time:Date.now(),
+        employeeEmail:currentUser.email,
+        employeeName:currentUser.username,
+        breakType:activeBreak.type,
+        message:`${currentUser.username} exceeded break limit (>1 hr) on ${activeBreak.type}`
+      });
+      saveAll();
+    }
+    function startTimer(startTime){
+      clearInterval(timerInt);
+      timerInt=setInterval(()=>{
+        const active=getActiveBreak();
+        if (!active){ resetTimerUI(); return; }
+        const elapsed=Date.now()-startTime;
+        breakTimerEl.textContent=fmtDuration(elapsed);
+
+        if (elapsed>BREAK_LIMIT_MS){
+          limitStateEl.className="limit bad";
+          limitStateEl.textContent="LIMIT EXCEEDED";
+          if (!active.exceeded){
+            active.exceeded=true;
+            informAdminExceeded(active);
+            alert("Break exceeded 1 hour. Admin will be informed.");
+            renderDashboard();
+          }
+        } else {
+          limitStateEl.className="limit ok";
+          limitStateEl.textContent="WITHIN LIMIT";
+        }
+      },1000);
+    }
+    function startBreak(type){
+      const leave=getLatestLeaveToday();
+      if (leave && leave.permission==="APPROVED") return alert("You are on approved leave. Break is disabled.");
+      if (getActiveBreak()) return alert("You already have an active break.");
+      breaks.push({ email:currentUser.email, username:currentUser.username, date:todayKey, type, startTime:Date.now(), status:"ACTIVE", exceeded:false });
+      saveAll();
+      applyAttendanceAndStatus();
+      renderBreakTable();
+      renderDashboard();
+      renderTeam();
+    }
+    function endBreak(){
+      const active=getActiveBreak();
+      if (!active) return alert("No active break.");
+      active.endTime=Date.now();
+      active.status="ENDED";
+      active.durationMs=active.endTime-active.startTime;
+      active.exceeded = active.durationMs > BREAK_LIMIT_MS;
+      saveAll();
+      applyAttendanceAndStatus();
+      renderBreakTable();
+      renderDashboard();
+      renderTeam();
+    }
+    startLunchBtn.onclick=()=>startBreak("LUNCH");
+    startNormalBtn.onclick=()=>startBreak("NORMAL");
+    endBreakBtn.onclick=endBreak;
+
+    function renderBreakTable(){
+      const rows=getTodayBreaks();
+      breakTable.innerHTML="";
+      if (!rows.length){
+        const tr=document.createElement("tr");
+        tr.innerHTML=`<td class="muted" colspan="5">No breaks logged today.</td>`;
+        breakTable.appendChild(tr);
+        return;
+      }
+      rows.forEach(b=>{
+        const end=b.endTime?b.endTime:null;
+        const dur=end?(b.durationMs||(end-b.startTime)):(Date.now()-b.startTime);
+        const exceeded=(b.exceeded===true)||(end && dur>BREAK_LIMIT_MS);
+        const tr=document.createElement("tr");
+        tr.innerHTML=`
+          <td>${b.type}</td>
+          <td>${fmtTime(b.startTime)}</td>
+          <td>${end?fmtTime(end):"—"}</td>
+          <td>${fmtDuration(Math.max(0,dur))}</td>
+          <td>${exceeded ? "<span style='font-weight:900;color:#e11c06'>YES</span>" : "<span style='font-weight:900;color:#27ae60'>NO</span>"}</td>
+        `;
+        breakTable.appendChild(tr);
+      });
+    }
+
+    function renderDashboard(){
+      const allToday=getTodayBreaks();
+      const ended=allToday.filter(b=>b.status==="ENDED");
+      const active=getActiveBreak();
+      const count=ended.length+(active?1:0);
+
+      let total=0;
+      let exceeded=false;
+      allToday.forEach(b=>{
+        if (b.status==="ENDED") total += (b.durationMs || (b.endTime - b.startTime));
+        if (b.exceeded) exceeded=true;
+      });
+
+      statBreakCount.textContent=String(count);
+      statBreakDuration.textContent=fmtDuration(total);
+      statExceeded.textContent=exceeded?"YES":"NO";
+
+      if (exceeded){
+        alertBox.style.display="block";
+        alertBox.textContent="Break exceeded 1 hour — Admin informed.";
+      } else {
+        alertBox.style.display="none";
+        alertBox.textContent="";
+      }
+    }
+
+    // Leave + proof
+    async function fileToDataUrl(file){
+      return new Promise((resolve,reject)=>{
+        const r=new FileReader();
+        r.onload=()=>resolve(String(r.result));
+        r.onerror=reject;
+        r.readAsDataURL(file);
+      });
+    }
+    function notifyAdminLeaveRequested(leaveObj){
+      adminNotifications.push({
+        type:"LEAVE_REQUESTED",
+        date:todayKey,
+        time:Date.now(),
+        employeeEmail:leaveObj.email,
+        employeeName:leaveObj.username,
+        leaveType:leaveObj.leaveType,
+        message:`${leaveObj.username} requested ${leaveObj.leaveType} leave (PENDING).`,
+        toEmail: ADMIN_EMAIL
+      });
+      saveAll();
+    }
+
+    leaveForm.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const type=leaveTypeSel.value;
+      if (!type) return;
+
+      let proof=null;
+      if (type==="SICK"){
+        const f = sickProofInput.files && sickProofInput.files[0];
+        if (!f) return alert("Sick leave proof is required.");
+        proof = { name:f.name, mime:f.type||"application/octet-stream", dataUrl: await fileToDataUrl(f) };
+      }
+
+      const leaveObj={
+        id:"LR-"+Date.now(),
+        date:todayKey,
+        time:Date.now(),
+        email:currentUser.email,
+        username:currentUser.username,
+        leaveType:type,
+        note:(leaveNote.value||"").trim(),
+        permission:"PENDING",
+        proof
+      };
+      leaveRequests.push(leaveObj);
+      notifyAdminLeaveRequested(leaveObj);
+
+      leaveTypeSel.value="";
+      leaveNote.value="";
+      sickProofInput.value="";
+      saveAll();
+
+      applyAttendanceAndStatus();
+      renderTeam();
+      alert("Leave request submitted. Waiting for admin approval.");
+    });
+
+    function applyAttendanceAndStatus(){
+      const leave=getLatestLeaveToday();
+      const active=getActiveBreak();
+
+      if (!leave){
+        setPill(myAttendancePill,"present","PRESENT");
+        setPill(attendanceToday,"present","PRESENT");
+        myLeaveTypeEl.textContent="—";
+        myPermissionEl.textContent="—";
+        attendanceLeaveType.textContent="—";
+        attendancePermission.textContent="—";
+        leaveStatus.textContent="No leave requested today.";
+      } else {
+        myLeaveTypeEl.textContent=leave.leaveType;
+        myPermissionEl.textContent=leave.permission;
+        attendanceLeaveType.textContent=leave.leaveType;
+        attendancePermission.textContent=leave.permission;
+
+        if (leave.permission==="APPROVED"){
+          setPill(myAttendancePill,"leave","ON LEAVE");
+          setPill(attendanceToday,"leave","ON LEAVE");
+          leaveStatus.innerHTML=`Leave: <strong>${leave.leaveType}</strong> • Permission: <strong>APPROVED</strong>`;
+          if (leave.leaveType==="SICK" && leave.proof && leave.proof.name) {
+            leaveStatus.innerHTML += `<div style="margin-top:6px;color:var(--muted);font-weight:900;">Proof uploaded: ${leave.proof.name}</div>`;
+          }
+        } else if (leave.permission==="REJECTED"){
+          setPill(myAttendancePill,"present","PRESENT");
+          setPill(attendanceToday,"present","PRESENT");
+          leaveStatus.innerHTML=`Leave request <strong>${leave.leaveType}</strong> was <strong>REJECTED</strong>.`;
+        } else {
+          setPill(myAttendancePill,"present","PRESENT");
+          setPill(attendanceToday,"present","PRESENT");
+          leaveStatus.innerHTML=`Leave requested: <strong>${leave.leaveType}</strong> • Permission: <strong>PENDING</strong>`;
+          if (leave.leaveType==="SICK" && leave.proof && leave.proof.name) {
+            leaveStatus.innerHTML += `<div style="margin-top:6px;color:var(--muted);font-weight:900;">Proof uploaded: ${leave.proof.name}</div>`;
+          }
+        }
+      }
+
+      if (leave && leave.permission==="APPROVED"){
+        setAvailability("LEAVE");
+        setPill(myStatusPill,"leave","LEAVE");
+        disableBreakControls("LEAVE");
+        resetTimerUI();
+        return;
+      }
+      if (active){
+        setAvailability("AWAY");
+        setPill(myStatusPill,"away","AWAY");
+        disableBreakControls("ACTIVE_BREAK");
+        startTimer(active.startTime);
+        return;
+      }
+      setAvailability("AVAILABLE");
+      setPill(myStatusPill,"available","AVAILABLE");
+      disableBreakControls("NORMAL");
+      resetTimerUI();
+    }
+
+    function renderTeam(){
+      users = JSON.parse(localStorage.getItem("users"))||[];
+      teamLeaveList.innerHTML="";
+      teamStatusList.innerHTML="";
+      const filter=(teamSearch.value||"").toLowerCase();
+
+      users.forEach(u=>{
+        const nm=(u.username||u.email||"").toLowerCase();
+        if (filter && !nm.includes(filter)) return;
+
+        const state=(u.availability||"AVAILABLE").toUpperCase();
+        const li=document.createElement("li");
+        const dot=document.createElement("span");
+        dot.className="dot";
+        dot.style.background = state==="AVAILABLE" ? "#27ae60" : state==="AWAY" ? "#e67e22" : "#e11c06";
+        li.appendChild(dot);
+        li.appendChild(document.createTextNode(u.username||u.email));
+        if (state==="LEAVE") teamLeaveList.appendChild(li);
+        else teamStatusList.appendChild(li);
+      });
+    }
+    teamSearch.oninput=renderTeam;
+
+    // Init
+    userNameEl.textContent=currentUser.username;
+    userEmailEl.textContent=currentUser.email;
+    renderCalendar();
+    renderCIO();
+    applyAttendanceAndStatus();
+    renderTeam();
+    renderBreakTable();
+    renderDashboard();
+
+    // Sync with admin changes
+    setInterval(()=>{
+      users = JSON.parse(localStorage.getItem("users"))||[];
+      breaks = JSON.parse(localStorage.getItem("breaks"))||[];
+      leaveRequests = JSON.parse(localStorage.getItem("leaveRequests"))||[];
+      adminNotifications = JSON.parse(localStorage.getItem("adminNotifications"))||[];
+      attendanceLogs = JSON.parse(localStorage.getItem("attendanceLogs"))||[];
+      currentUser = users.find(u=>u.email===SAMPLE_USER_EMAIL) || currentUser;
+
+      renderCIO();
+      applyAttendanceAndStatus();
+      renderTeam();
+      renderBreakTable();
+      renderDashboard();
+    }, 2000);
+  </script>
+</body>
+</html>

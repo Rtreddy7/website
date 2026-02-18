@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><img src="./images/oppty (1).png" width="30px" alt=""> Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #222e3e, #7d8896);
+}
+
+#container {
+  width: 900px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: inset 20px -20px 60px #bebebe, inset -20px 20px 60px #ffffff;
+}
+
+.form-box {
+  width: 50%;
+  height: 100%;
+  padding: 60px 50px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.6s ease;
+}
+
+.form-box form {
+  width: 100%;
+}
+
+.form-box h1 {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+.input-box {
+  margin: 15px 0;
+  position: relative;
+  display: flex;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 14px 45px 14px 15px;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  font-size: 15px;
+  outline: none;
+}
+
+.input-box i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #777;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #4a7dff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-box.user {
+  left: 0;
+}
+
+.form-box.admin {
+  right: 0;
+}
+
+.toggle-box {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #4a7dff, #3a66e8);
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.6s ease;
+}
+
+.toggle-panel {
+  color: #fff;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.toggle-panel h1 {
+  font-size: 28px;
+}
+
+.toggle-panel p {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.toggle-panel .btn {
+  width: 180px;
+  background: transparent;
+  border: 2px solid #fff;
+}
+
+.toggle-panel .btn:hover {
+  background: darkblue;
+  transform: scale(1.1);
+  border: none;
+}
+
+#container.show-user .form-box.user {
+  transform: translateX(0);
+  z-index: 2;
+}
+
+#container.show-user .form-box.admin {
+  transform: translateX(100%);
+}
+
+#container.show-user .toggle-box {
+  right: 0;
+}
+
+#container.show-user #adminWelcome {
+  display: flex;
+}
+
+#container.show-admin .form-box.admin {
+  transform: translateX(0);
+  z-index: 2;
+}
+
+#container.show-admin .form-box.user {
+  transform: translateX(-100%);
+}
+
+#container.show-admin .toggle-box {
+  right: 50%;
+}
+
+#container.show-admin #userWelcome {
+  display: flex;
+}
+
+.toggle-panel img {
+  margin-bottom: 10px;
+  width: 140px;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div id="container" class="show-user">
+
+        <div class="form-box user">
+            <form id="userLoginForm">
+                <h1>User Login</h1>
+
+                <div class="input-box">
+                    <input type="email" id="userEmail" placeholder="User Email" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+
+        <div class="form-box admin">
+            <form id="adminLoginForm">
+                <h1>Admin Login</h1>
+
+                <div class="input-box">
+                    <input type="email" id="adminEmail" placeholder="Admin Email" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+
+        <div class="toggle-box">
+
+            <div class="toggle-panel toggle-left" id="userWelcome">
+                <img src="./images/oppty (1).png" width="90">
+                <h1>Hello, Welcome</h1>
+                <p>Are u an User?</p>
+                <button class="btn user-btn">User</button>
+            </div>
+
+            <div class="toggle-panel toggle-right" id="adminWelcome">
+                <img src="./images/oppty (1).png" width="90">
+                <h1>Hello, Welcome</h1>
+                <p>Are u an Admin?</p>
+                <button class="btn admin-btn">Admin</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const ADMIN_EMAIL = "raviteja.n@oppty.in";
+            const ADMIN_PASSWORD = "admin@123";
+
+            const container = document.getElementById("container");
+
+            document.querySelector(".user-btn").onclick = () => {
+                container.classList.add("show-user");
+                container.classList.remove("show-admin");
+            };
+
+            document.querySelector(".admin-btn").onclick = () => {
+                container.classList.add("show-admin");
+                container.classList.remove("show-user");
+            };
+
+            document.getElementById("adminLoginForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById("adminEmail").value.trim();
+                const password = this.querySelector('input[type="password"]').value.trim();
+
+                if (!email || !password) {
+                    alert("Please enter admin email and password");
+                    return;
+                }
+
+                if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
+                    alert("Invalid admin credentials");
+                    return;
+                }
+
+                sessionStorage.setItem("loggedInAdmin", email);
+                window.location.href = "admin.html";
+            });
+
+            document.getElementById("userLoginForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById("userEmail").value.trim();
+                const password = this.querySelector('input[type="password"]').value.trim();
+
+                if (!email || !password) {
+                    alert("Please enter user email and password");
+                    return;
+                }
+
+                const users = JSON.parse(localStorage.getItem("users")) || [];
+
+                const user = users.find(u => u.email === email);
+
+                if (!user) {
+                    alert("User not found. Contact admin.");
+                    return;
+                }
+
+                if (user.password !== password) {
+                    alert("Incorrect password");
+                    return;
+                }
+
+                if (user.status !== "Active") {
+                    alert("User is deactivated. Contact admin.");
+                    return;
+                }
+
+                user.availability = "ONLINE";
+                localStorage.setItem("users", JSON.stringify(users));
+
+                sessionStorage.setItem("loggedInUser", email);
+                window.location.href = "users.html";
+            });
+
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:"Space Grotesk";background:#f6f7fb}
+.header{
+  display:flex;justify-content:space-between;
+  padding:15px;background:#fff;border-bottom:1px solid #ddd
+}
+.container{padding:20px}
+.card{
+  background:#fff;padding:15px;margin-bottom:15px;
+  border-radius:12px
+}
+.btn{
+  padding:10px 15px;border:none;border-radius:10px;
+  background:#2d8cff;color:#fff;cursor:pointer
+}
+.red{background:red}
+.green{background:#27ae60}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div>User Dashboard</div>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h3>Check In / Out</h3>
+<p id="in"></p>
+<p id="out"></p>
+<button class="btn" onclick="checkIn()">Check In</button>
+<button class="btn red" onclick="checkOut()">Check Out</button>
+</div>
+
+<div class="card">
+<h3>Break</h3>
+<button class="btn" onclick="startBreak('LUNCH')">Lunch</button>
+<button class="btn" onclick="startBreak('NORMAL')">Normal</button>
+<button class="btn red" onclick="endBreak()">End</button>
+</div>
+
+<div class="card">
+<h3>Leave</h3>
+<select id="type">
+<option value="">Select</option>
+<option value="SICK">Sick</option>
+<option value="CASUAL">Casual</option>
+</select>
+<input type="file" id="proof">
+<button class="btn" onclick="applyLeave()">Apply</button>
+</div>
+
+</div>
+
+<script>
+const email=sessionStorage.getItem("user");
+if(!email) location.href="index.html";
+
+let users=JSON.parse(localStorage.getItem("users"))||[];
+let breaks=JSON.parse(localStorage.getItem("breaks"))||[];
+let leaves=JSON.parse(localStorage.getItem("leaveRequests"))||[];
+let attendance=JSON.parse(localStorage.getItem("attendance"))||[];
+
+function save(){
+localStorage.setItem("breaks",JSON.stringify(breaks));
+localStorage.setItem("leaveRequests",JSON.stringify(leaves));
+localStorage.setItem("attendance",JSON.stringify(attendance));
+}
+
+function checkIn(){
+attendance.push({email,checkIn:Date.now()});
+save();render();
+}
+function checkOut(){
+let a=attendance.find(x=>x.email===email && !x.checkOut);
+if(a)a.checkOut=Date.now();
+save();render();
+}
+
+function startBreak(type){
+breaks.push({email,type,start:Date.now(),status:"ACTIVE"});
+save();
+}
+function endBreak(){
+let b=breaks.find(x=>x.email===email && x.status==="ACTIVE");
+if(b){
+b.end=Date.now();
+b.status="ENDED";
+if(b.end-b.start>3600000){
+alert("Exceeded");
+}
+}
+save();
+}
+
+function applyLeave(){
+let type=document.getElementById("type").value;
+let file=document.getElementById("proof").files[0];
+
+if(type==="SICK" && !file) return alert("Upload proof");
+
+let reader=new FileReader();
+reader.onload=function(){
+leaves.push({
+email,type,
+proof:reader.result,
+status:"PENDING"
+});
+save();
+alert("Applied");
+};
+if(file) reader.readAsDataURL(file);
+else{
+leaves.push({email,type,status:"PENDING"});
+save();
+}
+}
+
+function render(){
+let a=attendance.find(x=>x.email===email && !x.checkOut);
+document.getElementById("in").innerText="CheckIn: "+(a?new Date(a.checkIn):"-");
+document.getElementById("out").innerText="CheckOut: "+(a&&a.checkOut?new Date(a.checkOut):"-");
+}
+render();
+
+function logout(){
+sessionStorage.clear();
+location.href="index.html";
+}
+</script>
+
+</body>
+</html>

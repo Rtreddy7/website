@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>User Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --green:#22c55e;
+  --orange:#f59e0b;
+  --red:#ef4444;
+  --blue:#3b82f6;
+  --grey:#7f8c8d;
+
+  /* added but not required by JS */
+  --primary:#6366f1;
+}
+
+/* global polish */
+*{box-sizing:border-box;transition:all .2s ease}
+body{
+  margin:0;
+  font-family:"Inter", sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* top bar */
+.topbar{
+  position:sticky;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:var(--card);
+  border-bottom:1px solid var(--line);
+  z-index:10;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.brand .logo{
+  width:45px;height:45px;border-radius:12px;
+  background:var(--primary);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;
+}
+.title{font-weight:900;font-size:18px}
+.sub{font-size:12px;color:var(--muted)}
+.top-actions{display:flex;gap:14px;align-items:center}
+.who .name{font-weight:900}
+.who .meta{font-size:12px;color:var(--muted)}
+
+/* layout */
+.layout{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:2rem;
+  padding:2rem;
+  max-width:1600px;
+  margin:0 auto;
+}
+.sidebar,.main{display:flex;flex-direction:column;gap:16px}
+
+/* cards */
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:1.25rem;
+  box-shadow:0 4px 6px -1px rgba(0,0,0,.10);
+}
+.card-title{font-weight:900;margin-bottom:10px}
+.status-row{display:flex;gap:8px;flex-wrap:wrap}
+
+/* pills */
+.pill{
+  display:inline-flex;align-items:center;
+  padding:4px 12px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  user-select:none;
+}
+.pill.available{background:#dcfce7;color:#15803d}
+.pill.away{background:#ffedd5;color:#9a3412}
+.pill.leave{background:#fee2e2;color:#b91c1c}
+.pill.present{background:#dbeafe;color:#1e40af}
+.pill.pending{background:#f1f5f9;color:#475569}
+.pill.approved{background:#dcfce7;color:#15803d}
+.pill.rejected{background:#fee2e2;color:#b91c1c}
+
+/* mini block */
+.mini{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+.mini-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0}
+.mini-label{color:var(--muted);font-weight:700}
+.mini-value{font-weight:900}
+
+/* sidebar menu */
+.menu{display:flex;flex-direction:column;gap:8px}
+.menu-item{
+  text-align:left;
+  padding:12px 1rem;
+  border-radius:10px;
+  border:1px solid transparent;
+  background:transparent;
+  cursor:pointer;
+  font-weight:800;
+  color:var(--muted);
+}
+.menu-item.active{
+  background:#eef2ff;
+  color:var(--primary);
+  border-color:#e0e7ff;
+  box-shadow:none;
+}
+
+/* search */
+.search input{
+  width:100%;
+  padding:12px 1rem;
+  border-radius:12px;
+  border:1px solid var(--line);
+  outline:none;
+  font-family:inherit;
+  background:#fff;
+}
+
+/* team list */
+.team-block{margin-top:10px}
+.team-head{font-size:12px;color:var(--muted);font-weight:900;margin-bottom:8px}
+.team-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.team-list li{display:flex;align-items:center;gap:8px;font-weight:800}
+.dot{width:12px;height:12px;border-radius:50%}
+
+/* tabs */
+.tab{display:none;animation:fadeIn .35s ease}
+.tab.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.tab-head{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.tab-head h2{margin:0}
+.hint{font-size:12px;color:var(--muted)}
+
+/* grid stats */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.stat{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}
+.stat-label{font-size:12px;color:var(--muted);font-weight:900}
+.stat-value{font-size:22px;font-weight:900;margin-top:6px}
+
+/* alert */
+.alert{
+  margin-top:12px;
+  border:1px solid rgba(239,68,68,.25);
+  background:rgba(239,68,68,.08);
+  padding:12px 14px;
+  border-radius:16px;
+  font-weight:900;
+  color:var(--red);
+  display:none;
+}
+
+/* buttons */
+.btn{
+  padding:.75rem 1.25rem;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  font-weight:800;
+  font-family:inherit;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--primary);
+  color:#fff;
+}
+.btn.danger{background:var(--red)}
+.btn.ghost{background:#f1f5f9;color:var(--text);border:1px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* break panel */
+.break-panel{display:flex;justify-content:space-between;gap:14px;margin-top:12px;flex-wrap:wrap}
+.timer-label{font-size:12px;color:var(--muted);font-weight:900}
+.timer-value{font-size:3rem;font-weight:900;letter-spacing:-2px;margin:6px 0;font-variant-numeric:tabular-nums}
+.timer-meta{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.limit{padding:4px 10px;border-radius:999px;font-weight:900}
+.limit.ok{background:rgba(34,197,94,.15);color:#15803d}
+.limit.bad{background:rgba(239,68,68,.15);color:#b91c1c}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+
+/* table */
+.table-wrap{margin-top:14px}
+.table-title{font-weight:900;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th{
+  text-align:left;
+  padding:12px;
+  font-size:11px;
+  text-transform:uppercase;
+  color:var(--muted);
+  border-bottom:2px solid var(--line);
+  letter-spacing:.04em;
+}
+td{
+  padding:12px;
+  border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.muted{color:var(--muted);font-weight:900}
+
+/* leave form */
+.leave-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.leave-form select,.leave-form input{
+  padding:12px 1rem;
+  border-radius:12px;
+  border:1px solid var(--line);
+  outline:none;
+  font-family:inherit;
+  min-width:220px;
+  background:#fff;
+}
+.leave-status{
+  margin-top:12px;
+  border:1px dashed var(--line);
+  padding:12px;
+  border-radius:16px;
+  font-weight:900;
+  color:var(--muted);
+}
+
+/* attendance */
+.attendance-box{margin-top:12px;border:1px solid var(--line);border-radius:16px;padding:12px}
+.attendance-box .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
+.attendance-box .row:last-child{border-bottom:none}
+.label{font-weight:900;color:var(--muted)}
+.value{font-weight:900}
+
+/* dashboard row */
+.dash-row{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
+.cio-box{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}
+.cio-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.cio-title{font-weight:900}
+.cio-time{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cio-chip{border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:220px;background:#fff}
+.cio-chip .k{font-size:12px;color:var(--muted);font-weight:900}
+.cio-chip .v{margin-top:6px;font-weight:900}
+.cio-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+/* calendar */
+.cal{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}
+.cal-top{display:flex;justify-content:space-between;align-items:center}
+.cal-month{font-weight:900}
+.cal-sub{font-size:12px;color:var(--muted);font-weight:900}
+.cal-grid{margin-top:10px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{font-size:11px;color:var(--muted);font-weight:900;text-align:center;padding:6px 0}
+.cal-cell{
+  height:40px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.85rem;
+  font-weight:800;
+  background:#fff;
+  user-select:none;
+}
+.cal-cell.muted{opacity:.35;border:none}
+.cal-cell.today{background:#f1f5f9;border:2px solid var(--primary)}
+.cal-cell.checked-in{background:var(--green);color:#fff;border:none}
+.cal-legend{margin-top:10px;font-size:12px;color:var(--muted);font-weight:900;display:flex;gap:10px;flex-wrap:wrap}
+.legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+.lg-today{background:rgba(99,102,241,.55)}
+.lg-in{background:rgba(34,197,94,.55)}
+
+/* responsive */
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr;padding:1rem}
+  .dash-row{grid-template-columns:1fr}
+}
+
+    
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">OP</div>
+      <div>
+        <div class="title">Employee Dashboard</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <div class="who">
+        <div class="name" id="userName">—</div>
+        <div class="meta" id="userEmail">—</div>
+      </div>
+      <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">My Status</div>
+        <div class="status-row">
+          <span id="myStatusPill" class="pill available">AVAILABLE</span>
+          <span id="myAttendancePill" class="pill present">PRESENT</span>
+        </div>
+
+        <div class="mini">
+          <div class="mini-row">
+            <span class="mini-label">Leave Type</span>
+            <span id="myLeaveType" class="mini-value">—</span>
+          </div>
+          <div class="mini-row">
+            <span class="mini-label">Permission</span>
+            <span id="myPermission" class="mini-value">—</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-tab="tab-dashboard" type="button">Dashboard</button>
+        <button class="menu-item" data-tab="tab-breaks" type="button">Break Tracking</button>
+        <button class="menu-item" data-tab="tab-leave" type="button">Leave (Sick/Casual)</button>
+      </nav>
+
+      <div class="card">
+        <div class="card-title">Team Status</div>
+        <div class="search">
+          <input id="teamSearch" type="text" placeholder="Search team member" />
+        </div>
+
+        <div class="team-block">
+          <div class="team-head">On Leave (Separate)</div>
+          <ul id="teamLeaveList" class="team-list"></ul>
+        </div>
+
+        <div class="team-block">
+          <div class="team-head">Available / Away</div>
+          <ul id="teamStatusList" class="team-list"></ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section id="tab-dashboard" class="tab card show">
+        <div class="tab-head">
+          <h2>Today Overview</h2>
+        </div>
+
+        <div class="dash-row">
+          <div class="cio-box">
+            <div class="cio-head">
+              <div class="cio-title">Check In / Check Out</div>
+              <div class="cal-sub" id="todayLabel">—</div>
+            </div>
+
+            <div class="cio-time">
+              <div class="cio-chip">
+                <div class="k">Check-In Time</div>
+                <div class="v" id="checkInText">—</div>
+              </div>
+              <div class="cio-chip">
+                <div class="k">Check-Out Time</div>
+                <div class="v" id="checkOutText">—</div>
+              </div>
+            </div>
+
+            <div class="cio-actions">
+              <button class="btn" id="checkInBtn" type="button">Check-In (Now)</button>
+              <button class="btn danger" id="checkOutBtn" type="button">Check-Out (Now)</button>
+            </div>
+
+            <div class="leave-status" id="cioStatus" style="margin-top:12px;">No check-in/check-out saved today.</div>
+          </div>
+
+          <div class="cal">
+            <div class="cal-top">
+              <div>
+                <div class="cal-month" id="calMonth">—</div>
+                <div class="cal-sub">Calendar</div>
+              </div>
+            </div>
+            <div class="cal-grid" id="calDow"></div>
+            <div class="cal-grid" id="calGrid"></div>
+            <div class="cal-legend">
+              <span><span class="legend-dot lg-today"></span>Today</span>
+              <span><span class="legend-dot lg-in"></span>Checked-In</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="stat-label">Breaks Taken</div>
+            <div class="stat-value" id="statBreakCount">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Total Break Duration</div>
+            <div class="stat-value" id="statBreakDuration">00:00:00</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Limit Exceeded</div>
+            <div class="stat-value" id="statExceeded">NO</div>
+          </div>
+        </div>
+
+        <div class="alert" id="alertBox"></div>
+      </section>
+
+      <section id="tab-breaks" class="tab card">
+        <div class="tab-head">
+          <h2>Break Tracking</h2>
+        </div>
+
+        <div class="break-panel">
+          <div class="timer">
+            <div class="timer-label">Current Break Timer</div>
+            <div class="timer-value" id="breakTimer">00:00:00</div>
+            <div class="timer-meta">
+              <span>Limit:</span> <strong>01:00:00</strong>
+              <span id="limitState" class="limit ok">WITHIN LIMIT</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="startLunchBtn" type="button">Start Lunch Break</button>
+            <button class="btn" id="startNormalBtn" type="button">Start Normal Break</button>
+            <button class="btn danger" id="endBreakBtn" type="button">End Break</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-title">Today Break Sessions</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Duration</th>
+                <th>Exceeded &gt; 1 hr</th>
+              </tr>
+            </thead>
+            <tbody id="breakTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-leave" class="tab card">
+        <div class="tab-head">
+          <h2>Leave Request</h2>
+        </div>
+
+        <form id="leaveForm" class="leave-form">
+          <select id="leaveType" required>
+            <option value="" selected disabled>Select leave type</option>
+            <option value="SICK">Sick</option>
+            <option value="CASUAL">Casual</option>
+          </select>
+          <input id="leaveNote" type="text" placeholder="Reason (optional)" />
+          <button class="btn" type="submit">Request Permission</button>
+        </form>
+
+        <div class="leave-status" id="leaveStatus">No leave requested today.</div>
+      </section>
+
+      
+    </main>
+  </div>
+
+<script type="module">
+  import {auth, db} from "./firebase-init.js";
+(function(){
+  const ADMIN_EMAIL = "raviteja.n@oppty.in";
+  const LUNCH_LIMIT_MS = 60*60*1000;
+  const NORMAL_LIMIT_MS = 10*60*1000;
+  const todayKey = new Date().toISOString().slice(0,10);
+
+  function ensureStore(){
+    if (!localStorage.getItem("users")) localStorage.setItem("users", JSON.stringify([]));
+    if (!localStorage.getItem("breaks")) localStorage.setItem("breaks", JSON.stringify([]));
+    if (!localStorage.getItem("leaveRequests")) localStorage.setItem("leaveRequests", JSON.stringify([]));
+    if (!localStorage.getItem("adminNotifications")) localStorage.setItem("adminNotifications", JSON.stringify([]));
+    if (!localStorage.getItem("attendanceLogs")) localStorage.setItem("attendanceLogs", JSON.stringify([]));
+  }
+
+  function clearEl(el){
+    if (!el) return;
+    while (el.firstChild) el.removeChild(el.firstChild);
+  }
+
+  function safeText(el, val){
+    if (!el) return;
+    el.textContent = val;
+  }
+
+  function logout(){
+    sessionStorage.removeItem("loggedInUser");
+    window.location.href = "index.html";
+  }
+
+  function authGuard(users){
+    const email = String(sessionStorage.getItem("loggedInUser") || "").toLowerCase();
+    if (!email) return null;
+    const u = users.find(x=>String(x.email||"").toLowerCase()===email) || null;
+    if (!u) return null;
+    if (String(u.status||"Active") !== "Active") return null;
+    return u;
+  }
+
+  function saveAll(users, breaks, leaveRequests, adminNotifications, attendanceLogs){
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("breaks", JSON.stringify(breaks));
+    localStorage.setItem("leaveRequests", JSON.stringify(leaveRequests));
+    localStorage.setItem("adminNotifications", JSON.stringify(adminNotifications));
+    localStorage.setItem("attendanceLogs", JSON.stringify(attendanceLogs));
+  }
+
+  function setPill(el, cls, text){
+    if (!el) return;
+    el.className = "pill " + cls;
+    el.textContent = text;
+  }
+
+  function fmtTime(ts){ return ts ? new Date(ts).toLocaleTimeString() : "—"; }
+  function fmtDateTime(ts){ return ts ? new Date(ts).toLocaleString() : "—"; }
+  function fmtDuration(ms){
+    const h=Math.floor(ms/3600000), m=Math.floor((ms%3600000)/60000), s=Math.floor((ms%60000)/1000);
+    return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+  }
+
+  function pushAdminNotif(adminNotifications, obj){
+    adminNotifications.push(obj);
+    return adminNotifications;
+  }
+
+  function breakLimitFor(type){
+    const t = String(type||"").toUpperCase();
+    if (t === "NORMAL") return NORMAL_LIMIT_MS;
+    return LUNCH_LIMIT_MS;
+  }
+
+  function limitTextFor(type){
+    const t = String(type||"").toUpperCase();
+    if (t === "NORMAL") return "00:10:00";
+    return "01:00:00";
+  }
+
+  function updateLimitLabel(type){
+    const meta = limitStateEl ? limitStateEl.parentElement : null;
+    if (!meta) return;
+    const strong = meta.querySelector("strong");
+    if (strong) strong.textContent = limitTextFor(type);
+  }
+
+  async function fileToDataUrl(file){
+    return new Promise((resolve,reject)=>{
+      const r = new FileReader();
+      r.onload = ()=>resolve(String(r.result));
+      r.onerror = reject;
+      r.readAsDataURL(file);
+    });
+  }
+
+  ensureStore();
+
+  // ===== Elements =====
+  const userNameEl = document.getElementById("userName");
+  const userEmailEl = document.getElementById("userEmail");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  const myStatusPill = document.getElementById("myStatusPill");
+  const myAttendancePill = document.getElementById("myAttendancePill");
+  const myLeaveTypeEl = document.getElementById("myLeaveType");
+  const myPermissionEl = document.getElementById("myPermission");
+
+  const teamSearch = document.getElementById("teamSearch");
+  const teamLeaveList = document.getElementById("teamLeaveList");
+  const teamStatusList = document.getElementById("teamStatusList");
+
+  const statBreakCount = document.getElementById("statBreakCount");
+  const statBreakDuration = document.getElementById("statBreakDuration");
+  const statExceeded = document.getElementById("statExceeded");
+  const alertBox = document.getElementById("alertBox");
+
+  const breakTimerEl = document.getElementById("breakTimer");
+  const limitStateEl = document.getElementById("limitState");
+  const breakTable = document.getElementById("breakTable");
+  const startLunchBtn = document.getElementById("startLunchBtn");
+  const startNormalBtn = document.getElementById("startNormalBtn");
+  const endBreakBtn = document.getElementById("endBreakBtn");
+
+  const leaveForm = document.getElementById("leaveForm");
+  const leaveTypeSel = document.getElementById("leaveType");
+  const leaveNote = document.getElementById("leaveNote");
+  const sickProofInput = document.getElementById("sickProof"); // may not exist in HTML -> handled safely
+  const leaveStatus = document.getElementById("leaveStatus");
+
+  // These IDs do NOT exist in your HTML (in the file you pasted).
+  // We keep them but use safe checks so code never crashes.
+  const attendanceToday = document.getElementById("attendanceToday");
+  const attendanceLeaveType = document.getElementById("attendanceLeaveType");
+  const attendancePermission = document.getElementById("attendancePermission");
+
+  const todayLabel = document.getElementById("todayLabel");
+  const checkInText = document.getElementById("checkInText");
+  const checkOutText = document.getElementById("checkOutText");
+  const cioStatus = document.getElementById("cioStatus");
+  const checkInBtn = document.getElementById("checkInBtn");
+  const checkOutBtn = document.getElementById("checkOutBtn");
+  const calMonthEl = document.getElementById("calMonth");
+  const calDowEl = document.getElementById("calDow");
+  const calGridEl = document.getElementById("calGrid");
+
+  if (logoutBtn) logoutBtn.addEventListener("click", logout);
+
+  document.querySelectorAll(".menu-item").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      document.querySelectorAll(".menu-item").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      const tab = btn.dataset.tab;
+      document.querySelectorAll(".tab").forEach(t=>t.classList.remove("show"));
+      const el = document.getElementById(tab);
+      if (el) el.classList.add("show");
+    });
+  });
+
+  function syncAll(){
+    const users = JSON.parse(localStorage.getItem("users"))||[];
+    const breaks = JSON.parse(localStorage.getItem("breaks"))||[];
+    const leaveRequests = JSON.parse(localStorage.getItem("leaveRequests"))||[];
+    const adminNotifications = JSON.parse(localStorage.getItem("adminNotifications"))||[];
+    const attendanceLogs = JSON.parse(localStorage.getItem("attendanceLogs"))||[];
+    return { users, breaks, leaveRequests, adminNotifications, attendanceLogs };
+  }
+
+  function getActiveBreak(breaks, email){
+    return breaks.find(b=>b.email===email && b.status==="ACTIVE") || null;
+  }
+
+  function getTodayBreaks(breaks, email){
+    return breaks.filter(b=>b.email===email && (b.date||todayKey)===todayKey);
+  }
+
+  function getLatestLeaveToday(leaveRequests, email){
+    const today = leaveRequests.filter(l=>l.email===email && l.date===todayKey);
+    if (!today.length) return null;
+    today.sort((a,b)=>b.time-a.time);
+    return today[0];
+  }
+
+  function getTodayAttendanceLog(attendanceLogs, email){
+    return attendanceLogs.find(a=>a.email===email && a.date===todayKey) || null;
+  }
+
+  function ensureTodayAttendanceLog(attendanceLogs, email, username){
+    let log = getTodayAttendanceLog(attendanceLogs, email);
+    if (!log){
+      log = { email: email, username: username, date: todayKey, checkIn: null, checkOut: null };
+      attendanceLogs.push(log);
+    }
+    return { attendanceLogs, log };
+  }
+
+  function renderCalendar(attendanceLogs, email){
+    if (!calDowEl || !calGridEl || !calMonthEl) return;
+
+    if (!calDowEl.dataset.ready){
+      ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+        const el = document.createElement("div");
+        el.className = "cal-dow";
+        el.textContent = d;
+        calDowEl.appendChild(el);
+      });
+      calDowEl.dataset.ready = "1";
+    }
+
+    const now = new Date();
+    const y = now.getFullYear(), m = now.getMonth();
+    const first = new Date(y,m,1), last = new Date(y,m+1,0);
+    const startDow = first.getDay(), daysInMonth = last.getDate();
+    const prevLast = new Date(y,m,0), prevDays = prevLast.getDate();
+
+    calMonthEl.textContent = now.toLocaleDateString(undefined,{month:"long",year:"numeric"});
+    clearEl(calGridEl);
+
+    const log = getTodayAttendanceLog(attendanceLogs, email);
+    const checkedInToday = !!(log && log.checkIn);
+
+    for (let i=0;i<42;i++){
+      const cell = document.createElement("div");
+      cell.className = "cal-cell";
+      const dayNum = i - startDow + 1;
+      let displayDay, isCurrentMonth = true;
+
+      if (dayNum <= 0){
+        displayDay = prevDays + dayNum;
+        isCurrentMonth = false;
+        cell.classList.add("muted");
+      } else if (dayNum > daysInMonth){
+        displayDay = dayNum - daysInMonth;
+        isCurrentMonth = false;
+        cell.classList.add("muted");
+      } else {
+        displayDay = dayNum;
+      }
+
+      cell.textContent = String(displayDay);
+
+      if (isCurrentMonth && displayDay === now.getDate()){
+        cell.classList.add("today");
+        if (checkedInToday) cell.classList.add("checked-in");
+      }
+
+      calGridEl.appendChild(cell);
+    }
+  }
+
+  function renderCIO(attendanceLogs, email){
+    if (todayLabel) {
+      const now = new Date();
+      todayLabel.textContent = now.toLocaleDateString(undefined,{weekday:"long",year:"numeric",month:"short",day:"numeric"});
+    }
+
+    const log = getTodayAttendanceLog(attendanceLogs, email);
+
+    if (!log || (!log.checkIn && !log.checkOut)){
+      safeText(checkInText, "—");
+      safeText(checkOutText, "—");
+      safeText(cioStatus, "No check-in/check-out saved today.");
+      if (checkInBtn) checkInBtn.disabled = false;
+      if (checkOutBtn) checkOutBtn.disabled = true;
+      renderCalendar(attendanceLogs, email);
+      return;
+    }
+
+    safeText(checkInText, log.checkIn ? fmtDateTime(log.checkIn) : "—");
+    safeText(checkOutText, log.checkOut ? fmtDateTime(log.checkOut) : "—");
+
+    if (log.checkIn && !log.checkOut){
+      safeText(cioStatus, "You are Checked-In. Checkout when you finish.");
+      if (checkInBtn) checkInBtn.disabled = true;
+      if (checkOutBtn) checkOutBtn.disabled = false;
+    } else if (log.checkIn && log.checkOut){
+      safeText(cioStatus, "Today complete ✅ Check-In and Check-Out saved.");
+      if (checkInBtn) checkInBtn.disabled = true;
+      if (checkOutBtn) checkOutBtn.disabled = true;
+    }
+
+    renderCalendar(attendanceLogs, email);
+  }
+
+  function renderBreakTable(breaks, email){
+    if (!breakTable) return;
+
+    const rows = getTodayBreaks(breaks, email);
+    clearEl(breakTable);
+
+    if (!rows.length){
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.className = "muted";
+      td.colSpan = 5;
+      td.textContent = "No breaks logged today.";
+      tr.appendChild(td);
+      breakTable.appendChild(tr);
+      return;
+    }
+
+    rows.forEach(b=>{
+      const end = b.endTime ? b.endTime : null;
+      const dur = end ? (b.durationMs || (end - b.startTime)) : (Date.now() - b.startTime);
+      const limit = breakLimitFor(b.type);
+      const exceeded = (b.exceeded===true) || (end && dur > limit);
+
+      const tr = document.createElement("tr");
+      const td1 = document.createElement("td"); td1.textContent = b.type || "—";
+      const td2 = document.createElement("td"); td2.textContent = fmtTime(b.startTime);
+      const td3 = document.createElement("td"); td3.textContent = end ? fmtTime(end) : "—";
+      const td4 = document.createElement("td"); td4.textContent = fmtDuration(Math.max(0,dur));
+      const td5 = document.createElement("td");
+      td5.style.fontWeight = "900";
+      td5.style.color = exceeded ? "#e11c06" : "#27ae60";
+      td5.textContent = exceeded ? "YES" : "NO";
+
+      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4); tr.appendChild(td5);
+      breakTable.appendChild(tr);
+    });
+  }
+
+  function renderDashboard(breaks, email){
+    const allToday = getTodayBreaks(breaks, email);
+    const ended = allToday.filter(b=>b.status==="ENDED");
+    const active = getActiveBreak(breaks, email);
+    const count = ended.length + (active ? 1 : 0);
+
+    let total = 0;
+    let exceeded = false;
+
+    allToday.forEach(b=>{
+      if (b.status==="ENDED") total += (b.durationMs || (b.endTime - b.startTime));
+      if (b.exceeded) exceeded = true;
+    });
+
+    safeText(statBreakCount, String(count));
+    safeText(statBreakDuration, fmtDuration(total));
+    safeText(statExceeded, exceeded ? "YES" : "NO");
+
+    if (alertBox){
+      if (exceeded){
+        alertBox.style.display = "block";
+        alertBox.textContent = "Break exceeded limit — Admin informed.";
+      } else {
+        alertBox.style.display = "none";
+        alertBox.textContent = "";
+      }
+    }
+  }
+
+  function renderTeam(users){
+    if (!teamLeaveList || !teamStatusList) return;
+
+    clearEl(teamLeaveList);
+    clearEl(teamStatusList);
+
+    const filter = String(teamSearch && teamSearch.value || "").toLowerCase();
+
+    users.forEach(u=>{
+      const nm = String(u.username||u.email||"").toLowerCase();
+      if (filter && !nm.includes(filter)) return;
+
+      const state = String(u.availability||"OFFLINE").toUpperCase();
+
+      const li = document.createElement("li");
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      dot.style.background =
+        state==="AVAILABLE" ? "#27ae60" :
+        state==="AWAY" ? "#e67e22" :
+        state==="OOO" ? "#e11c06" :
+        "#7f8c8d";
+
+      li.appendChild(dot);
+      li.appendChild(document.createTextNode(u.username||u.email||"—"));
+
+      if (state==="OOO") teamLeaveList.appendChild(li);
+      else teamStatusList.appendChild(li);
+    });
+  }
+
+  function disableForOOO(){
+    if (startLunchBtn) startLunchBtn.disabled = true;
+    if (startNormalBtn) startNormalBtn.disabled = true;
+    if (endBreakBtn) endBreakBtn.disabled = true;
+    if (checkInBtn) checkInBtn.disabled = true;
+    if (checkOutBtn) checkOutBtn.disabled = true;
+  }
+
+  function enableForNormal(activeBreak, checkedIn, checkedOut){
+    if (!checkedIn || checkedOut){
+      if (startLunchBtn) startLunchBtn.disabled = true;
+      if (startNormalBtn) startNormalBtn.disabled = true;
+      if (endBreakBtn) endBreakBtn.disabled = true;
+      return;
+    }
+
+    if (activeBreak){
+      if (startLunchBtn) startLunchBtn.disabled = true;
+      if (startNormalBtn) startNormalBtn.disabled = true;
+      if (endBreakBtn) endBreakBtn.disabled = false;
+    } else {
+      if (startLunchBtn) startLunchBtn.disabled = false;
+      if (startNormalBtn) startNormalBtn.disabled = false;
+      if (endBreakBtn) endBreakBtn.disabled = false;
+    }
+  }
+
+  function updateAvailability(users, email, status){
+    return users.map(u=>{
+      if (u.email !== email) return u;
+      return Object.assign({}, u, { availability: status });
+    });
+  }
+
+  let timerInt = null;
+
+  function stopTimerUI(){
+    if (timerInt) clearInterval(timerInt);
+    timerInt = null;
+    if (breakTimerEl) breakTimerEl.textContent = "00:00:00";
+    if (limitStateEl){
+      limitStateEl.className = "limit ok";
+      limitStateEl.textContent = "WITHIN LIMIT";
+    }
+  }
+
+  function startTimerLoop(){
+    if (timerInt) clearInterval(timerInt);
+    timerInt = setInterval(()=>{
+      const s = syncAll();
+      const u = authGuard(s.users);
+      if (!u) return logout();
+
+      const active = getActiveBreak(s.breaks, u.email);
+      if (!active){
+        stopTimerUI();
+        return;
+      }
+
+      updateLimitLabel(active.type);
+
+      const elapsed = Date.now() - active.startTime;
+      if (breakTimerEl) breakTimerEl.textContent = fmtDuration(elapsed);
+
+      const limit = breakLimitFor(active.type);
+
+      if (elapsed > limit){
+        if (limitStateEl){
+          limitStateEl.className = "limit bad";
+          limitStateEl.textContent = "LIMIT EXCEEDED";
+        }
+
+        if (!active.exceeded){
+          const updated = Object.assign({}, active, { exceeded: true });
+          const newBreaks = s.breaks.map(b=>{
+            if (b.email===updated.email && b.status==="ACTIVE" && b.startTime===updated.startTime) return updated;
+            return b;
+          });
+
+          const n = {
+            type:"BREAK_LIMIT_EXCEEDED",
+            date:todayKey,
+            time:Date.now(),
+            employeeEmail:u.email,
+            employeeName:u.username,
+            breakType:updated.type,
+            message:u.username + " exceeded " + updated.type + " break limit.",
+            toEmail: ADMIN_EMAIL
+          };
+
+          const newNotifs = pushAdminNotif(s.adminNotifications, n);
+          saveAll(s.users, newBreaks, s.leaveRequests, newNotifs, s.attendanceLogs);
+          alert("Break limit exceeded. Admin will be informed.");
+        }
+      } else {
+        if (limitStateEl){
+          limitStateEl.className = "limit ok";
+          limitStateEl.textContent = "WITHIN LIMIT";
+        }
+      }
+    }, 1000);
+  }
+
+  function renderLeaveAndStatus(state){
+    const leave = state.leave;
+    const activeBreak = state.activeBreak;
+    const att = state.attendanceLog;
+
+    const checkedIn = !!(att && att.checkIn);
+    const checkedOut = !!(att && att.checkOut);
+
+    if (!checkedIn){
+      setPill(myAttendancePill,"pending","OFFLINE");
+      setPill(attendanceToday,"pending","OFFLINE"); // safe
+    } else if (checkedIn && !checkedOut){
+      setPill(myAttendancePill,"present","ACTIVE");
+      setPill(attendanceToday,"present","ACTIVE"); // safe
+    } else {
+      setPill(myAttendancePill,"pending","OFFLINE");
+      setPill(attendanceToday,"pending","OFFLINE"); // safe
+    }
+
+    if (!leave){
+      safeText(myLeaveTypeEl, "—");
+      safeText(myPermissionEl, "—");
+      safeText(attendanceLeaveType, "—");     // safe
+      safeText(attendancePermission, "—");    // safe
+      if (leaveStatus) leaveStatus.textContent = checkedIn && !checkedOut ? "No leave requested today." : "Please Check-In to become Active.";
+    } else {
+      safeText(myLeaveTypeEl, leave.leaveType);
+      safeText(myPermissionEl, leave.permission);
+      safeText(attendanceLeaveType, leave.leaveType);   // safe
+      safeText(attendancePermission, leave.permission); // safe
+    }
+
+    if (leave && leave.permission === "APPROVED"){
+      setPill(myStatusPill,"leave","OOO");
+      disableForOOO();
+      stopTimerUI();
+      return "OOO";
+    }
+
+    enableForNormal(activeBreak, checkedIn, checkedOut);
+
+    if (!checkedIn || checkedOut){
+      setPill(myStatusPill,"pending","OFFLINE");
+      stopTimerUI();
+      return "OFFLINE";
+    }
+
+    if (activeBreak){
+      setPill(myStatusPill,"away","AWAY");
+      updateLimitLabel(activeBreak.type);
+      return "AWAY";
+    }
+
+    setPill(myStatusPill,"available","AVAILABLE");
+    updateLimitLabel("LUNCH");
+    return "AVAILABLE";
+  }
+
+  function init(){
+    const s = syncAll();
+    const u = authGuard(s.users);
+    if (!u) return logout();
+
+    safeText(userNameEl, u.username || "—");
+    safeText(userEmailEl, u.email || "—");
+
+    const att = getTodayAttendanceLog(s.attendanceLogs, u.email);
+    renderCIO(s.attendanceLogs, u.email);
+
+    const leave = getLatestLeaveToday(s.leaveRequests, u.email);
+    const activeBreak = getActiveBreak(s.breaks, u.email);
+    const status = renderLeaveAndStatus({ leave, activeBreak, attendanceLog: att });
+
+    const updatedUsers = updateAvailability(s.users, u.email, status);
+    saveAll(updatedUsers, s.breaks, s.leaveRequests, s.adminNotifications, s.attendanceLogs);
+
+    renderTeam(updatedUsers);
+    renderBreakTable(s.breaks, u.email);
+    renderDashboard(s.breaks, u.email);
+
+    if (activeBreak && status==="AWAY") startTimerLoop();
+    if ((!activeBreak || status!=="AWAY") && timerInt) stopTimerUI();
+  }
+
+  if (checkInBtn) checkInBtn.addEventListener("click", ()=>{
+    const s = syncAll();
+    const u = authGuard(s.users);
+    if (!u) return logout();
+
+    const leave = getLatestLeaveToday(s.leaveRequests, u.email);
+    if (leave && leave.permission === "APPROVED") return alert("You are OOO today.");
+
+    const r = ensureTodayAttendanceLog(s.attendanceLogs, u.email, u.username);
+    const log = r.log;
+    if (log.checkIn) return;
+
+    log.checkIn = Date.now();
+    log.checkOut = null;
+
+    saveAll(s.users, s.breaks, s.leaveRequests, s.adminNotifications, r.attendanceLogs);
+    init();
+  });
+
+  if (checkOutBtn) checkOutBtn.addEventListener("click", ()=>{
+    const s = syncAll();
+    const u = authGuard(s.users);
+    if (!u) return logout();
+
+    const r = ensureTodayAttendanceLog(s.attendanceLogs, u.email, u.username);
+    const log = r.log;
+
+    if (!log.checkIn) return alert("Please Check-In first.");
+    if (log.checkOut) return;
+
+    const active = getActiveBreak(s.breaks, u.email);
+    if (active){
+      alert("Please end break before Check-Out.");
+      return;
+    }
+
+    log.checkOut = Date.now();
+    saveAll(s.users, s.breaks, s.leaveRequests, s.adminNotifications, r.attendanceLogs);
+    init();
+  });
+
+  function endActiveBreakSilently(s, u){
+    const active = getActiveBreak(s.breaks, u.email);
+    if (!active) return { breaks: s.breaks, ended: null };
+
+    const ended = Object.assign({}, active, { endTime: Date.now(), status: "ENDED" });
+    ended.durationMs = ended.endTime - ended.startTime;
+    ended.exceeded = ended.durationMs > breakLimitFor(ended.type);
+
+    const newBreaks = s.breaks.map(b=>{
+      if (b.email===ended.email && b.status==="ACTIVE" && b.startTime===ended.startTime) return ended;
+      return b;
+    });
+
+    return { breaks: newBreaks, ended: ended };
+  }
+
+  function startBreak(type){
+    const s = syncAll();
+    const u = authGuard(s.users);
+    if (!u) return logout();
+
+    const att = getTodayAttendanceLog(s.attendanceLogs, u.email);
+    if (!att || !att.checkIn || att.checkOut) return alert("Please Check-In first.");
+
+    const leave = getLatestLeaveToday(s.leaveRequests, u.email);
+    if (leave && leave.permission === "APPROVED") return alert("You are OOO. Break disabled.");
+
+    const active = getActiveBreak(s.breaks, u.email);
+    const nextType = String(type||"").toUpperCase();
+
+    if (active){
+      const activeType = String(active.type||"").toUpperCase();
+      if (activeType === nextType){
+        updateLimitLabel(active.type);
+        if (!timerInt) startTimerLoop();
+        return;
+      }
+      const r = endActiveBreakSilently(s, u);
+      s.breaks = r.breaks;
+    }
+
+    const obj = { email:u.email, username:u.username, date:todayKey, type:nextType, startTime:Date.now(), status:"ACTIVE", exceeded:false };
+    const newBreaks = s.breaks.slice();
+    newBreaks.push(obj);
+
+    updateLimitLabel(nextType);
+
+    saveAll(s.users, newBreaks, s.leaveRequests, s.adminNotifications, s.attendanceLogs);
+    init();
+  }
+
+  function endBreak(){
+    const s = syncAll();
+    const u = authGuard(s.users);
+    if (!u) return logout();
+
+    const active = getActiveBreak(s.breaks, u.email);
+    if (!active) return alert("No active break.");
+
+    const ended = Object.assign({}, active, { endTime: Date.now(), status: "ENDED" });
+    ended.durationMs = ended.endTime - ended.startTime;
+    ended.exceeded = ended.durationMs > breakLimitFor(ended.type);
+
+    const newBreaks = s.breaks.map(b=>{
+      if (b.email===ended.email && b.status==="ACTIVE" && b.startTime===ended.startTime) return ended;
+      return b;
+    });
+
+    saveAll(s.users, newBreaks, s.leaveRequests, s.adminNotifications, s.attendanceLogs);
+    init();
+  }
+
+  if (startLunchBtn) startLunchBtn.addEventListener("click", ()=>startBreak("LUNCH"));
+  if (startNormalBtn) startNormalBtn.addEventListener("click", ()=>startBreak("NORMAL"));
+  if (endBreakBtn) endBreakBtn.addEventListener("click", endBreak);
+
+  if (leaveForm) leaveForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    const s = syncAll();
+    const u = authGuard(s.users);
+    if (!u) return logout();
+
+    const type = String(leaveTypeSel && leaveTypeSel.value || "");
+    if (!type) return;
+
+    const existing = getLatestLeaveToday(s.leaveRequests, u.email);
+    if (existing && existing.permission === "PENDING") return alert("Leave already requested today (PENDING).");
+    if (existing && existing.permission === "APPROVED") return alert("Leave already approved today.");
+
+    let proof = null;
+    if (type === "SICK"){
+      // If your HTML doesn’t include <input id="sickProof" type="file">, don’t crash:
+      if (!sickProofInput){
+        alert("Sick leave proof input is missing in HTML. Add: <input id='sickProof' type='file'>");
+        return;
+      }
+      const f = sickProofInput.files && sickProofInput.files[0];
+      if (!f) return alert("Sick leave proof is required.");
+      proof = { name: f.name, mime: f.type || "application/octet-stream", dataUrl: await fileToDataUrl(f) };
+    }
+
+    const leaveObj = {
+      id: "LR-" + Date.now(),
+      date: todayKey,
+      time: Date.now(),
+      email: u.email,
+      username: u.username,
+      leaveType: type,
+      note: String(leaveNote && leaveNote.value || "").trim(),
+      permission: "PENDING",
+      proof: proof
+    };
+
+    const newLeaves = s.leaveRequests.slice();
+    newLeaves.push(leaveObj);
+
+    const n = {
+      type:"LEAVE_REQUESTED",
+      date:todayKey,
+      time:Date.now(),
+      employeeEmail:u.email,
+      employeeName:u.username,
+      leaveType:type,
+      message:u.username + " requested " + type + " leave (PENDING).",
+      toEmail: ADMIN_EMAIL
+    };
+    const newNotifs = pushAdminNotif(s.adminNotifications, n);
+
+    if (leaveTypeSel) leaveTypeSel.value = "";
+    if (leaveNote) leaveNote.value = "";
+    if (sickProofInput) sickProofInput.value = "";
+
+    saveAll(s.users, s.breaks, newLeaves, newNotifs, s.attendanceLogs);
+    init();
+    alert("Leave request submitted. Waiting for admin approval.");
+  });
+
+  if (teamSearch) teamSearch.addEventListener("input", ()=>{
+    const s = syncAll();
+    renderTeam(s.users);
+  });
+
+  // First render
+  init();
+
+  // Live refresh (no crashing now)
+  setInterval(()=>{
+    const s = syncAll();
+    const u = authGuard(s.users);
+    if (!u) return logout();
+
+    const att = getTodayAttendanceLog(s.attendanceLogs, u.email);
+    const leave = getLatestLeaveToday(s.leaveRequests, u.email);
+    const activeBreak = getActiveBreak(s.breaks, u.email);
+
+    safeText(userNameEl, u.username || "—");
+    safeText(userEmailEl, u.email || "—");
+
+    renderCIO(s.attendanceLogs, u.email);
+    const status = renderLeaveAndStatus({ leave, activeBreak, attendanceLog: att });
+
+    const updatedUsers = updateAvailability(s.users, u.email, status);
+    saveAll(updatedUsers, s.breaks, s.leaveRequests, s.adminNotifications, s.attendanceLogs);
+
+    renderTeam(updatedUsers);
+    renderBreakTable(s.breaks, u.email);
+    renderDashboard(s.breaks, u.email);
+
+    if (activeBreak && status==="AWAY" && !timerInt) startTimerLoop();
+    if ((!activeBreak || status!=="AWAY") && timerInt) stopTimerUI();
+  }, 2000);
+
+})();
+</script>
+
+
+
+</body>
+</html>

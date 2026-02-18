@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Oppty</title>
+    <link rel="stylesheet" href="../css/lp.css">
+    <link rel="stylesheet" href="../css/contact.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Top Offer Badge -->
+    <div class="top-badge">
+        <span class="badge-1">NEW</span>
+        <p>Next batch starts soon — Limited seats available</p>
+        <a href="#">Know more →</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container-h">
+
+            <!-- Logo -->
+            <div class="logo">
+                <img src="../images/oppty.png" alt="Oppty Logo" />
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+
+                <a href="../index.html" class="nav-link" data-page="home">Home</a>
+
+                <div class="dropdown">
+                    <button class="nav-link dropdown-btn" data-page="programs">
+                        Programs <span>▾</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="./lp.html">Learning Path</a>
+                    </div>
+                </div>
+
+                <a href="./ct.html" class="nav-link" data-page="corporate">
+                    Corporate Training
+                </a>
+
+                <a href="./contact.html" class="nav-link" data-page="contact">
+                    Contact Us
+                </a>
+
+                <a href="./login.html" target="_blank" class="login-btn">Login →</a>
+
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        
+
+        <section class="contact-container">
+            <div class="text-content">
+                <h1>Shaping Tomorrow's Skills with <span class="blue-text"> Oppty Edtech Innovation</span></h1>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <span class="icon">🎓</span>
+                        <p>LEARNING MANAGEMENT<br><small>Scalable LXP/LMS</small></p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="icon">⚡</span>
+                        <p>SKILL ASSESSMENTS<br><small>AI-Driven Testing</small></p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="icon">🤝</span>
+                        <p>PLACEMENT DRIVE<br><small>2000+ Hiring Partners</small></p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="icon">🌐</span>
+                        <p>VIRTUAL CLASSROOMS<br><small>Seamless Connectivity</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h3>Let's Build the Future of Learning</h3>
+                <p class="subtitle">Enter your details to discuss your Edutech project.</p>
+                
+                <form>
+                    <div class="line-input">
+                        <input type="text" placeholder=" " required>
+                        <label>Name*</label>
+                    </div>
+                    <div class="line-input">
+                        <input type="text" placeholder=" " required>
+                        <label>Institution/Company*</label>
+                    </div>
+                    <div class="line-input">
+                        <input type="email" placeholder=" " required>
+                        <label>Work Email*</label>
+                    </div>
+                    <div class="line-input">
+                        <input type="tel" placeholder=" " required>
+                        <label>Phone Number* (+91)</label>
+                    </div>
+                    <div class="line-input">
+                        <textarea rows="2" placeholder=" " required></textarea>
+                        <label>Describe your Edutech Requirements*</label>
+                    </div>
+                    <button type="submit" class="btn-submit">Launch Partnership</button>
+                </form>
+            </div>
+        </section>
+    <section class="pricing-section">
+            <h2 class="section-title">Plans for you or your team</h2>
+            
+            <div class="toggle-container">
+                <button id="btn-ind" class="toggle-btn active" onclick="switchPricing('ind')">For Individuals</button>
+                <button id="btn-team" class="toggle-btn" onclick="switchPricing('team')">For Teams</button>
+            </div>
+
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3 id="p1-name">Single learning program</h3>
+                    <p id="p1-desc" class="p-subtitle">Learn a single topic or skill and earn a credential</p>
+                    <div id="p1-price" class="p-price">-- /month</div>
+                    <p class="p-meta">Visit an individual course to purchase.</p>
+                    <ul class="p-features">
+                        <li>Access all courses in the program</li>
+                        <li>Earn a certificate on completion</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="ribbon">Most popular</div>
+                    <h3 id="p2-name">Oppty Plus Monthly</h3>
+                    <p id="p2-desc" class="p-subtitle">Complete multiple courses and earn credentials in the short term</p>
+                    <div id="p2-price" class="p-price">₹2,099 <span>/month</span></div>
+                    <button class="btn-blue">Start 7-day free trial</button>
+                    <p class="p-meta">Cancel anytime</p>
+                    <ul class="p-features">
+                        <li>Access 10,000+ courses</li>
+                        <li>Earn unlimited certificates</li>
+                        <li>Learn job-relevant skills</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card">
+                    <h3 id="p3-name">Oppty Plus Annual</h3>
+                    <p id="p3-desc" class="p-subtitle">Combine flexibility and savings with long-term goals</p>
+                    <div id="p3-price" class="p-price">₹13,999 <span>/year</span></div>
+                    <button class="btn-outline">Try Oppty Plus Annual</button>
+                    <p class="p-meta">14-day money-back guarantee</p>
+                    <ul class="p-features">
+                        <li>Everything in monthly, plus:</li>
+                        <li>Save on upfront payment</li>
+                        <li>Maximum learning flexibility</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    
+   
+
+
+<section id="map-section">
+  <h2>Our Location</h2>
+
+  <div class="map-container">
+    <a href="https://www.google.com/maps/search/?api=1&query=Oppty+TechHub+Private+Limited+Miyapur+Hyderabad" target="_blank" rel="noopener">
+      
+      <div class="map-overlay">
+        <span>Click to Open in Google Maps</span>
+      </div>
+
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.150495368484!2d78.3458628!3d17.4943916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93d5ccd65227%3A0xde534d4e3362e42b!2sOppty%20TechHub%20Private%20Limited!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+        width="100%" 
+        height="450" 
+        style="border:0; pointer-events: none;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </a>
+  </div>
+</section>
+
+
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===== Dropdown hover ===== */
+  const dropdown = document.querySelector(".dropdown");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  if (dropdown && dropdownMenu) {
+    dropdown.addEventListener("mouseenter", () => {
+      dropdownMenu.style.display = "block";
+    });
+
+    dropdown.addEventListener("mouseleave", () => {
+      dropdownMenu.style.display = "none";
+    });
+  }
+
+
+  (() => {
+  const triggerBtn = document.getElementById("loginAuthTrigger");
+  const modal = document.getElementById("loginAuthModal");
+  const closeBtn = document.getElementById("loginAuthClose");
+
+  const sendOtpBtn = document.getElementById("loginAuthSendOtpBtn");
+  const otpSection = document.getElementById("loginAuthOtpSection");
+  const verifyOtpBtn = document.getElementById("loginAuthVerifyOtpBtn");
+  const successMsg = document.getElementById("loginAuthSuccess");
+
+  if (!triggerBtn || !modal) return;
+
+  /* OPEN MODAL */
+  triggerBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.style.display = "flex";
+  });
+
+  /* CLOSE MODAL */
+  function closeModal() {
+    modal.style.display = "none";
+    otpSection.style.display = "none";
+    successMsg.style.display = "none";
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  sendOtpBtn.addEventListener("click", () => {
+    otpSection.style.display = "block";
+  });
+
+  verifyOtpBtn.addEventListener("click", () => {
+    successMsg.style.display = "block";
+  });
+})();
+
+  /* ===== Active Nav Item ===== */
+  const navLinks = document.querySelectorAll(".nav-link");
+  const currentPage = window.location.pathname.split("/").pop();
+
+  navLinks.forEach(link => {
+    const page = link.getAttribute("data-page");
+
+    if (
+      (currentPage === "" && page === "home") ||
+      currentPage.includes(page)
+    ) {
+      link.classList.add("active");
+    }
+  });
+
+});
+
+function switchPricing(type) {
+            const btnInd = document.getElementById('btn-ind');
+            const btnTeam = document.getElementById('btn-team');
+            const p1Name = document.getElementById('p1-name');
+            const p1Desc = document.getElementById('p1-desc');
+            const p1Price = document.getElementById('p1-price');
+            const p2Name = document.getElementById('p2-name');
+            const p2Desc = document.getElementById('p2-desc');
+            const p2Price = document.getElementById('p2-price');
+            const p3Name = document.getElementById('p3-name');
+            const p3Desc = document.getElementById('p3-desc');
+            const p3Price = document.getElementById('p3-price');
+
+            if (type === 'team') {
+                btnInd.classList.remove('active');
+                btnTeam.classList.add('active');
+                
+                p1Name.innerText = "Team Starter";
+                p1Desc.innerText = "Train employees in basic skills with a small team plan.";
+                p1Price.innerHTML = "₹1,499 <span>/user/month</span>";
+
+                p2Name.innerText = "Oppty for Teams";
+                p2Desc.innerText = "For 5-125 users. Master skills with world-class learning.";
+                p2Price.innerHTML = "₹23,267 <span>/user/year</span>";
+
+                p3Name.innerText = "Large Enterprise?";
+                p3Desc.innerText = "Unlock custom solutions and dedicated integrations for 125+ users.";
+                p3Price.innerHTML = "Contact Sales";
+            } else {
+                btnTeam.classList.remove('active');
+                btnInd.classList.add('active');
+
+                p1Name.innerText = "Single learning program";
+                p1Desc.innerText = "Learn a single topic or skill and earn a credential";
+                p1Price.innerHTML = "-- /month";
+
+                p2Name.innerText = "Oppty Plus Monthly";
+                p2Desc.innerText = "Complete multiple courses and earn credentials in the short term";
+                p2Price.innerHTML = "₹2,099 <span>/month</span>";
+
+                p3Name.innerText = "Oppty Plus Annual";
+                p3Desc.innerText = "Combine flexibility and savings with long-term goals";
+                p3Price.innerHTML = "₹13,999 <span>/year</span>";
+            }
+        }
+</script>
+
+
+<footer class="footer">
+    <div class="footer-container">
+   
+    <div class="footer-col">
+      <img src="../images/oppty.png">
+      <p>
+        Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>108/43, Vijaya Lakshmi Enclave,1st Floor, H.No 2, PJR Enclave
+           Rd, Gangaram, 
+          ICRISAT Colony, Hyderabad, Telangana 500050</li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>  
+    </div>
+  <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>Udaipur - Plot No: 26, 100 Feet Rd, Shobhagpura, Udaipur, Rajasthan 313011
+        </li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>
+       <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    
+    </div>
+    
+    <div class="footer-col">
+      <h3>Our Courses</h3>
+      <ul class="links">
+        <li>Web Design</li>
+        <li>Apps Design</li>
+        <li>Marketing</li>
+        <li>Research</li>
+        <li>SEO</li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      
+
+      <h3 class="mt">Quick Links</h3>
+      <ul class="links">
+        <li>Privacy Policy</li>
+        <li>Terms & Condition</li>
+        <li>Regular FAQs</li>
+        <li>Help & Support</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>©2025 Oppty. All Rights Reserved.</p>
+    <p>Designed by <span>Oppty Techhub</span> Distributed by <span>Oppty</span></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppty-EDU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="header">
+        <div class="container-h">
+
+            <div class="logo">
+                <a href="./index.html"> <img src="./images/oppty.png" alt="Oppty Logo" /></a>
+            </div>
+
+            <nav class="nav">
+
+                <a href="index.html" class="nav-link" data-page="home">Home</a>
+
+                <a href="./FinalEduTech/program.html" class="nav-link" data-page="home">Programs</a>
+                <a href="./Oppty careers edu-tech/careers-updated.html" class="nav-link" data-page="home">Careers</a>
+                <a href="./EduTech Oppty/corporate.html" class="nav-link" data-page="corporate">
+                    Corporate Training
+                </a>
+
+                <a href="./contactus/contact.html" class="nav-link" data-page="contact">
+                    Contact Us
+                </a>
+
+                 <a href="./contactus/html/login.html" id="loginAuthTrigger" class="login-btn">Login →</a>
+
+                <div class="loginAuthModal" id="loginAuthModal">
+  <div class="loginAuthBox">
+
+    <span class="loginAuthClose" id="loginAuthClose">&times;</span>
+
+    <h2 class="loginAuthTitle">Welcome Back</h2>
+    <p class="loginAuthSubtitle">
+      One step ahead for a successful career 🚀
+    </p>
+
+    <input
+      type="text"
+      id="loginAuthInput"
+      placeholder="Email or Phone Number"
+    />
+
+    <button id="loginAuthSendOtpBtn">
+      Send OTP
+    </button>
+
+    <div class="loginAuthOtpSection" id="loginAuthOtpSection">
+      <input
+        type="text"
+        id="loginAuthOtpInput"
+        placeholder="Enter OTP"
+      />
+      <button id="loginAuthVerifyOtpBtn">
+        Verify OTP
+      </button>
+    </div>
+
+    <p class="loginAuthSuccess" id="loginAuthSuccess">
+      OTP submitted successfully ✅
+    </p>
+
+  </div>
+</div>
+
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+
+  <!-- HERO INTRO (CENTERED) -->
+  <div class="hero-intro hero-centered">
+    <div class="hero-badges">
+      <span class="hero-badge">New Batch Starting Soon</span>
+      <span class="hero-badge">Online & Offline Learning</span>
+    </div>
+
+   <h1 class="hero-heading">
+  Learn <span>Skills</span> That Matter
+</h1>
+
+    <p class="hero-subtext">
+      Predefined learning paths designed to help you learn progressively
+      and apply skills with clarity.
+    </p>
+
+    <div class="hero-highlight">
+  <span>Structured learning</span>
+  <span>Guided progression</span>
+  <span>Practical skill development</span>
+  <span>Career-focused paths</span>
+</div>
+
+
+  </div>
+
+  <!-- COURSE DISCOVERY -->
+  <div class="pra-app-container">
+
+    <!-- ASIDE -->
+    <aside class="pra-aside">
+        <h2>Select from the pool of our courses we offer</h2>
+      <div>
+        <div class="pra-nav-label">Learning Paths</div>
+        <nav class="pra-nav" id="pra-sidebar-nav"></nav>
+      </div>
+
+      <!-- ASIDE CTA -->
+      <div class="pra-aside-actions">
+        <a href="./contactus/contact.html" class="btn-primary aside-btn">
+          Talk to Our Career Advisor
+        </a>
+        <a href="./FinalEduTech/program.html" class="btn-secondary aside-btn">
+            Go To The Learning Path
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN AUTO SCROLL -->
+    <main class="pra-main">
+      <section class="pra-showcase-section">
+        <div class="pra-scroll-container">
+          <div class="pra-animate-row-left" id="pra-row-1"></div>
+        </div>
+
+        <div class="pra-scroll-container">
+          <div class="pra-animate-row-right" id="pra-row-2"></div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+</section>
+
+<section class="section-identity">
+
+  <!-- INTRO -->
+  <div class="identity-header">
+    <span class="identity-eyebrow">Built for Career-Focused Learning</span>
+
+    <h2 class="identity-title">
+      We help learners build <span>real, applicable skills</span>
+    </h2>
+
+    <p class="identity-subtext">
+      Our platform guides learners through structured courses,
+      practical training, and clear next steps toward growth.
+    </p>
+  </div>
+
+  <!-- VALUE BLOCKS -->
+  <div class="identity-values">
+    <div class="identity-card">
+      <h4>Structured Paths</h4>
+      <p>Clear learning flow with logical progression.</p>
+    </div>
+
+    <div class="identity-card">
+      <h4>Guided Training</h4>
+      <p>Support throughout the learning journey.</p>
+    </div>
+
+    <div class="identity-card">
+      <h4>Skill Evaluation</h4>
+      <p>Structured assessments after training.</p>
+    </div>
+
+    <div class="identity-card">
+      <h4>Career Direction</h4>
+      <p>Clear guidance after course completion.</p>
+    </div>
+  </div>
+
+  <!-- SPLIT CONTENT -->
+  <div class="identity-split">
+
+    <div class="identity-visual">
+        <img src="https://img.freepik.com/free-photo/group-four-indian-teen-male-students-classmates-spend-time-together-work-laptops_627829-5209.jpg?semt=ais_user_personalization&w=740&q=80" alt="">
+      <!-- placeholder visual block -->
+    </div>
+
+   <div class="identity-content">
+  <h3>More than just courses</h3>
+
+  <div class="learning-cards">
+    <div class="learning-card">
+      Courses designed around practical understanding
+    </div>
+    <div class="learning-card">
+      Flexible online and offline learning options
+    </div>
+    <div class="learning-card">
+      Training followed by structured assessment
+    </div>
+    <div class="learning-card">
+      Clear career direction after course completion
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section-programs" id="section-programs">
+
+  <!-- SECTION INTRO -->
+  <div class="programs-header">
+    <span class="programs-eyebrow">Explore Our Learning Paths</span>
+
+    <h2 class="programs-title">
+      Programs designed around <span style="color: #1e40af; font-size: 34px; font-weight: 600;">Real-World</span> skills
+    </h2>
+
+    <p class="programs-subtext">
+      Choose from structured learning paths built to help you grow
+      with clarity, confidence, and direction.
+    </p>
+  </div>
+
+  <!-- PROGRAMS GRID -->
+  <div class="programs-grid">
+
+    <div class="program-card">
+      <h4>Full Stack Development</h4>
+      <p>Build end-to-end applications using modern technologies and tools.</p>
+     <a href="./FinalEduTech/program.html" style="text-decoration: none;"><span class="program-link">View Learning Path →</span></a>
+    </div>
+
+    <div class="program-card">
+      <h4>Data Science & Analytics</h4>
+      <p>Learn data analysis, visualization, and real-world datasets.</p>
+       <a href="./FinalEduTech/program.html" style="text-decoration: none;"><span class="program-link">View Learning Path →</span></a>
+    </div>
+
+    <div class="program-card">
+      <h4>UI / UX Design</h4>
+      <p>Design intuitive, user-centric digital experiences.</p>
+     <a href="./FinalEduTech/program.html" style="text-decoration: none;"><span class="program-link">View Learning Path →</span></a>
+    </div>
+
+    <div class="program-card">
+      <h4>Cyber Security</h4>
+      <p>Understand security fundamentals, threats, and protection practices.</p>
+     <a href="./FinalEduTech/program.html" style="text-decoration: none;"><span class="program-link">View Learning Path →</span></a>
+    </div>
+
+    <div class="program-card">
+      <h4>Cloud Computing</h4>
+      <p>Learn cloud platforms, infrastructure concepts, and deployment models.</p>
+     <a href="./FinalEduTech/program.html" style="text-decoration: none;"><span class="program-link">View Learning Path →</span></a>
+    </div>
+
+    <div class="program-card">
+      <h4>Marketing & Growth</h4>
+      <p>Build skills in digital marketing, strategy, and growth execution.</p>
+     <a href="./FinalEduTech/program.html" style="text-decoration: none;"><span class="program-link">View Learning Path →</span></a>
+    </div>
+
+  </div>
+
+  <!-- GUIDANCE STRIP -->
+  <div class="programs-guidance">
+    <p>
+      Not sure which learning path fits your goals?
+      Our team helps you choose the right direction with clarity and guidance.
+    </p>
+    <a href="./contactus/contact.html" class="programs-cta">Get Guidance →</a>
+  </div>
+
+</section>
+
+<section class="section-platform-difference compact" id="platform-difference">
+
+  <div class="diff-header">
+    <h2>We Are <span style="color: #fd5e02; font-size: 34px; font-weight: 600;">Not</span> Just Another Training Platform</h2>
+    <p>Designed to operate differently — not just look different</p>
+  </div>
+
+  <div class="diff-compare-wrapper">
+    <div class="diff-compare">
+
+      <div class="diff-column diff-traditional">
+        <h4>Traditional Training</h4>
+        <ul>
+          <li>Isolated courses with no connection</li>
+          <li>Learn and left on your own</li>
+          <li>No clarity after course completion</li>
+          <li>One-time engagement</li>
+        </ul>
+      </div>
+
+      <div class="diff-divider"></div>
+
+      <div class="diff-column diff-oppty">
+        <h4>Our Platform</h4>
+        <ul>
+          <li>Connected programs with clear flow</li>
+          <li>Guided involvement throughout learning</li>
+          <li>Defined direction after completion</li>
+          <li>Continuous support and evaluation</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<section class="oppty-industry-section">
+
+  <!-- HEADER -->
+  <div class="oppty-industry-header">
+    <h2><span style="color: #1e40af; font-size: 34px; font-weight: 600;">Industry-Driven</span> Learning Ecosystem</h2>
+    <p>
+      Our programs are shaped around how modern teams actually work —
+      the tools they use, the skills they expect, and the roles they hire for.
+    </p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="oppty-industry-content">
+
+    <!-- LEFT -->
+    <div class="oppty-industry-left">
+      <h3>Why This Matters</h3>
+      <p>
+        You don’t just enroll and consume content.
+        You gain exposure to industry-aligned thinking,
+        workflows, and professional expectations.
+      </p>
+
+      <ul>
+        <li>Skills mapped directly to real job roles</li>
+        <li>Understanding of how professional teams collaborate</li>
+        <li>Clear visibility into long-term career progression</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="oppty-industry-right">
+      <h4>Trusted by Teams & Organizations</h4>
+      <p class="oppty-industry-sub">
+        The learning standards you follow align with how
+        leading global organizations operate today.
+      </p>
+
+      <div class="oppty-logo-grid" id="opptyLogoGrid">
+        <img src="./images/au.png" alt="Brand logo">
+        <img src="./images/foundit.png" alt="Brand logo">
+        <img src="./images/genpact.png" alt="Brand logo">
+        <img src="./images/hcl.png" alt="Brand logo">
+        <img src="./images/hetero.png" alt="Brand logo">
+        <img src="./images/itc.png" alt="Brand logo">
+        <img src="./images/ibm.png" alt="Brand logo">
+        <img src="./images/apollo.png" alt="Brand logo">
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VALUE CARDS -->
+  <div class="oppty-industry-cards">
+    <div class="oppty-value-card">
+      <h5>Practical Readiness</h5>
+      <p>Build skills that translate directly into real-world execution.</p>
+    </div>
+
+    <div class="oppty-value-card">
+      <h5>Industry Context</h5>
+      <p>Understand where your skills fit inside modern team workflows.</p>
+    </div>
+
+    <div class="oppty-value-card">
+      <h5>Career Confidence</h5>
+      <p>Move forward with clarity, direction, and professional confidence.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="oppty-industry-cta">
+    <a href="./contactus/contact.html" class="oppty-industry-btn">Explore Learning Paths</a>
+    <a href="./contactus/contact.html" class="oppty-industry-a-btn">Talk to a Career Advisor</a>
+  </div>
+
+</section>
+
+<section class="oppty-audience-section" id="audienceSection">
+  <div class="oppty-audience-inner">
+
+    <!-- Section Heading -->
+    <header class="oppty-audience-header">
+      <h2>Learning Without <span style="color: #1e40af; font-size: 34px; font-weight: 600;">Direction</span> Is the Real Problem</h2>
+      <p>
+        Most learners don’t fail because of lack of effort — they struggle because
+        learning is fragmented, unclear, and disconnected from real roles.
+      </p>
+    </header>
+
+    <!-- Two Column Grid -->
+    <div class="oppty-audience-grid">
+
+      <!-- LEFT: Who this is for -->
+      <div class="oppty-audience-col">
+        <h3>Who This Platform Is Built For</h3>
+
+        <div class="oppty-audience-item">
+          <strong>Students & Fresh Graduates</strong>
+          <span>Looking for structured learning instead of scattered tutorials.</span>
+        </div>
+
+        <div class="oppty-audience-item">
+          <strong>Career Switchers</strong>
+          <span>Need clarity on what to learn next and how it connects to real roles.</span>
+        </div>
+
+        <div class="oppty-audience-item">
+          <strong>Working Professionals</strong>
+          <span>Upskilling without wasting time on disconnected courses.</span>
+        </div>
+
+        <div class="oppty-audience-item">
+          <strong>Self-Learners Feeling Stuck</strong>
+          <span>Who start courses but never feel confident applying skills.</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Why choose us -->
+      <div class="oppty-audience-col">
+        <h3>Why Learners Choose <span style="color: #ff7324; font-size: 22px; font-weight: 600;">Oppty</span></h3>
+
+        <p class="oppty-audience-intro">
+          We don’t optimize for shortcuts or hype.  
+          We optimize for clarity, structure, and real skill confidence.
+        </p>
+
+        <div class="oppty-why-grid">
+          <div class="oppty-why-card">
+            <strong>Structured Learning Paths</strong>
+            <span>Clear start → progress → outcome.</span>
+          </div>
+
+          <div class="oppty-why-card">
+            <strong>Practical Skill Focus</strong>
+            <span>Learn how real teams work — not just theory.</span>
+          </div>
+
+          <div class="oppty-why-card">
+            <strong>Guided Progression</strong>
+            <span>Mentorship & checkpoints at every stage.</span>
+          </div>
+
+          <div class="oppty-why-card">
+            <strong>Career Confidence</strong>
+            <span>You always know where you stand and what comes next.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="recognition">
+  <div class="recognition-header">
+    <h2>Our Recognition Built on <span style="color: #1e40af; font-size: 34px; font-weight: 600;">Consistency</span></h2>
+    <p>
+      Progress earned through focused learning design, practical outcomes,
+      and long-term intent — not short-term hype.
+    </p>
+  </div>
+
+  <div class="recognition-wrapper">
+
+    <div class="recognition-row">
+      <div class="icon-rail">
+        <img src="./images/Gemini_Generated_Image_k1tdu4k1tdu4k1td.png" alt="">
+      </div>
+      <div class="content">
+        <h3>1 Year of Structured Learning Impact</h3>
+        <p>
+          A milestone reflecting consistent effort in building learning paths
+          designed for clarity, progression, and real-world relevance.
+        </p>
+        <span>Built with long-term learners in mind</span>
+      </div>
+    </div>
+
+    <div class="recognition-row">
+      <div class="icon-rail">
+        <img src="./images/Gemini_Generated_Image_1eugdy1eugdy1eug.png" style="height: 140px;" alt="">
+      </div>
+      <div class="content">
+        <h3>Excellence in Learning Design</h3>
+        <p>
+          Recognized for creating structured programs that help learners move
+          confidently from fundamentals to application.
+        </p>
+        <span>Clarity over complexity</span>
+      </div>
+    </div>
+
+    <div class="recognition-row">
+      <div class="icon-rail">
+        <img src="./images/Gemini_Generated_Image_i3hu7ti3hu7ti3hu.png" alt="">
+      </div>
+      <div class="content">
+        <h3>Commitment to Skill-First Education</h3>
+        <p>
+          Awarded for maintaining an industry-aligned approach where skills
+          are built to be applied — not just completed.
+        </p>
+        <span>Skills designed for real roles</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="oppty-reviews-section">
+  <div class="oppty-reviews-container">
+
+    <!-- HEADER -->
+    <header class="oppty-reviews-header">
+      <h2>What <span style="color: #1e40af; font-size: 34px; font-weight: 600;">Our Learners</span> Say</h2>
+      <p>Real experiences from learners who wanted clarity, not shortcuts.</p>
+    </header>
+
+    <!-- FEATURED REVIEW -->
+    <div class="oppty-featured-review">
+      <div class="featured-image">
+        <img src="https://img.freepik.com/free-photo/portrait-indian-happy-businessman-using-laptop-computer-office_231208-2580.jpg?semt=ais_hybrid&w=740&q=80" alt="Rakesh Kumar">
+      </div>
+
+      <div class="featured-content">
+        <blockquote>
+          “This wasn’t just another course. Every step made sense and built
+          naturally on the previous one.”
+        </blockquote>
+
+        <div class="featured-meta">
+          <strong>Rakesh Kumar</strong>
+          <span>Front-End Developer · Hyderabad</span>
+        </div>
+
+        <p class="featured-note">
+          The structured progression helped me stop guessing and focus on
+          building real front-end skills with confidence.
+        </p>
+      </div>
+    </div>
+
+    <!-- VOICES + VALUES -->
+    <div class="oppty-reviews-grid">
+
+      <!-- LEFT: OTHER LEARNERS -->
+      <div class="oppty-learner-voices">
+        <div class="learner-voice">
+          <img src="https://img.freepik.com/free-photo/casual-clothes-portrait-attractive-young-woman-standing-office-with-black-bag_146671-16554.jpg?semt=ais_hybrid&w=740&q=80" alt="Ananya Sharma">
+          <div>
+            <p>
+              “Clear structure removed confusion completely.
+              I finally knew what I was doing and why.”
+            </p>
+            <strong>Ananya Sharma</strong>
+            <span>Final Year Student</span>
+          </div>
+        </div>
+
+        <div class="learner-voice">
+          <img src="https://img.freepik.com/free-photo/positive-indian-financial-advisor-holding-open-folder_1262-17502.jpg?semt=ais_user_personalization&w=740&q=80" alt="Sandeep Reddy">
+          <div>
+            <p>
+              “I stopped guessing what to learn next.
+              The progression itself gave me confidence.”
+            </p>
+            <strong>Sandeep Reddy</strong>
+            <span>Career Switcher</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: VALUES -->
+      <aside class="oppty-learner-values">
+        <h3>What Learners Consistently Value</h3>
+
+        <ul>
+          <li>Clear learning sequence instead of scattered topics</li>
+          <li>Understanding before completion</li>
+          <li>Confidence built during learning</li>
+          <li>Visibility into what comes next</li>
+        </ul>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faqSection">
+  <div class="faq-container">
+
+    <header class="faq-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Clear answers to help you decide faster</p>
+    </header>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>How are courses structured?</h4>
+        <p>Each course follows a clear learning path with defined stages and practical checkpoints.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Is this suitable for beginners?</h4>
+        <p>Yes. Courses start from fundamentals and progress gradually to advanced topics.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Online or offline — how does it work?</h4>
+        <p>Programs are offered in online and classroom formats, depending on the course.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>How much time is required weekly?</h4>
+        <p>Learning plans are paced to fit alongside studies or work commitments.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Will I get guidance during learning?</h4>
+        <p>Yes. Learners receive structured guidance and regular checkpoints.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>What happens after completion?</h4>
+        <p>You gain clarity on next steps and how to apply your skills further.</p>
+      </div>
+    </div>
+
+    <div class="faq-footer">
+      <p>Still have questions in choosing the right path for your career?</p>
+      <a href="./contactus/contact.html" class="faq-cta-btn">Talk to a Career Advisor</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<section class="recognised-section">
+
+        <p class="recognised-label">RECOGNISED BY</p>
+
+        <div class="recognised-logos">
+            <img src="./images/msme.png" alt="NASSCOM" />
+            <img src="./images/Ministry-for-Corporate-AffairS-1-removebg-preview.png"
+                alt="Ministry of Commerce & Industry" />
+            <img src="./images/startup-india.jpg" alt="Startup India" />
+        </div>
+
+    </section>
+
+<footer class="footer">
+    <div class="footer-container">
+   
+    <div class="footer-col">
+      <img src="./images/oppty.png">
+      <p>
+        Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>108/43, Vijaya Lakshmi Enclave,1st Floor, H.No 2, PJR Enclave
+           Rd, Gangaram, 
+          ICRISAT Colony, Hyderabad, Telangana 500050</li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>  
+    </div>
+  <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>Udaipur - Plot No: 26, 100 Feet Rd, Shobhagpura, Udaipur, Rajasthan 313011
+        </li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>
+       <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    
+    </div>
+    
+    <div class="footer-col">
+      <h3>Our Courses</h3>
+      <ul class="links">
+        <li>Web Design</li>
+        <li>Apps Design</li>
+        <li>Marketing</li>
+        <li>Research</li>
+        <li>SEO</li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      
+
+      <h3 class="mt">Quick Links</h3>
+      <ul class="links">
+        <li>Privacy Policy</li>
+        <li>Terms & Condition</li>
+        <li>Regular FAQs</li>
+        <li>Help & Support</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>©2025 Oppty. All Rights Reserved.</p>
+    <p>Designed by <span>Oppty Techhub</span> Distributed by <span>Oppty</span></p>
+  </div>
+</footer>
+
+
+
+
+
+
+<script>
+const praCourses = [
+  { id:1, name:'Full Stack Web Development', duration:'12 Weeks', rating:4.8, image:'https://images.unsplash.com/photo-1498050108023-c5249f4df085' },
+  { id:2, name:'Data Science Pro', duration:'16 Weeks', rating:4.9, image:'./images/data-science.png' },
+  { id:3, name:'UI/UX Design Master', duration:'8 Weeks', rating:4.7, image:'./images/uiux.jpg' },
+  { id:4, name:'Cyber Security', duration:'10 Weeks', rating:4.6, image:'./images/cybersecurity.png' },
+  { id:5, name:'Cloud Computing', duration:'14 Weeks', rating:4.8, image:'./images/cloud.avif' }
+];
+
+function createCard(course) {
+  return `
+    <div class="pra-course-card">
+      <img src="${course.image}" alt="${course.name}">
+      <div class="pra-card-overlay"></div>
+
+      <!-- EXISTING CONTENT -->
+      <div class="pra-card-content">
+        <h3>${course.name}</h3>
+        <div>${course.duration} • ${course.rating} Rating</div>
+      </div>
+
+      <!-- ✅ NEW HOVER MODAL -->
+      <div class="pra-hover-modal">
+        <h4>${course.name}</h4>
+        <p>
+          A structured learning path designed to help you build
+          real-world skills progressively with hands-on practice.
+        </p>
+        <ul>
+          <li>Industry-aligned curriculum</li>
+          <li>Mentor-guided progression</li>
+          <li>Career-focused outcomes</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+
+const row1 = document.getElementById('pra-row-1');
+const row2 = document.getElementById('pra-row-2');
+const nav  = document.getElementById('pra-sidebar-nav');
+
+praCourses.forEach(course => {
+  const btn = document.createElement('button');
+  btn.className = 'pra-nav-item';
+  btn.innerHTML = `<span class="pra-nav-dot"></span>${course.name}`;
+  nav.appendChild(btn);
+});
+
+row1.innerHTML = [...praCourses, ...praCourses].map(createCard).join('');
+row2.innerHTML = [...praCourses, ...praCourses].map(createCard).join('');
+</script>
+
+<script>
+  const learningCards = document.querySelectorAll('.learning-card');
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('show');
+          }, index * 120); // stagger animation
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  learningCards.forEach(card => observer.observe(card));
+</script>
+
+<script>
+  const programCards = document.querySelectorAll('.program-card');
+
+  const programObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('show');
+          }, index * 120); // staggered reveal
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+
+  programCards.forEach(card => programObserver.observe(card));
+</script>
+
+<script>
+  const logos = document.querySelectorAll('#opptyLogoGrid img');
+  let index = 0;
+
+  function animateLogos() {
+    logos.forEach(l => l.classList.remove('oppty-logo-active'));
+    logos[index].classList.add('oppty-logo-active');
+    index = (index + 1) % logos.length;
+  }
+
+  setInterval(animateLogos, 1200);
+</script>
+<script>
+  
+  (() => {
+  const triggerBtn = document.getElementById("loginAuthTrigger");
+  const modal = document.getElementById("loginAuthModal");
+  const closeBtn = document.getElementById("loginAuthClose");
+
+  const sendOtpBtn = document.getElementById("loginAuthSendOtpBtn");
+  const otpSection = document.getElementById("loginAuthOtpSection");
+  const verifyOtpBtn = document.getElementById("loginAuthVerifyOtpBtn");
+  const successMsg = document.getElementById("loginAuthSuccess");
+
+  if (!triggerBtn || !modal) return;
+
+  /* OPEN MODAL */
+  triggerBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.style.display = "flex";
+    
+  });
+})
+  </script>
+<script>
+
+  const section = document.getElementById('audienceSection');
+
+  window.addEventListener('scroll', () => {
+    const rect = section.getBoundingClientRect();
+    const triggerPoint = window.innerHeight * 0.85;
+
+    if (rect.top < triggerPoint) {
+      section.classList.add('is-visible');
+    }
+  });
+</script>
+
+<script>
+  (function () {
+    const section = document.querySelector('.final-guidance-section');
+
+    function revealOnScroll() {
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      if (rect.top < windowHeight - 120) {
+        section.classList.add('reveal');
+        window.removeEventListener('scroll', revealOnScroll);
+      }
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // run once on load
+  })();
+</script>
+
+<script>
+  (function () {
+    const items = document.querySelectorAll('.faq-item');
+
+    function revealFAQ() {
+      const trigger = window.innerHeight * 0.85;
+      items.forEach(item => {
+        const top = item.getBoundingClientRect().top;
+        if (top < trigger) {
+          item.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealFAQ);
+    revealFAQ(); // run once on load
+  })();
+</script>
+
+
+
+</body>
+</html>

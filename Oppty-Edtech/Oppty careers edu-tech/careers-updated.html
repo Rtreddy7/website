@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers at Oppty - Join Our Mission to Transform Education</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo:wght@300;400;500;600;700;800;900&family=Fraunces:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="careers-styles-updated.css">
+</head>
+<!-- Apply Modal -->
+<div class="apply-modal" id="applyModal">
+    <div class="apply-overlay"></div>
+
+    <div class="apply-box">
+        <button class="close-modal">&times;</button>
+
+        <h3>Apply for this position</h3>
+        <p>Please fill in the form below.</p>
+
+        <form class="apply-form">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" required>
+            </div>
+
+            <div class="form-group">
+                <label>Resume</label>
+                <input type="file" required>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                Submit Application
+            </button>
+        </form>
+    </div>
+</div>
+
+<body>
+     <header class="header">
+        <div class="container-h">
+
+            <div class="logo">
+                <a href="../index.html"> <img src="../images/oppty.png" alt="Oppty Logo" /></a>
+            </div>
+
+            <nav class="nav">
+
+                <a href="../index.html" class="nav-link" data-page="home">Home</a>
+
+                <a href="../FinalEduTech/program.html" class="nav-link" data-page="home">Programs</a>
+                <a href="./careers-updated.html" class="nav-link" data-page="home">Careers</a>
+                <a href="../EduTech Oppty/corporate.html" class="nav-link" data-page="corporate">
+                    Corporate Training
+                </a>
+
+                <a href="../contactus/contact.html" class="nav-link" data-page="contact">
+                    Contact Us
+                </a>
+
+                 <a href="../contactus/html/login.html" id="loginAuthTrigger" class="login-btn">Login →</a>
+
+                <div class="loginAuthModal" id="loginAuthModal">
+  <div class="loginAuthBox">
+
+    <span class="loginAuthClose" id="loginAuthClose">&times;</span>
+
+    <h2 class="loginAuthTitle">Welcome Back</h2>
+    <p class="loginAuthSubtitle">
+      One step ahead for a successful career 🚀
+    </p>
+
+    <input
+      type="text"
+      id="loginAuthInput"
+      placeholder="Email or Phone Number"
+    />
+
+    <button id="loginAuthSendOtpBtn">
+      Send OTP
+    </button>
+
+    <div class="loginAuthOtpSection" id="loginAuthOtpSection">
+      <input
+        type="text"
+        id="loginAuthOtpInput"
+        placeholder="Enter OTP"
+      />
+      <button id="loginAuthVerifyOtpBtn">
+        Verify OTP
+      </button>
+    </div>
+
+    <p class="loginAuthSuccess" id="loginAuthSuccess">
+      OTP submitted successfully ✅
+    </p>
+
+  </div>
+</div>
+
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="careers-hero">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <!-- <div class="hero-badge">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Careers</span>
+                </div> -->
+                <h1 class="hero-title">
+                    Build the Future of
+                    <span class="gradient-text">Education Technology</span>
+                </h1>
+                <p class="hero-description">
+                    Join a team of passionate educators, technologists, and innovators who are on a mission 
+                    to make quality education accessible to millions. At Oppty, you'll work on meaningful 
+                    problems that transform lives.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Open Positions</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>200+</h3>
+                        <p>Team Members</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>Locations</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>4.8/5</h3>
+                        <p>Employee Rating</p>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <button class="btn-primary-large" onclick="document.getElementById('open-positions').scrollIntoView({behavior: 'smooth'})">
+                        View Open Positions
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="wave-divider">
+            <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" fill="url(#wave-gradient)"/>
+                <defs>
+                    <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#F8FAFC;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#EFF6FF;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div> -->
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="why-join">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Why Oppty</span>
+                <h2 class="section-title">Why Work With Us?</h2>
+                <p class="section-description">
+                    We're building more than just a company – we're creating a movement to democratize education
+                </p>
+            </div>
+
+            <div class="reasons-wrapper">
+                <div class="reason-item">
+                    <div class="reason-number">01</div>
+                    <div class="reason-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Mission-Driven Work</h3>
+                    <p>Every line of code you write, every lesson you create impacts thousands of learners. Your work has real meaning and creates lasting impact.</p>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">02</div>
+                    <div class="reason-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Rapid Growth</h3>
+                    <p>Join a hyper-growth startup where you'll learn, grow, and take on new challenges every day. Your career trajectory here is limitless.</p>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">03</div>
+                    <div class="reason-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Amazing Team</h3>
+                    <p>Work alongside brilliant minds from IITs, IIMs, and top tech companies. Collaborate with people who inspire you daily.</p>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">04</div>
+                    <div class="reason-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Innovation First</h3>
+                    <p>We encourage experimentation and embrace failure as learning. Bring your ideas to life with the latest technologies.</p>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">05</div>
+                    <div class="reason-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Work-Life Balance</h3>
+                    <p>Flexible hours, remote work options, and generous time off. We believe in working smart, not just hard.</p>
+                </div>
+
+                <div class="reason-item">
+                    <div class="reason-number">06</div>
+                    <div class="reason-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Competitive Benefits</h3>
+                    <p>Industry-leading compensation, equity, health insurance, learning budgets, and more. We invest in our people.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Perks & Benefits</span>
+                <h2 class="section-title">We Take Care of Our Team</h2>
+                <p class="section-description">
+                    Comprehensive benefits designed to support your professional and personal growth
+                </p>
+            </div>
+
+            <div class="benefits-marquee">
+                <div class="marquee-track">
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-hand-holding-usd"></i> -->
+                        <span>Competitive Salary</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-chart-pie"></i> -->
+                        <span>Equity & ESOPs</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-heartbeat"></i> -->
+                        <span>Health Insurance</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-graduation-cap"></i> -->
+                        <span>₹50K Learning Budget</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-home"></i> -->
+                        <span>Remote Flexibility</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-umbrella-beach"></i> -->
+                        <span>Unlimited PTO</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-laptop"></i> -->
+                        <span>Latest Equipment</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-pizza-slice"></i> -->
+                        <span>Team Activities</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-baby"></i> -->
+                        <span>Parental Leave</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-dumbbell"></i> -->
+                        <span>Wellness Programs</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-seedling"></i> -->
+                        <span>Career Growth</span>
+                    </div>
+                    <div class="benefit-item">
+                        <!-- <i class="fas fa-globe"></i> -->
+                        <span>Global Exposure</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits-grid-detailed">
+                <div class="benefit-detail">
+                    <h4>Competitive Compensation</h4>
+                    <p>Industry-leading salary with annual reviews and performance bonuses</p>
+                </div>
+                <div class="benefit-detail">
+                    <h4>Complete Healthcare</h4>
+                    <p>Comprehensive medical coverage for you and your family</p>
+                </div>
+                <div class="benefit-detail">
+                    <h4>Continuous Learning</h4>
+                    <p>₹50,000 annual budget for courses and certifications</p>
+                </div>
+                <div class="benefit-detail">
+                    <h4>Work-Life Harmony</h4>
+                    <p>Flexible hours, remote options, and unlimited time off</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life at Oppty -->
+    <section class="life-at-oppty">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Culture</span>
+                <h2 class="section-title">Life at Oppty</h2>
+                <p class="section-description">
+                    A glimpse into our vibrant workplace culture
+                </p>
+            </div>
+
+            <div class="culture-slider">
+                <div class="slider-track">
+                    <div class="culture-slide">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop" alt="Team Collaboration">
+                        <div class="slide-label">Team Collaboration</div>
+                    </div>
+                    <div class="culture-slide">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop" alt="Learning Sessions">
+                        <div class="slide-label">Learning Sessions</div>
+                    </div>
+                    <div class="culture-slide">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop" alt="Team Celebrations">
+                        <div class="slide-label">Celebrations</div>
+                    </div>
+                    <div class="culture-slide">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop" alt="Innovation Lab">
+                        <div class="slide-label">Innovation Lab</div>
+                    </div>
+                    <div class="culture-slide">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&h=600&fit=crop" alt="Team Outings">
+                        <div class="slide-label">Team Outings</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions -->
+    <section class="open-positions" id="open-positions">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Open Positions</span>
+                <h2 class="section-title">Join Our Growing Team</h2>
+                <p class="section-description">
+                    Find your perfect role and start making an impact
+                </p>
+            </div>
+
+            <div class="positions-filter">
+                <button class="filter-btn active" data-department="all">All Roles</button>
+                <button class="filter-btn" data-department="engineering">Engineering</button>
+                <button class="filter-btn" data-department="product">Product</button>
+                <button class="filter-btn" data-department="design">Design</button>
+                <button class="filter-btn" data-department="content">Content</button>
+                <button class="filter-btn" data-department="marketing">Marketing</button>
+                <button class="filter-btn" data-department="operations">Operations</button>
+            </div>
+
+            <div class="positions-list">
+                <!-- Engineering Roles -->
+                <div class="position-row" data-department="engineering">
+                    <div class="position-left">
+                        <div class="position-dept">Engineering</div>
+                        <h3>Senior Full Stack Developer</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Hyderabad / Remote</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+
+                <div class="position-row" data-department="engineering">
+                    <div class="position-left">
+                        <div class="position-dept">Engineering</div>
+                        <h3>Frontend Developer (React)</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+
+                <div class="position-row" data-department="engineering">
+                    <div class="position-left">
+                        <div class="position-dept">Engineering</div>
+                        <h3>DevOps Engineer</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore / Remote</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+
+                <!-- Product Roles -->
+                <div class="position-row" data-department="product">
+                    <div class="position-left">
+                        <div class="position-dept">Product</div>
+                        <h3>Product Manager</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+
+                <!-- Design Roles -->
+                <div class="position-row" data-department="design">
+                    <div class="position-left">
+                        <div class="position-dept">Design</div>
+                        <h3>UI/UX Designer</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+
+                <!-- Content Roles -->
+                <div class="position-row" data-department="content">
+                    <div class="position-left">
+                        <div class="position-dept">Content</div>
+                        <h3>Curriculum Designer (Full Stack)</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+
+                <!-- Marketing Roles -->
+                <div class="position-row" data-department="marketing">
+                    <div class="position-left">
+                        <div class="position-dept">Marketing</div>
+                        <h3>Digital Marketing Manager</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Mumbai / Remote</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+
+                <!-- Operations Roles -->
+                <div class="position-row" data-department="operations">
+                    <div class="position-left">
+                        <div class="position-dept">Operations</div>
+                        <h3>Student Success Manager</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-right">
+                        <button class="btn-apply">Apply Now →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-match" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No positions found</h3>
+                <p>Try selecting a different department or check back soon for new openings!</p>
+            </div>
+
+            <div class="cant-find-role">
+                <h3>Can't find the right role?</h3>
+                <p>We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future opportunities.</p>
+                <button class="btn-primary">Submit General Application</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hiring Process -->
+<section class="hiring-process">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Our Process</span>
+            <h2 class="section-title">How We Hire</h2>
+            <p class="section-description">
+                A transparent, fair, and efficient hiring process designed to find the best fit
+            </p>
+        </div>
+
+        <div class="process-flow">
+            <!-- Step 1 -->
+            <div class="process-step">
+                <div class="step-marker">1</div>
+                <div class="step-content">
+                    <h4>Application Review</h4>
+                    <p>Submit your application and our team will review it within 3-5 business days.</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="process-step">
+                <div class="step-marker">2</div>
+                <div class="step-content">
+                    <h4>Initial Screening</h4>
+                    <p>A quick 20-30 minute call with our recruiter to discuss your background and the role.</p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="process-step">
+                <div class="step-marker">3</div>
+                <div class="step-content">
+                    <h4>Technical/Skills Assessment</h4>
+                    <p>Depending on the role, a coding challenge, design task, or case study.</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="process-step">
+                <div class="step-marker">4</div>
+                <div class="step-content">
+                    <h4>Team Interviews</h4>
+                    <p>Meet with your potential team members and managers in 2-3 rounds of interviews.</p>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="process-step">
+                <div class="step-marker">5</div>
+                <div class="step-content">
+                    <h4>Final Interview</h4>
+                    <p>A conversation with leadership to discuss vision, culture fit, and expectations.</p>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="process-step">
+                <div class="step-marker">6</div>
+                <div class="step-content">
+                    <h4>Offer & Onboarding</h4>
+                    <p>Receive your offer and join our amazing team! We'll make your onboarding smooth and exciting.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info Card -->
+        <div class="process-info-card" style="margin-top: 4rem;">
+            <h3>What Makes Our Process Special?</h3>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="info-text">
+                    <h5>Fast Response Time</h5>
+                    <p>We value your time. Expect feedback within 2-3 business days at every stage.</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="info-text">
+                    <h5>Two-Way Conversation</h5>
+                    <p>This is as much about you evaluating us as we evaluate you. Ask anything!</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="info-text">
+                    <h5>Fair & Inclusive</h5>
+                    <p>Structured interviews ensure every candidate is evaluated on the same criteria.</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="info-text">
+                    <h5>Constructive Feedback</h5>
+                    <p>Whether you're successful or not, we provide meaningful feedback to help you grow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- CTA Section -->
+    <!-- <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Ready to Make an Impact?</h2>
+                    <p>Join us in our mission to transform education for millions of learners worldwide. Your next big adventure starts here!</p>
+                </div>
+                <div class="cta-buttons">
+                    <button class="btn-cta-primary" onclick="document.getElementById('open-positions').scrollIntoView({behavior: 'smooth'})">Browse Open Roles</button>
+                    <button class="btn-cta-secondary">Learn About Our Culture</button>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <footer class="footer">
+    <div class="footer-container">
+   
+    <div class="footer-col">
+      <img src="../images/oppty.png">
+      <p>
+        Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>108/43, Vijaya Lakshmi Enclave,1st Floor, H.No 2, PJR Enclave
+           Rd, Gangaram, 
+          ICRISAT Colony, Hyderabad, Telangana 500050</li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>  
+    </div>
+  <div class="footer-col">
+      <h3>Get In Touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i>Udaipur - Plot No: 26, 100 Feet Rd, Shobhagpura, Udaipur, Rajasthan 313011
+        </li>
+        <li><i class="fa-solid fa-phone"></i> +91-9491209900</li>
+        <li><i class="fa-solid fa-envelope"></i> info@oppty.in</li>
+      </ul>
+       <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    
+    </div>
+    
+    <div class="footer-col">
+      <h3>Our Courses</h3>
+      <ul class="links">
+        <li>Web Design</li>
+        <li>Apps Design</li>
+        <li>Marketing</li>
+        <li>Research</li>
+        <li>SEO</li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      
+
+      <h3 class="mt">Quick Links</h3>
+      <ul class="links">
+        <li>Privacy Policy</li>
+        <li>Terms & Condition</li>
+        <li>Regular FAQs</li>
+        <li>Help & Support</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>©2025 Oppty. All Rights Reserved.</p>
+    <p>Designed by <span>Oppty Techhub</span> Distributed by <span>Oppty</span></p>
+  </div>
+</footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="careers-script-updated.js"></script>
+
+    
+</body>
+</html>

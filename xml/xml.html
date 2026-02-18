@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RSS Reader</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #0066cc;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>📰 RSS Reader</h1>
+  <ul id="feed"></ul>
+
+  <script>
+   fetch("feed.xml")
+  .then(response => response.text())
+  .then(xmlText => {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+    const items = xmlDoc.querySelectorAll("item");
+    const feed = document.getElementById("feed");
+
+    items.forEach(item => {
+      const title = item.querySelector("title").textContent;
+      const link = item.querySelector("link").textContent;
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+
+      a.href = link;
+      a.textContent = title;
+      a.target = "_blank";
+
+      li.appendChild(a);
+      feed.appendChild(li);
+    });
+  })
+  .catch(err => console.error(err));
+
+
+  </script>
+</body>
+</html>
