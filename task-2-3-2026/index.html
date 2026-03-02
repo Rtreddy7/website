@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hero Image Slider (All-in-One)</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body{
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* HERO SLIDER */
+    #slider{
+      width: 100%;
+      height: 70vh;
+      min-height: 380px;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slides{
+      height: 100%;
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .slide{
+      min-width: 100%;
+      height: 100%;
+    }
+
+    .slide img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* ARROWS */
+    .prev, .next{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border: none;
+      border-radius: 50%;
+      font-size: 34px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+    }
+
+    .prev{ left: 16px; }
+    .next{ right: 16px; }
+
+    .prev:hover, .next:hover{
+      background: rgba(0,0,0,0.65);
+    }
+
+    /* DOTS */
+    .dots{
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 6;
+    }
+
+    .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      cursor: pointer;
+    }
+
+    .dot.active{
+      background: #fff;
+    }
+
+    @media (min-width: 1000px){
+      #slider{ height: 80vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="slider" tabindex="0">
+    <div class="slides">
+  <div class="slide">
+    <img src="https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/sports-car-futuristic-mountain-sunset-chromebook-wallpaper.jpg" alt="Car 1">
+  </div>
+
+  <div class="slide">
+    <img src="https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/car-chromebook-wallpaper.jpg" alt="Car 2">
+  </div>
+
+  <div class="slide">
+    <img src="https://i.pinimg.com/736x/aa/ae/4c/aaae4c5446284423fead16b1afaecbf2.jpg" alt="Car 3">
+  </div>
+
+  <div class="slide">
+    <img src="https://c4.wallpaperflare.com/wallpaper/26/399/594/1920x1081-px-1967-mustang-fastback-car-drive-neon-retrowave-synthwave-vehicle-art-skyline-hd-art-wallpaper-preview.jpg" alt="Car 4">
+  </div>
+
+  <div class="slide">
+    <img src="https://wallpapers.com/images/hd/ford-mustang-mach-1-muscle-car-a3xgi2ab9tdzxy6n.jpg" alt="Car 5">
+  </div>
+</div>
+
+    <button class="prev" type="button" aria-label="Previous slide">&lsaquo;</button>
+    <button class="next" type="button" aria-label="Next slide">&rsaquo;</button>
+
+    <div class="dots" aria-label="Slide dots"></div>
+  </section>
+
+  <script>
+    const slider = document.getElementById("slider");
+    const slidesRow = slider.querySelector(".slides");
+    const slides = slider.querySelectorAll(".slide");
+
+    const prev = slider.querySelector(".prev");
+    const next = slider.querySelector(".next");
+    const dotsBox = slider.querySelector(".dots");
+
+    let index = 0;
+    let timer = null;
+    const delay = 3000;
+
+    // Create dots (no innerHTML)
+    const dots = [];
+    for (let i = 0; i < slides.length; i++) {
+      const d = document.createElement("div");
+      d.className = "dot";
+      d.addEventListener("click", () => {
+        index = i;
+        update();
+      });
+      dotsBox.appendChild(d);
+      dots.push(d);
+    }
+
+    function update() {
+      slidesRow.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle("active", i === index));
+    }
+
+    // Loop buttons (hero style)
+    next.addEventListener("click", () => {
+      index++;
+      if (index >= slides.length) index = 0;
+      update();
+    });
+
+    prev.addEventListener("click", () => {
+      index--;
+      if (index < 0) index = slides.length - 1;
+      update();
+    });
+
+    // Autoplay
+    function start() {
+      stop();
+      timer = setInterval(() => {
+        index++;
+        if (index >= slides.length) index = 0;
+        update();
+      }, delay);
+    }
+
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    // Pause on hover
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+
+    // Keyboard arrows
+    slider.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next.click();
+      if (e.key === "ArrowLeft") prev.click();
+    });
+
+    // Init
+    update();
+    start();
+  </script>
+</body>
+</html>

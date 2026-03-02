@@ -1,0 +1,57 @@
+[
+  { "id": "html1", "topic": "html", "q": "Which HTML element is used to create a hyperlink?", "options": ["<link>", "<a>", "<href>", "<nav>"], "answer": 1, "exp": "Use <a href=\"...\"> to create hyperlinks." },
+  { "id": "html2", "topic": "html", "q": "What does the alt attribute on an <img> provide?", "options": ["Image width", "Alternative text", "Image source URL", "Image alignment"], "answer": 1, "exp": "alt provides accessibility text and shows if the image fails to load." },
+  { "id": "html3", "topic": "html", "q": "Which element should wrap the main navigation links?", "options": ["<header>", "<nav>", "<section>", "<aside>"], "answer": 1, "exp": "Use <nav> for main navigation links." },
+  { "id": "html4", "topic": "html", "q": "Which tag represents the main content of a document?", "options": ["<main>", "<body>", "<article>", "<section>"], "answer": 0, "exp": "<main> contains the primary content unique to that page." },
+  { "id": "html5", "topic": "html", "q": "Which input type is best for email?", "options": ["text", "mail", "email", "username"], "answer": 2, "exp": "type=\"email\" provides email validation and a better mobile keyboard." },
+  { "id": "html6", "topic": "html", "q": "Which attribute makes an input mandatory?", "options": ["must", "needed", "required", "force"], "answer": 2, "exp": "The required attribute makes a field mandatory." },
+  { "id": "html7", "topic": "html", "q": "Which tag is used for an unordered list?", "options": ["<ol>", "<ul>", "<li>", "<list>"], "answer": 1, "exp": "<ul> defines an unordered list." },
+  { "id": "html8", "topic": "html", "q": "Which tag defines a table row?", "options": ["<td>", "<tr>", "<th>", "<row>"], "answer": 1, "exp": "<tr> defines a table row." },
+  { "id": "html9", "topic": "html", "q": "Which element is best for self-contained content like a blog post?", "options": ["<article>", "<div>", "<section>", "<span>"], "answer": 0, "exp": "<article> is for independent, reusable content." },
+  { "id": "html10", "topic": "html", "q": "What does <meta name=\"viewport\"> help with?", "options": ["SEO only", "Responsive scaling", "Video playback", "CSS loading"], "answer": 1, "exp": "Viewport meta tag helps pages scale correctly on mobile." },
+
+  { "id": "css1", "topic": "css", "q": "Which property changes text color?", "options": ["font-color", "text-color", "color", "foreground"], "answer": 2, "exp": "Use color: ... to change text color." },
+  { "id": "css2", "topic": "css", "q": "What does display:flex do?", "options": ["Creates a flex container", "Centers text automatically", "Forces inline display", "Creates a grid"], "answer": 0, "exp": "display:flex makes children use flex layout." },
+  { "id": "css3", "topic": "css", "q": "Which unit is relative to the root font size?", "options": ["em", "rem", "px", "%"], "answer": 1, "exp": "rem is based on the root (html) font size." },
+  { "id": "css4", "topic": "css", "q": "Which property adds spacing outside an element?", "options": ["padding", "margin", "gap", "border"], "answer": 1, "exp": "margin adds space outside the element." },
+  { "id": "css5", "topic": "css", "q": "Which property adds spacing inside an element?", "options": ["padding", "margin", "gap", "outline"], "answer": 0, "exp": "padding adds space inside the element." },
+  { "id": "css6", "topic": "css", "q": "How do you select an element with id='box'?", "options": [".box", "#box", "box", "*box"], "answer": 1, "exp": "Use #box to select an element by id." },
+  { "id": "css7", "topic": "css", "q": "How do you select elements with class='card'?", "options": ["#card", ".card", "card", "@card"], "answer": 1, "exp": "Use .card to select a class." },
+  { "id": "css8", "topic": "css", "q": "Which property creates rounded corners?", "options": ["radius", "border-radius", "corner-radius", "round"], "answer": 1, "exp": "Use border-radius for rounded corners." },
+  { "id": "css9", "topic": "css", "q": "Which property controls stacking order?", "options": ["stack", "z-index", "order", "layer"], "answer": 1, "exp": "z-index controls stacking order of positioned elements." },
+  { "id": "css10", "topic": "css", "q": "In flexbox, which property aligns items on the main axis?", "options": ["align-items", "justify-content", "gap", "flex-wrap"], "answer": 1, "exp": "justify-content aligns items along the main axis." },
+  { "id": "css11", "topic": "css", "q": "In flexbox, which property aligns items on the cross axis?", "options": ["align-items", "justify-items", "align-content", "place-content"], "answer": 0, "exp": "align-items aligns items along the cross axis." },
+  { "id": "css12", "topic": "css", "q": "What does box-sizing:border-box do?", "options": ["Adds border", "Includes padding/border in width/height", "Removes margin", "Locks the size"], "answer": 1, "exp": "border-box includes padding and border within the specified width/height." },
+
+  { "id": "js1", "topic": "js", "q": "Which keyword declares a block-scoped variable?", "options": ["var", "let", "define", "scope"], "answer": 1, "exp": "let and const are block-scoped; var is function-scoped." },
+  { "id": "js2", "topic": "js", "q": "Which operator checks value AND type equality?", "options": ["==", "=", "===", "!="], "answer": 2, "exp": "=== checks strict equality (value + type)." },
+  { "id": "js3", "topic": "js", "q": "Which method converts JSON string to an object?", "options": ["JSON.toObject()", "JSON.parse()", "JSON.stringify()", "parse.JSON()"], "answer": 1, "exp": "JSON.parse converts a JSON string to an object." },
+  { "id": "js4", "topic": "js", "q": "Which method converts an object to JSON string?", "options": ["JSON.stringify()", "JSON.parse()", "obj.toJSON()", "toStringJSON()"], "answer": 0, "exp": "JSON.stringify converts an object to a JSON string." },
+  { "id": "js5", "topic": "js", "q": "Which function runs once after a delay?", "options": ["setTimeout", "setInterval", "delay()", "sleep()"], "answer": 0, "exp": "setTimeout(fn, ms) runs once after ms." },
+  { "id": "js6", "topic": "js", "q": "Which function runs repeatedly at intervals?", "options": ["setTimeout", "setInterval", "repeat()", "loop()"], "answer": 1, "exp": "setInterval(fn, ms) runs repeatedly." },
+  { "id": "js7", "topic": "js", "q": "How do you select an element by id in JS?", "options": ["document.query('id')", "document.getElementById()", "document.selectId()", "getById()"], "answer": 1, "exp": "Use document.getElementById('id')." },
+  { "id": "js8", "topic": "js", "q": "What does Array.map() return?", "options": ["Same array", "A new array", "A number", "Nothing"], "answer": 1, "exp": "map() returns a new array." },
+  { "id": "js9", "topic": "js", "q": "Which array method removes the last element?", "options": ["pop()", "push()", "shift()", "unshift()"], "answer": 0, "exp": "pop() removes the last element." },
+  { "id": "js10", "topic": "js", "q": "What does event.preventDefault() do?", "options": ["Stops JS execution", "Stops default browser action", "Refreshes page", "Closes window"], "answer": 1, "exp": "It prevents the default browser action (like form submit navigation)." },
+  { "id": "js11", "topic": "js", "q": "Which is correct to add a class to an element?", "options": ["el.addClass('x')", "el.classList.add('x')", "el.class += 'x'", "addClass(el,'x')"], "answer": 1, "exp": "Use element.classList.add('x')." },
+  { "id": "js12", "topic": "js", "q": "Which loop keyword stops the loop immediately?", "options": ["stop", "break", "exit", "halt"], "answer": 1, "exp": "break stops a loop." },
+
+  { "id": "mix1", "topic": "mixed", "q": "Where should you place a normal <script> for best performance (without defer)?", "options": ["Top of <head>", "End of <body>", "Inside <title>", "Inside <meta>"], "answer": 1, "exp": "Place scripts before </body> or use defer." },
+  { "id": "mix2", "topic": "mixed", "q": "What does HTTP status 404 mean?", "options": ["OK", "Forbidden", "Not Found", "Server Error"], "answer": 2, "exp": "404 means the resource was not found." },
+  { "id": "mix3", "topic": "mixed", "q": "What is the main purpose of semantic HTML?", "options": ["Faster JS", "Better accessibility and meaning", "Smaller images", "More animations"], "answer": 1, "exp": "Semantic HTML improves structure and accessibility." },
+  { "id": "mix4", "topic": "mixed", "q": "Which is best for storing small data in the browser?", "options": ["localStorage", "SQL Server", "CORS", "HTTP"], "answer": 0, "exp": "localStorage stores key/value strings in the browser." },
+  { "id": "mix5", "topic": "mixed", "q": "Which CSS feature is best for 2D layouts?", "options": ["Flexbox only", "CSS Grid", "Float only", "Inline-block only"], "answer": 1, "exp": "CSS Grid is designed for 2D layouts (rows + columns)." },
+  { "id": "mix6", "topic": "mixed", "q": "Which protocol secures HTTP traffic?", "options": ["FTP", "SSH", "TLS/HTTPS", "SMTP"], "answer": 2, "exp": "HTTPS uses TLS to encrypt HTTP traffic." },
+
+  { "id": "html11", "topic": "html", "q": "Which tag is used to embed another HTML page?", "options": ["<embed>", "<iframe>", "<frame>", "<object>"], "answer": 1, "exp": "<iframe> embeds another document." },
+  { "id": "html12", "topic": "html", "q": "Which attribute connects a <label> to an <input>?", "options": ["name", "for", "link", "target"], "answer": 1, "exp": "label's for should match the input's id." },
+
+  { "id": "css13", "topic": "css", "q": "Which property makes an element stick while scrolling?", "options": ["static", "fixed", "sticky", "absolute"], "answer": 2, "exp": "position: sticky sticks after reaching a scroll threshold." },
+  { "id": "css14", "topic": "css", "q": "Which property sets the thickness of a border?", "options": ["border-size", "border-width", "border-thick", "stroke"], "answer": 1, "exp": "Use border-width to control thickness." },
+
+  { "id": "js13", "topic": "js", "q": "What does const prevent?", "options": ["Mutation", "Reassignment", "Loops", "Scope"], "answer": 1, "exp": "const prevents reassignment (objects can still mutate)." },
+  { "id": "js14", "topic": "js", "q": "Which converts a string to a number safely?", "options": ["Number('10')", "String(10)", "toText()", "int()"], "answer": 0, "exp": "Number('10') converts to a number." },
+
+  { "id": "mix7", "topic": "mixed", "q": "What does CORS control?", "options": ["CSS loading", "Cross-origin requests", "JS speed", "HTML validation"], "answer": 1, "exp": "CORS controls cross-origin browser access to resources." },
+  { "id": "mix8", "topic": "mixed", "q": "Which is a correct REST method to update a resource?", "options": ["GET", "POST", "PUT/PATCH", "TRACE"], "answer": 2, "exp": "PUT/PATCH are used to update resources." }
+]

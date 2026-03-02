@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart | Hi-Tech Electronics</title>
+<link rel="stylesheet" href="cameras.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+
+.mainWrap{max-width:1200px;margin:0 auto;padding:14px;}
+.layout{display:grid;grid-template-columns:1fr 360px;gap:14px}
+@media(max-width:980px){.layout{grid-template-columns:1fr}}
+.box{background:#fff;border:1px solid #eee;border-radius:14px;padding:14px}
+.row{display:grid;grid-template-columns:84px 1fr 140px;gap:12px;align-items:center;border-top:1px solid #eee;padding:12px 0}
+.row:first-child{border-top:none}
+.row img{width:84px;height:64px;object-fit:cover;border-radius:12px;border:1px solid #eee;background:#fafafa}
+.name{font-weight:1000;font-size:13px}
+.meta{opacity:.8;font-size:12px;margin-top:4px}
+.qty{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.qbtn{width:34px;height:34px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer}
+.rm{margin-top:8px;font-size:12px;cursor:pointer;color:#b91c1c}
+.sum{display:flex;justify-content:space-between;margin:10px 0;font-size:13px}
+.total{font-weight:1000;font-size:16px}
+.cta{width:100%;padding:12px;border:none;border-radius:12px;background:#111;color:#fff;font-weight:1000;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:420px){.grid{grid-template-columns:1fr;}}
+.card{background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden;cursor:pointer}
+.card img{width:100%;height:150px;object-fit:cover;background:#fafafa}
+.card .b{padding:10px}
+.card .n{font-weight:900;font-size:13px;min-height:34px}
+.card .p{font-weight:1000;margin-top:6px}
+
+</style>
+</head>
+<body>
+<header class="header">
+        <div class="logo">
+            <a href="./home.html">
+                <i class="fa-solid fa-bolt" style="margin-right:10px; color:#ed01ee;"></i>
+                <span> Hi-Tech <span class="highlight">Electronics</span></span>
+            </a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for 'Smartwatch for Her'...">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="nav-actions">
+            <div class="nav-item"><i class="fa-solid fa-heart"></i> <span>Wishlist</span></div>
+            <div class="nav-item"><i class="fa-solid fa-cart-shopping"></i> <span>Cart (0)</span></div>
+            <div class="nav-item"><i class="fa-regular fa-user"></i> <span>Login</span></div>
+        </div>
+    </header>
+<nav class="sub-nav">
+        <a href="./home.html">Home</a>
+        <a href="#mobiles">Mobiles</a>
+        <a href="#laptops">Laptops</a>
+        <a href="./smart.html">Smart TVs & AC, WM and Fridge </a>
+        <a href="#audio">Audio & Video</a>
+        <a href="#cameras">Cameras</a>
+        <a href="#accessories">Accessories</a>
+        <a href="#valentines" class="special-link">❤️ Valentine's Deals</a>
+    </nav>
+<main class="mainWrap">
+  <div class="layout">
+    <section class="box">
+      <div style="font-weight:1000;font-size:18px">Your Cart</div>
+      <div id="items"></div>
+      <div id="empty" style="display:none;margin-top:12px;opacity:.85">Your cart is empty. Continue shopping.</div>
+    </section>
+
+    <aside class="box" style="position:sticky;top:12px;height:fit-content">
+      <div style="font-weight:1000;font-size:16px">Price Details</div>
+      <div class="sum"><span>Subtotal</span><span id="sub">₹0</span></div>
+      <div class="sum"><span>Discount</span><span id="disc">-₹0</span></div>
+      <div class="sum"><span>Delivery</span><span id="ship">₹0</span></div>
+      <div class="sum total"><span>Total</span><span id="tot">₹0</span></div>
+      <button class="cta" id="checkout">Proceed to Checkout</button>
+    </aside>
+  </div>
+
+  <div class="box" style="margin-top:16px">
+    <div style="font-weight:1000;margin-bottom:10px">You may also like</div>
+    <div class="grid" id="reco"></div>
+  </div>
+</main>
+<footer>
+        <div class="footer-grid">
+            <div class="col">
+                <h4>Contact Us</h4>
+                <p>1800-200-OPPTY</p>
+                <p>help@High-Tech.com</p>
+                <p>Vijayawada, India</p>
+            </div>
+            <div class="col">
+                <h4>Make Money</h4>
+                <a href="#">Sell on OPPTY</a>
+                <a href="#">Affiliate</a>
+            </div>
+            <div class="col">
+                <h4>Policy</h4>
+                <a href="#">Return Policy</a>
+                <a href="#">Security</a>
+            </div>
+            <div class="col">
+                <h4>Download App</h4>
+                <div class="app-buttons">
+                    <button><i class="fa-brands fa-google-play"></i> Google Play</button>
+                    <button><i class="fa-brands fa-apple"></i> App Store</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 High-Tech Electronics. All rights reserved. 🧡</p>
+        </div>
+    </footer>
+<script>
+
+// ===== Shared Store (cart/wishlist) =====
+const Store = {
+  getCart(){ return JSON.parse(localStorage.getItem("cart_v1") || "{}"); },
+  setCart(obj){ localStorage.setItem("cart_v1", JSON.stringify(obj)); },
+  getWish(){ return JSON.parse(localStorage.getItem("wish_v1") || "[]"); },
+  setWish(arr){ localStorage.setItem("wish_v1", JSON.stringify(arr)); },
+  addToCart(id, qty=1){ const c=this.getCart(); c[id]=(c[id]||0)+qty; this.setCart(c); },
+  setQty(id, qty){ const c=this.getCart(); if(qty<=0) delete c[id]; else c[id]=qty; this.setCart(c); },
+  toggleWish(id){ const w=this.getWish(); const i=w.indexOf(id); if(i>=0) w.splice(i,1); else w.push(id); this.setWish(w); return w; },
+  cartCount(){ return Object.values(this.getCart()).reduce((a,b)=>a+b,0); },
+  wishCount(){ return this.getWish().length; }
+};
+
+function setupHeaderNav(){
+  const navItems = document.querySelectorAll(".nav-actions .nav-item");
+  if(!navItems || navItems.length < 3) return;
+  const wishlistItem = navItems[0];
+  const cartItem = navItems[1];
+  const loginItem = navItems[2];
+  [wishlistItem, cartItem, loginItem].forEach(el => el && (el.style.cursor="pointer"));
+  wishlistItem && wishlistItem.addEventListener("click", ()=> location.href="wishlist.html");
+  cartItem && cartItem.addEventListener("click", ()=> location.href="cart.html");
+  loginItem && loginItem.addEventListener("click", ()=> location.href="./login.html");
+}
+
+function updateHeaderCounts(){
+  const navItems = document.querySelectorAll(".nav-actions .nav-item");
+  if(!navItems || navItems.length < 2) return;
+  const wishlistSpan = navItems[0].querySelector("span");
+  const cartSpan = navItems[1].querySelector("span");
+  if(wishlistSpan) wishlistSpan.textContent = `Wishlist (${Store.wishCount()})`;
+  if(cartSpan) cartSpan.textContent = `Cart (${Store.cartCount()})`;
+}
+
+window.addEventListener("storage", updateHeaderCounts);
+setupHeaderNav();
+updateHeaderCounts();
+
+// ===== Catalog builder =====
+function inferBrand(name){
+  const n=(name||"").toLowerCase();
+  if(n.includes("sony")) return "sony";
+  if(n.includes("canon")) return "canon";
+  if(n.includes("nikon")) return "nikon";
+  if(n.includes("fujifilm") || n.includes("instax")) return "fujifilm";
+  if(n.includes("gopro")) return "gopro";
+  if(n.includes("dji")) return "dji";
+  return "brand";
+}
+function inferType(name){
+  const n=(name||"").toLowerCase();
+  if(n.includes("action") || n.includes("gopro") || n.includes("osmo action")) return "action";
+  if(n.includes("instax") || n.includes("instant")) return "instant";
+  if(n.includes("mirrorless") || n.includes("zv") || n.includes("alpha") || n.includes("r50") || n.includes("r10")) return "mirrorless";
+  if(n.includes("dslr") || n.includes("1500d") || n.includes("d3500") || n.includes("d5600")) return "dslr";
+  if(n.includes("lens") || n.includes("50mm")) return "lenses";
+  if(n.includes("binocular")) return "binoculars";
+  return "cameras";
+}
+function fmt(n){ return Number(n||0).toLocaleString("en-IN"); }
+
+async function ensureCatalog(){
+  const cached = localStorage.getItem("catalog_v1");
+  if(cached) return JSON.parse(cached);
+
+  const bs = await fetch("bestsellers.json").then(r=>r.json()).catch(()=>({items:[]}));
+  const base = (bs.items||[]).map(p=>({
+    id:p.id,
+    name:p.name,
+    price:p.price,
+    mrp:p.mrp || Math.round(p.price*1.12),
+    rating:p.rating || +(4.1+Math.random()*0.8).toFixed(1),
+    ratingCount:p.ratingCount || Math.floor(80+Math.random()*900),
+    image:p.imageSrc,
+    brand: inferBrand(p.name),
+    type: inferType(p.name),
+    tag:"bestseller",
+    features: p.features || ["4K Video","Fast AF","Wi‑Fi"],
+    highlights: p.highlights || ["Great value","Trusted brand","Easy returns"]
+  }));
+
+  // generate a larger catalog (real store feel)
+  const seeds = [
+    {brand:"sony", type:"mirrorless", prefix:"Sony Alpha", models:["A6400","A7C","A7 IV","ZV-1","ZV-E10 Kit"], base:54990, img:"camera/sony digital.jpg"},
+    {brand:"canon", type:"dslr", prefix:"Canon EOS", models:["1500D Kit","200D II","90D Body","R50 Kit","R10 Kit"], base:30990, img:"camera/canon.jpg"},
+    {brand:"nikon", type:"dslr", prefix:"Nikon", models:["D3500 Kit","D5600 Kit","Z5 Body","Z6 II Body","AF-S 50mm f/1.8G"], base:28990, img:"camera/nikon.jpg"},
+    {brand:"fujifilm", type:"instant", prefix:"Fujifilm Instax", models:["Mini 12 Blue","Mini 12 Purple","Mini 12 Pink","SQ1","Mini EVO"], base:6999, img:"camera/fujifilm.jpg"},
+    {brand:"gopro", type:"action", prefix:"GoPro HERO", models:["10 Black","11 Black","12 Black","Max 360","Creator Edition"], base:27999, img:"https://x.imastudent.com/content/0027934_gopro-hero-10-black-5k-action-camera_500.jpeg"},
+    {brand:"dji", type:"action", prefix:"DJI", models:["Osmo Action 4","Osmo Action 3","Osmo Pocket 3","Mic 2 Combo","RS 3 Mini"], base:23999, img:"camera/dji osmo.jpg"}
+  ];
+  let counter = 1000;
+  const extra=[];
+  function jitter(base){
+    const delta = Math.round((Math.random()*0.35 - 0.15) * base);
+    return Math.max(799, base + delta);
+  }
+  for(const s of seeds){
+    for(const m of s.models){
+      const price=jitter(s.base);
+      extra.push({
+        id:`x${counter++}`,
+        name:`${s.prefix} ${m}`,
+        price,
+        mrp:Math.round(price*(1.08+Math.random()*0.14)),
+        rating:+(4.1+Math.random()*0.8).toFixed(1),
+        ratingCount:Math.floor(60+Math.random()*900),
+        image:s.img,
+        brand:s.brand,
+        type:s.type,
+        tag:"catalog",
+        features:["Fast Delivery","Bank Offer","Easy Returns"],
+        highlights:["Warranty included","GST invoice","Assured quality"]
+      });
+    }
+  }
+
+  const accSeeds = [
+    {cat:"tripods", name:"Ulanzi MT-16 Tripod", base:1799},
+    {cat:"bags", name:"Camera Sling Bag (Water Resistant)", base:1499},
+    {cat:"sd", name:"SanDisk Extreme 128GB SD Card", base:2299},
+    {cat:"battery", name:"Extra Battery Pack + Charger", base:1999},
+    {cat:"lighting", name:"Neewer LED Video Light", base:2899},
+    {cat:"mic", name:"Wireless Lavalier Mic Kit", base:2499}
+  ];
+  const accessories = accSeeds.flatMap(a=>{
+    return Array.from({length:4}).map((_,i)=>{
+      const price=jitter(a.base);
+      return {
+        id:`acc${counter++}`,
+        name: i? `${a.name} (Pack ${i+1})` : a.name,
+        price,
+        mrp:Math.round(price*1.25),
+        rating:+(4.0+Math.random()*0.9).toFixed(1),
+        ratingCount:Math.floor(40+Math.random()*700),
+        image:"camera/dji osmo.jpg",
+        brand:"generic",
+        type:"accessory",
+        cat:a.cat,
+        tag:"accessory",
+        features:["Easy return","Fast delivery"],
+        highlights:["Works with most cameras","Great build quality"]
+      };
+    });
+  });
+
+  const all=[...base,...extra,...accessories];
+  localStorage.setItem("catalog_v1", JSON.stringify(all));
+  return all;
+}
+
+function card(p){
+  return `
+    <div class="card" onclick="location.href='product.html?id=${encodeURIComponent(p.id)}'">
+      <img src="${p.image}" alt="">
+      <div class="b">
+        <div class="n">${p.name}</div>
+        <div class="p">₹${fmt(p.price)} • ${p.rating}★</div>
+      </div>
+    </div>
+  `;
+}
+
+(async function(){
+  const catalog = await ensureCatalog();
+  const cart = Store.getCart();
+  const ids = Object.keys(cart);
+  const itemsEl = document.getElementById("items");
+
+  if(!ids.length){
+    document.getElementById("empty").style.display="block";
+  } else {
+    itemsEl.innerHTML = ids.map(id=>{
+      const p = catalog.find(x=>x.id===id);
+      if(!p) return "";
+      return `
+        <div class="row">
+          <img src="${p.image}" alt="">
+          <div>
+            <div class="name">${p.name}</div>
+            <div class="meta">₹${fmt(p.price)} • ${p.rating}★</div>
+            <div class="rm" onclick="removeItem('${id}')">Remove</div>
+          </div>
+          <div class="qty">
+            <button class="qbtn" onclick="dec('${id}')">-</button>
+            <b>${cart[id]}</b>
+            <button class="qbtn" onclick="inc('${id}')">+</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function calc(){
+    const cart = Store.getCart();
+    let subtotal=0, mrpTotal=0;
+    for(const id of Object.keys(cart)){
+      const p = catalog.find(x=>x.id===id);
+      if(!p) continue;
+      subtotal += p.price * cart[id];
+      mrpTotal += p.mrp * cart[id];
+    }
+    const discount = Math.max(0, mrpTotal-subtotal);
+    const ship = subtotal>499 ? 0 : (subtotal?49:0);
+    document.getElementById("sub").textContent = `₹${fmt(subtotal)}`;
+    document.getElementById("disc").textContent = `-₹${fmt(discount)}`;
+    document.getElementById("ship").textContent = ship?`₹${fmt(ship)}`:"FREE";
+    document.getElementById("tot").textContent = `₹${fmt(subtotal+ship)}`;
+  }
+  calc();
+
+  window.inc = (id)=>{ const c=Store.getCart(); Store.setQty(id,(c[id]||0)+1); location.reload(); };
+  window.dec = (id)=>{ const c=Store.getCart(); Store.setQty(id,Math.max(1,(c[id]||1)-1)); location.reload(); };
+  window.removeItem = (id)=>{ Store.setQty(id,0); location.reload(); };
+
+  document.getElementById("checkout").onclick = ()=> alert("Checkout flow can be added next (address + payment).");
+
+  const reco = [...catalog].filter(x=>x.type!=="accessory").sort((a,b)=>b.rating-a.rating).slice(0,12);
+  document.getElementById("reco").innerHTML = reco.map(card).join("");
+})();
+
+</script>
+</body>
+</html>

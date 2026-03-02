@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quizverse — Login</title>
+  <style>
+    :root{
+      --bg:#060915;
+      --bg2:#0b1330;
+      --glass: rgba(255,255,255,.06);
+      --glass2: rgba(255,255,255,.03);
+      --line: rgba(255,255,255,.12);
+      --text:#eaf1ff;
+      --muted:#a9b7dd;
+      --a:#6ea8fe;
+      --b:#9b7cff;
+      --c:#38f0ff;
+      --bad:#ff5c77;
+      --good:#5cf2a7;
+      --shadow: 0 22px 80px rgba(0,0,0,.55);
+      --shadow2: 0 10px 28px rgba(0,0,0,.35);
+      --r: 26px;
+      --ease: cubic-bezier(.2,.9,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 800px at 14% 16%, rgba(32,50,140,.55) 0%, transparent 55%),
+        radial-gradient(1000px 620px at 82% 30%, rgba(135,85,255,.45) 0%, transparent 60%),
+        radial-gradient(900px 600px at 70% 85%, rgba(56,240,255,.20) 0%, transparent 60%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+    }
+
+    /* animated glow orbs */
+    .orb{
+      position:absolute;
+      width:320px; height:320px;
+      border-radius:50%;
+      filter: blur(26px);
+      opacity:.35;
+      animation: float 10s var(--ease) infinite;
+      pointer-events:none;
+    }
+    .orb.one{ left:-80px; top:80px; background: radial-gradient(circle at 30% 30%, var(--a), transparent 60%); }
+    .orb.two{ right:-120px; top:140px; background: radial-gradient(circle at 30% 30%, var(--b), transparent 60%); animation-duration: 12s; }
+    .orb.three{ right:120px; bottom:-140px; background: radial-gradient(circle at 30% 30%, var(--c), transparent 60%); animation-duration: 14s; }
+
+    @keyframes float{
+      0%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(20px,-18px) scale(1.06); }
+      100%{ transform: translate(0,0) scale(1); }
+    }
+
+    /* subtle grid */
+    .grid{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity:.08;
+      mask-image: radial-gradient(circle at 50% 40%, black 0 55%, transparent 70%);
+      pointer-events:none;
+    }
+
+    .wrap{
+      position:relative;
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding:18px;
+    }
+
+    .card{
+      width:min(980px, 100%);
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(500px 200px at 30% 10%, rgba(110,168,254,.18), transparent 55%),
+        radial-gradient(500px 240px at 80% 30%, rgba(155,124,255,.16), transparent 55%),
+        radial-gradient(500px 240px at 60% 90%, rgba(56,240,255,.10), transparent 55%);
+      pointer-events:none;
+    }
+
+    @media (max-width: 920px){
+      body{overflow:auto}
+      .card{ grid-template-columns: 1fr; }
+    }
+
+    .left{
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height: 520px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:14px;
+    }
+    .brandMark{
+      width:46px; height:46px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.07);
+      display:grid; place-items:center;
+      box-shadow: 0 0 18px rgba(110,168,254,.25);
+      font-weight:900;
+      letter-spacing:.08em;
+    }
+    .brandText .title{
+      font-weight:900;
+      letter-spacing:.12em;
+    }
+    .brandText .sub{
+      margin-top:2px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .big{
+      margin:18px 0 0;
+      font-size:42px;
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    .big span{
+      background: linear-gradient(90deg, var(--a), var(--b), var(--c));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .lead{
+      margin:14px 0 0;
+      color:var(--muted);
+      max-width: 50ch;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .chip{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding:10px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      box-shadow: var(--shadow2);
+      animation: chipIn .6s var(--ease) both;
+    }
+    .chip:nth-child(2){animation-delay:.08s}
+    .chip:nth-child(3){animation-delay:.16s}
+    .chip:nth-child(4){animation-delay:.24s}
+    @keyframes chipIn{
+      from{opacity:0; transform: translateY(10px)}
+      to{opacity:1; transform: translateY(0)}
+    }
+
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+      margin-top:18px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .right{
+      padding:22px;
+      min-height: 520px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:14px;
+    }
+
+    .logoMid{
+      width:100px; height:100px;
+      margin: 0 auto 6px;
+      border-radius: 28px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35), 0 0 22px rgba(110,168,254,.18);
+      transform: translateY(2px);
+      animation: logoPulse 2.8s var(--ease) infinite;
+      display:grid;
+      place-items:center;
+    }
+    .logoMid img{width:100%; height:100%; object-fit:cover; display:block}
+    @keyframes logoPulse{
+      0%,100%{ transform: translateY(2px) scale(1); }
+      50%{ transform: translateY(0px) scale(1.03); }
+    }
+
+    .h1{margin:4px 0 0; font-size:26px; letter-spacing:-.01em; text-align:center;}
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+
+    .form{
+      display:grid;
+      gap:12px;
+      margin-top: 8px;
+      animation: formIn .55s var(--ease) both;
+    }
+    @keyframes formIn{
+      from{ opacity:0; transform: translateY(10px); }
+      to{ opacity:1; transform: translateY(0px); }
+    }
+
+    .field{ display:grid; gap:6px; }
+    .label{ font-size:12px; color:var(--muted); letter-spacing:.04em; }
+    .input{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      color:var(--text);
+      outline:none;
+      transition: box-shadow .12s var(--ease), border-color .12s var(--ease), transform .12s var(--ease);
+    }
+    .input:focus{
+      border-color: rgba(110,168,254,.75);
+      box-shadow: 0 0 0 2px rgba(110,168,254,.14) inset;
+      transform: translateY(-1px);
+    }
+
+    .passRow{ display:flex; gap:10px; align-items:center; }
+    .iconBtn{
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+      transition: transform .12s var(--ease), border-color .12s var(--ease);
+    }
+    .iconBtn:hover{ transform: translateY(-1px); border-color: rgba(110,168,254,.55); }
+
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      padding:12px 14px;
+      border-radius:14px;
+      cursor:pointer;
+      transition: transform .12s var(--ease), border-color .12s var(--ease), box-shadow .12s var(--ease), opacity .12s var(--ease);
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(110,168,254,.55);
+      box-shadow: 0 0 0 2px rgba(110,168,254,.10) inset;
+    }
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(90deg, var(--a), var(--b));
+      box-shadow: 0 18px 45px rgba(110,168,254,.16);
+    }
+    .btn.ghost{
+      background: rgba(0,0,0,.12);
+    }
+
+    .err{ min-height:16px; font-size:12px; color: rgba(255,92,119,.96); }
+    .toast{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+      border-radius:16px;
+      padding:10px 12px;
+      color: var(--muted);
+      font-size:12px;
+      min-height: 42px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: rgba(110,168,254,.9);
+      margin-top:4px;
+      box-shadow: 0 0 16px rgba(110,168,254,.55);
+      flex:0 0 auto;
+    }
+
+    .row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top: 4px;
+    }
+    .linkBtn{
+      border:none;
+      background:none;
+      color: rgba(110,168,254,.95);
+      cursor:pointer;
+      font: inherit;
+      text-decoration: underline;
+      padding: 6px 8px;
+    }
+
+    .shake{ animation: shake .35s ease-in-out; }
+    @keyframes shake{
+      0%,100%{ transform: translateX(0); }
+      20%{ transform: translateX(-6px); }
+      40%{ transform: translateX(6px); }
+      60%{ transform: translateX(-4px); }
+      80%{ transform: translateX(4px); }
+    }
+
+    /* ---- modal ---- */
+    .overlay{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index: 100;
+    }
+    .overlay.show{ display:flex; }
+
+    .modal{
+      width:min(560px, 100%);
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+      transform: translateY(10px) scale(.98);
+      opacity:0;
+      transition: transform .18s var(--ease), opacity .18s var(--ease);
+    }
+    .overlay.show .modal{ transform: translateY(0) scale(1); opacity:1; }
+
+    .modalHead{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 14px 10px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .modalTitle{ font-weight:900; letter-spacing:.02em; }
+    .closeBtn{
+      width:40px; height:40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+      color: var(--text);
+      cursor:pointer;
+    }
+    .modalBody{ padding:14px; }
+    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    @media (max-width: 520px){ .row2{ grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+  <div class="grid"></div>
+
+  <main class="wrap">
+    <section class="card" id="authCard">
+      <div class="left">
+        <div>
+          <div class="brand">
+            <div class="brandMark">QZ</div>
+            <div class="brandText">
+              <div class="title">QUIZVERSE</div>
+              <div class="sub">Web Development • Exam Mode</div>
+            </div>
+          </div>
+
+          <h2 class="big">Practice like a <span>real exam</span>.</h2>
+          <p class="lead">
+            Login to start your CBT-style web development quiz.
+            Randomized questions, timer, mark-for-review, and post-submit explanations.
+          </p>
+
+          <div class="chips">
+            <div class="chip">⏱️ Timed exam mode</div>
+            <div class="chip">🎯 Random sets</div>
+            <div class="chip">🔖 Mark for review</div>
+            <div class="chip">📊 Stats + points</div>
+          </div>
+        </div>
+
+        <div class="foot">
+          <div>Tip: This uses localStorage (frontend practice).</div>
+          <div>v1</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="logoMid" aria-label="Logo">
+          <img src="assets/logo.png" alt="Quizverse Logo">
+        </div>
+
+        <div class="center">
+          <div class="h1">Login</div>
+          <div class="muted">Use your registered email + password.</div>
+        </div>
+
+        <form class="form" id="loginForm" novalidate>
+          <label class="field">
+            <span class="label">Email</span>
+            <input class="input" id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com" required />
+            <span class="err" id="loginEmailErr" aria-live="polite"></span>
+          </label>
+
+          <label class="field">
+            <span class="label">Password</span>
+            <div class="passRow">
+              <input class="input" id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required />
+              <button class="iconBtn" id="loginToggle" type="button" aria-label="Show password">👁️</button>
+            </div>
+            <span class="err" id="loginPassErr" aria-live="polite"></span>
+          </label>
+
+          <button class="btn primary" id="loginBtn" type="submit">Login</button>
+
+          <div class="row">
+            <button class="btn ghost" id="openRegister" type="button">Create account</button>
+            <button class="linkBtn" id="clearAll" type="button">Clear storage</button>
+          </div>
+
+          <div class="toast" role="status" aria-live="polite">
+            <div class="dot"></div>
+            <div id="loginHint">New user? Create an account first.</div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- REGISTER MODAL -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="regTitle">
+      <div class="modalHead">
+        <div class="modalTitle" id="regTitle">Register</div>
+        <button class="closeBtn" id="closeModal" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <form class="form" id="registerForm" novalidate>
+          <div class="row2">
+            <label class="field">
+              <span class="label">Full name</span>
+              <input class="input" id="regName" type="text" autocomplete="name" placeholder="Your name" required />
+              <span class="err" id="regNameErr" aria-live="polite"></span>
+            </label>
+
+            <label class="field">
+              <span class="label">Username</span>
+              <input class="input" id="regUser" type="text" autocomplete="username" placeholder="username" required />
+              <span class="err" id="regUserErr" aria-live="polite"></span>
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="label">Email</span>
+            <input class="input" id="regEmail" type="email" autocomplete="email" placeholder="you@example.com" required />
+            <span class="err" id="regEmailErr" aria-live="polite"></span>
+          </label>
+
+          <label class="field">
+            <span class="label">Password</span>
+            <div class="passRow">
+              <input class="input" id="regPass" type="password" autocomplete="new-password" placeholder="min 6 chars" minlength="6" required />
+              <button class="iconBtn" id="regToggle" type="button" aria-label="Show password">👁️</button>
+            </div>
+            <span class="err" id="regPassErr" aria-live="polite"></span>
+          </label>
+
+          <label class="field">
+            <span class="label">Confirm password</span>
+            <input class="input" id="regPass2" type="password" autocomplete="new-password" placeholder="repeat password" minlength="6" required />
+            <span class="err" id="regPass2Err" aria-live="polite"></span>
+          </label>
+
+          <button class="btn primary" id="regBtn" type="submit">Create account</button>
+
+          <div class="toast" role="status" aria-live="polite">
+            <div class="dot"></div>
+            <div id="regHint">After registering, login again to start the test.</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+
+    function $(sel){ return document.querySelector(sel); }
+    function setText(el, t){ el.textContent = t; }
+    function clearEl(el){ while(el.firstChild) el.removeChild(el.firstChild); }
+
+    function validateEmail(v){
+      v = v.trim();
+      return v.indexOf("@") > 0 && v.indexOf(".") > 0;
+    }
+
+    var USERS_KEY = "quizverse_users_v1";
+    var SESSION_KEY = "quizverse_session_v1";
+
+    function readUsers(){
+      var raw = localStorage.getItem(USERS_KEY);
+      if(!raw) return {};
+      try{
+        var obj = JSON.parse(raw);
+        return (obj && typeof obj === "object") ? obj : {};
+      }catch(e){
+        return {};
+      }
+    }
+
+    function saveUsers(obj){
+      localStorage.setItem(USERS_KEY, JSON.stringify(obj));
+    }
+
+    function setSession(user){
+      var payload = { email: user.email, name: user.name, username: user.username, at: Date.now() };
+      localStorage.setItem(SESSION_KEY, JSON.stringify(payload));
+    }
+
+    function getSession(){
+      var raw = localStorage.getItem(SESSION_KEY);
+      if(!raw) return null;
+      try{ return JSON.parse(raw); }catch(e){ return null; }
+    }
+
+    function clearSession(){
+      localStorage.removeItem(SESSION_KEY);
+    }
+
+    function clearAllStorage(){
+      localStorage.removeItem(USERS_KEY);
+      localStorage.removeItem(SESSION_KEY);
+    }
+
+    // redirect if already logged in
+    var s = getSession();
+    if (s && s.email){
+      window.location.href = "quiz.html";
+    }
+
+    var authCard = $("#authCard");
+
+    var loginForm = $("#loginForm");
+    var loginEmail = $("#loginEmail");
+    var loginPass = $("#loginPass");
+    var loginToggle = $("#loginToggle");
+    var loginHint = $("#loginHint");
+    var loginEmailErr = $("#loginEmailErr");
+    var loginPassErr = $("#loginPassErr");
+
+    var openRegister = $("#openRegister");
+    var clearAllBtn = $("#clearAll");
+
+    var overlay = $("#overlay");
+    var closeModal = $("#closeModal");
+    var registerForm = $("#registerForm");
+
+    var regName = $("#regName");
+    var regUser = $("#regUser");
+    var regEmail = $("#regEmail");
+    var regPass = $("#regPass");
+    var regPass2 = $("#regPass2");
+    var regToggle = $("#regToggle");
+    var regHint = $("#regHint");
+
+    var regNameErr = $("#regNameErr");
+    var regUserErr = $("#regUserErr");
+    var regEmailErr = $("#regEmailErr");
+    var regPassErr = $("#regPassErr");
+    var regPass2Err = $("#regPass2Err");
+
+    function shake(){
+      authCard.classList.add("shake");
+      setTimeout(function(){ authCard.classList.remove("shake"); }, 420);
+    }
+
+    function clearErrors(){
+      setText(loginEmailErr,""); setText(loginPassErr,"");
+      setText(regNameErr,""); setText(regUserErr,"");
+      setText(regEmailErr,""); setText(regPassErr,""); setText(regPass2Err,"");
+    }
+
+    function togglePassword(input, btn){
+      if(input.type === "password"){
+        input.type = "text";
+        btn.textContent = "🙈";
+      }else{
+        input.type = "password";
+        btn.textContent = "👁️";
+      }
+    }
+
+    loginToggle.addEventListener("click", function(){ togglePassword(loginPass, loginToggle); });
+    regToggle.addEventListener("click", function(){ togglePassword(regPass, regToggle); });
+
+    function openModal(){
+      clearErrors();
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden", "false");
+      regName.focus();
+    }
+
+    function closeModalFn(){
+      overlay.classList.remove("show");
+      overlay.setAttribute("aria-hidden", "true");
+      // clear register fields (optional)
+      regName.value = ""; regUser.value = ""; regEmail.value = ""; regPass.value = ""; regPass2.value = "";
+      loginEmail.focus();
+    }
+
+    openRegister.addEventListener("click", openModal);
+    closeModal.addEventListener("click", closeModalFn);
+    overlay.addEventListener("click", function(e){
+      if (e.target === overlay) closeModalFn();
+    });
+
+    clearAllBtn.addEventListener("click", function(){
+      clearAllStorage();
+      clearErrors();
+      setText(loginHint, "Storage cleared. Create a new account.");
+      shake();
+    });
+
+    registerForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      clearErrors();
+
+      var name = regName.value.trim();
+      var username = regUser.value.trim();
+      var email = regEmail.value.trim().toLowerCase();
+      var pass = regPass.value;
+      var pass2 = regPass2.value;
+
+      var ok = true;
+
+      if(name.length < 2){ setText(regNameErr, "Enter your full name."); ok = false; }
+      if(username.length < 3){ setText(regUserErr, "Username must be at least 3 chars."); ok = false; }
+      if(!validateEmail(email)){ setText(regEmailErr, "Enter a valid email."); ok = false; }
+      if(!pass || pass.length < 6){ setText(regPassErr, "Password must be at least 6 chars."); ok = false; }
+      if(pass2 !== pass){ setText(regPass2Err, "Passwords do not match."); ok = false; }
+
+      if(!ok){ shake(); return; }
+
+      var users = readUsers();
+      if(users[email]){
+        setText(regEmailErr, "This email is already registered. Please login.");
+        shake();
+        return;
+      }
+
+      users[email] = { name: name, username: username, email: email, pass: pass, createdAt: Date.now() };
+      saveUsers(users);
+
+      setText(regHint, "Registered successfully. Redirecting to login…");
+
+      setTimeout(function(){
+        closeModalFn();
+        loginEmail.value = email;
+        loginPass.value = "";
+        setText(loginHint, "Registered! Now login to start the test.");
+      }, 700);
+    });
+
+    loginForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      clearErrors();
+
+      var email = loginEmail.value.trim().toLowerCase();
+      var pass = loginPass.value;
+
+      var ok = true;
+      if(!validateEmail(email)){ setText(loginEmailErr, "Enter a valid email."); ok = false; }
+      if(!pass || pass.length < 6){ setText(loginPassErr, "Password must be at least 6 chars."); ok = false; }
+
+      if(!ok){ shake(); return; }
+
+      var users = readUsers();
+      var user = users[email];
+
+      if(!user){
+        setText(loginHint, "No account found. Create an account first.");
+        shake();
+        return;
+      }
+
+      if(user.pass !== pass){
+        setText(loginHint, "Wrong password. Try again.");
+        shake();
+        return;
+      }
+
+      setText(loginHint, "Logging in…");
+      setSession(user);
+
+      setTimeout(function(){
+        window.location.href = "quiz.html";
+      }, 450);
+    });
+  </script>
+</body>
+</html>

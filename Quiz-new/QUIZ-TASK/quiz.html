@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quizverse — Web Dev Exam</title>
+  <link rel="stylesheet" href="quiz.css" />
+</head>
+
+<body>
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">
+        <img src="assets/logo.png" alt="Quizverse Logo" />
+      </div>
+
+      <div class="brandText">
+        <div class="title">QUIZVERSE</div>
+        <div class="subtitle">Web Development • Exam Mode</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="chip">
+        <span class="chip-label">Category</span>
+        <select id="categorySelect" class="select">
+          <option value="mixed">Mixed</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="js">JavaScript</option>
+        </select>
+      </div>
+
+      <div class="chip">
+        <span class="chip-label">Questions</span>
+        <select id="countSelect" class="select">
+          <option value="10">10</option>
+          <option value="15" selected>15</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </div>
+
+      <div class="chip">
+        <span class="chip-label">Time</span>
+        <select id="timeSelect" class="select">
+          <option value="300">5 min</option>
+          <option value="600" selected>10 min</option>
+          <option value="900">15 min</option>
+          <option value="1200">20 min</option>
+        </select>
+      </div>
+
+      <div class="chip timer">
+        <span class="chip-label">⏱ Time Left</span>
+        <span id="timeText" class="chip-value">--:--</span>
+      </div>
+
+      <button id="startBtn" class="btn primary">Start Exam</button>
+
+      <div class="userArea" id="userArea" aria-label="User">
+        <div class="userMeta">
+          <div id="userName" class="userName">User</div>
+          <div id="userEmail" class="userEmail">email</div>
+        </div>
+        <button id="logoutBtn" class="btn danger smallBtn" type="button">Logout</button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN GRID -->
+  <main class="grid">
+    <!-- LEFT HUD -->
+    <aside class="hud">
+      <!-- Navigator -->
+      <section class="panel">
+        <div class="panel-title">Question Navigator</div>
+
+        <div class="legend">
+          <span class="dot unanswered"></span> Unanswered
+          <span class="dot answered"></span> Answered
+          <span class="dot marked"></span> Marked
+        </div>
+
+        <div id="navGrid" class="navGrid" aria-label="Question navigation grid"></div>
+      </section>
+
+      <!-- Stats -->
+      <section class="panel">
+        <div class="panel-title">Exam Stats</div>
+
+        <div class="statRow">
+          <div class="stat">
+            <div class="statLabel">Current</div>
+            <div class="statValue">
+              <span id="qIndexText">0</span>/<span id="qTotalText">0</span>
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="statLabel">Marked</div>
+            <div class="statValue" id="markedCount">0</div>
+          </div>
+        </div>
+
+        <div class="statRow">
+          <div class="stat">
+            <div class="statLabel">Answered</div>
+            <div class="statValue" id="answeredCount">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="statLabel">Unanswered</div>
+            <div class="statValue" id="unansweredCount">0</div>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- CENTER ARENA -->
+    <section class="arena">
+      <!-- START SCREEN -->
+      <section id="startScreen" class="card active">
+        <h1>Web Development Exam</h1>
+        <p class="muted">
+          Random questions (no repeats). Timer runs for the full exam.
+          No feedback during exam. Review + explanations after submit.
+        </p>
+
+        <div class="callout">
+          <div class="calloutTitle">How it works</div>
+          <ul>
+            <li>Choose Category / Questions / Time in the top bar.</li>
+            <li>Start Exam → answer silently (no feedback).</li>
+            <li>Submit anytime, or auto-submit when time ends.</li>
+            <li>After submit: results + review + explanations.</li>
+          </ul>
+        </div>
+
+        <div id="userStatsBox" class="userStatsBox" aria-label="Your Stats"></div>
+
+        <p class="muted small">
+          Note: questions are loaded from <code class="inline">questions.json</code>.
+          Run with Live Server.
+        </p>
+      </section>
+
+      <!-- EXAM SCREEN -->
+      <section id="examScreen" class="card">
+        <h2 id="questionText">Question will appear here</h2>
+
+        <div id="options" class="options" role="list"></div>
+
+        <div class="controlsBar">
+          <div class="examControls">
+            <button id="prevBtn" class="btn" disabled>◀ Prev</button>
+            <button id="markBtn" class="btn" disabled>🔖 Mark for review</button>
+            <button id="nextBtn" class="btn" disabled>Next ▶</button>
+          </div>
+
+          <div class="examControlsRight">
+            <div class="muted small">Selection is saved. You can change anytime before submit.</div>
+            <button id="submitBtn" class="btn danger" disabled>Submit Exam</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTS -->
+      <section id="resultScreen" class="card">
+        <div class="resultTop">
+          <div>
+            <h1>Results</h1>
+            <p class="muted">Review wrong answers with explanations.</p>
+          </div>
+          <button id="restartBtn" class="btn primary">Restart</button>
+        </div>
+
+        <div class="resultGrid">
+          <div class="resultPanel">
+            <div class="panel-title">Summary</div>
+
+            <div class="summaryRow">
+              <div class="summaryItem">
+                <div class="summaryLabel">Score</div>
+                <div class="summaryValue" id="scoreText">--</div>
+              </div>
+
+              <div class="summaryItem">
+                <div class="summaryLabel">Accuracy</div>
+                <div class="summaryValue" id="accuracyText">--</div>
+              </div>
+
+              <div class="summaryItem">
+                <div class="summaryLabel">Time Taken</div>
+                <div class="summaryValue" id="timeTakenText">--</div>
+              </div>
+
+              <div class="summaryItem">
+                <div class="summaryLabel">Points Earned</div>
+                <div class="summaryValue" id="pointsEarnedText">--</div>
+              </div>
+
+              <div class="summaryItem">
+                <div class="summaryLabel">Total Points</div>
+                <div class="summaryValue" id="totalPointsText">--</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="resultPanel">
+            <div class="panel-title">Topic Breakdown</div>
+            <div id="topicBreakdown" class="breakdown"></div>
+          </div>
+        </div>
+
+        <div class="reviewControls">
+          <div class="panel-title">Review</div>
+          <div class="filters">
+            <button class="btn chipBtn active" data-filter="all">All</button>
+            <button class="btn chipBtn" data-filter="wrong">Only Wrong ❌</button>
+            <button class="btn chipBtn" data-filter="marked">Marked 🔖</button>
+          </div>
+        </div>
+
+        <div id="reviewList" class="reviewList"></div>
+      </section>
+    </section>
+  </main>
+
+  <!-- BOTTOM BAR -->
+  <footer class="bottombar">
+    <div class="timeBar" aria-hidden="true">
+      <div id="timeBarFill" class="timeBarFill"></div>
+    </div>
+    <div class="bottomText">
+      <span id="bottomHint">Ready.</span>
+      <span id="bankInfo" class="muted"></span>
+    </div>
+  </footer>
+
+  <script src="quiz.js"></script>
+</body>
+</html>

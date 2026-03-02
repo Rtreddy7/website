@@ -1,0 +1,1 @@
+Place your logo image here as 'logo.png' (or update src paths in index.html and quiz.html).

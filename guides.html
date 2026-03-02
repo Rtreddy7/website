@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Guides | Cameras</title>
+<link rel="stylesheet" href="cameras.css"/>
+<link rel="stylesheet" href="site.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+<body>
+<header class="header">
+        <div class="logo">
+            <a href="./home.html">
+                <i class="fa-solid fa-bolt" style="margin-right:10px; color:#ed01ee;"></i>
+                <span> Hi-Tech <span class="highlight">Electronics</span></span>
+            </a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for 'Smartwatch for Her'...">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="nav-actions">
+            <div class="nav-item"><i class="fa-solid fa-heart"></i> <span>Wishlist</span></div>
+            <div class="nav-item"><i class="fa-solid fa-cart-shopping"></i> <span>Cart (0)</span></div>
+            <div class="nav-item"><i class="fa-regular fa-user"></i> <span>Login</span></div>
+        </div>
+    </header>
+<nav class="sub-nav">
+<a href="./home.html">Home</a>
+<a href="#mobiles">Mobiles</a>
+<a href="#laptops">Laptops</a>
+<a href="./smart.html">Smart TVs &amp; AC, WM and Fridge </a>
+<a href="#audio">Audio &amp; Video</a>
+<a href="#cameras">Cameras</a>
+<a href="#accessories">Accessories</a>
+<a class="special-link" href="#valentines">❤️ Valentine's Deals</a>
+</nav>
+<main class="page">
+
+<div class="hero box">
+  <h1 style="margin:0">Guides & Buying Help</h1>
+  <p style="margin:8px 0 0;opacity:.85">Short, practical guides to choose the right camera and accessories.</p>
+</div>
+
+<div class="grid grid-3" style="margin-top:14px;">
+  <a class="box" href="guide.html?slug=mirrorless-vs-dslr" style="padding:12px;text-decoration:none;color:inherit;">
+    <span class="badge badge-accent">Popular</span>
+    <h3 style="margin:10px 0 6px;">Mirrorless vs DSLR</h3>
+    <div style="color:var(--muted);font-weight:900;">Which one fits your shooting style?</div>
+  </a>
+  <a class="box" href="guide.html?slug=best-action-camera" style="padding:12px;text-decoration:none;color:inherit;">
+    <span class="badge badge-green">Action</span>
+    <h3 style="margin:10px 0 6px;">Best Action Camera in 2026</h3>
+    <div style="color:var(--muted);font-weight:900;">Stabilization, 4K, battery & durability.</div>
+  </a>
+  <a class="box" href="guide.html?slug=instant-camera-tips" style="padding:12px;text-decoration:none;color:inherit;">
+    <span class="badge">Instant</span>
+    <h3 style="margin:10px 0 6px;">Instant Camera Tips</h3>
+    <div style="color:var(--muted);font-weight:900;">Best films, lighting, and framing tricks.</div>
+  </a>
+</div>
+
+<section class="box" style="padding:12px;margin-top:14px;">
+  <div class="hstack" style="justify-content:space-between;flex-wrap:wrap;">
+    <strong>Recommended products</strong>
+    <a class="btn btn-ghost" href="listing.html"><i class="fa-solid fa-grid"></i> Browse catalog</a>
+  </div>
+  <div class="hr"></div>
+  <div class="grid grid-4" id="recos"></div>
+</section>
+
+
+
+</main>
+<footer>
+        <div class="footer-grid">
+            <div class="col">
+                <h4>Contact Us</h4>
+                <p>1800-200-OPPTY</p>
+                <p>help@High-Tech.com</p>
+                <p>Vijayawada, India</p>
+            </div>
+            <div class="col">
+                <h4>Make Money</h4>
+                <a href="#">Sell on OPPTY</a>
+                <a href="#">Affiliate</a>
+            </div>
+            <div class="col">
+                <h4>Policy</h4>
+                <a href="#">Return Policy</a>
+                <a href="#">Security</a>
+            </div>
+            <div class="col">
+                <h4>Download App</h4>
+                <div class="app-buttons">
+                    <button><i class="fa-brands fa-google-play"></i> Google Play</button>
+                    <button><i class="fa-brands fa-apple"></i> App Store</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 High-Tech Electronics. All rights reserved. 🧡</p>
+        </div>
+    </footer>
+<script src="store.js"></script>
+<script src="catalog.js"></script>
+<script>
+(async function(){
+  UI.updateHeader();
+  const catalog=await ensureCatalog();
+  const rec = catalog.filter(p=>p.type==="mirrorless"||p.type==="dslr").slice(0,8);
+  const el=document.getElementById("recos");
+  el.innerHTML = rec.map(p=>`
+    <article class="pcard" data-id="${p.id}">
+      <div class="pimg"><img src="${p.image}" alt=""></div>
+      <div class="pbody">
+        <div class="pname">${p.name}</div>
+        <div class="priceRow"><span class="price">₹${UI.fmt(p.price)}</span></div>
+      </div>
+    </article>
+  `).join("");
+  el.querySelectorAll(".pcard").forEach(c=>c.onclick=()=>location.href=`product.html?id=${encodeURIComponent(c.dataset.id)}`);
+})();
+</script>
+
+<script>UI.updateHeader();</script>
+</body>
+</html>

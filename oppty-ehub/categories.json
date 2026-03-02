@@ -6,7 +6,7 @@
       "title": "Action Cameras",
       "description": "Perfect for adventure, travel and sports",
       "startingPrice": 9999,
-      "href": "/cameras/action",
+      "href": "app.html?page=category&type=action",
       "imageSrc": "https://djiindiashop.com/cdn/shop/files/5_fe8087a6-5f20-407e-b118-efcd7e1021ea.jpg?v=1726814803&width=1280"
     },
     {
@@ -15,7 +15,7 @@
       "title": "Instant Cameras",
       "description": "Capture and print moments instantly",
       "startingPrice": 6499,
-      "href": "/cameras/instant",
+      "href": "app.html?page=category&type=action",
       "imageSrc": "camera/fujifilm.jpg"
     },
     {
@@ -24,7 +24,7 @@
       "title": "Mirrorless Cameras",
       "description": "Professional quality in compact design",
       "startingPrice": 39990,
-      "href": "/cameras/mirrorless",
+      "href": "app.html?page=category&type=action",
       "imageSrc": "https://cdn.naturettl.com/wp-content/uploads/2024/06/17195012/best-mirrorless-camera-7-800x571.jpg"
     },
     {
@@ -33,7 +33,7 @@
       "title": "DSLR Cameras",
       "description": "Reliable performance for all creators",
       "startingPrice": 29990,
-      "href": "/cameras/dslr",
+      "href": "app.html?page=category&type=action",
       "imageSrc": "camera/nikon.jpg"
     },
     {
@@ -42,7 +42,7 @@
       "title": "Camera Lenses",
       "description": "Upgrade your photography with pro lenses",
       "startingPrice": 4499,
-      "href": "/lenses",
+      "href": "app.html?page=category&type=action",
       "imageSrc": "camera/sony e mount.jpg"
     },
     {
@@ -51,7 +51,7 @@
       "title": "Binoculars",
       "description": "Crystal clear long distance viewing",
       "startingPrice": 1299,
-      "href": "/optics/binoculars",
+      "href": "app.html?page=category&type=action",
       "imageSrc": "https://tx.audubon.org/sites/default/files/styles/bean_wysiwyg_full_width/public/zack_with_binoculars.jpg?itok=UjZAxtIY"
     },
     {
@@ -60,7 +60,7 @@
       "title": "Clearance Sale",
       "description": "Limited stock deals on top gear",
       "offerText": "Up to 75% OFF",
-      "href": "/clearance",
+      "href": "app.html?page=category&type=action",
       "imageSrc": "https://media.istockphoto.com/id/542551148/photo/travel-photographer-equipment-with-beautiful-landscape.jpg?s=612x612&w=0&k=20&c=27fjCLuGbw1Yq0oIOBhD6i_fkuY9aCFDKwVUskyum6M="
     }
   ]

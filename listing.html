@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Listing | Cameras</title>
+<link rel="stylesheet" href="cameras.css"/>
+<link rel="stylesheet" href="site.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+<body>
+<header class="header">
+        <div class="logo">
+            <a href="./home.html">
+                <i class="fa-solid fa-bolt" style="margin-right:10px; color:#ed01ee;"></i>
+                <span> Hi-Tech <span class="highlight">Electronics</span></span>
+            </a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for 'Smartwatch for Her'...">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="nav-actions">
+            <div class="nav-item"><i class="fa-solid fa-heart"></i> <span>Wishlist</span></div>
+            <div class="nav-item"><i class="fa-solid fa-cart-shopping"></i> <span>Cart (0)</span></div>
+            <div class="nav-item"><i class="fa-regular fa-user"></i> <span>Login</span></div>
+        </div>
+    </header>
+<nav class="sub-nav">
+<a href="./home.html">Home</a>
+<a href="#mobiles">Mobiles</a>
+<a href="#laptops">Laptops</a>
+<a href="./smart.html">Smart TVs &amp; AC, WM and Fridge </a>
+<a href="#audio">Audio &amp; Video</a>
+<a href="#cameras">Cameras</a>
+<a href="#accessories">Accessories</a>
+<a class="special-link" href="#valentines">❤️ Valentine's Deals</a>
+</nav>
+<main class="page">
+
+<div class="hero box">
+  <div class="hstack" style="justify-content:space-between;flex-wrap:wrap;">
+    <div>
+      <h1 id="pageTitle">Cameras</h1>
+      <p id="pageSubtitle">Browse deals, compare, and pick the perfect kit.</p>
+      <div class="chips" id="activeChips" style="margin-top:10px;"></div>
+    </div>
+    <div class="hstack" style="gap:10px;">
+      <span class="badge badge-accent"><i class="fa-solid fa-bolt"></i> Assured</span>
+      <span class="badge badge-green"><i class="fa-solid fa-tag"></i> Bank Offers</span>
+      <button class="btn btn-ghost" id="resetBtn"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="grid" style="grid-template-columns:300px 1fr; gap:14px; margin-top:14px;">
+  <aside class="box stickyTop" style="padding:12px;">
+    <div class="vstack">
+      <div class="hstack" style="justify-content:space-between;">
+        <strong>Filters</strong>
+        <span class="badge" id="resultCount">0 items</span>
+      </div>
+      <div class="hr"></div>
+
+      <div class="vstack">
+        <div class="kv"><span>Sort</span></div>
+        <select id="sort" class="btn" style="width:100%;">
+          <option value="relevance">Relevance</option>
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+          <option value="rating_desc">Rating</option>
+          <option value="newest">New arrivals</option>
+        </select>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="vstack">
+        <div class="kv"><span>Price</span><span id="priceLabel">₹0 - ₹2,00,000</span></div>
+        <input id="minPrice" type="range" min="0" max="200000" value="0"/>
+        <input id="maxPrice" type="range" min="0" max="200000" value="200000"/>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="vstack">
+        <div class="kv"><span>Brand</span></div>
+        <div id="brandFilters" class="vstack" style="gap:8px;"></div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="vstack">
+        <div class="kv"><span>Rating</span></div>
+        <label><input type="checkbox" class="ratingFilter" value="4"/> 4★ & above</label>
+        <label><input type="checkbox" class="ratingFilter" value="3"/> 3★ & above</label>
+      </div>
+
+      <div class="hr"></div>
+
+      <button class="btn btn-primary" id="applyBtn"><i class="fa-solid fa-filter"></i> Apply</button>
+    </div>
+  </aside>
+
+  <section>
+    <div class="box" style="padding:12px;">
+      <div class="hstack" style="justify-content:space-between;flex-wrap:wrap;">
+        <div class="hstack" style="gap:10px;flex-wrap:wrap;">
+          <span class="badge"><i class="fa-solid fa-truck-fast"></i> Delivery in 2-6 days</span>
+          <span class="badge"><i class="fa-solid fa-shield-heart"></i> Warranty on eligible items</span>
+          <span class="badge badge-green"><i class="fa-solid fa-bolt"></i> Hot deals</span>
+        </div>
+        <div class="hstack" style="gap:10px;">
+          <button class="btn" id="view4"><i class="fa-solid fa-border-all"></i></button>
+          <button class="btn" id="view3"><i class="fa-solid fa-table-cells"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-4" id="grid" style="margin-top:14px;"></div>
+
+    <div class="hstack" style="justify-content:center;margin:14px 0;">
+      <button class="btn btn-ghost" id="loadMore"><i class="fa-solid fa-plus"></i> Load more</button>
+    </div>
+  </section>
+</div>
+
+
+
+</main>
+<footer>
+        <div class="footer-grid">
+            <div class="col">
+                <h4>Contact Us</h4>
+                <p>1800-200-OPPTY</p>
+                <p>help@High-Tech.com</p>
+                <p>Vijayawada, India</p>
+            </div>
+            <div class="col">
+                <h4>Make Money</h4>
+                <a href="#">Sell on OPPTY</a>
+                <a href="#">Affiliate</a>
+            </div>
+            <div class="col">
+                <h4>Policy</h4>
+                <a href="#">Return Policy</a>
+                <a href="#">Security</a>
+            </div>
+            <div class="col">
+                <h4>Download App</h4>
+                <div class="app-buttons">
+                    <button><i class="fa-brands fa-google-play"></i> Google Play</button>
+                    <button><i class="fa-brands fa-apple"></i> App Store</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 High-Tech Electronics. All rights reserved. 🧡</p>
+        </div>
+    </footer>
+<script src="store.js"></script>
+<script src="catalog.js"></script>
+
+<script>
+(async function(){
+  UI.updateHeader();
+  const params=new URLSearchParams(location.search);
+  const type=params.get("type")||"";
+  const brand=params.get("brand")||"";
+  const offer=params.get("offer")||"";
+  const tag=params.get("tag")||"";
+  const cat=params.get("cat")||"";
+  const q=params.get("q")||"";
+
+  const catalog = await ensureCatalog();
+
+  // compute page title
+  const titleParts=[];
+  if(q) titleParts.push(`Search: "${q}"`);
+  if(type) titleParts.push(type.toUpperCase());
+  if(cat) titleParts.push(cat.toUpperCase());
+  if(brand) titleParts.push(brand.toUpperCase());
+  if(offer) titleParts.push(`${offer.toUpperCase()} Offer`);
+  if(tag) titleParts.push(tag.toUpperCase());
+  document.getElementById("pageTitle").textContent = titleParts.length?titleParts.join(" • "):"Cameras & Accessories";
+  document.getElementById("pageSubtitle").textContent = "Compare prices, ratings and pick the right gear.";
+
+  const brandSet = Array.from(new Set(catalog.map(p=>p.brand))).filter(Boolean).sort();
+  const bf=document.getElementById("brandFilters");
+  bf.innerHTML = brandSet.slice(0,10).map(b=>(
+    `<label><input type="checkbox" class="brandFilter" value="${b}"/> ${b.toUpperCase()}</label>`
+  )).join("");
+
+  const chipsEl=document.getElementById("activeChips");
+  const chip = (k,v)=>`<span class="chip">${k}: <strong style="color:#111">${v}</strong></span>`;
+  chipsEl.innerHTML = [
+    type?chip("Type",type):"",
+    cat?chip("Accessory",cat):"",
+    brand?chip("Brand",brand):"",
+    offer?chip("Offer",offer):"",
+    tag?chip("Tag",tag):"",
+    q?chip("Query",q):""
+  ].filter(Boolean).join("");
+
+  // preselect from URL
+  if(brand){
+    document.querySelectorAll(".brandFilter").forEach(cb=>{ if(cb.value===brand) cb.checked=true; });
+  }
+  // view toggle
+  const grid=document.getElementById("grid");
+  document.getElementById("view3").onclick=()=>{ grid.classList.remove("grid-4"); grid.classList.add("grid-3"); };
+  document.getElementById("view4").onclick=()=>{ grid.classList.remove("grid-3"); grid.classList.add("grid-4"); };
+
+  // state
+  let limit=24;
+
+  function passes(p){
+    if(q && !p.name.toLowerCase().includes(q.toLowerCase())) return false;
+    if(type && p.type!==type) return false;
+    if(tag && !(p.tags||[]).includes(tag)) return false;
+    if(cat && !(p.tags||[]).includes(cat)) return false;
+    const brandsSel=[...document.querySelectorAll(".brandFilter:checked")].map(x=>x.value);
+    if(brandsSel.length && !brandsSel.includes(p.brand)) return false;
+
+    const min=+document.getElementById("minPrice").value;
+    const max=+document.getElementById("maxPrice").value;
+    if(p.price<min || p.price>max) return false;
+
+    const r4=document.querySelector('.ratingFilter[value="4"]').checked;
+    const r3=document.querySelector('.ratingFilter[value="3"]').checked;
+    if(r4 && p.rating<4) return false;
+    if(!r4 && r3 && p.rating<3) return false;
+
+    return true;
+  }
+
+  function sortItems(arr){
+    const mode=document.getElementById("sort").value;
+    const a=[...arr];
+    if(mode==="price_asc") a.sort((x,y)=>x.price-y.price);
+    else if(mode==="price_desc") a.sort((x,y)=>y.price-x.price);
+    else if(mode==="rating_desc") a.sort((x,y)=>y.rating-x.rating);
+    else if(mode==="newest") a.sort((x,y)=>String(y.id).localeCompare(String(x.id)));
+    return a;
+  }
+
+  function card(p){
+    const off=Math.max(0, Math.round((1-(p.price/p.mrp))*100));
+    const wished = Store.getWish().includes(p.id);
+    return `
+    <article class="pcard" data-id="${p.id}">
+      <div class="pimg"><img src="${p.image}" alt="${p.name}"></div>
+      <div class="pbody">
+        <div class="hstack" style="justify-content:space-between;">
+          <span class="badge badge-green">${p.rating}★</span>
+          <span class="badge">${p.brand.toUpperCase()}</span>
+        </div>
+        <div class="pname" title="${p.name}">${p.name}</div>
+        <div class="priceRow">
+          <span class="price">₹${UI.fmt(p.price)}</span>
+          <span class="mrp">₹${UI.fmt(p.mrp)}</span>
+          <span class="off">${off}% off</span>
+        </div>
+        <div class="pmeta">
+          <span>${UI.fmt(p.ratingCount)} ratings</span>
+          <span>${p.delivery}</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary addCart" type="button"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          <button class="btn iconBtn wishBtn" type="button" title="Wishlist"><i class="fa-solid fa-heart"></i></button>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function render(){
+    const min=+document.getElementById("minPrice").value;
+    const max=+document.getElementById("maxPrice").value;
+    document.getElementById("priceLabel").textContent = `₹${UI.fmt(min)} - ₹${UI.fmt(max)}`;
+
+    let items=catalog.filter(passes);
+    items=sortItems(items);
+
+    document.getElementById("resultCount").textContent = `${items.length} items`;
+
+    grid.innerHTML = items.slice(0,limit).map(card).join("");
+    document.getElementById("loadMore").style.display = items.length>limit ? "inline-flex":"none";
+
+    grid.querySelectorAll(".pcard").forEach(el=>{
+      const id=el.dataset.id;
+      el.addEventListener("click",(e)=>{
+        const tgt=e.target;
+        if(tgt.closest(".addCart")||tgt.closest(".wishBtn")) return;
+        location.href = `product.html?id=${encodeURIComponent(id)}`;
+      });
+      el.querySelector(".addCart").onclick=(e)=>{
+        e.stopPropagation();
+        Store.addToCart(id,1);
+        UI.updateHeader();
+        UI.toast("Added to cart");
+      };
+      el.querySelector(".wishBtn").onclick=(e)=>{
+        e.stopPropagation();
+        Store.toggleWish(id);
+        UI.updateHeader();
+        UI.toast("Wishlist updated");
+      };
+    });
+  }
+
+  document.getElementById("applyBtn").onclick=()=>{ limit=24; render(); };
+  document.getElementById("resetBtn").onclick=()=>{
+    document.getElementById("sort").value="relevance";
+    document.getElementById("minPrice").value=0;
+    document.getElementById("maxPrice").value=200000;
+    document.querySelectorAll(".brandFilter,.ratingFilter").forEach(x=>x.checked=false);
+    limit=24;
+    render();
+  };
+  document.getElementById("minPrice").oninput=render;
+  document.getElementById("maxPrice").oninput=render;
+  document.getElementById("sort").onchange=render;
+  document.querySelectorAll(".brandFilter,.ratingFilter").forEach(x=>x.onchange=render);
+  document.getElementById("loadMore").onclick=()=>{ limit+=24; render(); };
+
+  // auto apply URL filters
+  render();
+})();
+</script>
+<script>UI.updateHeader();</script>
+</body>
+</html>

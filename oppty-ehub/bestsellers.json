@@ -8,7 +8,7 @@
       "rating": 4.6,
       "ratingCount": 218,
       "imageSrc": "camera/dji osmo.jpg",
-      "href": "/product/dji-osmo-action-4"
+      "href": "app.html?page=product&id=p1"
     },
     {
       "id": "p2",
@@ -18,7 +18,7 @@
       "rating": 4.5,
       "ratingCount": 154,
       "imageSrc": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/a10ad746-668e-49b6-931f-2d27c4e07ada.__CR0,0,800,600_PT0_SX800_V1___.jpg",
-      "href": "/product/instax-mini-12-mint"
+      "href": "app.html?page=product&id=p1"
     },
     {
       "id": "p3",
@@ -28,7 +28,7 @@
       "rating": 4.5,
       "ratingCount": 131,
       "imageSrc": "https://www.cined.com/content/uploads/2023/10/DJI-osmo-Pocket-3-nature1.jpg",
-      "href": "/product/instax-mini-12-pink"
+      "href": "app.html?page=product&id=p1"
     },
     {
       "id": "p4",
@@ -38,7 +38,7 @@
       "rating": 4.7,
       "ratingCount": 96,
       "imageSrc": "https://static.bhphoto.com/images/rich_content/desktop/IMG_2283996.jpg",
-      "href": "/product/sony-zv-e10"
+      "href": "app.html?page=product&id=p1"
     },
     {
       "id": "p5",
@@ -48,7 +48,7 @@
       "rating": 4.4,
       "ratingCount": 412,
       "imageSrc": "https://i.gadgets360cdn.com/large/Canon_EOS_1500D_thumb_ndtv_1528789901800.jpg",
-      "href": "/product/canon-eos-1500d"
+      "href": "app.html?page=product&id=p1"
     },
     {
       "id": "p6",
@@ -58,7 +58,7 @@
       "rating": 4.6,
       "ratingCount": 205,
       "imageSrc": "https://miro.medium.com/1*GrF9gJGV4xz_gYcAORBkAw.jpeg",
-      "href": "/product/nikon-50mm-1-8g"
+      "href": "app.html?page=product&id=p1"
     }
   ]
 }

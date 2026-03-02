@@ -7,7 +7,7 @@
       "subtext": "On SBI Debit Cards. Max discount ₹1,000.",
       "pill": "Debit Card",
       "logoSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR96tr8jEwTONbA2M2XiZckg8ahNkLfgSgjwg&s",
-      "href": "/offers/sbi"
+      "href": "app.html?page=category&offer=icici"
     },
     {
       "id": "icici-cc",
@@ -16,7 +16,7 @@
       "subtext": "On ICICI Credit Cards above ₹25,000 spend.",
       "pill": "Credit Card",
       "logoSrc": "https://img.favpng.com/9/11/21/logo-icici-bank-finance-bank-of-india-png-favpng-sfvFR6NJ3GYuVyhMq6SddckHA.jpg",
-      "href": "/offers/icici"
+     "href": "app.html?page=category&offer=icici"
     },
     {
       "id": "au-cc",
@@ -25,7 +25,7 @@
       "subtext": "Get exclusive rewards with AU debit & credit cards",
       "pill": "Credit & Debit Card",
       "logoSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJvar4tiTLMLIa016lfddmEdeb92QJZIq5pg&s",
-      "href": "/offers/au"
+      "href": "app.html?page=category&offer=icici"
     }
 
   ]
