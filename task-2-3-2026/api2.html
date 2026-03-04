@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>API Demo</h2>
+
+  <button id="getUser">GET User</button>
+  <button id="getList">GET Users List</button>
+  <button id="createUser">POST</button>
+  <button id="updateUser">PUT</button>
+  <button id="deleteUser">DELETE</button>
+
+  <hr>
+
+  <p>Status: <span id="status">-</span></p>
+  <p>Name(s): <span id="name">-</span></p>
+  <p>Error: <span id="error">-</span></p>
+
+  <script>
+
+
+    var status = document.getElementById("status");
+    var name = document.getElementById("name");
+    var error = document.getElementById("error");
+
+    function clear(){
+        status.textContent = "-";
+        name.textContent = "-";
+        error.textContent = "-";
+    }
+
+    function handleResponse(response){
+        status.textContent = response.status;
+
+        if(!response.ok){
+            throw new Error(`Request failed with status ${response.status}`);
+        }
+        return response.json();
+    }
+
+    function handleError(error){
+        error.textContent = error.message;
+    }
+
+    // Get 
+
+    document.getElementById("getUser").onclick = function(){
+        clear();
+        fetch("https://dummyjson.com/users/1")
+        .then(handleResponse)
+        .then(function(data){
+            name.textContent = data.firstName+ " " + data.lastName;
+        })
+        .catch(handleError);
+    }
+
+    //get list
+   document.getElementById("getList").onclick = function(){
+    clear();
+    fetch("https://dummyjson.com/users?limit=3")
+    .then(handleResponse)
+    .then(function(data){
+        name.textContent = data.users.map(function(user){
+            return user .firstName + " " + user.lastName;
+        })
+        .join(",");
+        name.textContent = names;
+    })
+    .catch(handleError);
+   }
+
+   //post 
+   document.getElementById("creatUser").onclick = function(){
+    clear();
+    fetch("https://dummyjson.com/users/add",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+            
+        },
+        body: JSON.stringify({
+            firstName: 'Ravi',
+            lastName: 'Teja'
+        })
+    })
+    .then(handleResponse)
+    .then(function(data){
+        name.textContent = data.firstName + " " + data.lastName;
+    })
+    .catch(handleError);
+   }
+
+   //put
+
+   document.getElementById("updateUser").onclick = function(){
+    clear();
+    fetch("https://dummyjson.com/users/1",{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            firstName: 'Mahi',
+            lastName: 'pal'
+        })
+
+        }
+    )
+    .then(handleResponse)
+    .then(function(data){
+        name.textContent = data.firstName + " " + data.lastName;
+    })
+.catch(handleError);
+    };
+
+    //delete 
+    document.getElementById("deleteUser").onclick = function(){
+        clear();
+        fetch("https://dummyjson.com/users/1",{
+            method: "DELETE"
+        })
+       .then(function(response){
+        status.textContent = response.status;
+        if(!response.ok){
+            throw new Error(`Request failed with status ${response.status}`);
+        }
+        name.textContent = "User deleted";
+    })
+    .catch(handleError);
+    };
+
+  </script>
+
+
+  </body>
+</html>

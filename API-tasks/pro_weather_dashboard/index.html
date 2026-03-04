@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Weather Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>Weather Dashboard</h1>
+<div class="search">
+<input id="cityInput" placeholder="Search city">
+<button id="searchBtn">Search</button>
+<button id="locBtn">My Location</button>
+</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Location</h3>
+<p id="locationName">-</p>
+<p id="coords">-</p>
+</div>
+
+<div class="card">
+<h3>Current Weather</h3>
+<div class="temp"><span id="temp">-</span> °C</div>
+<p>Wind: <span id="wind">-</span></p>
+<p>Time: <span id="time">-</span></p>
+</div>
+
+</div>
+
+<h2>Hourly Forecast</h2>
+<div id="hourly" class="row"></div>
+
+<h2>7 Day Forecast</h2>
+<div id="daily" class="row"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

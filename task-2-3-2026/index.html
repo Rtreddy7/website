@@ -1,18 +1,21 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Image Slider</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    body{
+    body {
       margin: 0;
       font-family: Arial, sans-serif;
     }
 
-    #slider{
+    #slider {
       width: 100%;
       height: 70vh;
       min-height: 380px;
@@ -21,18 +24,18 @@
       background: #000;
     }
 
-    .slides{
+    .slides {
       height: 100%;
       display: flex;
       transition: transform 0.5s ease;
     }
 
-    .slide{
+    .slide {
       min-width: 100%;
       height: 100%;
     }
 
-    .slide img{
+    .slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -42,7 +45,8 @@
       -webkit-user-drag: none;
     }
 
-    .prev, .next{
+    .prev,
+    .next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -52,21 +56,27 @@
       border-radius: 50%;
       font-size: 34px;
       cursor: pointer;
-      background: rgba(0,0,0,0.45);
+      background: rgba(0, 0, 0, 0.45);
       color: #fff;
       z-index: 5;
       display: grid;
       place-items: center;
     }
 
-    .prev{ left: 16px; }
-    .next{ right: 16px; }
-
-    .prev:hover, .next:hover{
-      background: rgba(0,0,0,0.65);
+    .prev {
+      left: 16px;
     }
 
-    .dots{
+    .next {
+      right: 16px;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .dots {
       position: absolute;
       left: 50%;
       bottom: 16px;
@@ -76,47 +86,55 @@
       z-index: 6;
     }
 
-    .dot{
+    .dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.45);
+      background: rgba(255, 255, 255, 0.45);
       cursor: pointer;
     }
 
-    .dot.active{
+    .dot.active {
       background: #fff;
     }
 
-    @media (min-width: 1000px){
-      #slider{ height: 80vh; }
+    @media (min-width: 1000px) {
+      #slider {
+        height: 80vh;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <section id="slider" tabindex="0">
     <div class="slides">
-  <div class="slide">
-    <img src="https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/sports-car-futuristic-mountain-sunset-chromebook-wallpaper.jpg" alt="Car 1">
-  </div>
+      <div class="slide">
+        <img
+          src="https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/sports-car-futuristic-mountain-sunset-chromebook-wallpaper.jpg"
+          alt="Car 1">
+      </div>
 
-  <div class="slide">
-    <img src="https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/car-chromebook-wallpaper.jpg" alt="Car 2">
-  </div>
+      <div class="slide">
+        <img src="https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/car-chromebook-wallpaper.jpg"
+          alt="Car 2">
+      </div>
 
-  <div class="slide">
-    <img src="https://i.pinimg.com/736x/aa/ae/4c/aaae4c5446284423fead16b1afaecbf2.jpg" alt="Car 3">
-  </div>
+      <div class="slide">
+        <img src="https://i.pinimg.com/736x/aa/ae/4c/aaae4c5446284423fead16b1afaecbf2.jpg" alt="Car 3">
+      </div>
 
-  <div class="slide">
-    <img src="https://c4.wallpaperflare.com/wallpaper/26/399/594/1920x1081-px-1967-mustang-fastback-car-drive-neon-retrowave-synthwave-vehicle-art-skyline-hd-art-wallpaper-preview.jpg" alt="Car 4">
-  </div>
+      <div class="slide">
+        <img
+          src="https://c4.wallpaperflare.com/wallpaper/26/399/594/1920x1081-px-1967-mustang-fastback-car-drive-neon-retrowave-synthwave-vehicle-art-skyline-hd-art-wallpaper-preview.jpg"
+          alt="Car 4">
+      </div>
 
-  <div class="slide">
-    <img src="https://wallpapers.com/images/hd/ford-mustang-mach-1-muscle-car-a3xgi2ab9tdzxy6n.jpg" alt="Car 5">
-  </div>
-</div>
+      <div class="slide">
+        <img src="https://wallpapers.com/images/hd/ford-mustang-mach-1-muscle-car-a3xgi2ab9tdzxy6n.jpg" alt="Car 5">
+      </div>
+    </div>
 
     <button class="prev" type="button" aria-label="Previous slide">&#8606;</button>
     <button class="next" type="button" aria-label="Next slide">&#8608;</button>
@@ -194,4 +212,5 @@
     start();
   </script>
 </body>
+
 </html>

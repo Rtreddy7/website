@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather Forecast</title>
+
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#0b1a33;
+      --surface:rgba(255,255,255,.08);
+      --surface2:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.65);
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:16px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% 10%, rgba(88,120,255,.22), transparent 55%),
+        radial-gradient(1000px 700px at 90% 20%, rgba(0,255,200,.10), transparent 60%),
+        radial-gradient(900px 700px at 50% 90%, rgba(255,180,0,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
+    }
+
+    .app{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .surface{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); border:0;
+    }
+
+    .header{
+      padding:14px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:start;
+    }
+
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .brandDot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:rgba(255,255,255,.9);
+      box-shadow:0 0 30px rgba(120,160,255,.7);
+    }
+
+    .title{
+      margin:0;
+      font-size:20px;
+    }
+
+    .updatedText{
+      font-size:13px;
+      text-align:right;
+    }
+
+    .searchBar{
+      grid-column:1/-1;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .searchBox{
+      position:relative;
+      flex:1;
+      min-width:260px;
+    }
+
+    .searchInput{
+      width:100%;
+      padding:12px 38px 12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      outline:none;
+    }
+
+    .clearButton{
+      position:absolute;
+      right:10px;
+      top:10px;
+      width:28px;
+      height:28px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      cursor:pointer;
+    }
+
+    .actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .button{
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.10);
+      color:var(--text);
+      cursor:pointer;
+    }
+
+    .buttonGhost{background:rgba(255,255,255,.06)}
+    .buttonUnit{min-width:58px; font-weight:800}
+
+    .status{
+      grid-column:1/-1;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px dashed var(--border);
+      background:rgba(255,255,255,.03);
+    }
+
+    .suggestions{
+      position:absolute;
+      left:0; right:0;
+      top:48px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(10,12,20,.92);
+      backdrop-filter: blur(8px);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      z-index:50;
+      display:none;
+    }
+
+    .suggestionRow{
+      padding:10px 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      cursor:pointer;
+    }
+
+    .suggestionRow:hover{
+      background:rgba(255,255,255,.10);
+    }
+
+    .suggestionType{
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .section{
+      padding:14px;
+    }
+
+    .sectionTitle{
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .sectionHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .gridThree{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .keyValue{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:1fr 1.4fr;
+      gap:8px 10px;
+      align-items:center;
+    }
+
+    .keyText{color:var(--muted); font-size:12px}
+    .valueText{font-weight:700; font-size:13px}
+
+    .current{
+      margin-top:10px;
+    }
+
+    .tempRow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .tempValue{
+      font-size:38px;
+      font-weight:900;
+      line-height:1;
+    }
+
+    .iconBox{
+      width:56px;
+      height:56px;
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      color:var(--muted);
+    }
+
+    .description{
+      margin-top:4px;
+      color:var(--muted);
+    }
+
+    .miniStats{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:8px;
+    }
+
+    .pill{
+      padding:10px 12px;
+      border-radius:14px;
+      background:var(--surface2);
+      border:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+
+    .pillValue{font-size:14px; font-weight:800}
+
+    .aqi{
+      margin-top:10px;
+    }
+
+    .aqiMain{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .aqiValue{
+      font-size:34px;
+      font-weight:900;
+    }
+
+    .hourly{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      overflow:auto;
+      padding-bottom:6px;
+    }
+
+    .hourCard{
+      min-width:118px;
+      padding:10px;
+      border-radius:14px;
+      background:var(--surface2);
+      border:1px solid var(--border);
+    }
+
+    .hourTime{font-size:12px; color:var(--muted)}
+    .hourMid{margin-top:8px; display:flex; align-items:center; justify-content:space-between}
+    .hourTemp{font-weight:900}
+
+    .hourIcon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      color:var(--muted);
+    }
+
+    .hourPop{margin-top:6px; font-size:12px; color:var(--muted)}
+
+    .daily{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(7, minmax(0,1fr));
+      gap:10px;
+    }
+
+    .dayCard{
+      padding:10px;
+      border-radius:14px;
+      background:var(--surface2);
+      border:1px solid var(--border);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height:118px;
+    }
+
+    .dayName{font-weight:900}
+    .dayTop{display:flex; justify-content:space-between; align-items:center}
+
+    .dayIcon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      color:var(--muted);
+    }
+
+    .dayTemps{font-weight:900}
+    .dayRain{color:var(--muted); font-size:12px}
+
+    .chips{
+      margin-top:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .chip{
+      padding:9px 11px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+      user-select:none;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .footer{
+      text-align:center;
+      padding:10px 6px;
+    }
+
+    .placeholder{
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    @media (max-width: 980px){
+      .daily{grid-template-columns:repeat(4, minmax(0,1fr));}
+    }
+
+    @media (max-width: 720px){
+      .header{grid-template-columns:1fr;}
+      .updatedText{text-align:left}
+      .gridThree{grid-template-columns:1fr;}
+      .daily{grid-template-columns:repeat(2, minmax(0,1fr));}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="surface header">
+      <div class="brand">
+        <span class="brandDot" aria-hidden="true"></span>
+        <div>
+          <h1 class="title">Weather Forecast</h1>
+        </div>
+      </div>
+
+      <div class="updatedText">
+        <span class="muted">Last updated:</span>
+        <span class="placeholder">—</span>
+      </div>
+
+      <div class="searchBar">
+        <div class="searchBox">
+          <label class="sr-only" for="searchInput">Search city, district, village or pincode</label>
+          <input class="searchInput" id="searchInput" type="text" placeholder="Search city / district / village / pincode (India)…" />
+          <button class="clearButton" type="button" aria-label="Clear search">✕</button>
+          <div class="suggestions" aria-label="Search suggestions"></div>
+        </div>
+
+        <div class="actions">
+          <button class="button" type="button">Search</button>
+          <button class="button buttonGhost" type="button">📍 My Location</button>
+          <button class="button buttonGhost" type="button">⟳ Refresh</button>
+          <button class="button buttonUnit" type="button">°C</button>
+        </div>
+      </div>
+
+      <div class="status muted">
+        Allow location to load your weather, or search any place. Showing placeholders until data loads.
+      </div>
+    </header>
+
+    <section class="gridThree">
+      <section class="surface section">
+        <div class="sectionTitle">📍 Your Location</div>
+        <div class="keyValue">
+          <div class="keyText">Place</div><div class="valueText placeholder" id="locationPlace">—</div>
+          <div class="keyText">City / Nearest</div><div class="valueText placeholder" id="locationNearest">—</div>
+          <div class="keyText">State</div><div class="valueText placeholder" id="locationState">—</div>
+          <div class="keyText">Accuracy</div><div class="valueText placeholder" id="locationAccuracy">—</div>
+        </div>
+      </section>
+
+      <section class="surface section">
+        <div class="sectionTitle">Current Weather</div>
+        <div class="current">
+          <div class="tempRow">
+            <div class="tempValue placeholder" id="currentTemp">—</div>
+            <div class="iconBox" id="currentIcon">—</div>
+          </div>
+          <div class="description placeholder" id="currentDescription">—</div>
+
+          <div class="miniStats">
+            <div class="pill"><span class="muted">Feels</span><span class="pillValue placeholder" id="currentFeels">—</span></div>
+            <div class="pill"><span class="muted">Humidity</span><span class="pillValue placeholder" id="currentHumidity">—</span></div>
+            <div class="pill"><span class="muted">Wind</span><span class="pillValue placeholder" id="currentWind">—</span></div>
+            <div class="pill"><span class="muted">Pressure</span><span class="pillValue placeholder" id="currentPressure">—</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="surface section">
+        <div class="sectionTitle">Air Quality (AQI)</div>
+        <div class="aqi">
+          <div class="aqiMain">
+            <div class="aqiValue placeholder" id="aqiNumber">—</div>
+            <div>
+              <div style="font-weight:900" class="placeholder" id="aqiStatus">—</div>
+              <div class="muted small placeholder" id="aqiAdvice">—</div>
+            </div>
+          </div>
+
+          <div class="keyValue small">
+            <div class="keyText">PM2.5</div><div class="valueText placeholder" id="aqiPm25">—</div>
+            <div class="keyText">PM10</div><div class="valueText placeholder" id="aqiPm10">—</div>
+            <div class="keyText">NO₂</div><div class="valueText placeholder" id="aqiNo2">—</div>
+            <div class="keyText">O₃</div><div class="valueText placeholder" id="aqiO3">—</div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="surface section">
+      <div class="sectionHead">
+        <div class="sectionTitle">Hourly Forecast (Next 24 Hours)</div>
+      </div>
+
+      <div class="hourly" id="hourlyForecast">
+        <div class="hourCard">
+          <div class="hourTime placeholder">—</div>
+          <div class="hourMid"><div class="hourTemp placeholder">—</div><div class="hourIcon">—</div></div>
+          <div class="hourPop placeholder">—</div>
+        </div>
+        <div class="hourCard">
+          <div class="hourTime placeholder">—</div>
+          <div class="hourMid"><div class="hourTemp placeholder">—</div><div class="hourIcon">—</div></div>
+          <div class="hourPop placeholder">—</div>
+        </div>
+        <div class="hourCard">
+          <div class="hourTime placeholder">—</div>
+          <div class="hourMid"><div class="hourTemp placeholder">—</div><div class="hourIcon">—</div></div>
+          <div class="hourPop placeholder">—</div>
+        </div>
+        <div class="hourCard">
+          <div class="hourTime placeholder">—</div>
+          <div class="hourMid"><div class="hourTemp placeholder">—</div><div class="hourIcon">—</div></div>
+          <div class="hourPop placeholder">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface section">
+      <div class="sectionTitle">7 Day Forecast</div>
+
+      <div class="daily" id="dailyForecast">
+        <div class="dayCard">
+          <div class="dayName placeholder">—</div>
+          <div class="dayTop"><div class="muted small placeholder">—</div><div class="dayIcon">—</div></div>
+          <div class="dayTemps placeholder">—</div>
+          <div class="dayRain placeholder">—</div>
+        </div>
+        <div class="dayCard">
+          <div class="dayName placeholder">—</div>
+          <div class="dayTop"><div class="muted small placeholder">—</div><div class="dayIcon">—</div></div>
+          <div class="dayTemps placeholder">—</div>
+          <div class="dayRain placeholder">—</div>
+        </div>
+        <div class="dayCard">
+          <div class="dayName placeholder">—</div>
+          <div class="dayTop"><div class="muted small placeholder">—</div><div class="dayIcon">—</div></div>
+          <div class="dayTemps placeholder">—</div>
+          <div class="dayRain placeholder">—</div>
+        </div>
+        <div class="dayCard">
+          <div class="dayName placeholder">—</div>
+          <div class="dayTop"><div class="muted small placeholder">—</div><div class="dayIcon">—</div></div>
+          <div class="dayTemps placeholder">—</div>
+          <div class="dayRain placeholder">—</div>
+        </div>
+        <div class="dayCard">
+          <div class="dayName placeholder">—</div>
+          <div class="dayTop"><div class="muted small placeholder">—</div><div class="dayIcon">—</div></div>
+          <div class="dayTemps placeholder">—</div>
+          <div class="dayRain placeholder">—</div>
+        </div>
+        <div class="dayCard">
+          <div class="dayName placeholder">—</div>
+          <div class="dayTop"><div class="muted small placeholder">—</div><div class="dayIcon">—</div></div>
+          <div class="dayTemps placeholder">—</div>
+          <div class="dayRain placeholder">—</div>
+        </div>
+        <div class="dayCard">
+          <div class="dayName placeholder">—</div>
+          <div class="dayTop"><div class="muted small placeholder">—</div><div class="dayIcon">—</div></div>
+          <div class="dayTemps placeholder">—</div>
+          <div class="dayRain placeholder">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gridThree">
+      <section class="surface section">
+        <div class="sectionTitle">Today Highlights</div>
+        <div class="keyValue">
+          <div class="keyText">UV Index</div><div class="valueText placeholder" id="highlightUv">—</div>
+          <div class="keyText">Chance of Rain</div><div class="valueText placeholder" id="highlightRain">—</div>
+          <div class="keyText">Dew Point</div><div class="valueText placeholder" id="highlightDew">—</div>
+          <div class="keyText">Visibility</div><div class="valueText placeholder" id="highlightVisibility">—</div>
+        </div>
+      </section>
+
+      <section class="surface section">
+        <div class="sectionTitle">Sun & Moon</div>
+        <div class="keyValue">
+          <div class="keyText">Sunrise</div><div class="valueText placeholder" id="sunriseTime">—</div>
+          <div class="keyText">Sunset</div><div class="valueText placeholder" id="sunsetTime">—</div>
+          <div class="keyText">Day Length</div><div class="valueText placeholder" id="dayLength">—</div>
+          <div class="keyText">Timezone</div><div class="valueText placeholder" id="timeZone">—</div>
+        </div>
+      </section>
+
+      <section class="surface section">
+        <div class="sectionTitle">Extra Details</div>
+        <div class="keyValue">
+          <div class="keyText">Cloud Cover</div><div class="valueText placeholder" id="extraClouds">—</div>
+          <div class="keyText">Gust</div><div class="valueText placeholder" id="extraGust">—</div>
+          <div class="keyText">Min / Max (Today)</div><div class="valueText placeholder" id="extraMinMax">—</div>
+          <div class="keyText">Station / Source</div><div class="valueText placeholder" id="extraSource">—</div>
+        </div>
+      </section>
+    </section>
+
+    <section class="surface section">
+      <div class="sectionTitle">Recent Searches</div>
+      <div class="chips" id="recentSearches">
+        <div class="chip">—</div>
+        <div class="chip">—</div>
+        <div class="chip">—</div>
+      </div>
+    </section>
+
+    <footer class="footer muted small">
+        2026 © India Weather. Data provided by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener" style="color:var(--text); text-decoration:underline">WeatherAPI.com</a>.
+    </footer>
+  </div>
+
+  <script src="weather.js"></script>
+</body>
+</html>
