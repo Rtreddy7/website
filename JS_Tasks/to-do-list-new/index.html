@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+
+    .calendar-section {
+      width: 50%;
+    }
+
+    .task-section {
+      width: 50%;
+    }
+
+    #calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .day {
+      background: white;
+      padding: 12px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .day:hover {
+      background: #e7ebff;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px 0;
+      display: block;
+      width: 200px;
+    }
+
+    button {
+      padding: 8px 12px;
+      background: #4A6CF7;
+      color: white;
+      border: none;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    li {
+      background: white;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .editBtn {
+      background: orange;
+      margin-left: 10px;
+    }
+
+    .deleteBtn {
+      background: red;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Task Manager</h1>
+
+  <div class="container">
+
+    <div class="calendar-section">
+      <h2>Calendar</h2>
+      <div id="calendar"></div>
+    </div>
+
+    <div class="task-section">
+
+      <h2>Add Task</h2>
+      <input id="taskName" placeholder="Task name">
+      <input type="date" id="taskDate">
+      <input type="time" id="taskTime">
+
+      <button onclick="addTask()">Add Task</button>
+
+      <h2>Tasks</h2>
+      <ul id="taskList"></ul>
+
+    </div>
+
+  </div>
+
+  <script>
+    var tasks = [];
+    var selectedDate = "";
+
+    createCalendar();
+
+    function createCalendar() {
+
+      var calendar = document.getElementById("calendar");
+      calendar.textContent = "";
+
+      var today = new Date();
+      var year = today.getFullYear();
+      var month = today.getMonth();
+
+      var days = new Date(year, month + 1, 0).getDate();
+
+      for (var i = 1; i <= days; i++) {
+
+        var dayBox = document.createElement("div");
+        dayBox.className = "day";
+        dayBox.textContent = i;
+
+        var dateString = year + "-" + (month + 1) + "-" + i;
+
+        dayBox.setAttribute("data-date", dateString);
+
+        dayBox.onclick = function () {
+
+          selectedDate = this.getAttribute("data-date");
+
+          showTasks();
+
+        };
+
+        calendar.appendChild(dayBox);
+
+      }
+
+    }
+
+    function addTask() {
+
+      var name = document.getElementById("taskName").value;
+      var date = document.getElementById("taskDate").value;
+      var time = document.getElementById("taskTime").value;
+
+      if (name === "" || date === "" || time === "") {
+        alert("Enter task details");
+        return;
+      }
+
+      var task = {
+        name: name,
+        date: date,
+        time: time
+      };
+
+      tasks.push(task);
+
+      selectedDate = date;
+
+      showTasks();
+
+    }
+
+    function showTasks() {
+
+      var list = document.getElementById("taskList");
+      list.textContent = "";
+
+      for (var i = 0; i < tasks.length; i++) {
+
+        if (tasks[i].date === selectedDate) {
+
+          var item = document.createElement("li");
+
+          item.textContent = tasks[i].time + " - " + tasks[i].name;
+
+          var editBtn = document.createElement("button");
+          editBtn.textContent = "Edit";
+          editBtn.className = "editBtn";
+          editBtn.onclick = editTask.bind(null, i);
+
+          var deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.className = "deleteBtn";
+          deleteBtn.onclick = deleteTask.bind(null, i);
+
+          item.appendChild(editBtn);
+          item.appendChild(deleteBtn);
+
+          list.appendChild(item);
+
+        }
+
+      }
+
+    }
+
+    function editTask(index) {
+
+      var newName = prompt("Edit task", tasks[index].name);
+
+      if (newName !== null) {
+
+        tasks[index].name = newName;
+
+        showTasks();
+
+      }
+
+    }
+
+    function deleteTask(index) {
+
+      tasks.splice(index, 1);
+
+      showTasks();
+
+    }
+
+    setInterval(function () {
+
+      var now = new Date();
+
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+
+      var currentDate = year + "-" + month + "-" + day;
+      var currentTime = hours + ":" + minutes;
+
+      for (var i = 0; i < tasks.length; i++) {
+
+        if (tasks[i].date === currentDate && tasks[i].time === currentTime) {
+
+          alert("Reminder: " + tasks[i].name);
+
+        }
+
+      }
+
+    }, 60000);
+  </script>
+
+</body>
+
+</html>

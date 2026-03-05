@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Z Planner</title>
+
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#f4f5f7;
+}
+
+.app{
+display:flex;
+height:100vh;
+}
+
+.sidebar{
+width:220px;
+background:white;
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:30px;
+border-right:1px solid #eee;
+}
+
+.logo{
+color:#5b4bff;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.menu a{
+text-decoration:none;
+color:#555;
+padding:8px;
+border-radius:6px;
+}
+
+.menu a.active{
+background:#ecebff;
+color:#5b4bff;
+}
+
+.add-btn{
+margin-top:auto;
+padding:10px;
+background:#5b4bff;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:white;
+border-bottom:1px solid #eee;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.header input{
+padding:8px;
+border-radius:6px;
+border:1px solid #ddd;
+}
+
+.profile{
+width:35px;
+height:35px;
+border-radius:50%;
+}
+
+.calendar{
+padding:20px;
+}
+
+.calendar-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.calendar-header button{
+padding:5px 10px;
+border:none;
+background:#eee;
+border-radius:5px;
+cursor:pointer;
+}
+
+.days{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+margin-bottom:10px;
+color:#777;
+}
+
+.days div{
+text-align:center;
+}
+
+.dates{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:10px;
+}
+
+.date{
+background:white;
+border-radius:10px;
+min-height:90px;
+padding:8px;
+border:1px solid #eee;
+position:relative;
+}
+
+.date span{
+font-size:12px;
+color:#888;
+}
+
+.date.active{
+background:#f0f0ff;
+}
+
+.task{
+background:#e8f0ff;
+padding:3px 6px;
+font-size:12px;
+border-radius:5px;
+margin-top:5px;
+color:#333;
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+<h2 class="logo">Task Z</h2>
+
+<nav class="menu">
+<a href="#">Dashboard</a>
+<a href="#">Tasks</a>
+<a class="active" href="#">Calendar</a>
+</nav>
+
+<button class="add-btn">+ Add Task</button>
+</aside>
+
+<main class="main">
+
+<header class="header">
+<h3>Calendar</h3>
+
+<div class="header-right">
+<input type="text" placeholder="Search">
+<img src="" class="profile">
+</div>
+</header>
+
+<section class="calendar">
+
+<div class="calendar-header">
+<button>‹</button>
+<h4>March 2026</h4>
+<button>›</button>
+</div>
+
+<div class="days">
+<div>Mon</div>
+<div>Tue</div>
+<div>Wed</div>
+<div>Thu</div>
+<div>Fri</div>
+<div>Sat</div>
+<div>Sun</div>
+</div>
+
+<div class="dates">
+
+<div class="date">
+<span>1</span>
+</div>
+
+<div class="date">
+<span>2</span>
+</div>
+
+<div class="date">
+<span>3</span>
+</div>
+
+<div class="date">
+<span>4</span>
+</div>
+
+<div class="date">
+<span>5</span>
+</div>
+
+<div class="date">
+<span>6</span>
+</div>
+
+<div class="date">
+<span>7</span>
+</div>
+
+<div class="date">
+<span>8</span>
+</div>
+
+<div class="date">
+<span>9</span>
+</div>
+
+<div class="date">
+<span>10</span>
+<div class="task"></div>
+</div>
+
+<div class="date">
+<span>11</span>
+</div>
+
+<div class="date">
+<span>12</span>
+<div class="task"></div>
+</div>
+
+<div class="date">
+<span>13</span>
+</div>
+
+<div class="date">
+<span>14</span>
+</div>
+
+<div class="date active">
+<span>15</span>
+<div class="task"></div>
+</div>
+
+<div class="date">
+<span>16</span>
+</div>
+
+<div class="date">
+<span>17</span>
+</div>
+
+<div class="date">
+<span>18</span>
+</div>
+
+<div class="date">
+<span>19</span>
+</div>
+
+<div class="date">
+<span>20</span>
+</div>
+
+<div class="date">
+<span>21</span>
+</div>
+
+<div class="date">
+<span>22</span>
+</div>
+
+<div class="date">
+<span>23</span>
+</div>
+
+<div class="date">
+<span>24</span>
+</div>
+
+<div class="date">
+<span>25</span>
+<div class="task">CRM</div>
+</div>
+
+<div class="date">
+<span>26</span>
+</div>
+
+<div class="date">
+<span>27</span>
+</div>
+
+<div class="date">
+<span>28</span>
+<div class="task"></div>
+</div>
+
+<div class="date">
+<span>29</span>
+</div>
+
+<div class="date">
+<span>30</span>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+</body>
+</html>
