@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login UI</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="card">
+        <!-- LEFT NAV -->
+        <ul class="nav card-nav">
+            <li class="logo-item">
+                <div class="logo-wrap">
+                    <img src="https://oppty.in/wp-content/uploads/2025/07/oppty.png" alt="Logo" class="logo-img" />
+                </div>
+            </li>
+
+            <span class="active-bar"></span>
+
+            <li>
+                <button type="button" class="signin active">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Sign In</span>
+                </button>
+            </li>
+
+            <li>
+                <button type="button" class="signup">
+                    <i class="fa-regular fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </button>
+            </li>
+        </ul>
+
+        <!-- CENTER HERO -->
+        <div class="hero card-hero">
+            <div class="hero-inner card-hero-inner">
+                <!-- SIGN IN HERO -->
+                <div class="hero-content signin-content">
+                    <h2>Welcome Back.</h2>
+                    <h3>Please enter your credentials.</h3>
+
+                    <div class="hero-image-wrap">
+                        <img src="https://assets-v2.lottiefiles.com/a/fbee41ac-116c-11ee-b0ee-67caa47f73d8/gmCJpWCWmO.gif"
+                            alt="Sign in illustration" class="hero-image" />
+                    </div>
+                </div>
+
+                <!-- SIGN UP HERO -->
+                <div class="hero-content signup-content">
+                    <h2>Sign Up Now.</h2>
+                    <h3>Join the crowd and get started.</h3>
+
+                    <div class="hero-image-wrap">
+                        <img src="https://assets-v2.lottiefiles.com/a/750ed6f6-117b-11ee-97d8-73d47909a467/UP9s9oR49S.gif"
+                            alt="Sign up illustration" class="hero-image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="form card-form">
+            <div class="forms">
+                <!-- SIGN IN FORM -->
+                <form action="#" class="sign-in-form active-form" autocomplete="off">
+                    <p class="switch-text">
+                        Don’t have an account?
+                        <a href="#" class="switch-to-signup">Sign Up.</a>
+                    </p>
+
+                    <label for="signin-email">Email</label>
+                    <div class="input-box">
+                        <input id="signin-email" type="email" placeholder="youremail@gmail.com" />
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+
+                    <label for="signin-password">Password</label>
+                    <div class="input-box">
+                        <input id="signin-password" type="password" placeholder="••••••••••••••" />
+                        <i class="fa-solid fa-lock password-toggle"></i>
+                    </div>
+
+                    <button type="submit" class="submit-btn">SIGN IN</button>
+
+                    <p class="terms-text">
+                        By clicking Sign In you agree to our terms and conditions,
+                        privacy policy and reusability rules.
+                    </p>
+                </form>
+
+                <!-- SIGN UP FORM -->
+                <form action="#" class="sign-up-form" autocomplete="off">
+                    <p class="switch-text">
+                        Already have an account?
+                        <a href="#" class="switch-to-signin">Sign In.</a>
+                    </p>
+
+                    <label for="signup-username">Username</label>
+                    <div class="input-box">
+                        <input id="signup-username" type="text" placeholder="myusername" />
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+
+                    <label for="signup-email">Email</label>
+                    <div class="input-box">
+                        <input id="signup-email" type="email" placeholder="youremail@gmail.com" />
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+
+                    <label for="signup-password">Password</label>
+                    <div class="input-box">
+                        <input id="signup-password" type="password" placeholder="••••••••••••••" />
+                        <i class="fa-solid fa-lock password-toggle"></i>
+                    </div>
+
+                    <button type="submit" class="submit-btn">SIGN UP</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const STORAGE_USERS_KEY = "users";
+            const STORAGE_LOGGED_IN_KEY = "loggedInUser";
+            const STORAGE_ACTIVE_VIEW_KEY = "activeAuthView";
+            //layout elements
+            const signInNavBtn = document.querySelector(".nav button.signin");
+            const signUpNavBtn = document.querySelector(".nav button.signup");
+            const activeBar = document.querySelector(".active-bar");
+            const formsWrapper = document.querySelector(".form .forms");
+            const heroInner = document.querySelector(".hero-inner");
+
+            // forms
+            const signInForm = document.querySelector(".sign-in-form");
+            const signUpForm = document.querySelector(".sign-up-form");
+
+            // switch links
+            const switchToSignupLink = document.querySelector(".switch-to-signup");
+            const switchToSigninLink = document.querySelector(".switch-to-signin");
+
+            // sign in fields
+            const signInEmailInput = document.querySelector("#signin-email");
+            const signInPasswordInput = document.querySelector("#signin-password");
+
+            // sign up fields
+            const signUpUsernameInput = document.querySelector("#signup-username");
+            const signUpEmailInput = document.querySelector("#signup-email");
+            const signUpPasswordInput = document.querySelector("#signup-password");
+
+            function getUsers() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_USERS_KEY)) || [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function saveUsers(users) {
+                localStorage.setItem(STORAGE_USERS_KEY, JSON.stringify(users));
+            }
+
+            function setLoggedInUser(user) {
+                localStorage.setItem(STORAGE_LOGGED_IN_KEY, JSON.stringify(user));
+            }
+
+            function getLoggedInUser() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_LOGGED_IN_KEY));
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+            }
+
+            function clearMessages(form) {
+                const existing = form.querySelector(".form-message");
+                if (existing) existing.remove();
+            }
+
+            function showMessage(form, message, type = "error") {
+                clearMessages(form);
+
+                const messageBox = document.createElement("div");
+                messageBox.className = `form-message ${type}`;
+                messageBox.textContent = message;
+
+                const submitBtn = form.querySelector(".submit-btn");
+                submitBtn.insertAdjacentElement("beforebegin", messageBox);
+            }
+
+            function clearInputBorders(form) {
+                form.querySelectorAll(".input-box input").forEach((input) => {
+                    input.style.borderColor = "";
+                    input.style.boxShadow = "";
+                });
+            }
+
+            function markInvalid(input) {
+                input.style.borderColor = "#e25757";
+                input.style.boxShadow = "0 0 0 3px rgba(226, 87, 87, 0.08)";
+            }
+
+            function resetFormUI(form) {
+                clearMessages(form);
+                clearInputBorders(form);
+            }
+
+            function selectView(view) {
+                const isSignin = view === "signin";
+
+                signInNavBtn.classList.toggle("active", isSignin);
+                signUpNavBtn.classList.toggle("active", !isSignin);
+
+                if (window.innerWidth > 900) {
+                    activeBar.style.top = isSignin ? "33.33%" : "66.66%";
+                } else {
+                    activeBar.style.left = isSignin ? "33.33%" : "79%";
+                }
+
+                formsWrapper.style.top = isSignin ? "0" : "-100%";
+                heroInner.style.top = isSignin ? "0" : "-100%";
+
+                localStorage.setItem(STORAGE_ACTIVE_VIEW_KEY, view);
+            }
+
+            function setupPasswordToggles() {
+                const toggles = document.querySelectorAll(".password-toggle");
+
+                toggles.forEach((toggleIcon) => {
+                    const inputBox = toggleIcon.closest(".input-box");
+                    if (!inputBox) return;
+
+                    const input = inputBox.querySelector("input");
+                    if (!input) return;
+
+                    toggleIcon.setAttribute("title", "Show password");
+
+                    toggleIcon.addEventListener("click", () => {
+                        const isHidden = input.type === "password";
+
+                        if (isHidden) {
+                            input.type = "text";
+                            toggleIcon.classList.remove("fa-lock");
+                            toggleIcon.classList.add("fa-lock-open");
+                            toggleIcon.setAttribute("title", "Hide password");
+                        } else {
+                            input.type = "password";
+                            toggleIcon.classList.remove("fa-lock-open");
+                            toggleIcon.classList.add("fa-lock");
+                            toggleIcon.setAttribute("title", "Show password");
+                        }
+                    });
+                });
+            }
+
+            function handleSignUp(event) {
+                event.preventDefault();
+                resetFormUI(signUpForm);
+
+                const username = signUpUsernameInput.value.trim();
+                const email = signUpEmailInput.value.trim().toLowerCase();
+                const password = signUpPasswordInput.value.trim();
+
+                let hasError = false;
+
+                if (!username) {
+                    markInvalid(signUpUsernameInput);
+                    hasError = true;
+                }
+
+                if (!email || !isValidEmail(email)) {
+                    markInvalid(signUpEmailInput);
+                    hasError = true;
+                }
+
+                if (!password || password.length < 6) {
+                    markInvalid(signUpPasswordInput);
+                    hasError = true;
+                }
+
+                if (hasError) {
+                    showMessage(
+                        signUpForm,
+                        "Please enter a valid username, email, and a password with at least 6 characters.",
+                        "error"
+                    );
+                    return;
+                }
+
+                const users = getUsers();
+                const existingUser = users.find((user) => user.email === email);
+
+                if (existingUser) {
+                    markInvalid(signUpEmailInput);
+                    showMessage(signUpForm, "An account with this email already exists.", "error");
+                    return;
+                }
+
+                const newUser = {
+                    id: Date.now(),
+                    username,
+                    email,
+                    password
+                };
+
+                users.push(newUser);
+                saveUsers(users);
+
+                showMessage(signUpForm, "Account created successfully. You can sign in now.", "success");
+
+                signUpForm.reset();
+
+                setTimeout(() => {
+                    selectView("signin");
+                    signInEmailInput.value = email;
+                    signInPasswordInput.focus();
+                }, 800);
+            }
+
+            function handleSignIn(event) {
+                event.preventDefault();
+                resetFormUI(signInForm);
+
+                const email = signInEmailInput.value.trim().toLowerCase();
+                const password = signInPasswordInput.value.trim();
+
+                let hasError = false;
+
+                if (!email || !isValidEmail(email)) {
+                    markInvalid(signInEmailInput);
+                    hasError = true;
+                }
+
+                if (!password) {
+                    markInvalid(signInPasswordInput);
+                    hasError = true;
+                }
+
+                if (hasError) {
+                    showMessage(signInForm, "Please enter your email and password correctly.", "error");
+                    return;
+                }
+
+                const users = getUsers();
+
+                if (users.length === 0) {
+                    showMessage(signInForm, "No account found. Please sign up first.", "error");
+                    return;
+                }
+
+                const matchedUser = users.find(
+                    (user) => user.email === email && user.password === password
+                );
+
+                if (!matchedUser) {
+                    const emailExists = users.some((user) => user.email === email);
+
+                    if (!emailExists) {
+                        markInvalid(signInEmailInput);
+                        showMessage(signInForm, "This email is not registered. Please sign up first.", "error");
+                    } else {
+                        markInvalid(signInPasswordInput);
+                        showMessage(signInForm, "Incorrect password. Please try again.", "error");
+                    }
+                    return;
+                }
+
+                setLoggedInUser({
+                    id: matchedUser.id,
+                    username: matchedUser.username,
+                    email: matchedUser.email,
+                    loginTime: new Date().toISOString()
+                });
+
+                showMessage(signInForm, `Welcome back, ${matchedUser.username}! Login successful.`, "success");
+
+                signInForm.reset();
+
+                console.log("Logged in user:", getLoggedInUser());
+            }
+
+            signInNavBtn.addEventListener("click", () => {
+                resetFormUI(signInForm);
+                resetFormUI(signUpForm);
+                selectView("signin");
+            });
+
+            signUpNavBtn.addEventListener("click", () => {
+                resetFormUI(signInForm);
+                resetFormUI(signUpForm);
+                selectView("signup");
+            });
+
+            switchToSignupLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                resetFormUI(signInForm);
+                resetFormUI(signUpForm);
+                selectView("signup");
+            });
+
+            switchToSigninLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                resetFormUI(signInForm);
+                resetFormUI(signUpForm);
+                selectView("signin");
+            });
+
+            signUpForm.addEventListener("submit", handleSignUp);
+            signInForm.addEventListener("submit", handleSignIn);
+
+            window.addEventListener("resize", () => {
+                const savedView = localStorage.getItem(STORAGE_ACTIVE_VIEW_KEY) || "signin";
+                selectView(savedView);
+            });
+
+            setupPasswordToggles();
+
+            const savedView = localStorage.getItem(STORAGE_ACTIVE_VIEW_KEY) || "signin";
+            selectView(savedView);
+        });
+
+    </script>
+</body>
+
+</html>
