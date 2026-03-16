@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="book.xsl"?>
+
+<book>
+
+<chapter>
+<number>Chapter 1</number>
+<title>It's Time You Paid Me</title>
+
+<intro>
+So here you are, looking at your empty bank account and on the verge of freaking out. Contemplating what to do about the client who has still failed to pay, for the job you were counting on to cover your rent with. I mean, if you hadn’t been counting on that money, you probably wouldn’t have dropped a few bills at the bar last weekend. But that’s another story for another day.
+</intro>
+
+<paragraph>
+The point is, you’re in trouble. And your client? They’re MIA.
+</paragraph>
+
+<paragraph>
+Let’s figure out what to do next.
+</paragraph>
+
+<section>
+<heading>Know Your Rights</heading>
+
+<paragraph>
+Personally, I never want to go to court. Sure, I invest a lot of time and effort into ensuring I have written great contracts, but that is more about communicating expectations than serving as a backup in a lawsuit.
+</paragraph>
+
+<paragraph>
+None of us creates contracts with the intent of winding up in court one day — we do it as a stopgap, to make sure everyone is on the same page and to hopefully leave clients feeling obligated to pay.
+</paragraph>
+
+</section>
+
+</chapter>
+
+</book>

@@ -1,0 +1,54 @@
+body
+{
+    background:#e9e5d8;
+    font-family: Georgia, serif;
+}
+
+.page
+{
+    width:700px;
+    margin:auto;
+    background:#f3f1e6;
+    padding:60px;
+    line-height:1.6;
+}
+
+.paragraph
+{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.italic
+{
+    font-style:italic;
+    margin-left:40px;
+    margin-bottom:12px;
+}
+
+.center
+{
+    text-align:center;
+    font-style:italic;
+    font-size:20px;
+    margin:30px 0;
+}
+
+.dialogue
+{
+    font-size:18px;
+    margin-bottom:18px;
+}
+
+.clue
+{
+    font-family: "Courier New", monospace;
+    text-align:center;
+    letter-spacing:1px;
+    margin:8px 0;
+}
+
+.bold
+{
+    font-weight:bold;
+}
