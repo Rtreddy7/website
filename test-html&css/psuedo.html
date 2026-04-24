@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            background: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 9999px;
+        }
+
+        .btn:hover{
+            background: purple;
+        }
+
+        .btn:active{
+            background: red;
+            transform: scale(0.95);
+        }
+
+        .btn::before{
+            content: "🛒";
+        }
+
+        ul li:first-child{
+            color: red;
+        }
+
+        ul li:last-child{
+            color: green;
+        }
+
+        ul li:nth-child(2){
+            font-size: 32px;
+            font-weight: 800;
+            color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <!-- psuedo-classes -->
+     <!-- psuedo elements -->
+
+    <button class="btn">Buy Now</button>
+
+    <ul>
+        <li>first</li>
+        <li>second</li>
+        <li>third</li>
+        <li>fourth</li>
+        <li>fifth</li>
+    </ul>
+</body>
+</html>

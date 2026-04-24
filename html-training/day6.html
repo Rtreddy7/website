@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>media queries</title>
+
+    <style>
+        body{
+            margin: 0;
+
+        }
+
+        .hero{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .hero-content{
+            max-width: 50%;
+        }
+
+        .hero-content h1{
+            font-size: 48px;
+        }
+
+        .hero-content p{
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .hero-content button{
+            padding: 12px 24px;
+            font-size: 16px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .hero-img img{
+            width: 400px;
+        }
+
+        @media (max-width: 600px) {
+            .hero{
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-img img{
+               width: 100%;
+               margin-top: 20px;
+            }
+            .hero-content h1{
+                font-size: 28px;
+            }
+
+        }
+
+        @media (min-width: 601px){
+            
+        }
+
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Responsive Design</h1>
+            <p>Checking the hero section for multiple device types</p>
+            <button>Get Started</button>
+        </div>
+
+        <div class="hero-img">
+            <img src="peacock-feather-wallpaper-hd-wallpaper-photo.jpeg" alt="">
+        </div>
+    </section>
+</body>
+</html>
